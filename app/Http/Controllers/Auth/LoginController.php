@@ -33,7 +33,7 @@ class LoginController extends Controller
     protected function redirectTo(){
         if(Auth::user()->role == 1){
             return route('admin.dashboard');
-        }else if(Auth::user() == 2){
+        }else if(Auth::user()->role == 2){
             return route('advertiser.dashboard');
         }
     }
@@ -52,7 +52,7 @@ class LoginController extends Controller
         $input = $request->all();
 
         $this->validate($request, [
-            'email'=>'required|email',
+            'login'=>'required',
             'password'=>'required'
         ]);
 
@@ -60,7 +60,13 @@ class LoginController extends Controller
         # 1 == Admin
         # 2 == Advertiser
 
-        if(Auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password']))){
+        $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
+        $request->merge([
+            $login_type => $request->input('login')
+        ]);
+        
+        if(Auth::attempt(array($login_type=>$input['login'], 'password'=>$input['password']))){
 
             if(Auth::user()->role == 1){
                 return redirect()->route('admin.dashboard');

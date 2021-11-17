@@ -31,8 +31,8 @@
 							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('login') }}">
                 @csrf
 								<div class="form-group">
-									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="Enter email">
+									<label for="login">E-Mail Address or Username</label>
+									<input id="login" type="text" class="form-control" name="login" value="" required autofocus placeholder="Enter email or username" class="form-control @if($errors->has('email') || $errors->has('username')) has-error @endif">
                   <span class="text-danger">@error('email'){{ $message }}@enderror</span>
 								</div>
 
