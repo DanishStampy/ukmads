@@ -5,64 +5,62 @@
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Register page</title>
+
+	{{-- Custom CSS File --}}
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<link rel="stylesheet" type="text/css" href="css/my-register.css">
+
+	{{-- Font Awesome 5 --}}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
 </head>
-<body class="my-login-page">
+<body class="my-register-page">
 	<section class="h-100">
 		<div class="container h-100">
-			<div class="row justify-content-md-center h-100">
+			<div class="row justify-content-md-center align-items-md-center h-100">
 				<div class="card-wrapper">
-				
-					<div class="cardx fat mt-4">
+					
+					<div class="home-link"><a class="link" href="{{route('welcome')}}"><i class="fas fa-arrow-left"></i></a>&nbsp;&nbsp;Home</div>
+					
+					<div class="mt-4 px-2 cardx">
 						<div class="card-body">
-							<h4 class="card-title">Register</h4>
+							<h2 class="card-title">Create a new account</h2>
+							<h6 class="card-subtitle mb-4 mt-2 text-muted">Use your google email to create new account</h6>
 							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('register') }}">
                 @csrf
-								<div class="form-group">
-									<label for="name">Name</label>
-									<input id="name" type="text" class="form-control" name="name"  autofocus placeholder="Enter name" value="{{ old('name') }}">
+								<div class="form_group">
+									<input id="name" type="text" class="form_input" name="name" placeholder=" "  autofocus value="{{ old('name') }}">
+									<label for="name" class="form_label">Name</label>
 									<span class="text-danger">@error('name'){{ $message }}@enderror</span>
 								</div>
 
-								<div class="form-group">
-									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email"  placeholder="Enter email" value="{{ old('email') }}">
+								<div class="form_group">
+									<input id="email" type="email" class="form_input" name="email"  placeholder=" " value="{{ old('email') }}">
+									<label for="email" class="form_label">E-Mail Address</label>
 									<span class="text-danger">@error('email'){{ $message }}@enderror</span>
 								</div>
                       
 
-								<div class="form-group">
-									<label for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password"  data-eye placeholder="Enter password">
+								<div class="form_group">
+									<input id="password" type="password" class="form_input" name="password"  data-eye placeholder=" ">
+									<label for="password" class="form_label">Password</label>
 									<span class="text-danger">@error('password'){{ $message }}@enderror</span>
 								</div>
                 
-								<div class="form-group">
-									<label for="password-confirm">Confirm Password</label>
-									<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required data-eye placeholder="Enter confirm password">
+								<div class="form_group">
+									<input id="password-confirm" type="password" class="form_input" name="password_confirmation" required data-eye placeholder=" ">
+									<label for="password-confirm" class="form_label">Confirm Password</label>
 									<span class="text-danger">@error('password_confirmation'){{ $message }}@enderror</span>
                                     
 								</div>
 
-
-								<div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="agree" id="agree" class="custom-control-input">
-										<label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
-										<div class="invalid-feedback">
-											You must agree with our Terms and Conditions
-										</div>
-									</div>
-								</div>
-
 								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
-										Register
+									<button type="submit" class="btn btn-block">
+										Sign Up
 									</button>
 								</div>
-								<div class="mt-4 text-center">
-									Already have an account? <a href="{{route('login')}}">Login</a>
+								<div class="my-3 text-center">
+									Already have an account? <a class="link" href="{{route('login')}}">Login</a>
 								</div>
 							</form>
 						</div>
