@@ -5,8 +5,13 @@
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Login page</title>
+	
+	{{-- Custom CSS File --}}
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<link rel="stylesheet" type="text/css" href="css/my-register.css">
+
+	{{-- Font Awesome 5 --}}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 </head>
 
 <body class="my-login-page">
