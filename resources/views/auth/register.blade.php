@@ -18,17 +18,6 @@
 						<div class="card-body">
 							<h4 class="card-title">Register</h4>
 							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('register') }}">
-
-								@if ( Session::get('success'))
-									 <div class="alert alert-success">
-										 {{ Session::get('success') }}
-									 </div>
-								@endif
-								@if ( Session::get('error'))
-									 <div class="alert alert-danger">
-										 {{ Session::get('error') }}
-									 </div>
-								@endif
                 @csrf
 								<div class="form-group">
 									<label for="name">Name</label>

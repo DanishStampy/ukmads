@@ -17,6 +17,16 @@
 			
 					<div class="cardx fat mt-5">
 						<div class="card-body">
+							@if ( Session::get('success'))
+									 <div class="alert alert-success">
+										 {{ Session::get('success') }}
+									 </div>
+								@endif
+								@if ( Session::get('error'))
+									 <div class="alert alert-danger">
+										 {{ Session::get('error') }}
+									 </div>
+								@endif
 							<h4 class="card-title">Login</h4>
 							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('login') }}">
                 @csrf

@@ -92,9 +92,9 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
 
         if( $user->save() ){
-            return redirect()->back()->with('success','You are now successfully registered');
+            return redirect('login')->with('success','You are now successfully registered');
         }else{
-            return redirect()->back()->with('error','Failed to register');
+            return redirect('login')->with('error','Failed to register');
         }
     }
 }
