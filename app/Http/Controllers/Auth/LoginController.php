@@ -60,6 +60,7 @@ class LoginController extends Controller
         # 1 == Admin
         # 2 == Advertiser
 
+        # it will check type of input, whether email or username
         $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
         $request->merge([
