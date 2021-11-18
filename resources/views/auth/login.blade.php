@@ -6,7 +6,11 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Login page</title>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/my-register.css">
+
+	<link rel="stylesheet" type="text/css" href="css/my-login.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+
 </head>
 
 <body class="my-register-page">
@@ -14,6 +18,8 @@
 		<div class="container h-100">
 			<div class="row justify-content-md-center align-items-md-center h-100">
 				<div class="card-wrapper">
+					
+				<div class="home-link"><a class="link" href="{{route('welcome')}}"><i class="fas fa-arrow-left"></i></a>&nbsp;&nbsp;Home</div>
 			
 					<div class="cardx fat mt-5">
 						<div class="card-body">
@@ -73,7 +79,7 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
+									<button type="submit" class="btn btn-block">
 										Login
 									</button>
 								</div>
