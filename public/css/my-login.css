@@ -5,14 +5,14 @@ html,body {
 	font-family: 'Inter', sans-serif;
 }
 
-body.my-register-page {
+body.my-login-page {
 	background-color: #F3ECFF;
 	font-size: 14px;
 }
 
 .card-wrapper{
 	width: 500px;
-	height: 600px;
+	height: 450px;
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow:
