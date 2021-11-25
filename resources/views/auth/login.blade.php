@@ -47,7 +47,7 @@
 								</div>
 
 								<div class="form_group">
-									<input id="password" type="text" class="form_input" name="password" placeholder=" "  autofocus value="{{ old('password') }}">
+									<input id="password" type="password" class="form_input" name="password" placeholder=" "  autofocus value="{{ old('password') }}">
 									<label for="password" class="form_label">Password</label>
 									<span class="text-danger">@error('pasword'){{ $message }}@enderror</span>
 									<br>
