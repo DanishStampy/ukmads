@@ -24,7 +24,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('contact');
             $table->text('description');
             $table->string('picture', 255);
-            $table->boolean('status');
+            $table->enum("status", ["pending", "verified", "rejected"]);
             $table->timestamps();
         });
     }
