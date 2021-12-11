@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@popperjs/core": "^2.10.2",
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
         "jquery": "^3.6",
@@ -21,4 +22,5 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1"
     }
+    
 }

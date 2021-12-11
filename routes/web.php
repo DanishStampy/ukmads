@@ -35,3 +35,6 @@ Route::group(['prefix' => 'advertiser', 'middleware' => ['PreventBackHistory','i
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('advertiser.dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('advertiser.profile');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

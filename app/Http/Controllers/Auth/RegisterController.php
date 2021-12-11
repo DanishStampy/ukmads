@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -64,37 +62,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-
-     # By default, register user will become advertiser
-     
-    // protected function create(array $data)
-    // {
-    //     return User::create([
-    //         'name' => $data['name'],
-    //         'email' => $data['email'],
-    //         'role' => 2, 
-    //         'password' => Hash::make($data['password']),
-    //     ]);
-    // }
-
-    public function register(Request $request)
+    protected function create(array $data)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role = 2;
-        $user->password = Hash::make($request->password);
-
-        if( $user->save() ){
-            return redirect('login')->with('success','You are now successfully registered');
-        }else{
-            return redirect('login')->with('error','Failed to register');
-        }
     }
 }
