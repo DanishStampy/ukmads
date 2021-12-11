@@ -2,8 +2,6 @@ name: Deploy Laravel UKMads
 on:
   push:
     branches: [ main ]
-  #pull_request:
-    #branches: [ main ]
 
 jobs:
   deploy:
@@ -21,6 +19,3 @@ jobs:
             git pull
             composer install
             echo 'dah siappp'
-      
-#       - name: Install Dependencies
-#         run: composer install
