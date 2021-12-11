@@ -17,7 +17,7 @@ class isAdvertiserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 2){
+        if(Auth::check() && Auth::user()->role == 'advertiser'){
             return $next($request);
         }else{
             return redirect()->route('login');

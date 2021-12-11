@@ -14,7 +14,9 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->string('id_event')->primary();
+            $table->string('creator_email');
+            $table->foreign('creator_email')->references('email')->on('users');
             $table->string('name', 255);
             $table->string('location');
             $table->time('time');  # HH:MI
@@ -23,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->string('contact');
             $table->text('description');
             $table->string('picture', 255);
+            $table->enum("status", ["pending", "verified", "rejected"]);
             $table->timestamps();
         });
     }
