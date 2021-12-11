@@ -1,7 +1,7 @@
 name: Deploy Laravel UKMads
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   deploy:
