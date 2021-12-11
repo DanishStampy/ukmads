@@ -59,7 +59,7 @@ class User extends Authenticatable
                 if ($latest!=null&&$latest->exists()) {
                     $count = substr($latest->user_id, 1)+1;
                 }
-                $user->user_id = ($user->role === 2 ? 'S' : 'A') . $count;
+                $user->user_id = ($user->role === 'advertiser' ? 'S' : 'A') . $count;
                 // $user->save();
             }
         });

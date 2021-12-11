@@ -89,7 +89,7 @@ class RegisterController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role = 2;
+        $user->role = 'advertiser';
         $user->password = Hash::make($request->password);
 
         if( $user->save() ){
