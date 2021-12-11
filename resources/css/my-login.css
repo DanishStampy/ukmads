@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 html,body {
 	height: 100%;
 	font-family: 'Inter', sans-serif;
@@ -80,18 +81,6 @@ body.my-login-page {
 	padding: 0 0.5rem;
 	background-color: white;
 	transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
-}
-
-.form_input:not(:-moz-placeholder-shown).form_input:not(:focus) ~ .form_label {
-	top: -0.5rem;
-	left: 0.8rem;
-	font-size: 0.8rem;
-}
-
-.form_input:not(:-ms-input-placeholder).form_input:not(:focus) ~ .form_label {
-	top: -0.5rem;
-	left: 0.8rem;
-	font-size: 0.8rem;
 }
 
 .form_input:focus ~ .form_label, .form_input:not(:placeholder-shown).form_input:not(:focus) ~ .form_label {

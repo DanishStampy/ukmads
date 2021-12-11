@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Exists;
 
 class RegisterController extends Controller
 {
@@ -69,5 +70,17 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = 'advertiser';
+        $user->password = Hash::make($request->password);
+
+        if( $user->save() ){
+            return redirect('login')->with('success','You are now successfully registered');
+        }else{
+            return redirect('login')->with('error','Failed to register');
+        }
     }
 }
