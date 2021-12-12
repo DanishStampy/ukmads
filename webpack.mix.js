@@ -12,7 +12,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/my-login.css', 'public/css')
-    .postCss('resources/css/my-register.css', 'public/css')
-    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/adminlte/adminlte.scss', 'public/css')
     .sourceMaps();
