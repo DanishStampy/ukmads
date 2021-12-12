@@ -27,8 +27,9 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
-    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('pendingads', [AdminController::class, 'pendingads'])->name('admin.pendingads');
+    // Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('history', [AdminController::class, 'history'])->name('admin.history');
 });
 
 Route::group(['prefix' => 'advertiser', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
