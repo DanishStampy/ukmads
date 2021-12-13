@@ -29,6 +29,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
 @include('layouts.header')
 
 @include('layouts.sidebar')
@@ -67,6 +68,24 @@
     <!-- /.content-wrapper -->
 
     @include('layouts.footer')
+    
 </div>
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<script>
+    $(function () {
+      $('.select2').select2()
+    });
+</script>
+
 </body>
 </html>

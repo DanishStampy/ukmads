@@ -14,34 +14,103 @@
           <img src="AvatarMaker.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"> {{Auth::user()->name}} </a>
         </div>
       </div>
-   @if(Auth::user()->role == 'admin')
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item">
-                <a href="/admin/pendingads" class="nav-link">
-                <i class="fas fa-tasks"></i>
-                <p>Pending Advertisement</p>
-                 </a>
-            </li>
-           <li class="nav-item">
-            <a href="/admin/history" class="nav-link">
-            <i class="fas fa-history"></i>
-              <p>
-                History
-              </p>
+
+          <li class="nav-header">MENU</li>
+
+          @if(Auth::user()->role == 'admin')
+
+          <li class="nav-item">
+            <a href=" {{ route("admin.pendingads") }} " class="nav-link">
+              <i class="fas fa-tasks mr-2"></i>
+              <p>Pending Advertisement</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href=" {{ route("admin.history") }} " class="nav-link">
+              <i class="fas fa-history mr-2"></i>
+              <p>History</p>
+            </a>
+          </li>
+
+          @elseif(Auth::user()->role == 'advertiser')
+
+          <li class="nav-item">
+            <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+              <i class="fas fa-bullhorn mr-2"></i>
+              <p>Advertisements</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+              <i class="fas fa-calendar-week mr-2"></i>
+              <p>Events</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+              <i class="fas fa-address-card mr-2"></i>
+              <p>About Us</p>
+            </a>
+          </li>
+
+          @endif
+
+          <li class="nav-header">ACCOUNT</li>
+
+          @if (Route::has('login'))
+
+            @auth
+
+            @if(Auth::user()->role == "advertiser")
+              <li class="nav-item">
+                <a href="{{ route("advertiser.logout") }}" class="nav-link">
+                  <i class="fas fa-sign-out-alt mr-2"></i>
+                    <p>Logout</p>
+                </a>
+              </li>
+            @elseif(Auth::user()->role == "admin")
+              <li class="nav-item">
+                <a href="{{ route("admin.logout") }}" class="nav-link">
+                  <i class="fas fa-sign-out-alt mr-2"></i>
+                  <p>Logout</p>
+                </a>
+              </li>
+            @endif
+
+            @else
+
+              <li class="nav-item">
+                <a href=" {{ route("login") }} " class="nav-link">
+                  <i class="fas fa-sign-in-alt mr-2"></i>
+                  <p>Login</p>
+                </a>
+              </li>
+
+              @if(Route::has("register"))
+
+              <li class="nav-item">
+                <a href=" {{ route("register") }} " class="nav-link">
+                  <i class="fas fa-share-square mr-2"></i>
+                  <p>Register</p>
+                </a>
+              </li>
+
+              @endif
+            @endauth
+          @endif
+
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    @endif
+  </div>
     
     <!-- /.sidebar -->
   </aside>
