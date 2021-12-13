@@ -4,7 +4,7 @@
 @section('content')
 <div class="card mb-2" style="width:225px;height: 313px; ">
     <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Dist Photo 3" style="width:225px; height:313px;">
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">View More</button>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-top: 7px;">View More</button>
                   
 </div>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -54,6 +54,12 @@
                       <input type="text" class="form-control float-right" id="reservationtime" disabled>
                     </div>
                   </div>
+
+                  <div class="modal-footer">
+                  <div class="alert alert-success" role="alert">
+                           Approved
+                    </div>
+                </div>
                 </div>
                 <!-- /.card-body -->
               </form>
