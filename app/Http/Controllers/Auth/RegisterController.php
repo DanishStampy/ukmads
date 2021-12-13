@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Exists;
 
 class RegisterController extends Controller
 {
@@ -88,7 +89,7 @@ class RegisterController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role = 2;
+        $user->role = 'advertiser';
         $user->password = Hash::make($request->password);
 
         if( $user->save() ){

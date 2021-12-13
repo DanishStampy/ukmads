@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdvertiserController;
+use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,12 +27,15 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
-    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
+    Route::get('pendingads', [AdminController::class, 'index'])->name('pendingads');
+    Route::get('history', [AdminController::class, 'history'])->name('history');
+    Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
+    // Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
 
-Route::group(['prefix' => 'advertiser', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
-    Route::get('dashboard', [AdvertiserController::class, 'index'])->name('advertiser.dashboard');
-    Route::get('profile', [AdvertiserController::class, 'profile'])->name('advertiser.profile');
+Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
+    Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
+    Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
+    Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
 });
