@@ -32,7 +32,7 @@ class LoginController extends Controller
 
     protected function redirectTo(){
         if(Auth::user()->role == 'admin'){
-            return route('admin.dashboard');
+            return route('admin.pendingads');
         }else if(Auth::user()->role == 'advertiser'){
             return route('advertiser.dashboard');
         }
@@ -48,35 +48,60 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
-        $input = $request->all();
+    public function username(){
 
-        $this->validate($request, [
-            'login'=>'required',
-            'password'=>'required'
-        ]);
+        $login = request()->input('login');
 
-        # Role boolean
-        # 1 == Admin
-        # 2 == Advertiser
+        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        request()->merge([$field=>$login]);
 
-        # it will check type of input, whether email or username
-        $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-
-        $request->merge([
-            $login_type => $request->input('login')
-        ]);
-        
-        if(Auth::attempt(array($login_type=>$input['login'], 'password'=>$input['password']))){
-
-            if(Auth::user()->role == 'admin'){
-                return redirect()->route('admin.pendingads');
-            }else if(Auth::user()->role == 'advertiser'){
-                return redirect()->route('advertiser.dashboard');
-            }
-
-        }else{
-            return redirect()->route('login')->with('error', 'Email and password are wrong');
-        }
+        return $field;
     }
+
+    protected function validateLogin(Request $request){
+
+        $messages = [
+            'login.required' => 'Email or username cannot be empty!',
+            'password.required' => 'Password cannot be empty',
+        ];
+
+        $request->validate([
+            'login' => ['required', 'string'],
+            'password' => ['required', 'string'],
+            'email' => ['string', 'exists:users'],
+            'name' => ['string', 'exists:users'],
+        ], $messages);
+    }
+
+    // public function login(Request $request){
+    //     $input = $request->all();
+
+    //     $this->validate($request, [
+    //         'login'=>'required',
+    //         'password'=>'required'
+    //     ]);
+
+    //     # Role boolean
+    //     # 1 == Admin
+    //     # 2 == Advertiser
+
+    //     # it will check type of input, whether email or username
+    //     $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
+    //     $request->merge([
+    //         $login_type => $request->input('login')
+    //     ]);
+        
+    //     if(Auth::attempt(array($login_type=>$input['login'], 'password'=>$input['password']))){
+
+    //         if(Auth::user()->role == 'admin'){
+    //             return redirect()->route('admin.pendingads');
+    //         }else if(Auth::user()->role == 'advertiser'){
+    //             return redirect()->route('advertiser.dashboard');
+    //         }
+
+    //     }else{
+    //         return redirect()->route('login')->with('error', 'Email and password are wrong');
+    //     }
+    // }
 }
