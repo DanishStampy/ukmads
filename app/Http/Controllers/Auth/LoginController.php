@@ -32,7 +32,7 @@ class LoginController extends Controller
 
     protected function redirectTo(){
         if(Auth::user()->role == 'admin'){
-            return route('admin.dashboard');
+            return route('admin.pendingads');
         }else if(Auth::user()->role == 'advertiser'){
             return route('advertiser.dashboard');
         }
@@ -70,7 +70,7 @@ class LoginController extends Controller
         if(Auth::attempt(array($login_type=>$input['login'], 'password'=>$input['password']))){
 
             if(Auth::user()->role == 'admin'){
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.pendingads');
             }else if(Auth::user()->role == 'advertiser'){
                 return redirect()->route('advertiser.dashboard');
             }
