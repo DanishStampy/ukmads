@@ -66,7 +66,7 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
+    
     @include('layouts.footer')
     
 </div>
