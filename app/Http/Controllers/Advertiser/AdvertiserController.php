@@ -14,7 +14,9 @@ class AdvertiserController extends Controller
     public function profile(){
         return view('dashboards.advertiser.profile');
     }
+
     public function mycontent(){
         return view('dashboards.advertiser.mycontent');
     }
 }
+
