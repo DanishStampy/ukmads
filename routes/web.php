@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBa
 
     // Logout
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
+    Route::post('/verifiedAds', [AdminController::class, 'verifiedAds'])->name('verifiedAds');
+    Route::post('/verifiedEvent', [AdminController::class, 'verifiedEvent'])->name('verifiedEvent');
     // Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
 

@@ -10,7 +10,19 @@ class Advertisement extends Model
     use HasFactory;
     protected $primaryKey = 'id_ads';
     public $incrementing = false;
-    protected $keyType = 'string';
+
+    protected $fillable=[
+        'id_ads',
+        'creator_email',
+        'name',
+        'type',
+        'price',
+        'seller_name',
+        'contact',
+        'description',
+        'picture',
+        'status',
+    ];
 
     public static function boot()
     {
@@ -20,7 +32,7 @@ class Advertisement extends Model
             if (!$ads->id_ads) {
                 $latest = Advertisement::latest('id_ads')->first();
                 $count = 1;
-                
+
                 if ($latest!=null&&$latest->exists()) {
                     $count = substr($latest->id_ads, 2)+1;
                 }
