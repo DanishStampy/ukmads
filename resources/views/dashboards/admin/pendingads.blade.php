@@ -63,10 +63,10 @@
                                             <form method="post" class="form-horizontal" action="{{route('admin.verifiedAds')}}">
                                                 @csrf
                                                 <input type="hidden" value="" name="id_ads" id="adsHid">
-                                            <button name="type" value="approved" type="submit" class="btn btn-success btn-block" id="btnAdsApproved">
+                                            <button name="type" value="approved" type="submit" class="btn btn-success" style="margin: 10px; width: 30%" id="btnAdsApproved">
                                                 Approve
                                             </button>
-                                            <button name="type" value="rejected" type="submit" class="btn btn-danger btn-block" id="btnAdsRejected">
+                                            <button name="type" value="rejected" type="submit" class="btn btn-danger" style="margin: 10px; width: 30%" id="btnAdsRejected">
                                                 Reject
                                             </button>
                                             </form>
@@ -158,10 +158,10 @@
                                             <form method="post" class="form-horizontal" action="{{route('admin.verifiedEvent')}}">
                                                 @csrf
                                                 <input type="hidden" value="" name="id_event" id="eventHid">
-                                                <button name="type" value="approved" type="submit" class="btn btn-success btn-block" id="btnEventApproved">
+                                                <button name="type" value="approved" type="submit" class="btn btn-success" style="margin: 10px; width: 30%" id="btnEventApproved">
                                                     Approve
                                                 </button>
-                                                <button name="type" value="rejected" type="submit" class="btn btn-danger btn-block" id="btnEventRejected">
+                                                <button name="type" value="rejected" type="submit" class="btn btn-danger" style="margin: 10px; width: 30%" id="btnEventRejected">
                                                     Reject
                                                 </button>
                                             </form>
