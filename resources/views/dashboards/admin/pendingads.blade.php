@@ -19,54 +19,59 @@
                         </button>
                     </div>
                 </div>
-            @endif
-        @endforeach
-    </div>
-    <div class="modal fade .col-12 .col-md-8" id="adsPending" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="row justify-content-around align-self-center">
-                    <div class="card w-50" style="margin-top: 30px">
-                        <img class="img-fluid" src=" " id="adsPic" alt="Dist Photo 3" style="margin: 10px">
-                    </div>
-                    <div class="col-md-10 col-xs-6">
-                        <h3 class="modal-title text-center">Details</h3>
-                        <div class="col-md-12">
-                            <div class="modal-body">
-                                <div class="card card-primary">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label>Id</label>
-                                            <input type="text" class="form-control" id="adsId" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                            <input type="text" class="form-control" id="adsName" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Price</label>
-                                            <input type="text" class="form-control" id="adsPrice" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Seller Name</label>
-                                            <input type="text" class="form-control" id="adsSeller" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Contact No</label>
-                                            <input type="text" class="form-control" id="adsContact" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea type="text" class="form-control" id="adsDesc" disabled></textarea>
-                                        </div>
-                                        <div class="text-center">
-                                            <form method="post" class="form-horizontal" action="{{route('admin.verifiedAds')}}">
-                                                @csrf
-                                                <input type="hidden" value="" name="id_ads" id="adsHid">
-                                            <button name="type" value="approved" type="submit" class="btn btn-success" style="margin: 10px; width: 30%" id="btnAdsApproved">
+            </div>
+        @endif
+    @endforeach
+</div>
+<div class="modal fade .col-12 .col-md-8" id="adsPending" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="row justify-content-around align-self-center">
+                <div class="card w-50" style="margin-top: 30px">
+                    <img class="img-fluid" src=" " id="adsPic" alt="Dist Photo 3" style="margin: 10px">
+                </div>
+                <div class="col-md-10 col-xs-6">
+                    <h3 class="modal-title text-center">Details</h3>
+                    <div class="col-md-12">
+                        <div class="modal-body">
+                            <div class="card card-primary">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Id</label>
+                                        <input type="text" class="form-control" id="adsId" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Product Name</label>
+                                        <input type="text" class="form-control" id="adsName" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price</label>
+                                        <input type="text" class="form-control" id="adsPrice" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Seller Name</label>
+                                        <input type="text" class="form-control" id="adsSeller" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact No</label>
+                                        <input type="text" class="form-control" id="adsContact" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea type="text" class="form-control" id="adsDesc" disabled></textarea>
+                                    </div>
+                                    <div class="text-center">
+                                        <form method="post" class="form-horizontal"
+                                            action="{{ route('admin.verifiedAds') }}">
+                                            @csrf
+                                            <input type="hidden" value="" name="id_ads" id="adsHid">
+                                            <button name="type" value="approved" type="submit" class="btn btn-success"
+                                                style="margin: 10px; width: 30%" id="btnAdsApproved">
                                                 Approve
                                             </button>
-                                            <button name="type" value="rejected" type="submit" class="btn btn-danger" style="margin: 10px; width: 30%" id="btnAdsRejected">
+                                            <button name="type" value="rejected" type="submit" class="btn btn-danger"
+                                                style="margin: 10px; width: 30%" id="btnAdsRejected">
                                                 Reject
                                             </button>
                                         </form>
@@ -97,75 +102,79 @@
                         </button>
                     </div>
                 </div>
-            @endif
-        @endforeach
-    </div>
-    <div class="modal fade .col-12 .col-md-8" id="eventPending" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="row justify-content-around align-self-center">
-                    <div class="card w-50" style="margin-top: 30px">
-                        <img class="img-fluid" src=" " id="eventPic" alt="Dist Photo 3" style="margin: 10px">
-                    </div>
-                    <div class="col-md-10 col-xs-6">
-                        <h3 class="modal-title text-center">Details</h3>
-                        <div class="col-md-12">
-                            <div class="modal-body">
-                                <div class="card card-primary">
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            <label>ID</label>
-                                            <input type="text" class="form-control" id="eventId" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="text" class="form-control" id="eventName" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Email Address</label>
-                                            <input type="text" class="form-control" id="eventEmail" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Location</label>
-                                            <input type="text" class="form-control" id="eventLocation" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Time</label>
-                                            <input type="time" class="form-control" id="eventTime" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Date</label>
-                                            <input type="date" class="form-control" id="eventDate" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Organizer</label>
-                                            <input type="text" class="form-control" id="eventOrganizer" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Contact no</label>
-                                            <input type="text" class="form-control" id="eventContact" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea type="text" class="form-control" id="eventDesc"
-                                                      style="resize: none" disabled></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <input type="text" class="form-control" id="eventStatus" disabled>
-                                        </div>
-                                        <div class="text-center">
-                                            <form method="post" class="form-horizontal" action="{{route('admin.verifiedEvent')}}">
-                                                @csrf
-                                                <input type="hidden" value="" name="id_event" id="eventHid">
-                                                <button name="type" value="approved" type="submit" class="btn btn-success" style="margin: 10px; width: 30%" id="btnEventApproved">
-                                                    Approve
-                                                </button>
-                                                <button name="type" value="rejected" type="submit" class="btn btn-danger" style="margin: 10px; width: 30%" id="btnEventRejected">
-                                                    Reject
-                                                </button>
-                                            </form>
-                                        </div>
+            </div>
+        @endif
+    @endforeach
+</div>
+<div class="modal fade .col-12 .col-md-8" id="eventPending" tabindex="-1" role="dialog"
+    aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="row justify-content-around align-self-center">
+                <div class="card w-50" style="margin-top: 30px">
+                    <img class="img-fluid" src=" " id="eventPic" alt="Dist Photo 3" style="margin: 10px">
+                </div>
+                <div class="col-md-10 col-xs-6">
+                    <h3 class="modal-title text-center">Details</h3>
+                    <div class="col-md-12">
+                        <div class="modal-body">
+                            <div class="card card-primary">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>ID</label>
+                                        <input type="text" class="form-control" id="eventId" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" id="eventName" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input type="text" class="form-control" id="eventEmail" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Location</label>
+                                        <input type="text" class="form-control" id="eventLocation" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Time</label>
+                                        <input type="time" class="form-control" id="eventTime" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date" class="form-control" id="eventDate" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Organizer</label>
+                                        <input type="text" class="form-control" id="eventOrganizer" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Contact no</label>
+                                        <input type="text" class="form-control" id="eventContact" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea type="text" class="form-control" id="eventDesc" style="resize: none"
+                                            disabled></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <input type="text" class="form-control" id="eventStatus" disabled>
+                                    </div>
+                                    <div class="text-center">
+                                        <form method="post" class="form-horizontal"
+                                            action="{{ route('admin.verifiedEvent') }}">
+                                            @csrf
+                                            <input type="hidden" value="" name="id_event" id="eventHid">
+                                            <button name="type" value="approved" type="submit" class="btn btn-success"
+                                                style="margin: 10px; width: 30%" id="btnEventApproved">
+                                                Approve
+                                            </button>
+                                            <button name="type" value="rejected" type="submit" class="btn btn-danger"
+                                                style="margin: 10px; width: 30%" id="btnEventRejected">
+                                                Reject
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -175,6 +184,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
 @push('scripts')
