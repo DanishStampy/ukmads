@@ -24,7 +24,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Styles -->
-    
+
     <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
 
     <!-- -- Custom CSS File -- -->
@@ -63,16 +63,16 @@
 
         <!-- Main content -->
         <div class="content" style="background-color:#F3ECFF">
-            <div class="container-fluid" >
+            <div class="container-fluid">
                 @yield('content')
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    
+
     @include('layouts.footer')
-    
+
 </div>
 
 <!-- jQuery -->

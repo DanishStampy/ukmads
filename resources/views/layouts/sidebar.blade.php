@@ -48,7 +48,7 @@
                             <li class="nav-item">
                                 <a href=" {{ route("admin.pendingads") }} " class="nav-link">
                                     <i class="fas fa-tasks mr-2"  style="color:#F3ECFF"></i>
-                                    <p  style="color:#F3ECFF">Pending Advertisement</p>
+                                    <p  style="color:#F3ECFF">Pending</p>
                                 </a>
                             </li>
                             <li class="nav-item" >

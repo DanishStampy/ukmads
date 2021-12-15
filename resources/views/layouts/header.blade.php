@@ -38,7 +38,7 @@
                 <i class="fas fa-expand-arrows-alt" style="color:#290576"></i>
             </a>
         </li>
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" style="color:#290576">
               
                 @if(Route::has('login'))
@@ -58,7 +58,7 @@
                     <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>
-        </li>
+        </li> --}}
 
     </ul>
 </nav>
