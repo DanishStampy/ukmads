@@ -38,7 +38,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                
-                <li class="nav-header">MENU</li>
+                <li class="nav-header" style="color:#F3ECFF">MENU</li>
 
                 @if(Route::has('login'))
                     @auth
@@ -62,14 +62,14 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("advertiser.manageads") }} " class="nav-link">
-                                    <i class="fas fa-bullhorn mr-2"></i>
-                                    <p>Advertisements</p>
+                                    <i class="fas fa-bullhorn mr-2" style="color:#F3ECFF"></i>
+                                    <p style="color:#F3ECFF">Advertisements</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href=" {{ route("advertiser.manageevents") }} " class="nav-link">
-                                    <i class="fas fa-calendar-week mr-2"></i>
-                                    <p>Events</p>
+                                    <i class="fas fa-calendar-week mr-2" style="color:#F3ECFF"></i>
+                                    <p style="color:#F3ECFF">Events</p>
                                 </a>
                             </li>
                             <li class="nav-item">

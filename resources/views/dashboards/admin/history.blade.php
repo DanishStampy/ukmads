@@ -22,7 +22,7 @@
                             </div>
                         @endif
                     </div>
-                    <img class="card-img-top" src="img/{{ asset($advertisement->picture) }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $advertisement->name }}</h5>
                         <p class="card-text">{{ $advertisement->description }}</p>
@@ -128,7 +128,7 @@
                             </div>
                         @endif
                     </div>
-                    <img class="card-img-top" src="img/{{ asset($event->picture) }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text">{{ $event->description }}</p>
@@ -232,7 +232,7 @@
                 var data = atob(ads);
                 var data = $.parseJSON(data);
 
-                $("#adsPic").attr('src', `{{ asset('${data.picture}') }}`);
+                $("#adsPic").attr('src', `{{ asset('img/${data.picture}') }}`);
                 $("#adsId").val(data.id_ads);
                 $("#adsName").val(data.name);
                 $("#adsEmail").val(data.creator_email);
@@ -254,7 +254,7 @@
                 var data = atob(event);
                 var data = $.parseJSON(data);
 
-                $("#eventPic").attr('src', `{{ asset('${data.picture}') }}`);
+                $("#eventPic").attr('src', `{{ asset('img/${data.picture}') }}`);
                 $("#eventId").val(data.id_event);
                 $("#eventName").val(data.name);
                 $("#eventEmail").val(data.creator_email);
