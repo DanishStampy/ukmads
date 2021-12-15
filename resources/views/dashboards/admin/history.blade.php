@@ -2,6 +2,7 @@
 
 @section('title','History')
 @section('content')
+<br>
 <h4>Advertisement</h4>
 <div class="row">
     {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
@@ -94,7 +95,7 @@
         </div>
     </div>
 </div>
-
+<hr>
 <h4>Event</h4>
 <div class="row">
     {{ count($events) < 1 ? "No data to be displayed." : '' }}
