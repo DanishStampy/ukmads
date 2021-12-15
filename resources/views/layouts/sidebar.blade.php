@@ -38,6 +38,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+
                 <li class="nav-header">MENU</li>
 
                 @if(Route::has('login'))
