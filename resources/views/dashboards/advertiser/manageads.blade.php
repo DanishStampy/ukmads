@@ -8,6 +8,12 @@
         <h1>Advertisements</h1>
     </div>
 </div>
+@if (Session::has('success_ads'))
+<div class="alert alert-success my-3">
+    {{Session::get('success_ads')}}
+</div>
+    
+@endif
 <div class="row">
     <div class="col">
         <div class="card">

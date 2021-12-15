@@ -9,6 +9,8 @@
         </div>
     </div>
     <div class="container">
+        <form action="{{ route('advertiser.uploadEvents') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            @csrf
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -16,7 +18,7 @@
                         <div style="background-image: url({{ asset('img/white.jpg') }});"
                             class="row">
                             <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
-                                type="button"><input type="file" accept="images/*" name="fileToUpload" id="inputImage" />+</button>
+                                type="button"><input type="file" accept="images/*" name="fileToUpload" id="inputImage" /></button>
                                 
                         </div>
                     </div>
@@ -53,7 +55,7 @@
 										 {{ Session::get('error') }}
 									 </div>
 								@endif
-                        <form action="" method="" class="form-horizontal" enctype="">
+                        
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
@@ -67,47 +69,28 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
-                                        <input id="name" type="text" class="form_input" name="name" placeholder=" "
-                                            autofocus value="">
-                                        <label for="name" class="form_label">Location</label>
-                                        <span class="text-danger">@error('name'){{ $message }}@enderror</span>
+                                        <input id="location" type="text" class="form_input" name="location" placeholder=" "
+                                            value="">
+                                        <label for="location" class="form_label">Location</label>
+                                        <span class="text-danger">@error('location'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
-                                        <input id="product" type="text" class="form_input" name="product" placeholder=" "
-                                            autofocus value="" >
-                                        <label for="product" class="form_label">Time</label>
-                                        <span class="text-danger">@error('product'){{ $message }}@enderror</span>
+                                        <input id="time" type="time" class="form_input" name="time" placeholder=" "
+                                            value="" >
+                                        <label for="time" class="form_label">Time</label>
+                                        <span class="text-danger">@error('time'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form_group">
-                                        <input id="price" type="text" class="form_input" name="price" placeholder=" "
-                                            autofocus value="" >
-                                        <label for="price" class="form_label">Date</label>
-                                        <span class="text-danger">@error('price'){{ $message }}@enderror</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form_group">
-                                        <input id="seller" type="text" class="form_input" name="seller" placeholder=" "
-                                            autofocus value="" >
-                                        <label for="seller" class="form_label">Organizer</label>
-                                        <span class="text-danger">@error('seller'){{ $message }}@enderror</span>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form_group">
-                                        <input id="contact" type="text" class="form_input" name="contact" placeholder=" "
-                                            autofocus value="" >
-                                        <label for="contact" class="form_label">Contact No.</label>
-                                        <span class="text-danger">@error('contact'){{ $message }}@enderror</span>
+                                        <input id="date" type="date" class="form_input" name="date" placeholder=" "
+                                             value="" >
+                                        <label for="date" class="form_label">Date</label>
+                                        <span class="text-danger">@error('date'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -115,10 +98,29 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
-                                        <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
-                                            autofocus value="" >
-                                        <label for="desc" class="form_label">Description</label>
-                                        <span class="text-danger">@error('desc'){{ $message }}@enderror</span>
+                                        <input id="org" type="text" class="form_input" name="org" placeholder=" "
+                                            value="" >
+                                        <label for="org" class="form_label">Organizer</label>
+                                        <span class="text-danger">@error('org'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="contactE" type="text" class="form_input" name="contactE" placeholder="#601234567890" pattern="^601[0-9]{1}([0-9]{8}|[0-9]{7})"
+                                             value="" >
+                                        <label for="contactE" class="form_label">Contact Number</label>
+                                        <span class="text-danger">@error('contactE'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="descE" type="text" class="form_input" name="descE" placeholder=" "
+                                            avalue="" >
+                                        <label for="descE" class="form_label">Description</label>
+                                        <span class="text-danger">@error('descE'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>

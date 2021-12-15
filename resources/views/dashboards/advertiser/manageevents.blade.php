@@ -8,6 +8,12 @@
         <h1>Events</h1>
     </div>
 </div>
+@if (Session::has('success_events'))
+<div class="alert alert-success my-3">
+    {{Session::get('success_events')}}
+</div>
+    
+@endif
 <div class="row">
     <div class="col">
         <div class="card">
