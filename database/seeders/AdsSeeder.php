@@ -53,5 +53,31 @@ class AdsSeeder extends Seeder
             'picture' => 'img/kfc.jpg',
             'status' => 'rejected'
         ]);
+
+        DB::table('advertisements')->insert([
+            'id_ads' => 'AD4',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'KFC Deals4',
+            'type' => 'Food',
+            'price' => '30',
+            'seller_name' => 'Aisyah',
+            'contact' => '0123456789',
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'picture' => 'img/kfc.jpg',
+            'status' => 'pending'
+        ]);
+
+        DB::table('advertisements')->insert([
+            'id_ads' => 'AD5',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'KFC Deals5',
+            'type' => 'Food',
+            'price' => '30',
+            'seller_name' => 'Aisyah',
+            'contact' => '0123456789',
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'picture' => 'img/kfc.jpg',
+            'status' => 'pending'
+        ]);
     }
 }
