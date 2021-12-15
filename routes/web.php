@@ -18,23 +18,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('home');
+});
 
-Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
+Route::middleware(['middleware'=>''])->group(function(){
     Auth::routes();
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['','isAdmin','auth']], function(){
     Route::get('pendingads', [AdminController::class, 'index'])->name('pendingads');
     Route::get('history', [AdminController::class, 'history'])->name('history');
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
     // Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
 
-Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
+Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');

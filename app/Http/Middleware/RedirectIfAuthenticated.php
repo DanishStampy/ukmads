@@ -25,10 +25,13 @@ class RedirectIfAuthenticated
             // if (Auth::guard($guard)->check()) {
             //     return redirect(RouteServiceProvider::HOME);
             // }
-            if(Auth::guard($guard)->check() && Auth::user()->role == 1){
-                return redirect()->route('admin.dashboard');
-            }else if(Auth::guard($guard)->check() && Auth::user()->role == 2){
+            
+            if(Auth::guard($guard)->check() && Auth::user()->role == "admin"){
+                return redirect()->route('admin.pendingads');
+            }else if(Auth::guard($guard)->check() && Auth::user()->role == "advertiser"){
                 return redirect()->route('advertiser.dashboard');
+            }else if(Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::HOME);
             }
         }
 
