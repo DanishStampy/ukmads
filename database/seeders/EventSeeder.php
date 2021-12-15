@@ -57,5 +57,33 @@ class EventSeeder extends Seeder
             'picture' => 'img/kfc.jpg',
             'status' => 'rejected'
         ]);
+
+        DB::table('events')->insert([
+            'id_event' => 'EV4',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'KFC Deals4',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
+            'contact' => '0123456789',
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'picture' => 'img/kfc.jpg',
+            'status' => 'pending'
+        ]);
+
+        DB::table('events')->insert([
+            'id_event' => 'EV5',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'KFC Deals5',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
+            'contact' => '0123456789',
+            'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+            'picture' => 'img/kfc.jpg',
+            'status' => 'pending'
+        ]);
     }
 }

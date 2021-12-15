@@ -12,6 +12,18 @@ class Event extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
+    protected $fillable=[
+        'id_event',
+        'creator_email',
+        'name',
+        'location',
+        'organizer',
+        'contact',
+        'description',
+        'picture',
+        'status',
+    ];
+
     public static function boot()
     {
         parent::boot();
@@ -20,7 +32,7 @@ class Event extends Model
             if (!$events->id_event) {
                 $latest = Event::latest('id_event')->first();
                 $count = 1;
-                
+
                 if ($latest!=null&&$latest->exists()) {
                     $count = substr($latest->id_event, 2)+1;
                 }

@@ -63,7 +63,7 @@
 
         <!-- Main content -->
         <div class="content" style="background-color:#F3ECFF">
-            <div class="container-fluid" >
+            <div class="container-fluid">
                 @yield('content')
             </div><!-- /.container-fluid -->
         </div>
@@ -71,7 +71,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-{{--    @include('layouts.footer')--}}
+    @include('layouts.footer')
 
 </div>
 
