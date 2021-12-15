@@ -185,7 +185,6 @@
         </div>
     </div>
 </div>
-</div>
 @endsection
 @push('scripts')
     <script type="text/javascript">
