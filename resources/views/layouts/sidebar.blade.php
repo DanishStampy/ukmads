@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-wrapper elevation-4" style="background-color:#290576 ; color:#808191;">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
 
-        <span class="brand-text font-weight-light">UKMads</span>
+        <span class="brand-text font-weight-light" style="color:#F3ECFF">UKMads</span>
     </a>
 
     <!-- Sidebar -->
@@ -17,8 +17,8 @@
                         <img src=" {{ asset('img/AvatarMaker.png') }} "
                             class="img-circle elevation-2" alt="User Image">
                     </div>
-                    <div class="info">
-                        <a href="#" class="d-block"> {{ Auth::user()->name }} </a>
+                    <div class="info" style="color:#F3ECFF">
+                        <a href="#" class="d-block"  style="color:#F3ECFF"> {{ Auth::user()->name }} </a>
                     </div>
                 @else
                 <div class="image">
@@ -26,7 +26,7 @@
                         class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"> Guest </a>
+                    <a href="#" class="d-block" style="color:#808191;"> Guest </a>
                 </div>
                 @endauth
             @endif
@@ -37,8 +37,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-
-
+               
                 <li class="nav-header">MENU</li>
 
                 @if(Route::has('login'))
@@ -48,14 +47,14 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("admin.pendingads") }} " class="nav-link">
-                                    <i class="fas fa-tasks mr-2"></i>
-                                    <p>Pending Advertisement</p>
+                                    <i class="fas fa-tasks mr-2"  style="color:#F3ECFF"></i>
+                                    <p  style="color:#F3ECFF">Pending Advertisement</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" >
                                 <a href=" {{ route("admin.history") }} " class="nav-link">
-                                    <i class="fas fa-history mr-2"></i>
-                                    <p>History</p>
+                                    <i class="fas fa-history mr-2"  style="color:#F3ECFF"></i>
+                                    <p  style="color:#F3ECFF">History</p>
                                 </a>
                             </li>
 
@@ -63,20 +62,20 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
-                                    <i class="fas fa-bullhorn mr-2"></i>
-                                    <p>Advertisements</p>
+                                    <i class="fas fa-bullhorn mr-2"  style="color:#F3ECFF"></i>
+                                    <p  style="color:#F3ECFF">Advertisements</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
-                                    <i class="fas fa-calendar-week mr-2"></i>
-                                    <p>Events</p>
+                                    <i class="fas fa-calendar-week mr-2"  style="color:#F3ECFF"></i>
+                                    <p  style="color:#F3ECFF">Events</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
-                                    <i class="fas fa-address-card mr-2"></i>
-                                    <p>About Us</p>
+                                    <i class="fas fa-address-card mr-2"  style="color:#F3ECFF"></i>
+                                    <p  style="color:#F3ECFF">About Us</p>
                                 </a>
                             </li>
 
@@ -85,20 +84,20 @@
                     @else
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-bullhorn mr-2"></i>
-                                <p>Advertisements</p>
+                                <i class="fas fa-bullhorn mr-2"  style="color:#F3ECFF"></i>
+                                <p  style="color:#F3ECFF">Advertisements</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-calendar-week mr-2"></i>
-                                <p>Events</p>
+                                <i class="fas fa-calendar-week mr-2"  style="color:#F3ECFF"></i>
+                                <p  style="color:#F3ECFF">Events</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-address-card mr-2"></i>
-                                <p>About Us</p>
+                            <a href="#" class="nav-link"  style="color:black">
+                                <i class="fas fa-address-card mr-2"  style="color:#F3ECFF"></i>
+                                <p  style="color:#F3ECFF">About Us</p>
                             </a>
                         </li>
                     @endauth
@@ -106,7 +105,7 @@
 
 
 
-                <li class="nav-header">ACCOUNT</li>
+                <li class="nav-header"  style="color:#F3ECFF">ACCOUNT</li>
 
                 @if(Route::has('login'))
 
@@ -115,15 +114,15 @@
                         @if(Auth::user()->role == "advertiser")
                             <li class="nav-item">
                                 <a href="{{ route("advertiser.logout") }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt mr-2"></i>
-                                    <p>Logout</p>
+                                    <i class="fas fa-sign-out-alt mr-2"  style="color:#F3ECFF"></i>
+                                    <p  style="color:#F3ECFF">Logout</p>
                                 </a>
                             </li>
                         @elseif(Auth::user()->role == "admin")
                             <li class="nav-item">
                                 <a href="{{ route("admin.logout") }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt mr-2"></i>
-                                    <p>Logout</p>
+                                    <i class="fas fa-sign-out-alt mr-2" style="color:#F3ECFF"></i>
+                                    <p style="color:#F3ECFF">Logout</p>
                                 </a>
                             </li>
                         @endif
@@ -132,8 +131,8 @@
 
                         <li class="nav-item">
                             <a href=" {{ route("login") }} " class="nav-link">
-                                <i class="fas fa-sign-in-alt mr-2"></i>
-                                <p>Login</p>
+                                <i class="fas fa-sign-in-alt mr-2" style="color:#F3ECFF"></i>
+                                <p style="color:#F3ECFF">Login</p>
                             </a>
                         </li>
 
@@ -141,8 +140,8 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("register") }} " class="nav-link">
-                                    <i class="fas fa-share-square mr-2"></i>
-                                    <p>Register</p>
+                                    <i class="fas fa-share-square mr-2" style="color:#F3ECFF"></i>
+                                    <p style="color:#F3ECFF">Register</p>
                                 </a>
                             </li>
 

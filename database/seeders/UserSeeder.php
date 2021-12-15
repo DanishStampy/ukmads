@@ -43,5 +43,14 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'remember_token' => Str::random(10)
         ]);
+
+        DB::table('users')->insert([
+            'user_id' => 'S1',
+            'name' => 'staff',
+            'email' => 'staff@gmail.com',
+            'password' => Hash::make('staff123'), // password
+            'role' => 'advertiser',
+            'remember_token' => Str::random(10)
+        ]);
     }
 }
