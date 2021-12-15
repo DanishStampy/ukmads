@@ -14,7 +14,9 @@ class CreateAdvertisementsTable extends Migration
     public function up()
     {
         Schema::create('advertisements', function (Blueprint $table) {
-            $table->id();
+            $table->string('id_ads')->primary();
+            $table->string('creator_email');
+            $table->foreign('creator_email')->references('email')->on('users');
             $table->string('name', 255);
             $table->string('type');
             $table->float('price', 5, 2);
@@ -22,6 +24,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('contact');
             $table->text('description');
             $table->string('picture', 255);
+            $table->enum("status", ["pending", "verified", "rejected"]);
             $table->timestamps();
         });
     }
