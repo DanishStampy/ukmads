@@ -71,6 +71,12 @@
             @auth
 
             @if(Auth::user()->role == "advertiser")
+            <li class="nav-item">
+                <a href="{{ route("advertiser.mycontent") }}" class="nav-link">
+                  <i class="fas fa-pencil-alt mr-2"></i>
+                    <p>My Content</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="{{ route("advertiser.logout") }}" class="nav-link">
                   <i class="fas fa-sign-out-alt mr-2"></i>
