@@ -22,7 +22,7 @@
 			<div class="row justify-content-md-center align-items-md-center h-100">
 				<div class="card-wrapper">
 					
-				<div class="home-link"><a class="link" href="{{route('welcome')}}"><i class="fas fa-arrow-left"></i></a>&nbsp;&nbsp;Home</div>
+				<div class="home-link"><a class="link" href="{{url('/')}}"><i class="fas fa-arrow-left"></i></a>&nbsp;&nbsp;Home</div>
 			
 					<div class="cardx fat mt-5">
 						<div class="card-body">
