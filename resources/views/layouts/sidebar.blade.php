@@ -122,11 +122,13 @@
 
             @if(Auth::user()->role == "advertiser")
             <li class="nav-item">
+
               <a href="{{ route("advertiser.logout") }}" class="nav-link">
                 <i class="fas fa-sign-out-alt mr-2"></i>
                 <p>Logout</p>
               </a>
             </li>
+
             @elseif(Auth::user()->role == "admin")
             <li class="nav-item">
               <a href="{{ route("admin.logout") }}" class="nav-link">
