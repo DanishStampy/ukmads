@@ -8,10 +8,6 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-<<<<<<< HEAD
-=======
-
->>>>>>> d7421860675e7e319a292f2d22136619eea39a2b
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
