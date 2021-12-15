@@ -24,7 +24,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Styles -->
-    
+
     <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -66,9 +66,9 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    
-    @include('layouts.footer')
-    
+
+{{--    @include('layouts.footer')--}}
+
 </div>
 
 <!-- jQuery -->
