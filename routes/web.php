@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdvertiserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Advertiser\AdvertiserController;
 use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
