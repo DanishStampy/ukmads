@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+    return view('home');
+});
 
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
@@ -37,5 +37,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBa
 Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
+    Route::get('createads', [AdvertiserController::class, 'createads'])->name('createads');
+    Route::post('uploadAds',[AdvertiserController::class, 'uploadAds'])->name('uploadAds');
+    Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
+    Route::get('createevents', [AdvertiserController::class, 'createevents'])->name('createevents');
+    Route::post('uploadEvents',[AdvertiserController::class, 'uploadEvents'])->name('uploadEvents');
+    Route::get('manageevents', [AdvertiserController::class, 'manageevents'])->name('manageevents');
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
 });
+
+

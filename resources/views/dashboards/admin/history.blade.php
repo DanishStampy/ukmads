@@ -2,7 +2,8 @@
 
 @section('title','History')
 @section('content')
-<h3>Advertisement</h3>
+<br>
+<h4>Advertisement</h4>
 <div class="row">
     {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
     @foreach($advertisements as $advertisement)
@@ -10,6 +11,17 @@
 
             <div class="col-6 col-md-3">
                 <div class="card">
+                    <div class="ribbon-wrapper ribbon-lg">
+                        @if($advertisement->status=='verified')
+                            <div class="ribbon bg-success">
+                                Verified
+                            </div>
+                        @else
+                            <div class="ribbon bg-danger">
+                                Rejected
+                            </div>
+                        @endif
+                    </div>
                     <img class="card-img-top" src="{{ asset($advertisement->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $advertisement->name }}</h5>
@@ -95,7 +107,9 @@
     </div>
 </div>
 
-<h3>Event</h3>
+<hr>
+
+<h4>Event</h4>
 <div class="row">
     {{ count($events) < 1 ? "No data to be displayed." : '' }}
     @foreach($events as $event)
@@ -103,6 +117,17 @@
             <div class="col-6 col-md-3">
 
                 <div class="card">
+                    <div class="ribbon-wrapper ribbon-lg">
+                        @if($event->status=='verified')
+                            <div class="ribbon bg-success">
+                                Verified
+                            </div>
+                        @else
+                            <div class="ribbon bg-danger">
+                                Rejected
+                            </div>
+                        @endif
+                    </div>
                     <img class="card-img-top" src="{{ asset($event->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
@@ -198,7 +223,6 @@
 
 @push('scripts')
     <script type="text/javascript">
-
         $(document).ready(function () {
             $('#adsHistory').on('show.bs.modal', function (ads) {
                 var button = $(ads.relatedTarget) // Button that triggered the modal
