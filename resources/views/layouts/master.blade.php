@@ -39,7 +39,7 @@
 @include('layouts.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="background-color:#F3ECFF">
         <!-- Content Header (Page header) -->
         <div class="content-header" style="background-color:#F3ECFF">
             <div class="container-fluid" >
