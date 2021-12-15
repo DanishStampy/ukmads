@@ -132,7 +132,21 @@ class AdvertiserController extends Controller
         return redirect()->route('advertiser.manageevents')->with('success_uploaded_events','Event have been successfully updated.');
     }
 
+    // Delete Ads
+    public function deleteAds($id_ads){
+        $ads = Advertisement::find($id_ads);
+        $ads->delete();
 
+        return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
+    }
+
+    //Delete Event
+    public function deleteEvent($id_event){
+        $event = Event::find($id_event);
+        $event->delete();
+
+        return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');
+    }
 
     // Dashboad for ads and events
 

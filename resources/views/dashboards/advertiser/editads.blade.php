@@ -4,8 +4,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <h1>Update {{$ads->id_ads}}</h1>
+        <div class="col mt-3">
+            <h1 class="content_header">Update {{$ads->id_ads}}</h1>
         </div>
     </div>
     <div class="container">
