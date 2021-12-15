@@ -2,21 +2,21 @@
 
 @section('title','Pending ')
 @section('content')
-    <br>
-    <h4>Advertisement</h4>
-    <div class="row">
-        {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
-        @foreach($advertisements as $advertisement)
-            @if($advertisement->status == 'pending')
-                <div class="col-6 col-md-3">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ asset($advertisement->picture) }}" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $advertisement->name }}</h5>
-                            <p class="card-text">{{ $advertisement->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending" data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
-                            </button>
-                        </div>
+<br>
+<h4>Advertisement</h4>
+<div class="row">
+    {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
+    @foreach($advertisements as $advertisement)
+        @if($advertisement->status == 'pending')
+            <div class="col-6 col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset($advertisement->picture) }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $advertisement->name }}</h5>
+                        <p class="card-text">{{ $advertisement->description }}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending"
+                            data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
+                        </button>
                     </div>
                 </div>
             @endif
@@ -69,8 +69,7 @@
                                             <button name="type" value="rejected" type="submit" class="btn btn-danger" style="margin: 10px; width: 30%" id="btnAdsRejected">
                                                 Reject
                                             </button>
-                                            </form>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -80,21 +79,22 @@
             </div>
         </div>
     </div>
-    <hr>
-    <h4>Event</h4>
-    <div class="row">
-        {{ count($events) < 1 ? "No data to be displayed." : '' }}
-        @foreach($events as $event)
-            @if($event->status == 'pending')
-                <div class="col-6 col-md-3">
-                    <div class="card">
-                        <img class="card-img-top" src="{{ asset($event->picture) }}" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $event->name }}</h5>
-                            <p class="card-text">{{ $event->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventPending" data-event="{{ base64_encode($event->toJson()) }}">View Detail
-                            </button>
-                        </div>
+</div>
+<hr>
+<h4>Event</h4>
+<div class="row">
+    {{ count($events) < 1 ? "No data to be displayed." : '' }}
+    @foreach($events as $event)
+        @if($event->status == 'pending')
+            <div class="col-6 col-md-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset($event->picture) }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $event->name }}</h5>
+                        <p class="card-text">{{ $event->description }}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventPending"
+                            data-event="{{ base64_encode($event->toJson()) }}">View Detail
+                        </button>
                     </div>
                 </div>
             @endif
@@ -175,10 +175,10 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 @push('scripts')
     <script type="text/javascript">
-
         $(document).ready(function () {
             $('#adsPending').on('show.bs.modal', function (ads) {
                 var button = $(ads.relatedTarget) // Button that triggered the modal
@@ -228,5 +228,6 @@
                 // console.log(data);
             })
         });
+
     </script>
 @endpush
