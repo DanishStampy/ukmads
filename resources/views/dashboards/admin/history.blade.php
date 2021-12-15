@@ -2,7 +2,7 @@
 
 @section('title','History')
 @section('content')
-<h3>Advertisement</h3>
+<h4>Advertisement</h4>
 <div class="row">
     {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
     @foreach($advertisements as $advertisement)
@@ -95,7 +95,7 @@
     </div>
 </div>
 
-<h3>Event</h3>
+<h4>Event</h4>
 <div class="row">
     {{ count($events) < 1 ? "No data to be displayed." : '' }}
     @foreach($events as $event)
