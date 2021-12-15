@@ -19,6 +19,10 @@ class AdminController extends Controller
         return view('dashboards.admin.history', compact('advertisements', 'events'));
     }
 
+    public function pendingAds(){
+
+    }
+
     public function profile(){
         return view('dashboards.admin.profile');
     }
