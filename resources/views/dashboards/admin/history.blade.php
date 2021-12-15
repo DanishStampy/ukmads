@@ -22,7 +22,7 @@
                             </div>
                         @endif
                     </div>
-                    <img class="card-img-top" src="{{ asset($advertisement->picture) }}" alt="Card image cap">
+                    <img class="card-img-top" src="img/{{ asset($advertisement->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $advertisement->name }}</h5>
                         <p class="card-text">{{ $advertisement->description }}</p>
@@ -128,7 +128,7 @@
                             </div>
                         @endif
                     </div>
-                    <img class="card-img-top" src="{{ asset($event->picture) }}" alt="Card image cap">
+                    <img class="card-img-top" src="img/{{ asset($event->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text">{{ $event->description }}</p>

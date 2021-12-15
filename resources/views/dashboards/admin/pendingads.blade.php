@@ -10,7 +10,7 @@
         @if($advertisement->status == 'pending')
             <div class="col-6 col-md-3">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset($advertisement->picture) }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $advertisement->name }}</h5>
                         <p class="card-text">{{ $advertisement->description }}</p>
@@ -93,7 +93,7 @@
         @if($event->status == 'pending')
             <div class="col-6 col-md-3">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset($event->picture) }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text">{{ $event->description }}</p>
@@ -190,6 +190,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#adsPending').on('show.bs.modal', function (ads) {
+                alert('test');
                 var button = $(ads.relatedTarget) // Button that triggered the modal
                 var ads = button.data('ads') // Extract info from data-* attributes
                 var modal = $(this)
@@ -197,7 +198,7 @@
                 var data = atob(ads);
                 var data = $.parseJSON(data);
 
-                $("#adsPic").attr('src', `{{ asset('${data.picture}') }}`);
+                $("#adsPic").attr('src', `{{ asset('img/.${data.picture}') }}`);
                 $("#adsId").val(data.id_ads);
                 $("#adsHid").val(data.id_ads);
                 $("#adsName").val(data.name);
@@ -209,7 +210,7 @@
                 $("#adsDesc").val(data.description);
                 $("#adsStatus").val(data.status);
 
-                // console.log(data);
+                console.log(data);
             })
 
             $('#eventPending').on('show.bs.modal', function (event) {
@@ -221,7 +222,7 @@
                 var data = $.parseJSON(data);
 
 
-                $("#eventPic").attr('src', `{{ asset('${data.picture}') }}`);
+                $("#eventPic").attr('src', `{{ asset('img/.${data.picture}') }}`);
                 $("#eventId").val(data.id_event);
                 $("#eventHid").val(data.id_event);
                 $("#eventName").val(data.name);

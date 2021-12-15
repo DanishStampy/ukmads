@@ -24,7 +24,7 @@ class AdsSeeder extends Seeder
             'seller_name' => 'Aisyah',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'img/kfc.jpg',
+            'picture' => 'kfc.jpg',
             'status' => 'pending'
         ]);
 
@@ -37,7 +37,7 @@ class AdsSeeder extends Seeder
             'seller_name' => 'Aisyah',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'img/kfc.jpg',
+            'picture' => 'kfc.jpg',
             'status' => 'verified'
         ]);
 
@@ -50,7 +50,7 @@ class AdsSeeder extends Seeder
             'seller_name' => 'Aisyah',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'img/kfc.jpg',
+            'picture' => 'kfc.jpg',
             'status' => 'rejected'
         ]);
 
@@ -63,7 +63,7 @@ class AdsSeeder extends Seeder
             'seller_name' => 'Aisyah',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'img/kfc.jpg',
+            'picture' => 'kfc.jpg',
             'status' => 'pending'
         ]);
 
@@ -76,7 +76,7 @@ class AdsSeeder extends Seeder
             'seller_name' => 'Aisyah',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'img/kfc.jpg',
+            'picture' => 'kfc.jpg',
             'status' => 'pending'
         ]);
     }
