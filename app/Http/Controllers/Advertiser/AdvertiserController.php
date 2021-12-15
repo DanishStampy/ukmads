@@ -15,8 +15,17 @@ class AdvertiserController extends Controller
         return view('dashboards.advertiser.profile');
     }
 
-    public function mycontent(){
-        return view('dashboards.advertiser.mycontent');
+    public function createads(){
+        return view('dashboards.advertiser.createads');
+    }
+    public function manageads(){
+        return view('dashboards.advertiser.manageads');
+    }
+    public function createevents(){
+        return view('dashboards.advertiser.createevents');
+    }
+    public function manageevents(){
+        return view('dashboards.advertiser.manageevents');
     }
 }
 

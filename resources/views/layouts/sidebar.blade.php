@@ -44,13 +44,13 @@
           @elseif(Auth::user()->role == 'advertiser')
 
           <li class="nav-item">
-            <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+            <a href=" {{ route("advertiser.manageads") }} " class="nav-link">
               <i class="fas fa-bullhorn mr-2"></i>
               <p>Advertisements</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+            <a href=" {{ route("advertiser.manageevents") }} " class="nav-link">
               <i class="fas fa-calendar-week mr-2"></i>
               <p>Events</p>
             </a>
@@ -72,7 +72,7 @@
 
             @if(Auth::user()->role == "advertiser")
             <li class="nav-item">
-                <a href="{{ route("advertiser.mycontent") }}" class="nav-link">
+                <a href="{{ route("advertiser.dashboard") }}" class="nav-link">
                   <i class="fas fa-pencil-alt mr-2"></i>
                     <p>My Content</p>
                 </a>

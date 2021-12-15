@@ -37,6 +37,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBa
 Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
-    Route::get('mycontent', [AdvertiserController::class, 'mycontent'])->name('mycontent');
+    Route::get('createads', [AdvertiserController::class, 'createads'])->name('createads');
+    Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
+    Route::get('createevents', [AdvertiserController::class, 'createevents'])->name('createevents');
+    Route::get('manageevents', [AdvertiserController::class, 'manageevents'])->name('manageevents');
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
 });
+
+
