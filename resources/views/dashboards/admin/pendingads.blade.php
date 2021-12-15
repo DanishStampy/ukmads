@@ -3,17 +3,17 @@
 @section('title','Pending ')
 @section('content')
 <div class="row">
-  <div class="col-6 col-md-4">
-    <h1>Advertisement</h1>
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">View Detail</button>
-      </div>
+    <div class="col-6 col-md-4">
+        <h1>Advertisement</h1>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">View Detail</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="modal fade bd-example-modal-xl .col-12 .col-md-8" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -46,18 +46,19 @@
     </div>
 </div>
 </div>
+
 <div class="row">
-  <div class="col-6 col-md-4">
-    <h1>Event</h1>
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">View Detail</button>
-      </div>
+    <div class="col-6 col-md-4">
+        <h1>Event</h1>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">View Detail</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="modal fade bd-example-modal-xl .col-12 .col-md-8" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -89,5 +90,5 @@
         </div>
     </div>
 </div>
-</div>
+
 @endsection
