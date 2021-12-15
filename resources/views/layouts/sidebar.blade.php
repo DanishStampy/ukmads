@@ -7,7 +7,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar os-host-overflow os-host-overflow-y ">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
@@ -62,13 +62,13 @@
                         @elseif(Auth::user()->role == 'advertiser')
 
                             <li class="nav-item">
-                                <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+                                <a href=" {{ route("advertiser.manageads") }} " class="nav-link">
                                     <i class="fas fa-bullhorn mr-2"></i>
                                     <p>Advertisements</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+                                <a href=" {{ route("advertiser.manageevents") }} " class="nav-link">
                                     <i class="fas fa-calendar-week mr-2"></i>
                                     <p>Events</p>
                                 </a>
