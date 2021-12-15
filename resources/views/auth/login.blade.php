@@ -19,37 +19,36 @@
 </head>
 
 <body class="my-login-page">
-    <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-md-center align-items-md-center h-100">
-                <div class="card-wrapper">
 
-                    <div class="home-link"><a class="link" href="{{ route('welcome') }}"><i
-                                class="fas fa-arrow-left"></i></a>&nbsp;&nbsp;Home</div>
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center align-items-md-center h-100">
+				<div class="card-wrapper">
+					
+				<div class="home-link"><a class="link" href="{{url('/')}}"><i class="fas fa-arrow-left"></i></a>&nbsp;&nbsp;Home</div>
+			
+					<div class="cardx fat mt-5">
+						<div class="card-body">
+							@if ( Session::get('success'))
+									 <div class="alert alert-success">
+										 {{ Session::get('success') }}
+									 </div>
+								@endif
+								@if ( Session::get('error'))
+									 <div class="alert alert-danger">
+										 {{ Session::get('error') }}
+									 </div>
+								@endif
+							<h4 class="card-title">Login</h4>
+							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('login') }}">
+                @csrf
+								<br>
+								<div class="form_group">
+									<input id="login" type="text" class="form_input" name="login" placeholder=" "  autofocus value="{{ old('login') }}">
+									<label for="login" class="form_label">E-Mail Address or Username</label>
+									<span class="text-danger">@error('login'){{ $message }}@enderror</span>
+								</div>
 
-                    <div class="cardx fat mt-5">
-                        <div class="card-body">
-                            @if( Session::get('success'))
-                                <div class="alert alert-success">
-                                    {{ Session::get('success') }}
-                                </div>
-                            @endif
-                            @if( Session::get('error'))
-                                <div class="alert alert-danger">
-                                    {{ Session::get('error') }}
-                                </div>
-                            @endif
-                            <h4 class="card-title">Login</h4>
-                            <form method="POST" class="my-login-validation" autocomplete="off"
-                                action="{{ route('login') }}">
-                                @csrf
-                                <br>
-                                <div class="form_group">
-                                    <input id="login" type="text" class="form_input" name="login" placeholder=" "
-                                        autofocus value="{{ old('login') }}">
-                                    <label for="login" class="form_label">E-Mail Address or Username</label>
-                                    <span class="text-danger">@error('login'){{ $message }}@enderror</span>
-                                </div>
 
                                 <div class="form_group">
                                     <input id="password" type="password" class="form_input" name="password"
