@@ -37,5 +37,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['','isAdmi
 Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
+    Route::get('mycontent', [AdvertiserController::class, 'mycontent'])->name('mycontent');
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
 });
