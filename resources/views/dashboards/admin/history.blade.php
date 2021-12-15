@@ -4,6 +4,7 @@
 @section('content')
 <div class="row">
 <div class="col-6 col-md-4">
+  <h1>Advertisement</h1>
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Card image cap">
   <div class="card-body">
@@ -79,6 +80,7 @@
 
 <div class="row">
 <div class="col-6 col-md-4">
+<h1>Event</h1>
 <div class="card" style="width: 18rem;">
   <img class="card-img-top" src="{{asset('img/kfc.jpg')}}" alt="Card image cap">
   <div class="card-body">
