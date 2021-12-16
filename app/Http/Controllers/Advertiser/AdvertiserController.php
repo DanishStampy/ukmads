@@ -18,14 +18,16 @@ class AdvertiserController extends Controller
         return view('dashboards.advertiser.profile');
     }
 
+    // Create ads
     public function createads(){
         return view('dashboards.advertiser.createads');
     }
+
    public function uploadAds(Request $request){
         $ads = new Advertisement();
         $image = $request['fileToUpload'];
         $imgname = time().'.'.$image->getClientOriginalExtension();
-        $request->fileToUpload->move('adsimg', $imgname);
+        $request->fileToUpload->move('img', $imgname);
 
         $ads->picture = $imgname;
         $ads->creator_email = Auth::user()->email;
@@ -40,17 +42,18 @@ class AdvertiserController extends Controller
         $ads->save();
         return redirect()->route('advertiser.manageads')->with('success_ads','Advertisement Have been successfully uploaded.');
     }
-    public function manageads(){
-        return view('dashboards.advertiser.manageads');
-    }
+    
+
+    // Create events
     public function createevents(){
         return view('dashboards.advertiser.createevents');
     }
+
     public function uploadEvents(Request $request){
         $events = new Event();
         $image = $request['fileToUpload'];
         $imgname = time().'.'.$image->getClientOriginalExtension();
-        $request->fileToUpload->move('eventsimg', $imgname);
+        $request->fileToUpload->move('img', $imgname);
 
         $events->picture = $imgname;
         $events->creator_email = Auth::user()->email;
@@ -66,8 +69,95 @@ class AdvertiserController extends Controller
         $events->save();
         return redirect()->route('advertiser.manageevents')->with('success_events','Event Have been successfully uploaded.');
     }
+
+    // Edit ads
+    public function editads($id_ads){
+        $ads = Advertisement::find($id_ads);
+
+        return view('dashboards.advertiser.editads', compact('ads'));
+    }
+
+    public function updateAds(Request $request, $id_ads){
+        $ads = Advertisement::find($id_ads);
+
+        $image = $request['fileToUpload'];
+
+        $imgname = time().'.'.$image->getClientOriginalExtension();
+        $request->fileToUpload->move('img', $imgname);
+
+        $ads->picture = $imgname;
+        $ads->creator_email = Auth::user()->email;
+        $ads->name = $request->name;
+        $ads->type = $request->product;
+        $ads->price = $request->price;
+        $ads->seller_name = $request->seller;
+        $ads->contact = $request->contact;
+        $ads->description = $request->desc;
+        $ads->status = "pending";
+
+        $ads->save();
+
+        return redirect()->route('advertiser.manageads')->with('success_uploaded_ads','Advertisement have been successfully updated.');
+    }
+
+    // Edit event
+    public function editevent($id_event){
+        $event = Event::find($id_event);
+
+        return view('dashboards.advertiser.editevent', compact('event'));
+    }
+
+    public function updateEvent(Request $request, $id_event){
+        $event = Event::find($id_event);
+
+        $image = $request['fileToUpload'];
+
+        $imgname = time().'.'.$image->getClientOriginalExtension();
+        $request->fileToUpload->move('img', $imgname);
+
+        $event->picture = $imgname;
+        $event->creator_email = Auth::user()->email;
+        $event->name = $request->name;
+        $event->location = $request->location;
+        $event->time = $request->time;
+        $event->date = $request->date;
+        $event->organizer = $request->org;
+        $event->contact = $request->contactE;
+        $event->description = $request->descE;
+        $event->status = "pending";
+        
+
+        $event->save();
+
+        return redirect()->route('advertiser.manageevents')->with('success_uploaded_events','Event have been successfully updated.');
+    }
+
+    // Delete Ads
+    public function deleteAds($id_ads){
+        $ads = Advertisement::find($id_ads);
+        $ads->delete();
+
+        return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
+    }
+
+    //Delete Event
+    public function deleteEvent($id_event){
+        $event = Event::find($id_event);
+        $event->delete();
+
+        return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');
+    }
+
+    // Dashboad for ads and events
+
+    public function manageads(){
+        $ads = Advertisement::all();
+        return view('dashboards.advertiser.manageads', compact('ads'));
+    }
+
     public function manageevents(){
-        return view('dashboards.advertiser.manageevents');
+        $event = Event::all();
+        return view('dashboards.advertiser.manageevents', compact('event'));
     }
 }
 

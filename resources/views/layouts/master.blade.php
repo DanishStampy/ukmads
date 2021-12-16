@@ -24,12 +24,12 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Styles -->
-    
+
     <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
 
     <!-- -- Custom CSS File -- -->
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -39,13 +39,13 @@
 @include('layouts.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="background-color:#F3ECFF">
         <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
+        <div class="content-header" style="background-color:#F3ECFF">
+            <div class="container-fluid" >
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">
+                        <h1 class="m-0" >
                             @yield('title', 'Page Title')
                             <small>@yield('subtitle')</small>
                         </h1>
@@ -62,7 +62,7 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <div class="content">
+        <div class="content" style="background-color:#F3ECFF">
             <div class="container-fluid">
                 @yield('content')
             </div><!-- /.container-fluid -->
@@ -70,26 +70,14 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    
+
     @include('layouts.footer')
-    
+
 </div>
 
 <!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<script>
-    $(function () {
-      $('.select2').select2()
-    });
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@stack('scripts')
 
 </body>
 </html>
