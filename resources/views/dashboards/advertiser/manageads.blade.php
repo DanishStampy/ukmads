@@ -4,7 +4,7 @@
 
 
 <div class="row">
-    <div class="col ">
+    <div class="col mt-3">
         <h1 class="content_header">Advertisements</h1>
     </div>
 </div>
@@ -24,9 +24,42 @@
             <div class="card card-widget widget-user">
                 <div class="widget-user-header text-white"
                     style="height:300px; background: url('/img/{{ $ads->picture }}') center center;">
+                    
+                    @if($ads->status == 'pending')
+                    <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-info">
+                          Pending
+                        </div>
+                      </div>
+                    @elseif($ads->status == 'verified')
+                    <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-success">
+                          Verified
+                        </div>
+                      </div>
+                    @else
+                    <div class="ribbon-wrapper ribbon-xl">
+                        <div class="ribbon bg-danger">
+                          Rejected
+                        </div>
+                      </div>
+                    @endif
 
                 </div>
 
+                @if($ads->status == 'rejected')
+                <div class="card-footer" style="padding-top: 20px">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="description-block">
+                                <a href="{{ route("advertiser.deleteAds", $ads->id_ads) }}" class="btn btn-app bg-danger">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="card-footer" style="padding-top: 20px">
                     <div class="row">
                         <div class="col-sm-6 border-right">
@@ -47,6 +80,8 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
             </div>
         </div>
         {{-- <div class="col-md-3">

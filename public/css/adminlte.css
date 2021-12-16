@@ -11419,7 +11419,7 @@ body:not(.layout-fixed) .main-sidebar {
   top: 0;
 }
 body:not(.layout-fixed) .main-sidebar .sidebar {
-  overflow-y: auto;
+  /* overflow-y: none; */
 }
 
 .layout-fixed .brand-link {
