@@ -109,7 +109,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="contactE" type="text" class="form_input" name="contactE"
-                                            placeholder="#601234567890" pattern="^601[0-9]{1}([0-9]{8}|[0-9]{7})"
+                                            placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
                                             value="{{$event->contact}}">
                                         <label for="contactE" class="form_label">Contact Number</label>
                                         <span class="text-danger">@error('contactE'){{ $message }}@enderror</span>

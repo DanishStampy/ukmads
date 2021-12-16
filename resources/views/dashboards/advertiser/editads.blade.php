@@ -90,7 +90,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="contact" type="text" class="form_input" name="contact"
-                                            placeholder="#601234567890" pattern="^601[0-9]{1}([0-9]{8}|[0-9]{7})"
+                                            placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
                                             value="{{$ads->contact}}">
                                         <label for="contact" class="form_label">Contact Number</label>
                                         <span class="text-danger">@error('contact'){{ $message }}@enderror</span>
