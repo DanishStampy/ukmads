@@ -11419,7 +11419,7 @@ body:not(.layout-fixed) .main-sidebar {
   top: 0;
 }
 body:not(.layout-fixed) .main-sidebar .sidebar {
-  overflow-y: auto;
+  /* overflow-y: none; */
 }
 
 .layout-fixed .brand-link {
@@ -26376,7 +26376,7 @@ html.maximized-card {
   font-size: 12px;
   height: 60px;
   margin: 0 0 10px 10px;
-  min-width: 80px;
+  min-width: 150px;
   padding: 15px 5px;
   position: relative;
   text-align: center;
