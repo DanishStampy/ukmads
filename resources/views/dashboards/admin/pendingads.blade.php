@@ -190,7 +190,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#adsPending').on('show.bs.modal', function (ads) {
-                
+
                 var button = $(ads.relatedTarget) // Button that triggered the modal
                 var ads = button.data('ads') // Extract info from data-* attributes
                 var modal = $(this)
