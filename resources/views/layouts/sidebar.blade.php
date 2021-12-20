@@ -60,6 +60,12 @@
                         @elseif(Auth::user()->role == 'advertiser')
 
                             <li class="nav-item">
+                                <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
+                                    <i class="fas fa-bullhorn mr-2 white-font" ></i>
+                                    <p class="white-font">Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href=" {{ route("advertiser.manageads") }} " class="nav-link">
                                     <i class="fas fa-bullhorn mr-2 white-font" ></i>
                                     <p class="white-font">Advertisements</p>

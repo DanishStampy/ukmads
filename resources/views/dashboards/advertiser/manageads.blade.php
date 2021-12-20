@@ -9,12 +9,25 @@
     </div>
 </div>
 @if(Session::has('success_ads'))
-    <div class="alert alert-success my-3">
+    <div class="alert alert-success alert-dismissible fade show my-3">
         {{ Session::get('success_ads') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @elseif(Session::has('success_uploaded_ads'))
-    <div class="alert alert-success my-3">
+    <div class="alert alert-success alert-dismissible fade show my-3">
         {{ Session::get('success_uploaded_ads') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@elseif(Session::has('delete_ads'))
+    <div class="alert alert-success alert-dismissible fade show my-3">
+        {{ Session::get('delete_ads') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
 <div class="row">
@@ -62,7 +75,7 @@
                 @else
                 <div class="card-footer" style="padding-top: 20px">
                     <div class="row">
-                        <div class="col-sm-6 border-right">
+                        <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                             <div class="description-block">
                                 <a href="{{ route("advertiser.editads", $ads->id_ads) }}"
                                     class="btn btn-app bg-warning">
@@ -71,7 +84,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-lg-6 col-md-12 col-xs-12">
                             <div class="description-block">
                                 <a href="{{ route("advertiser.deleteAds", $ads->id_ads) }}" class="btn btn-app bg-danger">
                                     <i class="fas fa-trash-alt"></i> Delete

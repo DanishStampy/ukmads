@@ -9,12 +9,18 @@
     </div>
 </div>
 @if(Session::has('success_events'))
-    <div class="alert alert-success my-3">
+    <div class="alert alert-success alert-dismissible fade show my-3">
         {{ Session::get('success_events') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @elseif(Session::has('success_uploaded_events'))
-    <div class="alert alert-success my-3">
+    <div class="alert alert-success alert-dismissible fade show my-3">
         {{ Session::get('success_uploaded_events') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
 <div class="row">

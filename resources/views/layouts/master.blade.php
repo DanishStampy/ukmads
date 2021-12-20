@@ -32,7 +32,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css')}}">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed" style="height: auto;">
 <div class="wrapper">
 
 @include('layouts.header')
