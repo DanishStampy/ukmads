@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('aboutus', fn()=> view('aboutus'))->name('aboutus');
+
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
 });

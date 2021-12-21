@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class AdvertiserController extends Controller
 {
     public function index(){
-        return view('dashboards.advertiser.index');
+        $user_id = Auth::user()->email;
+
+        $ads = Advertisement::where('creator_email', $user_id)->get();
+        $event = Event::where('creator_email', $user_id)->get();
+
+        return view('dashboards.advertiser.index', compact('ads','event'));
     }
 
     public function profile(){
