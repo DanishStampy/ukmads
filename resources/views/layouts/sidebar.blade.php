@@ -1,12 +1,13 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-wrapper elevation-4" style="background-color:#290576 ; color:#808191;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light white-font" style="font-weight: 700;">UKMads</span>
+        <img src="/img/ukmads-logo.png" alt="UKMads logo" class="brand-image img-circle">
+        <span class="brand-text font-weight-bold">UKMads</span>
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar os-host-overflow os-host-overflow-y ">
+    <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
@@ -16,8 +17,8 @@
                         <img src=" {{ asset('img/AvatarMaker.png') }} "
                             class="img-circle elevation-2" alt="User Image">
                     </div>
-                    <div class="info white-font">
-                        <a href="#" class="d-block white-font" > {{ Auth::user()->name }} </a>
+                    <div class="info">
+                        <a href="#" class="d-block" > {{ Auth::user()->name }} </a>
                     </div>
                 @else
                 <div class="image">
@@ -25,7 +26,7 @@
                         class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block white-font"> Guest </a>
+                    <a href="#" class="d-block"> Guest </a>
                 </div>
                 @endauth
             @endif
@@ -37,7 +38,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                
-                <li class="nav-header bold-font white-font">MENU</li>
+                <li class="nav-header bold-font">MENU</li>
 
                 @if(Route::has('login'))
                     @auth
@@ -46,35 +47,90 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("admin.pendingads") }} " class="nav-link">
-                                    <i class="fas fa-tasks mr-2 white-font"  ></i>
-                                    <p class="white-font">Pending</p>
+                                    <i class="fas fa-tasks mr-2 "  ></i>
+                                    <p class="">Pending</p>
                                 </a>
                             </li>
                             <li class="nav-item" >
                                 <a href=" {{ route("admin.history") }} " class="nav-link">
-                                    <i class="fas fa-history mr-2 white-font"  ></i>
-                                    <p class="white-font" >History</p>
+                                    <i class="fas fa-history mr-2 "  ></i>
+                                    <p class="" >History</p>
                                 </a>
                             </li>
 
                         @elseif(Auth::user()->role == 'advertiser')
 
                             <li class="nav-item">
-                                <a href=" {{ route("advertiser.manageads") }} " class="nav-link">
-                                    <i class="fas fa-bullhorn mr-2 white-font" ></i>
-                                    <p class="white-font">Advertisements</p>
+                                <a href=" {{ route("advertiser.dashboard") }} " class="nav-link {{ (request()->routeIs('advertiser.dashboard') ? 'active' : '') }}">
+                                    <i class="fas fa-house-user mr-2 "></i>
+                                    <p class="">Dashboard</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href=" {{ route("advertiser.manageevents") }} " class="nav-link">
-                                    <i class="fas fa-calendar-week mr-2 white-font" ></i>
-                                    <p class="white-font">Events</p>
+
+                            {{-- For advertisement link --}}
+                            <li class="nav-item {{ (request()->routeIs('advertiser.createads') || request()->routeIs('advertiser.editads') ? 'menu-open' : '') }}">
+
+                                <a href=" {{ route("advertiser.manageads") }} " class="nav-link {{ (request()->routeIs('advertiser.manageads') ? 'active' : '') }}">
+                                    <i class="fas fa-bullhorn mr-2 " ></i>
+                                    <p class="">Advertisements</p>
                                 </a>
+
+                                @if( request()->routeIs('advertiser.createads'))
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.createads') ? 'active' : '') }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Create new ads</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @elseif( request()->routeIs('advertiser.editads'))
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item disabled">
+                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.editads') ? 'active' : '') }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Update ads</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
+
                             </li>
+
+                            {{-- For event link --}}
+                            <li class="nav-item {{ (request()->routeIs('advertiser.createevents') || request()->routeIs('advertiser.editevent') ? 'menu-open' : '') }}">
+
+                                <a href=" {{ route("advertiser.manageevents") }} " class="nav-link {{ (request()->routeIs('advertiser.manageevents') ? 'active' : '') }}">
+                                    <i class="fas fa-calendar-week mr-2 " ></i>
+                                    <p class="">Events</p>
+                                </a>
+
+                                @if( request()->routeIs('advertiser.createevents'))
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.createevents') ? 'active' : '') }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Create new event</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @elseif( request()->routeIs('advertiser.editevent'))
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item disabled">
+                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.editevent') ? 'active' : '') }}">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Update event</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endif
+
+                            </li>
+
                             <li class="nav-item">
-                                <a href=" {{ route("advertiser.dashboard") }} " class="nav-link">
-                                    <i class="fas fa-address-card mr-2 white-font"  ></i>
-                                    <p  class="white-font">About Us</p>
+                                <a href=" {{ route("aboutus") }} " class="nav-link {{ (request()->routeIs('aboutus') ? 'active' : '') }}">
+                                    <i class="fas fa-address-card mr-2 "  ></i>
+                                    <p  class="">About Us</p>
                                 </a>
                             </li>
 
@@ -83,20 +139,20 @@
                     @else
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-bullhorn mr-2 white-font"  ></i>
-                                <p class="white-font">Advertisements</p>
+                                <i class="fas fa-bullhorn mr-2 "  ></i>
+                                <p class="">Advertisements</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-calendar-week mr-2 white-font"  ></i>
-                                <p class="white-font">Events</p>
+                                <i class="fas fa-calendar-week mr-2 "  ></i>
+                                <p class="">Events</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link"  style="color:black">
-                                <i class="fas fa-address-card mr-2 white-font"  ></i>
-                                <p class="white-font">About Us</p>
+                            <a href="{{ route('aboutus') }}" class="nav-link {{ (request()->routeIs('aboutus') ? 'active' : '') }}">
+                                <i class="fas fa-address-card mr-2"  ></i>
+                                <p class="">About Us</p>
                             </a>
                         </li>
                     @endauth
@@ -104,7 +160,7 @@
 
 
 
-                <li class="nav-header bold-font white-font" >ACCOUNT</li>
+                <li class="nav-header bold-font " >ACCOUNT</li>
 
                 @if(Route::has('login'))
 
@@ -113,15 +169,15 @@
                         @if(Auth::user()->role == "advertiser")
                             <li class="nav-item">
                                 <a href="{{ route("advertiser.logout") }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt mr-2 white-font"  ></i>
-                                    <p class="white-font">Logout</p>
+                                    <i class="fas fa-sign-out-alt mr-2 "  ></i>
+                                    <p class="">Logout</p>
                                 </a>
                             </li>
                         @elseif(Auth::user()->role == "admin")
                             <li class="nav-item">
                                 <a href="{{ route("admin.logout") }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt mr-2 white-font" ></i>
-                                    <p class="white-font">Logout</p>
+                                    <i class="fas fa-sign-out-alt mr-2 " ></i>
+                                    <p class="">Logout</p>
                                 </a>
                             </li>
                         @endif
@@ -130,8 +186,8 @@
 
                         <li class="nav-item">
                             <a href=" {{ route("login") }} " class="nav-link">
-                                <i class="fas fa-sign-in-alt mr-2 white-font" ></i>
-                                <p class="white-font">Login</p>
+                                <i class="fas fa-sign-in-alt mr-2 " ></i>
+                                <p class="">Login</p>
                             </a>
                         </li>
 
@@ -139,8 +195,8 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("register") }} " class="nav-link">
-                                    <i class="fas fa-share-square mr-2 white-font" ></i>
-                                    <p class="white-font">Register</p>
+                                    <i class="fas fa-share-square mr-2 " ></i>
+                                    <p class="">Register</p>
                                 </a>
                             </li>
 

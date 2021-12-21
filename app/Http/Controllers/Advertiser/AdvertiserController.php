@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class AdvertiserController extends Controller
 {
     public function index(){
-        return view('dashboards.advertiser.index');
+        $user_id = Auth::user()->email;
+
+        $ads = Advertisement::where('creator_email', $user_id)->get();
+        $event = Event::where('creator_email', $user_id)->get();
+
+        return view('dashboards.advertiser.index', compact('ads','event'));
     }
 
     public function profile(){
@@ -135,6 +140,7 @@ class AdvertiserController extends Controller
     // Delete Ads
     public function deleteAds($id_ads){
         $ads = Advertisement::find($id_ads);
+        unlink("img/".$ads->picture);
         $ads->delete();
 
         return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
@@ -143,6 +149,7 @@ class AdvertiserController extends Controller
     //Delete Event
     public function deleteEvent($id_event){
         $event = Event::find($id_event);
+        unlink("img/".$event->picture);
         $event->delete();
 
         return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');

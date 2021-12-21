@@ -15,14 +15,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body" style="height: 500px;">
-                            <div style="background-image: url({{ asset('img/white.jpg') }});"
-                                class="row">
-                                <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
-                                    type="button"><input type="file" accept="images/*" name="fileToUpload"
-                                        id="inputImage" />
-                                </button>
-                            </div>
+                        <div class="card-body">
+                            <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
+                            type="button"><input type="file" accept="images/*" name="fileToUpload"
+                                id="inputImage" />
+                            </button>
+                            <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
+                                src="/img/{{$ads->picture}}" alt=""
+                                style="width: 450px; height: 450px;">
                         </div>
                         <div class="card-header">
                             <h5 class="d-lg-flex justify-content-lg-center">Upload Picture</h5>
@@ -35,20 +35,6 @@
                             <h5 class="mb-0">Content Details</h5>
                         </div>
                         <div class="card-body">
-                            {{-- <div class="row">
-                            <div class="col-md-6 text-center">
-                                <div class="form-check"><button class="btn btn-primary text-right border rounded"
-                                        type="button">Advertisement</button></div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <div class="form-check"><button class="btn btn-primary text-right border rounded"
-                                        type="button">Event</button></div>
-                            </div>
-                        </div>
-                        <hr>
-                        <br> --}}
-
-
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
@@ -77,7 +63,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
@@ -97,7 +82,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
@@ -115,11 +99,23 @@
                                         type="submit">Update</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
-</div>
-</div>
-</div>
-</div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        inputImage.onchange = evt => {
+            const [file] = inputImage.files
+            if (file) {
+                imgPreview.src = URL.createObjectURL(file)
+            }
+        }
+
+    </script>
+@endpush

@@ -11419,7 +11419,7 @@ body:not(.layout-fixed) .main-sidebar {
   top: 0;
 }
 body:not(.layout-fixed) .main-sidebar .sidebar {
-  /* overflow-y: none; */
+  overflow-y: auto;
 }
 
 .layout-fixed .brand-link {
@@ -11982,7 +11982,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 [class*=sidebar-dark] .brand-link,
 [class*=sidebar-dark] .brand-link .pushmenu {
-  color: rgba(255, 255, 255, 0.8);
+  color: #fff;
 }
 [class*=sidebar-dark] .brand-link:hover,
 [class*=sidebar-dark] .brand-link .pushmenu:hover {
@@ -12274,7 +12274,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*=sidebar-dark-] {
-  background-color: #343a40;
+  background-color: #290576;
 }
 [class*=sidebar-dark-] .user-panel a:hover {
   color: #fff;
@@ -12311,10 +12311,10 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 [class*=sidebar-dark-] .nav-header {
   background-color: inherit;
-  color: #d0d4db;
+  color: #fff;
 }
 [class*=sidebar-dark-] .sidebar a {
-  color: #c2c7d0;
+  color: #fff;
 }
 [class*=sidebar-dark-] .sidebar a:hover, [class*=sidebar-dark-] .sidebar a:focus {
   text-decoration: none;
@@ -12339,8 +12339,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #fff;
+  color: #290576;
 }
 .sidebar-dark-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active {
@@ -15919,8 +15919,8 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-white {
-  background-color: #fff;
-  color: #1f2d3d;
+  background-color: #F3ECFF;
+  color: #290576;
 }
 .navbar-white.navbar-light .form-control-navbar::-moz-placeholder {
   color: rgba(52, 58, 64, 0.8);
@@ -26376,7 +26376,7 @@ html.maximized-card {
   font-size: 12px;
   height: 60px;
   margin: 0 0 10px 10px;
-  min-width: 150px;
+  min-width: 80px;
   padding: 15px 5px;
   position: relative;
   text-align: center;
