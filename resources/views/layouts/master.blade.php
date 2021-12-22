@@ -30,6 +30,7 @@
     <!-- -- Custom CSS File -- -->
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
