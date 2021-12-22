@@ -1,6 +1,6 @@
 <!-- Main Footer -->
 
-<footer class="main-footer" style="background-color:#F3ECFF">
+<footer class="main-footer">
   <!-- To the right -->
   <div class="float-right d-none d-sm-inline">
     Anything you want
