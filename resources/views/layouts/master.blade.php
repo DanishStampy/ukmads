@@ -32,7 +32,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css')}}">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed" style="height: auto;">
 <div class="wrapper">
 
 @include('layouts.header')
@@ -40,9 +40,9 @@
 @include('layouts.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="background-color:#F3ECFF">
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <div class="content-header" style="background-color:#F3ECFF">
+        <div class="content-header">
             <div class="container-fluid" >
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -53,7 +53,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{url()->previous()}}">Home</a></li>
                             <li class="breadcrumb-item active">@yield('title', 'Page Title')</li>
                         </ol>
                     </div><!-- /.col -->
@@ -63,7 +63,7 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <div class="content" style="background-color:#F3ECFF">
+        <div class="content">
             <div class="container-fluid">
                 @yield('content')
             </div><!-- /.container-fluid -->
