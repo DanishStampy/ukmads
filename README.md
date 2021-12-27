@@ -20,11 +20,11 @@ UKMads is a platform for UKM community to advertise their business or events on 
 
 ## Developers
 
-- **[Nurfahkrullah bin Muslimin](https://www.instagram.com/nurfa_krul/)**
-- **[Putera Niq Aziz bin Hoslam](https://www.instagram.com/niqaziz_/)**
-- **[Muhammad Syazili bin Juhari](https://www.instagram.com/syazilijuhari/)**
-- **[Muhammad Danish bin Hairol Nizam](https://www.instagram.com/danish_nish/)**
-- **[Danish Irfan Shah bin Muzaffar Shah](https://www.instagram.com/danishstampy/)**
+- **[Nurfahkrullah bin Muslimin](https://github.com/NurfaNuva)**
+- **[Putera Niq Aziz bin Hoslam](https://github.com/niqaziz17)**
+- **[Muhammad Syazili bin Juhari](https://github.com/syazilijuhari)**
+- **[Muhammad Danish bin Hairol Nizam](https://github.com/ViceNish)**
+- **[Danish Irfan Shah bin Muzaffar Shah](https://github.com/DanishStampy)**
 
 ## Security Vulnerabilities
 
