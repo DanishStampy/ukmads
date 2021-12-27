@@ -18,16 +18,16 @@
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block" > {{ Auth::user()->name }} </a>
+                        <a href="#" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
                     </div>
                 @else
-                <div class="image">
-                    <img src=" {{ asset('img/AvatarGuest.png') }} "
-                        class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block"> Guest </a>
-                </div>
+                    <div class="image">
+                        <img src=" {{ asset('img/AvatarGuest.png') }} "
+                            class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block"> Guest </a>
+                    </div>
                 @endauth
             @endif
         </div>
@@ -37,7 +37,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               
+
                 <li class="nav-header bold-font">MENU</li>
 
                 @if(Route::has('login'))
@@ -47,38 +47,42 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("admin.pendingads") }} " class="nav-link">
-                                    <i class="fas fa-tasks mr-2 "  ></i>
+                                    <i class="fas fa-tasks mr-2 "></i>
                                     <p class="">Pending</p>
                                 </a>
                             </li>
-                            <li class="nav-item" >
+                            <li class="nav-item">
                                 <a href=" {{ route("admin.history") }} " class="nav-link">
-                                    <i class="fas fa-history mr-2 "  ></i>
-                                    <p class="" >History</p>
+                                    <i class="fas fa-history mr-2 "></i>
+                                    <p class="">History</p>
                                 </a>
                             </li>
 
                         @elseif(Auth::user()->role == 'advertiser')
 
                             <li class="nav-item">
-                                <a href=" {{ route("advertiser.dashboard") }} " class="nav-link {{ (request()->routeIs('advertiser.dashboard') ? 'active' : '') }}">
+                                <a href=" {{ route("advertiser.dashboard") }} "
+                                    class="nav-link {{ (request()->routeIs('advertiser.dashboard') ? 'active' : '') }}">
                                     <i class="fas fa-house-user mr-2 "></i>
                                     <p class="">Dashboard</p>
                                 </a>
                             </li>
 
                             {{-- For advertisement link --}}
-                            <li class="nav-item {{ (request()->routeIs('advertiser.createads') || request()->routeIs('advertiser.editads') ? 'menu-open' : '') }}">
+                            <li
+                                class="nav-item {{ (request()->routeIs('advertiser.createads') || request()->routeIs('advertiser.editads') ? 'menu-open' : '') }}">
 
-                                <a href=" {{ route("advertiser.manageads") }} " class="nav-link {{ (request()->routeIs('advertiser.manageads') ? 'active' : '') }}">
-                                    <i class="fas fa-bullhorn mr-2 " ></i>
+                                <a href=" {{ route("advertiser.manageads") }} "
+                                    class="nav-link {{ (request()->routeIs('advertiser.manageads') ? 'active' : '') }}">
+                                    <i class="fas fa-bullhorn mr-2 "></i>
                                     <p class="">Advertisements</p>
                                 </a>
 
                                 @if( request()->routeIs('advertiser.createads'))
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.createads') ? 'active' : '') }}">
+                                            <a href=""
+                                                class="nav-link {{ (request()->routeIs('advertiser.createads') ? 'active' : '') }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Create new ads</p>
                                             </a>
@@ -87,7 +91,8 @@
                                 @elseif( request()->routeIs('advertiser.editads'))
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item disabled">
-                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.editads') ? 'active' : '') }}">
+                                            <a href=""
+                                                class="nav-link {{ (request()->routeIs('advertiser.editads') ? 'active' : '') }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Update ads</p>
                                             </a>
@@ -98,26 +103,30 @@
                             </li>
 
                             {{-- For event link --}}
-                            <li class="nav-item {{ (request()->routeIs('advertiser.createevents') || request()->routeIs('advertiser.editevent') ? 'menu-open' : '') }}">
+                            <li
+                                class="nav-item {{ (request()->routeIs('advertiser.createevents') || request()->routeIs('advertiser.editevent') ? 'menu-open' : '') }}">
 
-                                <a href=" {{ route("advertiser.manageevents") }} " class="nav-link {{ (request()->routeIs('advertiser.manageevents') ? 'active' : '') }}">
-                                    <i class="fas fa-calendar-week mr-2 " ></i>
+                                <a href=" {{ route("advertiser.manageevents") }} "
+                                    class="nav-link {{ (request()->routeIs('advertiser.manageevents') ? 'active' : '') }}">
+                                    <i class="fas fa-calendar-week mr-2 "></i>
                                     <p class="">Events</p>
                                 </a>
 
                                 @if( request()->routeIs('advertiser.createevents'))
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.createevents') ? 'active' : '') }}">
+                                            <a href=""
+                                                class="nav-link {{ (request()->routeIs('advertiser.createevents') ? 'active' : '') }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Create new event</p>
                                             </a>
                                         </li>
                                     </ul>
-                                @elseif( request()->routeIs('advertiser.editevent'))
+                                    @elseif( request()->routeIs('advertiser.editevent'))
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item disabled">
-                                            <a href="" class="nav-link {{ (request()->routeIs('advertiser.editevent') ? 'active' : '') }}">
+                                            <a href=""
+                                                class="nav-link {{ (request()->routeIs('advertiser.editevent') ? 'active' : '') }}">
                                                 <i class="far fa-circle nav-icon"></i>
                                                 <p>Update event</p>
                                             </a>
@@ -128,9 +137,10 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href=" {{ route("aboutus") }} " class="nav-link {{ (request()->routeIs('aboutus') ? 'active' : '') }}">
-                                    <i class="fas fa-address-card mr-2 "  ></i>
-                                    <p  class="">About Us</p>
+                                <a href=" {{ route("aboutus") }} "
+                                    class="nav-link {{ (request()->routeIs('aboutus') ? 'active' : '') }}">
+                                    <i class="fas fa-address-card mr-2 "></i>
+                                    <p class="">About Us</p>
                                 </a>
                             </li>
 
@@ -139,19 +149,20 @@
                     @else
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-bullhorn mr-2 "  ></i>
+                                <i class="fas fa-bullhorn mr-2 "></i>
                                 <p class="">Advertisements</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="fas fa-calendar-week mr-2 "  ></i>
+                                <i class="fas fa-calendar-week mr-2 "></i>
                                 <p class="">Events</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('aboutus') }}" class="nav-link {{ (request()->routeIs('aboutus') ? 'active' : '') }}">
-                                <i class="fas fa-address-card mr-2"  ></i>
+                            <a href="{{ route('aboutus') }}"
+                                class="nav-link {{ (request()->routeIs('aboutus') ? 'active' : '') }}">
+                                <i class="fas fa-address-card mr-2"></i>
                                 <p class="">About Us</p>
                             </a>
                         </li>
@@ -159,34 +170,27 @@
                 @endif
 
 
-
-                <li class="nav-header bold-font " >ACCOUNT</li>
+                <br>
+                <br>
+                <br>
+                <li class="nav-header bold-font">ACCOUNT</li>
 
                 @if(Route::has('login'))
 
                     @auth
 
-                        @if(Auth::user()->role == "advertiser")
-                            <li class="nav-item">
-                                <a href="{{ route("advertiser.logout") }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt mr-2 "  ></i>
-                                    <p class="">Logout</p>
-                                </a>
-                            </li>
-                        @elseif(Auth::user()->role == "admin")
-                            <li class="nav-item">
-                                <a href="{{ route("admin.logout") }}" class="nav-link">
-                                    <i class="fas fa-sign-out-alt mr-2 " ></i>
-                                    <p class="">Logout</p>
-                                </a>
-                            </li>
-                        @endif
+                        <li class="nav-item">
+                            <a data-toggle="modal" data-target="#Logout" class="nav-link" style="color: #fff; cursor: pointer;">
+                                <i class="fas fa-sign-out-alt mr-2 "></i>
+                                <p class="">Logout</p>
+                            </a>
+                        </li>
 
                     @else
 
                         <li class="nav-item">
                             <a href=" {{ route("login") }} " class="nav-link">
-                                <i class="fas fa-sign-in-alt mr-2 " ></i>
+                                <i class="fas fa-sign-in-alt mr-2 "></i>
                                 <p class="">Login</p>
                             </a>
                         </li>
@@ -195,7 +199,7 @@
 
                             <li class="nav-item">
                                 <a href=" {{ route("register") }} " class="nav-link">
-                                    <i class="fas fa-share-square mr-2 " ></i>
+                                    <i class="fas fa-share-square mr-2 "></i>
                                     <p class="">Register</p>
                                 </a>
                             </li>
@@ -211,8 +215,38 @@
     <!-- /.sidebar -->
 </aside>
 
+{{-- Log out modal --}}
+<div class="modal fade" id="Logout" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="LogoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modal-title" id="LogoutModalLabel">Logout Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
 
+                @if(Route::has('login'))
+                    @auth
+                        @if(Auth::user()->role == "advertiser")
+                            <a type="button" href="{{ route("advertiser.logout") }}" class="btn btn-danger">Yes</a>
 
+                        @elseif(Auth::user()->role == "admin")
+                            <a type="button" href="{{ route("admin.logout") }}" class="btn btn-danger">Yes</a>
+
+                        @endif
+                    @endauth
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+{{-- END of log out modal --}}
 
 <!-- Content Wrapper. Contains page content -->
 

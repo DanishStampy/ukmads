@@ -2,7 +2,6 @@
 @section('title','My Contents')
 @section('content')
 
-
 <div class="row">
     <div class="col mt-3">
         <h1 class="content_header">Advertisements</h1>
@@ -96,20 +95,9 @@
                 @endif
 
             </div>
+            <br>
         </div>
-        {{-- <div class="col-md-3">
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="border rounded" style="height:300px;">
-                        <img src="/img/{{ $ads->picture }}" class="img-fluid" style="height:300px;">
-        <a href="{{ route("advertiser.editads", $ads->id_ads) }}" class="btn btn-secondary">
-            Edit
-        </a>
-</div>
-</div>
-</div>
-</div> --}}
-@endforeach
+    @endforeach
 
 <div class="col-md-4">
     <div class="card card-widget widget-user">
