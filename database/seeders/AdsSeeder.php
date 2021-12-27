@@ -51,6 +51,7 @@ class AdsSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'reason' => 'not appropriate',
             'status' => 'rejected'
         ]);
 

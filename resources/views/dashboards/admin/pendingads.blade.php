@@ -10,7 +10,14 @@
         @if($advertisement->status == 'pending')
             <div class="col-6 col-md-3">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}" alt="Card image cap">
+                    <div class="ribbon-wrapper ribbon-lg">
+                        <div class="ribbon bg-info">
+                            Pending
+                        </div>
+                    </div>
+                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="height:200px;object-fit: cover">
                     <div class="card-body">
                         <h5 class="card-title">{{ $advertisement->name }}</h5>
                         <p class="card-text">{{ $advertisement->description }}</p>
@@ -28,8 +35,10 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
-                <div class="card w-50" style="margin-top: 30px">
-                    <img class="img-fluid" src=" " id="adsPic" alt="Dist Photo 3" style="margin: 10px">
+                <div class="card" style="margin-top: 30px">
+                    <img class="img-fluid" id="adsPic"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="margin: 10px;height:300px;width:300px;object-fit: cover">
                 </div>
                 <div class="col-md-10 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -93,7 +102,14 @@
         @if($event->status == 'pending')
             <div class="col-6 col-md-3">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}" alt="Card image cap">
+                    <div class="ribbon-wrapper ribbon-lg">
+                        <div class="ribbon bg-info">
+                            Pending
+                        </div>
+                    </div>
+                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="height:200px;object-fit: cover">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text">{{ $event->description }}</p>
@@ -111,8 +127,10 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
-                <div class="card w-50" style="margin-top: 30px">
-                    <img class="img-fluid" src=" " id="eventPic" alt="Dist Photo 3" style="margin: 10px">
+                <div class="card" style="margin-top: 30px">
+                    <img class="img-fluid" id="eventPic"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="margin: 10px;height:300px;width:300px;object-fit: cover">
                 </div>
                 <div class="col-md-10 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -198,7 +216,8 @@
                 var data = atob(ads);
                 var data = $.parseJSON(data);
 
-                $("#adsPic").attr('src', `{{ asset('img/${data.picture}') }}`);
+                $("#adsPic").attr('src',
+                    `{{ asset('img/${data.picture}') }}`);
                 $("#adsId").val(data.id_ads);
                 $("#adsHid").val(data.id_ads);
                 $("#adsName").val(data.name);
@@ -221,7 +240,8 @@
                 var data = $.parseJSON(data);
 
 
-                $("#eventPic").attr('src', `{{ asset('img/${data.picture}') }}`);
+                $("#eventPic").attr('src',
+                    `{{ asset('img/${data.picture}') }}`);
                 $("#eventId").val(data.id_event);
                 $("#eventHid").val(data.id_event);
                 $("#eventName").val(data.name);
