@@ -24,8 +24,10 @@ class CreateEventsTable extends Migration
             $table->string('organizer');
             $table->string('contact');
             $table->text('description');
-            $table->string('picture', 255);
-            $table->enum("status", ["pending", "verified", "rejected"]);
+            $table->string('picture', 255)->nullable();
+            $table->text('reason', 255)->nullable();
+            $table->integer('join');
+            $table->enum("status", ["draft","pending", "verified", "rejected"]);
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
-                                src="{{ asset('img/noimage.jpg') }}" alt=""
+                                src="{{ asset('img/noimage.jpg') }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                                 style="width: 450px; height: 450px;">
                         </div>
                         <div class="card-header">
