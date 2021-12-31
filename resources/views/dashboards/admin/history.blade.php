@@ -7,7 +7,7 @@
 <div class="row">
     {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
     @foreach($advertisements as $advertisement)
-        @if($advertisement->status!=='pending')
+        @if($advertisement->status=='verified' || $advertisement->status=='rejected')
 
             <div class="col-6 col-md-3">
                 <div class="card">
@@ -117,7 +117,7 @@
 <div class="row">
     {{ count($events) < 1 ? "No data to be displayed." : '' }}
     @foreach($events as $event)
-        @if($event->status!=='pending')
+        @if($event->status=='verified' || $event->status=='rejected')
             <div class="col-6 col-md-3">
 
                 <div class="card">
