@@ -105,9 +105,9 @@
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    <button class="btn btn-primary text-right border rounded" type="button"
-                                        style="margin-right: 10px;" disabled>Save As Draft</button>
-                                    <button class="btn btn-primary text-right border rounded"
+                                    <button name="action" value="save" class="btn btn-primary text-right border rounded" type="submit"
+                                        style="margin-right: 10px;">Save As Draft</button>
+                                    <button name="action" value="verify" class="btn btn-success text-right border rounded"
                                         type="submit">Verify</button>
                                 </div>
                             </div>

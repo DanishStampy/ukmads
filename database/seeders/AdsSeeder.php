@@ -80,5 +80,31 @@ class AdsSeeder extends Seeder
             'picture' => 'kfc.jpg',
             'status' => 'pending'
         ]);
+
+        DB::table('advertisements')->insert([
+            'id_ads' => 'AD6',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'Mouthgasm Crunchy',
+            'type' => 'Food',
+            'price' => '47',
+            'seller_name' => 'Aisyah',
+            'contact' => '0123456789',
+            'description' => 'Kokiss combo S.',
+            'picture' => 'mouthgasmkokiss.png',
+            'status' => 'draft'
+        ]);
+
+        DB::table('advertisements')->insert([
+            'id_ads' => 'AD7',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'Berry Combo',
+            'type' => 'Food',
+            'price' => '35',
+            'seller_name' => 'Aisyah',
+            'contact' => '0123456789',
+            'description' => 'Got berry cookies and berry crunch with a freegift.',
+            'picture' => 'berrycombo.png',
+            'status' => 'draft'
+        ]);
     }
 }

@@ -3,6 +3,8 @@
 @section('title','About UKMads')
 @section('content')
 
+@include('layouts.loading')
+
 <div class="card card-solid">
     <div class="row justify-content-center align-items-center">
       <div class="col-md-4">

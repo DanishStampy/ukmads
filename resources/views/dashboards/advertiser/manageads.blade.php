@@ -2,7 +2,6 @@
 @section('title','My Contents')
 @section('content')
 
-
 <div class="row">
     <div class="col mt-3">
         <h1 class="content_header">Advertisements</h1>
@@ -100,6 +99,7 @@
                 @endif
 
             </div>
+            <br>
         </div>
     @endforeach
 
