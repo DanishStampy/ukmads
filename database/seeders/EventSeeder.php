@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class AdsSeeder extends Seeder
+class EventSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,95 +16,94 @@ class AdsSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD1',
+        DB::table('events')->insert([
+            'id_event' => 'EV1',
             'creator_email' => 'staff@gmail.com',
             'name' => 'KFC Deals',
-            'type' => 'Food',
-            'price' => '30',
-            'seller_name' => 'Aisyah',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'pending'
         ]);
 
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD2',
+        DB::table('events')->insert([
+            'id_event' => 'EV2',
             'creator_email' => 'staff@gmail.com',
             'name' => 'KFC Deals2',
-            'type' => 'Food',
-            'price' => '30',
-            'seller_name' => 'Aisyah',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'verified'
         ]);
 
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD3',
+        DB::table('events')->insert([
+            'id_event' => 'EV3',
             'creator_email' => 'staff@gmail.com',
             'name' => 'KFC Deals3',
-            'type' => 'Food',
-            'price' => '30',
-            'seller_name' => 'Aisyah',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
             'reason' => 'not appropriate',
+            'join' => '0',
             'status' => 'rejected'
         ]);
 
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD4',
+        DB::table('events')->insert([
+            'id_event' => 'EV4',
             'creator_email' => 'staff@gmail.com',
             'name' => 'KFC Deals4',
-            'type' => 'Food',
-            'price' => '30',
-            'seller_name' => 'Aisyah',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'pending'
         ]);
 
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD5',
+        DB::table('events')->insert([
+            'id_event' => 'EV5',
             'creator_email' => 'staff@gmail.com',
             'name' => 'KFC Deals5',
-            'type' => 'Food',
-            'price' => '30',
-            'seller_name' => 'Aisyah',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'ARVIS',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'pending'
         ]);
 
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD6',
+        DB::table('events')->insert([
+            'id_event' => 'EV6',
             'creator_email' => 'staff@gmail.com',
-            'name' => 'Mouthgasm Crunchy',
-            'type' => 'Food',
-            'price' => '47',
-            'seller_name' => 'Aisyah',
+            'name' => 'Music Festival - Electro Music Party',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'reallygreatsite.com',
             'contact' => '0123456789',
-            'description' => 'Kokiss combo S.',
-            'picture' => 'mouthgasmkokiss.png',
-            'status' => 'draft'
-        ]);
-
-        DB::table('advertisements')->insert([
-            'id_ads' => 'AD7',
-            'creator_email' => 'staff@gmail.com',
-            'name' => 'Berry Combo',
-            'type' => 'Food',
-            'price' => '35',
-            'seller_name' => 'Aisyah',
-            'contact' => '0123456789',
-            'description' => 'Got berry cookies and berry crunch with a freegift.',
-            'picture' => 'berrycombo.png',
+            'description' => 'Normal music party smh.',
+            'picture' => 'musicfest.jpg',
+            'join' => '0',
             'status' => 'draft'
         ]);
     }

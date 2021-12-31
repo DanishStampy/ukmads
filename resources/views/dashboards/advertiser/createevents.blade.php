@@ -1,0 +1,133 @@
+@extends('layouts.master')
+@section('title','My Contents')
+@section('content')
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col mt-3">
+            <h1 class="content_header">Create Events</h1>
+        </div>
+    </div>
+    <div class="container">
+        <form action="{{ route('advertiser.uploadEvents') }}" method="POST" class="form-horizontal"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
+                                type="button"><input type="file" accept="images/*" name="fileToUpload"
+                                    id="inputImage" />
+                            </button>
+                            <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
+                                src="{{ asset('img/noimage.jpg') }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                                style="width: 450px; height: 450px;">
+                        </div>
+                        <div class="card-header">
+                            <h5 class="d-lg-flex justify-content-lg-center">Upload Picture</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Content Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="name" type="text" class="form_input" name="name" placeholder=" "
+                                            autofocus value="">
+                                        <label for="name" class="form_label">Name</label>
+                                        <span class="text-danger">@error('name'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="location" type="text" class="form_input" name="location"
+                                            placeholder=" " value="">
+                                        <label for="location" class="form_label">Location</label>
+                                        <span class="text-danger">@error('location'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="time" type="time" class="form_input" name="time" placeholder=" "
+                                            value="">
+                                        <label for="time" class="form_label">Time</label>
+                                        <span class="text-danger">@error('time'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="date" type="date" class="form_input" name="date" placeholder=" "
+                                            value="">
+                                        <label for="date" class="form_label">Date</label>
+                                        <span class="text-danger">@error('date'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="org" type="text" class="form_input" name="org" placeholder=" "
+                                            value="">
+                                        <label for="org" class="form_label">Organizer</label>
+                                        <span class="text-danger">@error('org'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="contactE" type="text" class="form_input" name="contactE"
+                                            placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
+                                            value="">
+                                        <label for="contactE" class="form_label">Contact Number</label>
+                                        <span class="text-danger">@error('contactE'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form_group">
+                                        <input id="descE" type="text" class="form_input" name="descE" placeholder=" "
+                                            avalue="">
+                                        <label for="descE" class="form_label">Description</label>
+                                        <span class="text-danger">@error('descE'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col d-lg-flex justify-content-lg-end">
+                                    <button name="action" value="save" class="btn btn-primary text-right border rounded" type="submit"
+                                        style="margin-right: 10px;">Save As Draft</button>
+                                    <button name="action" value="verify" class="btn btn-success text-right border rounded"
+                                        type="submit">Verify</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        inputImage.onchange = evt => {
+            const [file] = inputImage.files
+            if (file) {
+                imgPreview.src = URL.createObjectURL(file)
+            }
+        }
+
+    </script>
+@endpush
