@@ -136,8 +136,8 @@ class AdvertiserController extends Controller
                 'fileToUpload' => 'mimes:jpeg,jpg,png'
             ]);
 
-            if ($ads && File::exists($ads->picture)) {
-                File::delete(public_path("img/" . $ads->picture));
+            if ($ads && File::exists(public_path("img/".$ads->picture))) {
+                File::delete(public_path("img/".$ads->picture));
             }
 
             $image = $request['fileToUpload'];
@@ -189,8 +189,8 @@ class AdvertiserController extends Controller
                 'fileToUpload' => 'mimes:jpeg,jpg,png'
             ]);
 
-            if ($event && File::exists($event->picture)) {
-                File::delete(public_path("img/" . $event->picture));
+            if ($event && File::exists(public_path("img/".$event->picture))) {
+                File::delete(public_path("img/".$event->picture));
             }
 
             $image = $request['fileToUpload'];
@@ -231,8 +231,8 @@ class AdvertiserController extends Controller
     public function deleteAds($id_ads)
     {
         $ads = Advertisement::find($id_ads);
-        if ($ads && File::exists($ads->picture)) {
-            File::delete(public_path("img/" . $ads->picture));
+        if ($ads && File::exists(public_path("img/".$ads->picture))) {
+            File::delete(public_path("img/".$ads->picture));
         }
         $ads->delete();
 
@@ -243,8 +243,9 @@ class AdvertiserController extends Controller
     public function deleteEvent($id_event)
     {
         $event = Event::find($id_event);
-        if ($event && File::exists($event->picture)) {
-            File::delete(public_path("img/" . $event->picture));
+        if ($event && File::exists(public_path("img/".$event->picture))) {
+            File::delete(public_path("img/".$event->picture));
+            // unlink("img/".$event->picture);
         }
         $event->delete();
 
