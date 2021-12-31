@@ -61,7 +61,7 @@ class AdvertiserController extends Controller
                 $ads->status = "draft";
                 $msg = 'Advertisement have been successfully drafted.';
                 break;
-            case 'submit':
+            case 'verify':
                 $ads->status = "pending";
                 $msg = 'Advertisement have been successfully uploaded.';
                 break;
@@ -109,7 +109,7 @@ class AdvertiserController extends Controller
                 $events->status = "draft";
                 $msg = 'Event have been successfully drafted.';
                 break;
-            case 'submit':
+            case 'verify':
                 $events->status = "pending";
                 $msg = 'Event have been successfully uploaded.';
                 break;
