@@ -91,5 +91,20 @@ class EventSeeder extends Seeder
             'join' => '0',
             'status' => 'pending'
         ]);
+
+        DB::table('events')->insert([
+            'id_event' => 'EV6',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'Music Festival - Electro Music Party',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'reallygreatsite.com',
+            'contact' => '0123456789',
+            'description' => 'Normal music party smh.',
+            'picture' => 'musicfest.jpg',
+            'join' => '0',
+            'status' => 'draft'
+        ]);
     }
 }

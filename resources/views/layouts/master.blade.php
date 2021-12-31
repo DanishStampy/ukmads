@@ -15,6 +15,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,13 +26,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Styles -->
-
     <link href="{{ asset('css/adminlte.css') }}" rel="stylesheet">
 
     <!-- -- Custom CSS File -- -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css') }}">
+
+    {{-- Icon --}}
+    <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" style="height: auto;">

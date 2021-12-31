@@ -55,10 +55,20 @@ class AdvertiserController extends Controller
         $ads->seller_name = $request->seller;
         $ads->contact = $request->contact;
         $ads->description = $request->desc;
-        $ads->status = "pending";
+
+        switch($request->input('action')){
+            case 'save':
+                $ads->status = "draft";
+                $msg = 'Advertisement have been successfully drafted.';
+                break;
+            case 'submit':
+                $ads->status = "pending";
+                $msg = 'Advertisement have been successfully uploaded.';
+                break;
+        }
 
         $ads->save();
-        return redirect()->route('advertiser.manageads')->with('success_ads', 'Advertisement Have been successfully uploaded.');
+        return redirect()->route('advertiser.manageads')->with('success_ads', $msg);
     }
 
 
@@ -93,10 +103,20 @@ class AdvertiserController extends Controller
         $events->contact = $request->contactE;
         $events->description = $request->descE;
         $events->join = 0;
-        $events->status = "pending";
+        
+        switch($request->input('action')){
+            case 'save':
+                $events->status = "draft";
+                $msg = 'Event have been successfully drafted.';
+                break;
+            case 'submit':
+                $events->status = "pending";
+                $msg = 'Event have been successfully uploaded.';
+                break;
+        }
 
         $events->save();
-        return redirect()->route('advertiser.manageevents')->with('success_events', 'Event Have been successfully uploaded.');
+        return redirect()->route('advertiser.manageevents')->with('success_events', $msg);
     }
 
     // Edit ads
@@ -116,7 +136,7 @@ class AdvertiserController extends Controller
                 'fileToUpload' => 'mimes:jpeg,jpg,png'
             ]);
 
-            if($ads && File::exists($ads->picture)){
+            if ($ads && File::exists($ads->picture)) {
                 File::delete(public_path("img/" . $ads->picture));
             }
 
@@ -134,11 +154,22 @@ class AdvertiserController extends Controller
         $ads->seller_name = $request->seller;
         $ads->contact = $request->contact;
         $ads->description = $request->desc;
-        $ads->status = "pending";
+
+        switch($request->input('action')){
+            case 'save':
+                $ads->status = "draft";
+                $msg = 'Advertisement have been successfully drafted.';
+                break;
+            case 'submit':
+            case 'update':
+                $ads->status = "pending";
+                $msg = 'Advertisement have been successfully updated.';
+                break;
+        }
 
         $ads->save();
 
-        return redirect()->route('advertiser.manageads')->with('success_uploaded_ads', 'Advertisement have been successfully updated.');
+        return redirect()->route('advertiser.manageads')->with('success_uploaded_ads', $msg);
     }
 
     // Edit event
@@ -158,7 +189,7 @@ class AdvertiserController extends Controller
                 'fileToUpload' => 'mimes:jpeg,jpg,png'
             ]);
 
-            if($event && File::exists($event->picture)){
+            if ($event && File::exists($event->picture)) {
                 File::delete(public_path("img/" . $event->picture));
             }
 
@@ -177,19 +208,30 @@ class AdvertiserController extends Controller
         $event->organizer = $request->org;
         $event->contact = $request->contactE;
         $event->description = $request->descE;
-        $event->status = "pending";
+        
+        switch($request->input('action')){
+            case 'save':
+                $event->status = "draft";
+                $msg = 'Event have been successfully drafted.';
+                break;
+            case 'submit':
+            case 'update':
+                $event->status = "pending";
+                $msg = 'Event have been successfully updated.';
+                break;
+        }
 
 
         $event->save();
 
-        return redirect()->route('advertiser.manageevents')->with('success_uploaded_events', 'Event have been successfully updated.');
+        return redirect()->route('advertiser.manageevents')->with('success_uploaded_events', $msg);
     }
 
     // Delete Ads
     public function deleteAds($id_ads)
     {
         $ads = Advertisement::find($id_ads);
-        if($ads && File::exists($ads->picture)){
+        if ($ads && File::exists($ads->picture)) {
             File::delete(public_path("img/" . $ads->picture));
         }
         $ads->delete();
@@ -201,7 +243,7 @@ class AdvertiserController extends Controller
     public function deleteEvent($id_event)
     {
         $event = Event::find($id_event);
-        if($event && File::exists($event->picture)){
+        if ($event && File::exists($event->picture)) {
             File::delete(public_path("img/" . $event->picture));
         }
         $event->delete();
@@ -213,13 +255,21 @@ class AdvertiserController extends Controller
 
     public function manageads()
     {
-        $ads = Advertisement::all();
+        $ads = Advertisement::where('status', '!=', 'draft')->get();
         return view('dashboards.advertiser.manageads', compact('ads'));
     }
 
     public function manageevents()
     {
-        $event = Event::all();
+        $event = Event::where('status', '!=', 'draft')->get();
         return view('dashboards.advertiser.manageevents', compact('event'));
+    }
+
+    public function draftPreview()
+    {
+        $ads = Advertisement::where('status', 'draft')->get();
+        $event = Event::where('status', 'draft')->get();
+
+        return view('dashboards.advertiser.draftlist', compact('ads', 'event'));
     }
 }

@@ -1,16 +1,16 @@
 @extends('layouts.master')
-@section('title','My Contents')
+@section('title','Edit Advertisement')
 @section('content')
 
 <div class="container-fluid">
     <div class="row">
         <div class="col mt-3">
-            <h1 class="content_header">Create Advertisement</h1>
+            <h1 class="content_header">Update {{ $ads->id_ads }}</h1>
         </div>
     </div>
     <div class="container">
-        <form action="{{ route('advertiser.uploadAds') }}" method="POST" class="form-horizontal"
-            enctype="multipart/form-data">
+        <form action="{{ route('advertiser.updateAds', $ads->id_ads) }}" method="POST"
+            class="form-horizontal" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -21,7 +21,8 @@
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
-                                src="{{ asset('img/noimage.jpg') }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                                src="/img/{{ $ads->picture }}"
+                                onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                                 style="width: 450px; height: 450px;">
                         </div>
                         <div class="card-header">
@@ -39,7 +40,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="name" type="text" class="form_input" name="name" placeholder=" "
-                                            autofocus value="">
+                                            autofocus value="{{ $ads->name }}">
                                         <label for="name" class="form_label">Name</label>
                                         <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                     </div>
@@ -49,7 +50,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="product" type="text" class="form_input" name="product"
-                                            placeholder=" " value="">
+                                            placeholder=" " value="{{ $ads->type }}">
                                         <label for="product" class="form_label">Product Type</label>
                                         <span class="text-danger">@error('product'){{ $message }}@enderror</span>
                                     </div>
@@ -57,7 +58,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="price" type="number" min="0.00" step="0.01" class="form_input"
-                                            name="price" placeholder=" " value="">
+                                            name="price" placeholder=" " value="{{ $ads->price }}">
                                         <label for="price" class="form_label">Price</label>
                                         <span class="text-danger">@error('price'){{ $message }}@enderror</span>
                                     </div>
@@ -67,7 +68,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="seller" type="text" class="form_input" name="seller" placeholder=" "
-                                            value="">
+                                            value="{{ $ads->seller_name }}">
                                         <label for="seller" class="form_label">Seller Name</label>
                                         <span class="text-danger">@error('seller'){{ $message }}@enderror</span>
                                     </div>
@@ -76,7 +77,7 @@
                                     <div class="form_group">
                                         <input id="contact" type="text" class="form_input" name="contact"
                                             placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
-                                            value="">
+                                            value="{{ $ads->contact }}">
                                         <label for="contact" class="form_label">Contact Number</label>
                                         <span class="text-danger">@error('contact'){{ $message }}@enderror</span>
                                     </div>
@@ -86,7 +87,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
-                                            value="">
+                                            value="{{ $ads->description }}">
                                         <label for="desc" class="form_label">Description</label>
                                         <span class="text-danger">@error('desc'){{ $message }}@enderror</span>
                                     </div>
@@ -95,9 +96,9 @@
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    <button name="action" value="save" class="btn btn-primary text-right border rounded" type="submit"
-                                        style="margin-right: 10px;">Save As Draft</button>
-                                    <button name="action" value="verify" class="btn btn-success text-right border rounded"
+                                  <button class="btn btn-success text-right border rounded"
+                                        type="submit">Save As Draft</button>
+                                    <button class="btn btn-success text-right border rounded"
                                         type="submit">Verify</button>
                                 </div>
                             </div>
@@ -105,8 +106,9 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
+    </form>
+</div>
 </div>
 @endsection
 
@@ -114,9 +116,10 @@
     <script type="text/javascript">
         inputImage.onchange = evt => {
             const [file] = inputImage.files
-            if(file){
+            if (file) {
                 imgPreview.src = URL.createObjectURL(file)
             }
         }
+
     </script>
 @endpush

@@ -115,8 +115,18 @@
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    <button class="btn btn-success text-right border rounded"
-                                        type="submit">Update</button>
+                                    
+                                    @if($event->status == 'pending' || $event->status == 'verified')
+                                        <button class="btn btn-success text-right border rounded"
+                                        type="submit" name="action" value="update">Update</button>
+
+                                    @elseif($event->status == 'draft')
+                                        <button class="btn btn-success text-right border rounded"
+                                            type="submit" name="action" value="save">Save As Draft</button>
+                                        <button class="btn btn-success text-right border rounded"
+                                            type="submit" name="action" value="submit">Verify</button>
+
+                                    @endif
                                 </div>
                             </div>
                         </div>

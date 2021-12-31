@@ -26,7 +26,7 @@
 
     @foreach($event as $event)
         <div class="col-md-4">
-            <div class="card card-widget widget-user" style="margin-top: 20px">
+            <div class="card card-widget widget-user">
                 <div class="widget-user">
 
                     @if($event->status == 'pending')
@@ -70,7 +70,7 @@
                 @else
                     <div class="card-footer" style="padding-top: 20px">
                         <div class="row">
-                            <div class="col-sm-6 border-right">
+                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a href="{{ route("advertiser.editevent", $event->id_event) }}"
                                         class="btn btn-app bg-warning">

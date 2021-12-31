@@ -133,7 +133,14 @@
                                         </li>
                                     </ul>
                                 @endif
+                            </li>
 
+                            <li class="nav-item">
+                                <a href=" {{ route("advertiser.draftlist") }} "
+                                    class="nav-link {{ (request()->routeIs('advertiser.draftlist') ? 'active' : '') }}">
+                                    <i class="fas fa-paste mr-2"></i>
+                                    <p class="">Draft</p>
+                                </a>
                             </li>
 
                             <li class="nav-item">
