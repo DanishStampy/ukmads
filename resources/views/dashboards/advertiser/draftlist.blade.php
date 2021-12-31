@@ -9,16 +9,18 @@
         @if($ads->status!=='pending')
 
             <div class="col-6 col-md-3">
-                <div class="card" >
+                <div class="card">
                     <img class="card-img-top" src="{{ asset('img/'.$ads->picture) }}"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                         style="height:200px;object-fit: cover">
                     <div class="card-body">
                         <h5 class="card-title">{{ $ads->name }}</h5>
-                        <p class="card-text">{{ $ads->description }}</p>
+                        <p class="card-text"
+                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{ $ads->description }}</p>
                         <a href="{{ route("advertiser.editads", $ads->id_ads) }}"
-                          class="btn btn-app bg-warning">
-                          <i class="fas fa-edit"></i> Edit
+                            class="btn btn-app bg-warning">
+                            <i class="fas fa-edit"></i> Edit
                         </a>
                     </div>
                 </div>
@@ -42,10 +44,12 @@
                         style="height:200px;object-fit: cover">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text">{{ $event->description }}</p>
+                        <p class="card-text"
+                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{ $event->description }}</p>
                         <a href="{{ route("advertiser.editevent", $event->id_event) }}"
-                          class="btn btn-app bg-warning">
-                          <i class="fas fa-edit"></i> Edit
+                            class="btn btn-app bg-warning">
+                            <i class="fas fa-edit"></i> Edit
                         </a>
                     </div>
                 </div>

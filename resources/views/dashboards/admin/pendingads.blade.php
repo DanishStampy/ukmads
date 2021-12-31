@@ -20,7 +20,8 @@
                         style="height:200px;object-fit: cover">
                     <div class="card-body">
                         <h5 class="card-title">{{ $advertisement->name }}</h5>
-                        <p class="card-text">{{ $advertisement->description }}</p>
+                        <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{ $advertisement->description }}</p>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending"
                             data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
                         </button>
@@ -112,7 +113,8 @@
                         style="height:200px;object-fit: cover">
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text">{{ $event->description }}</p>
+                        <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{ $event->description }}</p>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventPending"
                             data-event="{{ base64_encode($event->toJson()) }}">View Detail
                         </button>
