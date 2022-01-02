@@ -27,10 +27,12 @@ class AdminController extends Controller
 
     public function verifiedAds(Request $request){
         $type=$request->input('type');
-        $id=$request->input('id_ads');
-        $ads = Advertisement::findOrFail($id);
+        $id_ads=$request->input('id_ads');
+        $reason=$request->input('adsReason');
+        $ads = Advertisement::findOrFail($id_ads);
 //        $ads->where('id_ads', $id_ads)->update(['status'=>"verified"]);
         $ads->status = $type=='approved'?"verified":"rejected";
+        $ads->reason = $reason;
 
         $ads->save();
 
@@ -39,12 +41,14 @@ class AdminController extends Controller
 
     public function verifiedEvent(Request $request){
         $type=$request->input('type');
-        $id=$request->input('id_event');
-        $ads = Event::findOrFail($id);
-//        $ads->where('id_ads', $id_ads)->update(['status'=>"verified"]);
-        $ads->status = $type=='approved'?"verified":"rejected";
+        $id_event=$request->input('id_event');
+        $reason=$request->input('eventReason');
+        $events = Event::findOrFail($id_event);
+//        $events->where('id_event', $id_event)->update(['status'=>"verified"]);
+        $events->status = $type=='approved'?"verified":"rejected";
+        $events->reason = $reason;
 
-        $ads->save();
+        $events->save();
 
         return redirect()->route('admin.pendingads')->with('message', 'Successfully verified');
     }
