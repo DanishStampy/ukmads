@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="description-block">
-                                    <a href="{{ route("advertiser.deleteAds", $ads->id_ads) }}"
+                                    <a  data-toggle="modal" data-target="#Delete" data-ads="{{ base64_encode($ads->toJson()) }}"
                                         class="btn btn-app bg-danger">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
@@ -88,7 +88,7 @@
 
                             <div class="col-lg-6 col-md-12 col-xs-12">
                                 <div class="description-block">
-                                    <a href="{{ route("advertiser.deleteAds", $ads->id_ads) }}"
+                                    <a  data-toggle="modal" data-target="#Delete" data-ads="{{ base64_encode($ads->toJson()) }}"
                                         class="btn btn-app bg-danger">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
@@ -123,5 +123,48 @@
             </div>
         </div>
     </div>
+
+    {{-- DELETE confirmation modal --}}
+    <div class="modal fade" id="Delete" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="DeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title" id="DeleteModalLabel">Delete Advertisement Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
+                    <a type="button" href="{{ route("advertiser.deleteAds", $ads->id_ads) }}"
+                                    class="btn btn-danger">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- END of DELETE confirmation modal --}}
 </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Delete').on('show.bs.modal', function (ads) {
+                var button = $(ads.relatedTarget) // Button that triggered the modal
+                var ads = button.data('ads') // Extract info from data-* attributes
+                var modal = $(this)
+
+                var data = atob(ads);
+                var data = $.parseJSON(data);
+
+                console.log(data)
+
+            })
+        });
+
+    </script>
+@endpush
