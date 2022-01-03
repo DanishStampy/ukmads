@@ -4,41 +4,49 @@
 @section('content')
 <br>
 <h4>Advertisement</h4>
-<div class="row">
-    {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
-    @foreach($advertisements as $advertisement)
-        @if($advertisement->status=='verified' or $advertisement->status=='rejected')
+<div>
+    <div class="row" style="margin: 20px 0px 50px">
+        @if (count($advertisements) < 1)
+            <h5>No data to be displayed.</h5>
+        @endif
+        @foreach($advertisements as $advertisement)
+            @if($advertisement->status=='verified' or $advertisement->status=='rejected')
 
-        <div class="col-6 col-md-3">
-            <div class="card">
-                <div class="ribbon-wrapper ribbon-lg">
-                    @if($advertisement->status=='verified')
-                        <div class="ribbon bg-success">
-                            Verified
-                        </div>
-                    @else
-                        <div class="ribbon bg-danger">
-                            Rejected
-                        </div>
-                    @endif
-                </div>
-                <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}"
-                    onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                    style="height:200px;object-fit: cover">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $advertisement->name }}</h5>
-                    <p class="card-text"
-                        style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                        {{ $advertisement->description }}</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
-                        data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
+            <div class="col-6 col-md-3">
+                <div class="card">
+                    <div class="ribbon-wrapper ribbon-lg">
+                        @if($advertisement->status=='verified')
+                            <div class="ribbon bg-success">
+                                Verified
+                            </div>
+                        @else
+                            <div class="ribbon bg-danger">
+                                Rejected
+                            </div>
+                        @endif
+                    </div>
+                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="height:200px;object-fit: cover">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $advertisement->name }}</h5>
+                        <p class="card-text"
+                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{ $advertisement->description }}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
+                            data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
+                    </div>
                 </div>
             </div>
-
-        </div>
-    @endif
-    @endforeach
+        @endif
+        @endforeach
+    </div>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-end">
+        {{ $advertisements->appends(['events' => $events->currentPage()])->links() }}
+    </div>
 </div>
+
 <div class="modal fade" id="adsHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -120,41 +128,50 @@
 </div>
 <hr>
 <h4>Event</h4>
-<div class="row">
-    {{ count($events) < 1 ? "No data to be displayed." : '' }}
-    @foreach($events as $event)
-        @if($event->status=='verified' or $event->status=='rejected')
-        <div class="col-6 col-md-3">
+<div>
+    <div class="row" style="margin: 20px 0px 50px">
+        @if (count($events) < 1)
+            <h5>No data to be displayed.</h5>
+        @endif
+        @foreach($events as $event)
+            @if($event->status=='verified' or $event->status=='rejected')
+            <div class="col-6 col-md-3">
 
-            <div class="card">
-                <div class="ribbon-wrapper ribbon-lg">
-                    @if($event->status=='verified')
-                        <div class="ribbon bg-success">
-                            Verified
-                        </div>
-                    @else
-                        <div class="ribbon bg-danger">
-                            Rejected
-                        </div>
-                    @endif
+                <div class="card">
+                    <div class="ribbon-wrapper ribbon-lg">
+                        @if($event->status=='verified')
+                            <div class="ribbon bg-success">
+                                Verified
+                            </div>
+                        @else
+                            <div class="ribbon bg-danger">
+                                Rejected
+                            </div>
+                        @endif
+                    </div>
+                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="height:200px;object-fit: cover">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $event->name }}</h5>
+                        <p class="card-text"
+                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                            {{ $event->description }}</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory"
+                            data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
+                    </div>
                 </div>
-                <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
-                    onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                    style="height:200px;object-fit: cover">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $event->name }}</h5>
-                    <p class="card-text"
-                        style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                        {{ $event->description }}</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory"
-                        data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
-                </div>
+
             </div>
-
-        </div>
-    @endif
-    @endforeach
+        @endif
+        @endforeach
+    </div>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-end">
+        {{ $events->appends(['advertisements' => $advertisements->currentPage()])->links() }}
+    </div>
 </div>
+
 
 <div class="modal fade" id="eventHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
@@ -273,7 +290,7 @@
                 if (status == 'verified') {
                     x.style.display = "none";
                 }
-                if(status == 'rejected'){
+                if (status == 'rejected') {
                     x.style.display = "block";
                 }
 
@@ -306,7 +323,7 @@
                 if (status == 'verified') {
                     x.style.display = "none";
                 }
-                if(status == 'rejected'){
+                if (status == 'rejected') {
                     x.style.display = "block";
                 }
 
