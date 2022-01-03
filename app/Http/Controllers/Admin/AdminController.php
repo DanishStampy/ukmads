@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-        $advertisements = Advertisement::all();
-        $events = Event::all();
+        $advertisements = Advertisement::where('status', 'pending')->paginate(4, ['*'], 'advertisements');
+        $events = Event::where('status', 'pending')->paginate(4, ['*'], 'events');
         return view('dashboards.admin.pendingads', compact('advertisements', 'events'));
     }
 
     public function history(){
-        $advertisements = Advertisement::all();
-        $events = Event::all();
+        $advertisements = Advertisement::where('status', 'verified')->orWhere('status', 'rejected')->paginate(4, ['*'], 'advertisements');
+        $events = Event::where('status', 'verified')->orWhere('status', 'rejected')->paginate(4, ['*'], 'events');
         return view('dashboards.admin.history', compact('advertisements', 'events'));
     }
 
