@@ -51,7 +51,7 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
     Route::get('editads/{id_ads}', [AdvertiserController::class, 'editads'])->name('editads');
     Route::post('updateAds/{id_ads}',[AdvertiserController::class, 'updateAds'])->name('updateAds');
 
-    Route::get('deleteAds/{id_ads}', [AdvertiserController::class, 'deleteAds'])->name('deleteAds');
+    Route::post('deleteAds', [AdvertiserController::class, 'deleteAds'])->name('deleteAds');
 
     Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
 
@@ -62,7 +62,7 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
     Route::get('editevent/{id_event}', [AdvertiserController::class, 'editevent'])->name('editevent');
     Route::post('updateEvent/{id_event}',[AdvertiserController::class, 'updateEvent'])->name('updateEvent');
 
-    Route::get('deleteEvent/{id_event}', [AdvertiserController::class, 'deleteEvent'])->name('deleteEvent');
+    Route::post('deleteEvent', [AdvertiserController::class, 'deleteEvent'])->name('deleteEvent');
 
     Route::get('manageevents', [AdvertiserController::class, 'manageevents'])->name('manageevents');
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 
 class Advertisement extends Model
 {
@@ -11,7 +12,7 @@ class Advertisement extends Model
     protected $primaryKey = 'id_ads';
     public $incrementing = false;
 
-    protected $fillable=[
+    protected $fillable = [
         'id_ads',
         'creator_email',
         'name',
@@ -31,13 +32,21 @@ class Advertisement extends Model
 
         static::creating(function ($ads) {
             if (!$ads->id_ads) {
-                $latest = Advertisement::latest('id_ads')->first();
-                $count = 1;
+                while (true) {
+                    try {
+                        $latest = Advertisement::latest('id_ads')->first();
+                        $uid;
 
-                if ($latest!=null&&$latest->exists()) {
-                    $count = substr($latest->id_ads, 2)+1;
+                        if ($latest != null && $latest->exists()) {
+                            $uid = random_int(1000, 9999);
+                        }
+
+                        $ads->id_ads = 'AD' . $uid;
+                        break;
+                    } catch (QueryException $exception) {
+                        continue;
+                    }
                 }
-                $ads->id_ads = 'AD' . $count;
                 // $user->save();
             }
         });

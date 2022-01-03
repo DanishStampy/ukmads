@@ -228,8 +228,9 @@ class AdvertiserController extends Controller
     }
 
     // Delete Ads
-    public function deleteAds($id_ads)
+    public function deleteAds(Request $request)
     {
+        $id_ads = $request->input('id_ads');
         $ads = Advertisement::find($id_ads);
         if ($ads && File::exists(public_path("img/".$ads->picture))) {
             File::delete(public_path("img/".$ads->picture));
@@ -240,8 +241,9 @@ class AdvertiserController extends Controller
     }
 
     //Delete Event
-    public function deleteEvent($id_event)
+    public function deleteEvent(Request $request)
     {
+        $id_event = $request->input('id_event');
         $event = Event::find($id_event);
         if ($event && File::exists(public_path("img/".$event->picture))) {
             File::delete(public_path("img/".$event->picture));
@@ -256,14 +258,14 @@ class AdvertiserController extends Controller
 
     public function manageads()
     {
-        $ads = Advertisement::where('status', '!=', 'draft')->get();
+        $ads = Advertisement::where('status', '!=', 'draft')->paginate(3);
         return view('dashboards.advertiser.manageads', compact('ads'));
     }
 
     public function manageevents()
     {
-        $event = Event::where('status', '!=', 'draft')->get();
-        return view('dashboards.advertiser.manageevents', compact('event'));
+        $events = Event::where('status', '!=', 'draft')->paginate(3);
+        return view('dashboards.advertiser.manageevents', compact('events'));
     }
 
     public function draftPreview()
