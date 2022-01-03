@@ -5,3 +5,49 @@
 .white-font{
   color: #fff;
 }
+
+.loaderpage{
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #290576;
+  height: 100vh;
+  width: 100%;
+  transition: height .2s linear;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Logo loading page animation */
+.shake-bottom {
+	animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite alternate-reverse both;
+}
+
+@keyframes shake-bottom {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 100%;
+  }
+  10% {
+    transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: rotate(4deg);
+  }
+  80% {
+    transform: rotate(-2deg);
+  }
+  90% {
+    transform: rotate(2deg);
+  }
+}

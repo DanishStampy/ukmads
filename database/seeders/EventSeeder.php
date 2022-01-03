@@ -27,6 +27,7 @@ class EventSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'pending'
         ]);
 
@@ -41,6 +42,7 @@ class EventSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'verified'
         ]);
 
@@ -55,6 +57,8 @@ class EventSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'reason' => 'not appropriate',
+            'join' => '0',
             'status' => 'rejected'
         ]);
 
@@ -69,6 +73,7 @@ class EventSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'pending'
         ]);
 
@@ -83,7 +88,23 @@ class EventSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'kfc.jpg',
+            'join' => '0',
             'status' => 'pending'
+        ]);
+
+        DB::table('events')->insert([
+            'id_event' => 'EV6',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'Music Festival - Electro Music Party',
+            'location' => 'Dewan Dectar',
+            'time' => Carbon::now(),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'organizer' => 'reallygreatsite.com',
+            'contact' => '0123456789',
+            'description' => 'Normal music party smh.',
+            'picture' => 'musicfest.jpg',
+            'join' => '0',
+            'status' => 'draft'
         ]);
     }
 }

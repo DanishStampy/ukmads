@@ -3,6 +3,8 @@
 @section('title','Dashboard')
 @section('content')
 
+@include('layouts.loading')
+
 <div class="row">
   <div class="col-lg-6 col-6">
     <div class="small-box bg-info">
