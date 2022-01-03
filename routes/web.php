@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('aboutus', fn()=> view('aboutus'))->name('aboutus');
+
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
 });
@@ -63,6 +65,9 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
     Route::get('deleteEvent/{id_event}', [AdvertiserController::class, 'deleteEvent'])->name('deleteEvent');
 
     Route::get('manageevents', [AdvertiserController::class, 'manageevents'])->name('manageevents');
+
+    //Draft
+    Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');
 
     // Logout
     Route::get('logout', [LogoutController::class, 'perform'])->name('logout');

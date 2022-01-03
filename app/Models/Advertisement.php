@@ -21,6 +21,7 @@ class Advertisement extends Model
         'contact',
         'description',
         'picture',
+        'reason',
         'status',
     ];
 

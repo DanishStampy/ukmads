@@ -11378,7 +11378,7 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) .main-head
 }
 
 .content-wrapper {
-  background-color: #f4f6f9;
+  background-color: #F3ECFF;
 }
 .content-wrapper > .content {
   padding: 0 0.5rem;
@@ -11419,7 +11419,7 @@ body:not(.layout-fixed) .main-sidebar {
   top: 0;
 }
 body:not(.layout-fixed) .main-sidebar .sidebar {
-  /* overflow-y: none; */
+  overflow-y: auto;
 }
 
 .layout-fixed .brand-link {
@@ -11451,8 +11451,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   }
 }
 .main-footer {
-  background-color: #fff;
-  border-top: 1px solid #dee2e6;
+  background-color: #F3ECFF;
+  border-top: 1px solid #F3ECFF;
   color: #869099;
   padding: 1rem;
 }
@@ -11468,6 +11468,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 .content-header h1 {
   font-size: 1.8rem;
+  font-weight: 700;
   margin: 0;
 }
 .text-sm .content-header h1 {
@@ -11812,7 +11813,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 .main-header {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid #F3ECFF;
   z-index: 1034;
 }
 .main-header .nav-link {
@@ -11978,11 +11979,11 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   font-size: inherit;
 }
 [class*=sidebar-dark] .brand-link {
-  border-bottom: 1px solid #4b545c;
+  border-bottom: 1px solid #F3ECFF;
 }
 [class*=sidebar-dark] .brand-link,
 [class*=sidebar-dark] .brand-link .pushmenu {
-  color: rgba(255, 255, 255, 0.8);
+  color: #fff;
 }
 [class*=sidebar-dark] .brand-link:hover,
 [class*=sidebar-dark] .brand-link .pushmenu:hover {
@@ -12072,7 +12073,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   position: relative;
 }
 [class*=sidebar-dark] .user-panel {
-  border-bottom: 1px solid #4f5962;
+  border-bottom: 1px solid #F3ECFF;
 }
 [class*=sidebar-light] .user-panel {
   border-bottom: 1px solid #dee2e6;
@@ -12274,7 +12275,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*=sidebar-dark-] {
-  background-color: #343a40;
+  background-color: #290576;
 }
 [class*=sidebar-dark-] .user-panel a:hover {
   color: #fff;
@@ -12311,10 +12312,11 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 [class*=sidebar-dark-] .nav-header {
   background-color: inherit;
-  color: #d0d4db;
+  color: #fff;
 }
 [class*=sidebar-dark-] .sidebar a {
-  color: #c2c7d0;
+  color: #fff;
+  font-weight: 600;
 }
 [class*=sidebar-dark-] .sidebar a:hover, [class*=sidebar-dark-] .sidebar a:focus {
   text-decoration: none;
@@ -12339,8 +12341,8 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #fff;
+  color: #290576;
 }
 .sidebar-dark-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar.nav-legacy > .nav-item > .nav-link.active {
@@ -15919,8 +15921,8 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-white {
-  background-color: #fff;
-  color: #1f2d3d;
+  background-color: #F3ECFF;
+  color: #290576;
 }
 .navbar-white.navbar-light .form-control-navbar::-moz-placeholder {
   color: rgba(52, 58, 64, 0.8);
@@ -23588,7 +23590,7 @@ body.text-sm .input-group-text {
 
 .card {
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
-  margin-bottom: 1rem;
+  
 }
 .card.bg-dark .card-header {
   border-color: #383f45;
@@ -23741,7 +23743,7 @@ html.maximized-card {
 .card-title {
   float: left;
   font-size: 1.1rem;
-  font-weight: 400;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -26376,7 +26378,7 @@ html.maximized-card {
   font-size: 12px;
   height: 60px;
   margin: 0 0 10px 10px;
-  min-width: 150px;
+  min-width: 80px;
   padding: 15px 5px;
   position: relative;
   text-align: center;
@@ -37272,7 +37274,7 @@ pre {
 
 blockquote {
   background-color: #fff;
-  border-left: 0.7rem solid #007bff;
+  border-left: 0.7rem solid #290576;
   margin: 1.5em 0.7rem;
   padding: 0.5em 0.7rem;
 }
@@ -37288,7 +37290,7 @@ blockquote h3,
 blockquote h4,
 blockquote h5,
 blockquote h6 {
-  color: #007bff;
+  color: #290576;
   font-size: 1.25rem;
   font-weight: 600;
 }

@@ -21,6 +21,8 @@ class Event extends Model
         'contact',
         'description',
         'picture',
+        'reason',
+        'join',
         'status',
     ];
 
