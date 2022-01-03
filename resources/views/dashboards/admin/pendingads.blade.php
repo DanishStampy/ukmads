@@ -4,34 +4,44 @@
 @section('content')
 <br>
 <h4>Advertisement</h4>
-<div class="row">
-    {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
-    @foreach($advertisements as $advertisement)
-        @if($advertisement->status == 'pending')
-            <div class="col-6 col-md-3">
-                <div class="card">
-                    <div class="ribbon-wrapper ribbon-lg">
-                        <div class="ribbon bg-info">
-                            Pending
+<div>
+    <div class="row" style="margin: 20px 0px 50px">
+        @if (count($advertisements) < 1)
+            <h5>No data to be displayed.</h5>
+        @endif
+        @foreach($advertisements as $advertisement)
+            @if($advertisement->status == 'pending')
+                <div class="col-6 col-md-3">
+                    <div class="card">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            <div class="ribbon bg-info">
+                                Pending
+                            </div>
+                        </div>
+                        <img class="card-img-top"
+                            src="{{ asset('img/'.$advertisement->picture) }}"
+                            onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                            style="height:200px;object-fit: cover">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $advertisement->name }}</h5>
+                            <p class="card-text"
+                                style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                {{ $advertisement->description }}</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending"
+                                data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
+                            </button>
                         </div>
                     </div>
-                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:200px;object-fit: cover">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $advertisement->name }}</h5>
-                        <p class="card-text"
-                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{ $advertisement->description }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending"
-                            data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
-                        </button>
-                    </div>
                 </div>
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    </div>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-end">
+        {{ $advertisements->appends(['events' => $events->currentPage()])->links() }}
+    </div>
 </div>
+
 <div class="modal fade .col-12 .col-md-8" id="adsPending" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -99,8 +109,7 @@
                                             <input type="hidden" value="" name="id_ads" id="adsHid">
                                             <div class="col-sm-6">
                                                 <button name="type" value="approved" type="submit"
-                                                    class="btn btn-success" style="width: 100%"
-                                                    id="btnAdsApproved">
+                                                    class="btn btn-success" style="width: 100%" id="btnAdsApproved">
                                                     Approve
                                                 </button>
                                             </div>
@@ -110,7 +119,8 @@
                                                     Reject
                                                 </button>
                                             </div>
-                                            <div class="card-body" id="reasonAds" style="margin: 0px 20px;display: none">
+                                            <div class="card-body" id="reasonAds"
+                                                style="margin: 0px 20px;display: none">
                                                 <div class="form-group">
                                                     <label>Reason</label>
                                                     <textarea name="adsReason" id="adsReason" type="text"
@@ -136,34 +146,44 @@
 </div>
 <hr>
 <h4>Event</h4>
-<div class="row">
-    {{ count($events) < 1 ? "No data to be displayed." : '' }}
-    @foreach($events as $event)
-        @if($event->status == 'pending')
-            <div class="col-6 col-md-3">
-                <div class="card">
-                    <div class="ribbon-wrapper ribbon-lg">
-                        <div class="ribbon bg-info">
-                            Pending
+<div>
+    <div class="row" style="margin: 20px 0px 50px">
+        @if (count($events) < 1)
+            <h5>No data to be displayed.</h5>
+        @endif
+        @foreach($events as $event)
+            @if($event->status == 'pending')
+                <div class="col-6 col-md-3">
+                    <div class="card">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            <div class="ribbon bg-info">
+                                Pending
+                            </div>
+                        </div>
+                        <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                            onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                            style="height:200px;object-fit: cover">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->name }}</h5>
+                            <p class="card-text"
+                                style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                {{ $event->description }}</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#eventPending" data-event="{{ base64_encode($event->toJson()) }}">View
+                                Detail
+                            </button>
                         </div>
                     </div>
-                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:200px;object-fit: cover">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text"
-                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{ $event->description }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventPending"
-                            data-event="{{ base64_encode($event->toJson()) }}">View Detail
-                        </button>
-                    </div>
                 </div>
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    </div>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-end">
+        {{ $events->appends(['advertisements' => $advertisements->currentPage()])->links() }}
+    </div>
 </div>
+
 <div class="modal fade .col-12 .col-md-8" id="eventPending" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -247,7 +267,8 @@
                                                     Reject
                                                 </button>
                                             </div>
-                                            <div class="card-body" id="reasonEvent" style="margin: 0px 20px;display: none">
+                                            <div class="card-body" id="reasonEvent"
+                                                style="margin: 0px 20px;display: none">
                                                 <div class="form-group">
                                                     <label>Reason</label>
                                                     <textarea name="eventReason" id="eventReason" type="text"
