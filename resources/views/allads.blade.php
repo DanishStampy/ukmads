@@ -13,6 +13,9 @@
         </div>
     </div>
     @endforeach
+    
 </div>
-
+<div class="d-flex justify-content-end">
+        {{ $ads->links() }}
+    </div>
 @endsection

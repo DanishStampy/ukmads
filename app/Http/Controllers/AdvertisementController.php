@@ -20,7 +20,8 @@ class AdvertisementController extends Controller
     }
     public function allAds()
     {
-        $ads=Advertisement::all();
+        $ads=Advertisement::paginate(8);
         return view('allads',compact('ads'));
     }
+    
 }

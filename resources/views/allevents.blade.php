@@ -16,5 +16,7 @@
     @endforeach
   
 </div>
-
+<div class="d-flex justify-content-end">
+        {{ $event->links() }}
+    </div>
 @endsection

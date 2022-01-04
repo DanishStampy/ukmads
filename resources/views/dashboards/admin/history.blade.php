@@ -162,22 +162,10 @@
                     </div>
 
                 </div>
-                @else
-                <div class="ribbon bg-danger">
-                    Rejected
-                </div>
-                @endif
             </div>
-            <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="height:200px;object-fit: fill">
-            <div class="card-body">
-                <h5 class="card-title">{{ $event->name }}</h5>
-                <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                    {{ $event->description }}
-                </p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory" data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
-            </div>
+               @endif
 
-        @endif
+        
         @endforeach
     </div>
     {{-- Pagination --}}

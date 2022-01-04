@@ -21,7 +21,7 @@ class EventController extends Controller
     }
     public function allEvents()
     {
-        $event=Event::all();
+        $event=Event::paginate(8);
         return view('allevents',compact('event'));
     }
 
