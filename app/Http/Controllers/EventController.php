@@ -12,10 +12,17 @@ class EventController extends Controller
     {
         $event=Event::all();
         return view('popularevent',compact('event'));
+        
     }
     public function eventDetails($id_event)
     {
         $details=Event::find($id_event);
         return view('eventdetails',compact('details'));
     }
+    public function allEvents()
+    {
+        $event=Event::all();
+        return view('allevents',compact('event'));
+    }
+
 }

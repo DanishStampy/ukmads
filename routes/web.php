@@ -26,13 +26,13 @@ Route::get('/home',[HomeController::class,'index'])->name('home');
 Route::group(['as' => 'advertisement.'], function(){
     Route::get('/ads', [AdvertisementController::class,'popularAds'])->name('ads');
     Route::get('/adsdetails/{id_ads}', [AdvertisementController::class,'adsDetails'])->name('adsdetails');
-    Route::get('/allads', fn()=> view('allads'))->name('allads');
+    Route::get('/allads', [AdvertisementController::class,'allAds'])->name('allads');
 });
 
 Route::group(['as' => 'event.'], function(){
     Route::get('/event', [EventController::class,'popularEvents'])->name('events');
     Route::get('/eventdetails/{id_event}', [EventController::class,'eventDetails'])->name('eventdetails');
-    Route::get('/allevents', fn()=> view('allevents'))->name('allevents');
+    Route::get('/allevents',  [EventController::class,'allEvents'])->name('allevents');
 });
 
 Route::get('aboutus', fn()=> view('aboutus'))->name('aboutus');

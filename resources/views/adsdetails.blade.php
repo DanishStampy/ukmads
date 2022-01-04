@@ -12,7 +12,7 @@
             <div class="col-12 col-sm-6">
                 <h3 class="d-inline-block d-sm-none">{{$details->name}} Review</h3>
                 <div class="col-12">
-                    <img src="{{ asset('img/'.$details->picture) }}" class="product-image" alt="Product Image" style="height:1000px">
+                    <img src="{{ asset('img/'.$details->picture) }}" class="product-image" alt="Product Image" style="height: 570px; object-fit: fill;">
                 </div>
             </div>
             <div class="col-12 col-sm-6">

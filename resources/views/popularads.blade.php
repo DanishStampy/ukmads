@@ -14,7 +14,7 @@
     <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
       <img class="rounded mx-auto d-block " src="{{ asset('img/'.$item->picture) }}" alt="First slide" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; height: 470px;width: 1000px; object-fit: fill;">
       <div class="carousel-caption d-none d-md-block ">
-        <a href=" {{ route("advertisement.adsdetails", $item->id_ads) }} " type="button" class="btn btn-info">Join Now</a>
+        <a href=" {{ route("advertisement.adsdetails", $item->id_ads) }} " type="button" class="btn btn-info">Click Me!!!</a>
       </div>
     </div>
     @endforeach

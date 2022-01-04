@@ -18,4 +18,9 @@ class AdvertisementController extends Controller
         $details=Advertisement::find($id_ads);
         return view('adsdetails',compact('details'));
     }
+    public function allAds()
+    {
+        $ads=Advertisement::all();
+        return view('allads',compact('ads'));
+    }
 }
