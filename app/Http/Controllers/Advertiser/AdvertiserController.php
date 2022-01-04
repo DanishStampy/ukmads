@@ -11,9 +11,16 @@ use Illuminate\Support\Facades\File;
 
 class AdvertiserController extends Controller
 {
+
+    // Just use this function to get specific user email
+    public function getEmail()
+    {
+        return Auth::user()->email;
+    }
+
     public function index()
     {
-        $user_id = Auth::user()->email;
+        $user_id = $this->getEmail();
 
         $ads = Advertisement::where('creator_email', $user_id)->get();
         $event = Event::where('creator_email', $user_id)->get();
@@ -258,19 +265,22 @@ class AdvertiserController extends Controller
 
     public function manageads()
     {
-        $ads = Advertisement::where('status', '!=', 'draft')->paginate(3);
+        $user_id = $this->getEmail();
+        $ads = Advertisement::where('status', '!=', 'draft')->where('creator_email', $user_id)->paginate(3);
         return view('dashboards.advertiser.manageads', compact('ads'));
     }
 
     public function manageevents()
     {
-        $events = Event::where('status', '!=', 'draft')->paginate(3);
+        $user_id = $this->getEmail();
+        $events = Event::where('status', '!=', 'draft')->where('creator_email', $user_id)->paginate(3);
         return view('dashboards.advertiser.manageevents', compact('events'));
     }
 
     public function draftPreview()
     {
-        $ads = Advertisement::where('status', 'draft')->get();
+        $user_id = $this->getEmail();
+        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->get();
         $event = Event::where('status', 'draft')->get();
 
         return view('dashboards.advertiser.draftlist', compact('ads', 'event'));

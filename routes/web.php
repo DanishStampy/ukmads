@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Advertiser\AdvertiserController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,17 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
-Route::get('aboutus', fn()=> view('aboutus'))->name('aboutus');
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');
 
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
     Route::get('pendingads', [AdminController::class, 'index'])->name('pendingads');
