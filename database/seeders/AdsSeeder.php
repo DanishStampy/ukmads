@@ -27,6 +27,7 @@ class AdsSeeder extends Seeder
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'berrycombo.png',
             'status' => 'pending',
+            'reads' => '0',
             'created_at' => Carbon::create(2021, 12, 24, 20, 18, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2021, 12, 24, 20, 18, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -42,6 +43,7 @@ class AdsSeeder extends Seeder
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'marrybrown.jpg',
             'status' => 'verified',
+            'reads' => '56',
             'created_at' => Carbon::create(2022, 01, 01, 16, 32, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 01, 21, 17, 32, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -58,6 +60,7 @@ class AdsSeeder extends Seeder
             'picture' => 'mellowcrunch.png',
             'reason' => 'not appropriate',
             'status' => 'rejected',
+            'reads' => '0',
             'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 03, 05, 00, 45, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -73,6 +76,7 @@ class AdsSeeder extends Seeder
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
             'picture' => 'mouthgasmkokiss.png',
             'status' => 'verified',
+            'reads' => '43',
             'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 01, 13, 15, 13, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -88,6 +92,7 @@ class AdsSeeder extends Seeder
             'description' => 'Nasi kandar chicken with bendi and papadom.',
             'picture' => 'nasikandar.jpg',
             'status' => 'pending',
+            'reads' => '0',
             'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -103,6 +108,7 @@ class AdsSeeder extends Seeder
             'description' => '3 bilik tidur, 2 bilik air, berdekatan dengan sekolah, kedai-kedai etc.',
             'picture' => 'renthouse.jpg',
             'status' => 'verified',
+            'reads' => '33',
             'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 02, 03, 11, 03, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -118,6 +124,7 @@ class AdsSeeder extends Seeder
             'description' => 'Sticky rice with a delicious sweet kuah.',
             'picture' => 'stickyrice.jpg',
             'status' => 'draft',
+            'reads' => '0',
             'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
         ]);
@@ -133,6 +140,7 @@ class AdsSeeder extends Seeder
             'description' => 'Shampoo set',
             'picture' => 'loreal.jpg',
             'status' => 'draft',
+            'reads' => '0',
             'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
         ]);

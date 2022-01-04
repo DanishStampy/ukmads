@@ -26,6 +26,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('picture', 255)->nullable();
             $table->text('reason', 255)->nullable();
             $table->enum("status", ["draft", "pending", "verified", "rejected"]);
+            $table->bigInteger('reads')->unsigned()->default(0);
             $table->timestamps();
         });
     }

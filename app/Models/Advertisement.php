@@ -24,6 +24,7 @@ class Advertisement extends Model
         'picture',
         'reason',
         'status',
+        'reads',
     ];
 
     public static function boot()

@@ -10,7 +10,7 @@
       </li>
     </ol>
 
-    @foreach($ads as $key => $item)
+    @foreach($popularAds as $key => $item)
     <div class="carousel-item {{$key == 0 ? 'active' : ''}}">
       <img class="rounded mx-auto d-block " src="{{ asset('img/'.$item->picture) }}" alt="First slide" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; height: 470px;width: 1000px; object-fit: fill;">
       <div class="carousel-caption d-none d-md-block ">
@@ -38,36 +38,17 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
+<div class="row justify-content-center">
+  @foreach ($newestAds as $item)
+  <div class="col-md-3">
     <div class="card" style="width: 14rem;">
-      <a href=" # " >
-        <img class="card-img-top" src="{{ asset('img/musicfest.jpg') }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
+      <a href=" {{ route("advertisement.adsdetails", $item->id_ads) }} " >
+        <img class="card-img-top" src="{{ asset('img/'.$item->picture) }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
       </a>
     </div>
   </div>
-  <div class="col">
-    <div class="card " style="width: 14rem;">
-      <a href=" # " >
-        <img class="card-img-top" src="{{ asset('img/berrycombo.png') }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
-      </a>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 14rem;">
-      <a href=" # " >
-        <img class="card-img-top" src="{{ asset('img/musicfest.jpg') }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
-      </a>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 14rem;">
-      <a href=" # " >
-        <img class="card-img-top" src="{{ asset('img/musicfest.jpg') }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
-      </a>
-    </div>
-  </div>
-
+  @endforeach
+  
 </div>
 
 
