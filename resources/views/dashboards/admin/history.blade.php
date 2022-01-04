@@ -4,6 +4,7 @@
 @section('content')
 <br>
 <h4>Advertisement</h4>
+
 <div>
     <div class="row" style="margin: 20px 0px 50px">
         @if (count($advertisements) < 1)
@@ -49,13 +50,12 @@
 
 <div class="modal fade" id="adsHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
+
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
-                    <img class="img-fluid" id="adsPic"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:300px;object-fit: cover">
+                    <img class="img-fluid" id="adsPic" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="margin: 10px;height:300px;width:300px;object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -106,8 +106,7 @@
                                     <div class="row">
                                         <div class="form-group col-sm-12">
                                             <label>Description</label>
-                                            <textarea type="text" class="form-control" id="adsDesc" style="resize: none"
-                                                disabled></textarea>
+                                            <textarea type="text" class="form-control" id="adsDesc" style="resize: none" disabled></textarea>
                                         </div>
                                     </div>
                                     <div class="row" id="reasonAds">
@@ -128,6 +127,7 @@
 </div>
 <hr>
 <h4>Event</h4>
+
 <div>
     <div class="row" style="margin: 20px 0px 50px">
         @if (count($events) < 1)
@@ -160,9 +160,23 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory"
                             data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
                     </div>
-                </div>
 
+                </div>
+                @else
+                <div class="ribbon bg-danger">
+                    Rejected
+                </div>
+                @endif
             </div>
+            <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="height:200px;object-fit: fill">
+            <div class="card-body">
+                <h5 class="card-title">{{ $event->name }}</h5>
+                <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                    {{ $event->description }}
+                </p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory" data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
+            </div>
+
         @endif
         @endforeach
     </div>
@@ -175,13 +189,12 @@
 
 <div class="modal fade" id="eventHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
+
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
-                    <img class="img-fluid" id="eventPic"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:300px;object-fit: cover">
+                    <img class="img-fluid" id="eventPic" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="margin: 10px;height:300px;width:300px;object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -238,8 +251,7 @@
                                     <div class="row">
                                         <div class="form-group col-sm-12">
                                             <label>Description</label>
-                                            <textarea type="text" class="form-control" id="eventDesc"
-                                                style="resize: none" disabled></textarea>
+                                            <textarea type="text" class="form-control" id="eventDesc" style="resize: none" disabled></textarea>
                                         </div>
                                     </div>
                                     <div class="row" id="reasonEvent">
@@ -262,6 +274,7 @@
 @endsection
 
 @push('scripts')
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#adsHistory').on('show.bs.modal', function (ads) {
@@ -332,3 +345,4 @@
 
     </script>
 @endpush
+
