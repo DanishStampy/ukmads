@@ -155,13 +155,13 @@
 
                     @else
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('ads') }}" class="nav-link">
                                 <i class="fas fa-bullhorn mr-2 "></i>
                                 <p class="">Advertisements</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('event') }}" class="nav-link">
                                 <i class="fas fa-calendar-week mr-2 "></i>
                                 <p class="">Events</p>
                             </a>

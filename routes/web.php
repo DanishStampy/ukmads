@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Advertiser\AdvertiserController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[HomeController::class,'index']);
+Route::get('/home',[HomeController::class,'index'])->name('home');
+
 
 Route::get('aboutus', fn()=> view('aboutus'))->name('aboutus');
+Route::get('event', [HomeController::class,'allEvents'])->name('event');
+Route::get('ads', [HomeController::class,'allAds'])->name('ads');
+Route::get('allevents', fn()=> view('allevents'))->name('allevents');
+Route::get('eventdetails/{id_event}', [HomeController::class,'eventDetails'])->name('eventdetails');
+Route::get('allads', fn()=> view('allads'))->name('allads');
+Route::get('adsdetails/{id_ads}', [HomeController::class,'adsDetails'])->name('adsdetails');
 
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();

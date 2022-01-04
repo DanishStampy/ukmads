@@ -7,46 +7,41 @@
 <div class="row">
     {{ count($advertisements) < 1 ? "No data to be displayed." : '' }}
     @foreach($advertisements as $advertisement)
-        @if($advertisement->status=='verified' || $advertisement->status=='rejected')
+    @if($advertisement->status=='verified' || $advertisement->status=='rejected')
 
-            <div class="col-6 col-md-3">
-                <div class="card">
-                    <div class="ribbon-wrapper ribbon-lg">
-                        @if($advertisement->status=='verified')
-                            <div class="ribbon bg-success">
-                                Verified
-                            </div>
-                        @else
-                            <div class="ribbon bg-danger">
-                                Rejected
-                            </div>
-                        @endif
-                    </div>
-                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:200px;object-fit: cover">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $advertisement->name }}</h5>
-                        <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{ $advertisement->description }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
-                            data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
-                    </div>
+    <div class="col-6 col-md-3">
+        <div class="card">
+            <div class="ribbon-wrapper ribbon-lg">
+                @if($advertisement->status=='verified')
+                <div class="ribbon bg-success">
+                    Verified
                 </div>
-
+                @else
+                <div class="ribbon bg-danger">
+                    Rejected
+                </div>
+                @endif
             </div>
-        @endif
+            <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="height:200px;object-fit: fill">
+            <div class="card-body">
+                <h5 class="card-title">{{ $advertisement->name }}</h5>
+                <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                    {{ $advertisement->description }}
+                </p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory" data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
+            </div>
+        </div>
+
+    </div>
+    @endif
     @endforeach
 </div>
-<div class="modal fade" id="adsHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="adsHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
-                    <img class="img-fluid" id="adsPic"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:300px;object-fit: cover">
+                    <img class="img-fluid" id="adsPic" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="margin: 10px;height:300px;width:300px;object-fit: fill">
                 </div>
                 <div class="col-md-10 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -92,8 +87,7 @@
 
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea type="text" class="form-control" id="adsDesc" style="resize: none"
-                                                disabled></textarea>
+                                            <textarea type="text" class="form-control" id="adsDesc" style="resize: none" disabled></textarea>
                                         </div>
 
                                         <div class="form-group">
@@ -118,47 +112,42 @@
 <div class="row">
     {{ count($events) < 1 ? "No data to be displayed." : '' }}
     @foreach($events as $event)
-        @if($event->status=='verified' || $event->status=='rejected')
-            <div class="col-6 col-md-3">
+    @if($event->status=='verified' || $event->status=='rejected')
+    <div class="col-6 col-md-3">
 
-                <div class="card">
-                    <div class="ribbon-wrapper ribbon-lg">
-                        @if($event->status=='verified')
-                            <div class="ribbon bg-success">
-                                Verified
-                            </div>
-                        @else
-                            <div class="ribbon bg-danger">
-                                Rejected
-                            </div>
-                        @endif
-                    </div>
-                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:200px;object-fit: cover">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{ $event->description }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory"
-                            data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
-                    </div>
+        <div class="card">
+            <div class="ribbon-wrapper ribbon-lg">
+                @if($event->status=='verified')
+                <div class="ribbon bg-success">
+                    Verified
                 </div>
-
+                @else
+                <div class="ribbon bg-danger">
+                    Rejected
+                </div>
+                @endif
             </div>
-        @endif
+            <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="height:200px;object-fit: fill">
+            <div class="card-body">
+                <h5 class="card-title">{{ $event->name }}</h5>
+                <p class="card-text" style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                    {{ $event->description }}
+                </p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory" data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
+            </div>
+        </div>
+
+    </div>
+    @endif
     @endforeach
 </div>
 
-<div class="modal fade" id="eventHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="eventHistory" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
-                    <img class="img-fluid" id="eventPic"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:300px;object-fit: cover">
+                    <img class="img-fluid" id="eventPic" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="margin: 10px;height:300px;width:300px;object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -209,8 +198,7 @@
 
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea type="text" class="form-control" id="eventDesc"
-                                                style="resize: none" disabled></textarea>
+                                            <textarea type="text" class="form-control" id="eventDesc" style="resize: none" disabled></textarea>
                                         </div>
 
                                         <div class="form-group">
@@ -232,55 +220,54 @@
 @endsection
 
 @push('scripts')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#adsHistory').on('show.bs.modal', function (ads) {
-                var button = $(ads.relatedTarget) // Button that triggered the modal
-                var ads = button.data('ads') // Extract info from data-* attributes
-                var modal = $(this)
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#adsHistory').on('show.bs.modal', function(ads) {
+            var button = $(ads.relatedTarget) // Button that triggered the modal
+            var ads = button.data('ads') // Extract info from data-* attributes
+            var modal = $(this)
 
-                var data = atob(ads);
-                var data = $.parseJSON(data);
+            var data = atob(ads);
+            var data = $.parseJSON(data);
 
-                $("#adsPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
-                $("#adsId").val(data.id_ads);
-                $("#adsName").val(data.name);
-                $("#adsEmail").val(data.creator_email);
-                $("#adsType").val(data.type);
-                $("#adsPrice").val(data.price);
-                $("#adsSeller").val(data.seller_name);
-                $("#adsContact").val(data.contact);
-                $("#adsDesc").val(data.description);
-                $("#adsStatus").val(data.status);
+            $("#adsPic").attr('src',
+                `{{ asset('img/${data.picture}') }}`);
+            $("#adsId").val(data.id_ads);
+            $("#adsName").val(data.name);
+            $("#adsEmail").val(data.creator_email);
+            $("#adsType").val(data.type);
+            $("#adsPrice").val(data.price);
+            $("#adsSeller").val(data.seller_name);
+            $("#adsContact").val(data.contact);
+            $("#adsDesc").val(data.description);
+            $("#adsStatus").val(data.status);
 
-                // console.log(data);
-            })
+            // console.log(data);
+        })
 
-            $('#eventHistory').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var event = button.data('event') // Extract info from data-* attributes
-                var modal = $(this)
+        $('#eventHistory').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var event = button.data('event') // Extract info from data-* attributes
+            var modal = $(this)
 
-                var data = atob(event);
-                var data = $.parseJSON(data);
+            var data = atob(event);
+            var data = $.parseJSON(data);
 
-                $("#eventPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
-                $("#eventId").val(data.id_event);
-                $("#eventName").val(data.name);
-                $("#eventEmail").val(data.creator_email);
-                $("#eventLocation").val(data.location);
-                $("#eventTime").val(data.time);
-                $("#eventDate").val(data.date);
-                $("#eventOrganizer").val(data.organizer);
-                $("#eventContact").val(data.contact);
-                $("#eventDesc").val(data.description);
-                $("#eventStatus").val(data.status);
+            $("#eventPic").attr('src',
+                `{{ asset('img/${data.picture}') }}`);
+            $("#eventId").val(data.id_event);
+            $("#eventName").val(data.name);
+            $("#eventEmail").val(data.creator_email);
+            $("#eventLocation").val(data.location);
+            $("#eventTime").val(data.time);
+            $("#eventDate").val(data.date);
+            $("#eventOrganizer").val(data.organizer);
+            $("#eventContact").val(data.contact);
+            $("#eventDesc").val(data.description);
+            $("#eventStatus").val(data.status);
 
-                // console.log(data);
-            })
-        });
-
-    </script>
+            // console.log(data);
+        })
+    });
+</script>
 @endpush
