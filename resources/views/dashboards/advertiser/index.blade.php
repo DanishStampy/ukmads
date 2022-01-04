@@ -39,6 +39,31 @@
       </a>
     </div>
   </div>
-</div>
+  
 
+
+</div>
+<div class="row">
+  <div class="col-lg-6 col-6">
+    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+      <div class="card-header">Total Advertisements Pending</div>
+      <div class="card-body">
+        <h1 class="card-text" value="adspend">
+
+        </h1>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-lg-6 col-6">
+    <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+      <div class="card-header">Total Events Pending</div>
+      <div class="card-body">
+        <h1 class="card-text">
+          {{ $event->count() }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

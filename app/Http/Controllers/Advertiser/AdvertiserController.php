@@ -273,4 +273,8 @@ class AdvertiserController extends Controller
 
         return view('dashboards.advertiser.draftlist', compact('ads', 'event'));
     }
+    function showadspend(){
+        $ads = Advertisement::where('status','pending')->count();
+        return view('dashboard.advertiser',compact('adspend'));
+    }
 }
