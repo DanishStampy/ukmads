@@ -27,25 +27,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function allAds()
-    {
-        $ads=Advertisement::all();
-        return view('ads',compact('ads'));
-    }
-    public function allEvents()
-    {
-        $event=Event::all();
-        return view('event',compact('event'));
-    }
-    public function eventDetails($id_event)
-    {
-        $details=Event::find($id_event);
-        return view('eventdetails',compact('details'));
-    }
     
-    // public function adsDetails($id_ads)
-    // {
-    //     $details=Advertisement::find($id_ads);
-    //     return view('adsdetails',compact('details'));
-    // }
 }
