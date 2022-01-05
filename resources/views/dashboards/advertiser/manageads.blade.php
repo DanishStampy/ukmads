@@ -29,6 +29,7 @@
         </button>
     </div>
 @endif
+
 <div class="row justify-content-center">
     @if(count($ads) < 1)
         <div class="ml-3 mt-1">
@@ -61,14 +62,16 @@
                         @endif
 
                     </div>
+
                     <img class="card-img-top" src="{{ asset("img/".$ad->picture) }}"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                         style="height:300px;object-fit: cover">
 
                     @if($ad->status == 'rejected')
                         <div class="card-footer" style="padding-top: 20px">
+                            <h4>&nbsp;</h4>
                             <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                     <div class="description-block">
                                         <a data-toggle="modal" data-target="#Delete"
                                             data-ads="{{ base64_encode($ad->toJson()) }}"
@@ -77,10 +80,21 @@
                                         </a>
                                     </div>
                                 </div>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div class="description-block">
+                                        <a data-toggle="modal" data-target="#detailads"
+                                            data-ads="{{ base64_encode($ad->toJson()) }}"
+                                            class="btn btn-app bg-olive">
+                                            <i class="fas fa-info"></i> Details
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @else
+
                         <div class="card-footer" style="padding-top: 20px">
+                            <h4 class="text-center">&nbsp;Viewers : {{ $ad->reads }}</h4>
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                     <div class="description-block">
@@ -104,10 +118,91 @@
                         </div>
                     @endif
                 </div>
-                <br>
-            </div>
         @endforeach
     @endif
+
+    {{-- Detail confirmation modal --}}
+    <div class="modal fade .col-12 .col-md-8" id="detailads" tabindex="-1" role="dialog"
+        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="row justify-content-around align-self-center">
+                    <div class="card" style="margin-top: 30px">
+                        <img class="img-fluid" id="adsPic"
+                            onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                            style="margin: 10px;height:300px;width:300px;object-fit: cover">
+                    </div>
+                    <div class="col-md-12 col-xs-6">
+                        <h3 class="modal-title text-center">Details</h3>
+                        <div class="col-md-12">
+                            <div class="modal-body">
+                                <div class="card card-primary">
+                                    <div class="card-body" style="margin: 10px 20px">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label>ID</label>
+                                                <input type="text" class="form-control" id="adsId" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label>Email Address</label>
+                                                <input type="text" class="form-control" id="adsEmail" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6">
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" id="adsName" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <label>Type</label>
+                                                <input type="text" class="form-control" id="adsType" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-4">
+                                                <label>Price</label>
+                                                <input type="text" class="form-control" id="adsPrice" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-4">
+                                                <label>Seller Name</label>
+                                                <input type="text" class="form-control" id="adsSeller" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-4">
+                                                <label>Contact No</label>
+                                                <input type="text" class="form-control" id="adsContact" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label>Description</label>
+                                                <textarea type="text" class="form-control" id="adsDesc"
+                                                    style="resize: none" disabled></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
+                                                <label>Reason</label>
+                                                <textarea name="adsReason" id="adsReason" type="text"
+                                                    class="form-control" style="min-height: 100px" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center mb-3">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">
+                                            OK
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- END of Detail confirmation modal --}}
 </div>
 {{-- DELETE confirmation modal --}}
 @if(count(array($ads)) > 0)
@@ -188,6 +283,45 @@
 
             })
         });
+
+    </script>
+@endpush
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#detailads').on('show.bs.modal', function (ads) {
+
+                var button = $(ads.relatedTarget) // Button that triggered the modal
+                var ads = button.data('ads') // Extract info from data-* attributes
+                var modal = $(this)
+
+                var data = atob(ads);
+                var data = $.parseJSON(data);
+
+                $("#adsPic").attr('src',
+                    `{{ asset('img/${data.picture}') }}`);
+                $("#adsId").val(data.id_ads);
+                $("#adsHid").val(data.id_ads);
+                $("#adsName").val(data.name);
+                $("#adsEmail").val(data.creator_email);
+                $("#adsType").val(data.type);
+                $("#adsPrice").val(data.price);
+                $("#adsSeller").val(data.seller_name);
+                $("#adsContact").val(data.contact);
+                $("#adsDesc").val(data.description);
+                $("#adsReason").val(data.reason);
+            })
+        });
+
+        function showReasonAds() {
+            var x = document.getElementById("reasonAds");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        };
 
     </script>
 @endpush

@@ -42,7 +42,8 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
-    Route::get('pendingads', [AdminController::class, 'index'])->name('pendingads');
+    Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('pendingads', [AdminController::class, 'pendingads'])->name('pendingads');
     Route::get('history', [AdminController::class, 'history'])->name('history');
 
     // Logout
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
 
+    Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
     // Event
     Route::get('createevents', [AdvertiserController::class, 'createevents'])->name('createevents');
     Route::post('uploadEvents',[AdvertiserController::class, 'uploadEvents'])->name('uploadEvents');
