@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
+
 class AdvertiserController extends Controller
 {
     public function index()
@@ -64,6 +65,7 @@ class AdvertiserController extends Controller
             case 'verify':
                 $ads->status = "pending";
                 $msg = 'Advertisement have been successfully uploaded.';
+                // ads(new Advertisement($ads = $this->create($request->all())));
                 break;
         }
 
@@ -273,8 +275,14 @@ class AdvertiserController extends Controller
 
         return view('dashboards.advertiser.draftlist', compact('ads', 'event'));
     }
-    function showadspend(){
-        $ads = Advertisement::where('status','pending')->count();
-        return view('dashboard.advertiser',compact('adspend'));
-    }
+
+    //notification
+    // public function notification(){
+
+    //     // auth()->user()->unreadNotification->markAsRead();
+    //     // return view('users.notification', [
+    //     //     'notifications' => auth()->user()->notification
+    //     // ]);
+    //     ads(new approved(auth()->user()))
+    // }
 }
