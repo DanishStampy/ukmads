@@ -23,6 +23,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@splidejs/splide": "^3.6.9",
         "selenium-webdriver": "^4.1.0"
     }
 }

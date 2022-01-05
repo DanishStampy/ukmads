@@ -38544,29 +38544,27 @@ blockquote.quote-gray-dark h6 {
   color: #fff !important;
 }
 .bg-teal.btn:hover {
-  border-color: #199d76;
+  border-color: #fff;
   color: #ececec;
 }
 .bg-teal.btn:not(:disabled):not(.disabled):active, .bg-teal.btn:not(:disabled):not(.disabled).active, .bg-teal.btn:active, .bg-teal.btn.active {
-  background-color: #199d76 !important;
-  border-color: #17926e;
+  border-color: #fff;
   color: #fff;
 }
 
 .bg-cyan {
-  background-color: #17a2b8 !important;
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D) !important;
 }
 .bg-cyan,
 .bg-cyan > a {
   color: #fff !important;
 }
 .bg-cyan.btn:hover {
-  border-color: #117a8b;
+  border-color: #fff;
   color: #ececec;
 }
 .bg-cyan.btn:not(:disabled):not(.disabled):active, .bg-cyan.btn:not(:disabled):not(.disabled).active, .bg-cyan.btn:active, .bg-cyan.btn.active {
-  background-color: #117a8b !important;
-  border-color: #10707f;
+  border-color: #fff;
   color: #fff;
 }
 

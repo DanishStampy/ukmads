@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\Advertiser\AdvertiserController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,17 +20,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/',[HomeController::class,'index'])->name('index');
+Route::get('/home',[HomeController::class,'index'])->name('home');
+
+Route::group(['as' => 'advertisement.'], function(){
+    Route::get('/ads', [AdvertisementController::class,'popularAds'])->name('ads');
+    Route::get('/adsdetails/{id_ads}', [AdvertisementController::class,'adsDetails'])->name('adsdetails');
+    Route::get('/allads', [AdvertisementController::class,'allAds'])->name('allads');
 });
 
-Route::get('aboutus', fn()=> view('aboutus'))->name('aboutus');
+Route::group(['as' => 'event.'], function(){
+    Route::get('/event', [EventController::class,'popularEvents'])->name('events');
+    Route::get('/eventdetails/{id_event}', [EventController::class,'eventDetails'])->name('eventdetails');
+    Route::get('/allevents',  [EventController::class,'allEvents'])->name('allevents');
+});
+
+Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');
 
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
     Route::get('pendingads', [AdminController::class, 'index'])->name('pendingads');
@@ -51,7 +63,7 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
     Route::get('editads/{id_ads}', [AdvertiserController::class, 'editads'])->name('editads');
     Route::post('updateAds/{id_ads}',[AdvertiserController::class, 'updateAds'])->name('updateAds');
 
-    Route::get('deleteAds/{id_ads}', [AdvertiserController::class, 'deleteAds'])->name('deleteAds');
+    Route::post('deleteAds', [AdvertiserController::class, 'deleteAds'])->name('deleteAds');
 
     Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
 
@@ -62,7 +74,7 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
     Route::get('editevent/{id_event}', [AdvertiserController::class, 'editevent'])->name('editevent');
     Route::post('updateEvent/{id_event}',[AdvertiserController::class, 'updateEvent'])->name('updateEvent');
 
-    Route::get('deleteEvent/{id_event}', [AdvertiserController::class, 'deleteEvent'])->name('deleteEvent');
+    Route::post('deleteEvent', [AdvertiserController::class, 'deleteEvent'])->name('deleteEvent');
 
     Route::get('manageevents', [AdvertiserController::class, 'manageevents'])->name('manageevents');
 
