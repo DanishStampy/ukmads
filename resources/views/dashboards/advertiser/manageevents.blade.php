@@ -138,6 +138,7 @@
             </div>
         </div>
     @endif
+    
     {{-- END of DELETE confirmation modal --}}
 </div>
 
