@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if(count($popularAds) < 1)
+@if(count($popularEvent) < 1)
 <div class="ml-3 mt-1">
   <h5>No data to be displayed.</h5>
 </div>
