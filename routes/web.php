@@ -68,6 +68,7 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
 
+    Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
     // Event
     Route::get('createevents', [AdvertiserController::class, 'createevents'])->name('createevents');
     Route::post('uploadEvents',[AdvertiserController::class, 'uploadEvents'])->name('uploadEvents');

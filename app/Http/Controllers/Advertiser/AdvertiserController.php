@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
+
 class AdvertiserController extends Controller
 {
 
@@ -71,6 +72,7 @@ class AdvertiserController extends Controller
             case 'verify':
                 $ads->status = "pending";
                 $msg = 'Advertisement have been successfully uploaded.';
+                // ads(new Advertisement($ads = $this->create($request->all())));
                 break;
         }
 
