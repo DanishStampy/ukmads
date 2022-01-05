@@ -3,6 +3,12 @@
 @section('title','Popular Advertisement')
 
 @section('content')
+
+@if(count($popularAds) < 1)
+<div class="ml-3 mt-1">
+  <h5>No data to be displayed.</h5>
+</div>
+@else
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <ol class="carousel-indicators">
@@ -50,7 +56,7 @@
   @endforeach
   
 </div>
-
+@endif
 
 
 @endsection

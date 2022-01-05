@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 
 class Event extends Model
 {
@@ -34,7 +35,7 @@ class Event extends Model
                 while (true) {
                     try {
                         $latest = Event::latest('id_event')->first();
-                        $uid;
+                        $uid=0;
 
                         if ($latest != null && $latest->exists()) {
                             $uid = random_int(1000, 9999);
