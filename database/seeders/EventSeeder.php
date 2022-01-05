@@ -19,77 +19,87 @@ class EventSeeder extends Seeder
         DB::table('events')->insert([
             'id_event' => 'EV1',
             'creator_email' => 'staff@gmail.com',
-            'name' => 'KFC Deals',
-            'location' => 'Dewan Dectar',
-            'time' => Carbon::now(),
-            'date' => Carbon::now()->format('Y-m-d'),
-            'organizer' => 'ARVIS',
+            'name' => 'Beach Summer Party',
+            'location' => 'Port Dickson, Negeri Sembilan',
+            'time' => "19:00:00",
+            'date' => '2022-06-23',
+            'organizer' => 'UTM',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'kfc.jpg',
+            'picture' => 'beach.png',
             'join' => '0',
-            'status' => 'pending'
+            'status' => 'pending',
+            'created_at' => Carbon::create(2021, 12, 24, 20, 18, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2021, 12, 24, 20, 18, 0)->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('events')->insert([
             'id_event' => 'EV2',
-            'creator_email' => 'staff@gmail.com',
-            'name' => 'KFC Deals2',
-            'location' => 'Dewan Dectar',
-            'time' => Carbon::now(),
-            'date' => Carbon::now()->format('Y-m-d'),
-            'organizer' => 'ARVIS',
+            'creator_email' => 'deezz@gmail.com',
+            'name' => 'Coffee Morning Fundraising',
+            'location' => 'Toronto, Canada',
+            'time' => '11:00:00',
+            'date' => '2022-06-23',
+            'organizer' => 'UKM',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'kfc.jpg',
-            'join' => '0',
-            'status' => 'verified'
+            'picture' => 'coffee.jpg',
+            'join' => '68',
+            'status' => 'verified',
+            'created_at' => Carbon::create(2022, 01, 01, 16, 32, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2022, 01, 21, 17, 32, 0)->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('events')->insert([
             'id_event' => 'EV3',
-            'creator_email' => 'staff@gmail.com',
-            'name' => 'KFC Deals3',
+            'creator_email' => 'deezz@gmail.com',
+            'name' => 'Elegant Event',
             'location' => 'Dewan Dectar',
-            'time' => Carbon::now(),
-            'date' => Carbon::now()->format('Y-m-d'),
-            'organizer' => 'ARVIS',
+            'time' => '20:00:00',
+            'date' => '2022-07-31',
+            'organizer' => 'UKM',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'kfc.jpg',
+            'picture' => 'elegant.jpg',
             'reason' => 'not appropriate',
             'join' => '0',
-            'status' => 'rejected'
+            'status' => 'rejected',
+            'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2022, 03, 05, 00, 45, 0)->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('events')->insert([
             'id_event' => 'EV4',
             'creator_email' => 'staff@gmail.com',
-            'name' => 'KFC Deals4',
+            'name' => 'Open Mic Night',
             'location' => 'Dewan Dectar',
-            'time' => Carbon::now(),
-            'date' => Carbon::now()->format('Y-m-d'),
-            'organizer' => 'ARVIS',
+            'time' => '20:30:00',
+            'date' => '2022-08-31',
+            'organizer' => 'Strings Bar',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'kfc.jpg',
-            'join' => '0',
-            'status' => 'pending'
+            'picture' => 'openmic.jpg',
+            'join' => '128',
+            'status' => 'verified',
+            'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2022, 01, 13, 15, 13, 0)->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('events')->insert([
             'id_event' => 'EV5',
             'creator_email' => 'staff@gmail.com',
-            'name' => 'KFC Deals5',
-            'location' => 'Dewan Dectar',
-            'time' => Carbon::now(),
-            'date' => Carbon::now()->format('Y-m-d'),
-            'organizer' => 'ARVIS',
+            'name' => 'Running Event',
+            'location' => 'Stadium Bukit Jalil, Shah Alam',
+            'time' => '07:40:00',
+            'date' => '2022-04-18',
+            'organizer' => 'UKM',
             'contact' => '0123456789',
             'description' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'picture' => 'kfc.jpg',
+            'picture' => 'running.jpg',
             'join' => '0',
-            'status' => 'pending'
+            'status' => 'pending',
+            'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('events')->insert([
@@ -103,8 +113,27 @@ class EventSeeder extends Seeder
             'contact' => '0123456789',
             'description' => 'Normal music party smh.',
             'picture' => 'musicfest.jpg',
+            'join' => '32',
+            'status' => 'verified',
+            'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2022, 02, 03, 11, 03, 0)->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('events')->insert([
+            'id_event' => 'EV7',
+            'creator_email' => 'staff@gmail.com',
+            'name' => 'Summer Mix',
+            'location' => 'Pulau Langkawi, Kedah',
+            'time' => '19:00:00',
+            'date' => '2022-06-15',
+            'organizer' => 'victorystudents.com',
+            'contact' => '0123456789',
+            'description' => 'LETSS PARTYY',
+            'picture' => 'summer.jpg',
             'join' => '0',
-            'status' => 'draft'
+            'status' => 'rejected',
+            'created_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::create(2022, 01, 03, 20, 45, 0)->format('Y-m-d H:i:s'),
         ]);
     }
 }

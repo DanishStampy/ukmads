@@ -55,8 +55,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="https://www.instagram.com/nurfa_krul/" target="_blank" class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                            <a href="https://github.com/NurfaNuva" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60196965841" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/nurfa_krul/" target="_blank" class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -87,8 +95,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="https://www.instagram.com/niqaziz_/" target="_blank" class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                            <a href="https://github.com/niqaziz17" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60142684528" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/niqaziz_/" target="_blank" class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -120,9 +136,17 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
+                            <a href="https://github.com/syazilijuhari" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60136660566" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
                             <a href="https://www.instagram.com/syazilijuhari/" target="_blank"
-                                class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                                class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -153,8 +177,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="https://www.instagram.com/danish_nish/" target="_blank" class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                            <a href="https://github.com/ViceNish" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+601118501474" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/danish_nish/" target="_blank" class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -185,9 +217,17 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
+                            <a href="https://github.com/DanishStampy" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60123631097" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
                             <a href="https://www.instagram.com/danishstampy/" target="_blank"
-                                class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                                class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
