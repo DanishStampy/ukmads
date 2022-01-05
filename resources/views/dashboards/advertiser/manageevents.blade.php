@@ -30,10 +30,12 @@
     </div>
 @endif
 
-@if( count($events) < 1)
-    <p>No data to be display.</p>
-@endif
 <div class="row justify-content-center">
+    @if( count($events) < 1)
+    <div class="ml-3 mt-1">
+        <h5>No data to be displayed.</h5>
+    </div>
+    @else
     @foreach($events as $event)
         <div class="col-md-4">
             <div class="card card-widget widget-user">
