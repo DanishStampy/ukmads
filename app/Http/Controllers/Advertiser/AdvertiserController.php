@@ -275,14 +275,4 @@ class AdvertiserController extends Controller
 
         return view('dashboards.advertiser.draftlist', compact('ads', 'event'));
     }
-
-    //notification
-    // public function notification(){
-
-    //     // auth()->user()->unreadNotification->markAsRead();
-    //     // return view('users.notification', [
-    //     //     'notifications' => auth()->user()->notification
-    //     // ]);
-    //     ads(new approved(auth()->user()))
-    // }
 }
