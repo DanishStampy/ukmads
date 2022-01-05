@@ -110,7 +110,7 @@
 
         </div>
     @endif
-    
+
         <div class="col-md-4">
             <div class="card card-widget widget-user">
                 <div class="widget-user-header text-white"
@@ -134,7 +134,7 @@
         </div>
 
     {{-- DELETE confirmation modal --}}
-    @if(count(array($event)) > 0)
+    @if(count(array($events)) > 0)
     <div class="modal fade" id="Delete" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="DeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
