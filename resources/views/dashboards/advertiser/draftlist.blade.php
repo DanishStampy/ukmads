@@ -3,6 +3,7 @@
 
 @section('content')
 <h4>Advertisement</h4>
+<div>
 <div class="row">
     @if(count($ads) < 1)
         <div class="ml-3 mt-1">
@@ -43,6 +44,7 @@
 <hr>
 
 <h4>Events</h4>
+<div>
 <div class="row">
     @if(count($events) < 1)
         <div class="ml-3 mt-1">
