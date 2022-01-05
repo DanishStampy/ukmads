@@ -31,7 +31,9 @@
 @endif
 <div class="row justify-content-center">
     @if( count($ads) < 1)
-        <p>No data to be display.</p>
+    <div class="ml-3 mt-1">
+        <h5>No data to be displayed.</h5>
+    </div>
     @else
     @foreach($ads as $ad)
         <div class="col-md-4">

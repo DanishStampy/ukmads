@@ -4,7 +4,11 @@
 @section('content')
 <h4>Advertisement</h4>
 <div class="row">
-    {{ count($ads) < 1 ? "No data to be displayed." : '' }}
+    @if(count($ads) < 1)
+        <div class="ml-3 mt-1">
+            <h5>No data to be displayed.</h5>
+        </div>
+    @endif
     @foreach($ads as $ads)
         @if($ads->status!=='pending')
 
@@ -18,10 +22,13 @@
                         <p class="card-text"
                             style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
                             {{ $ads->description }}</p>
-                        <a href="{{ route("advertiser.editads", $ads->id_ads) }}"
-                            class="btn btn-app bg-warning">
+                        <div class="row justify-content-center">
+                            <a href="{{ route("advertiser.editads", $ads->id_ads) }}"
+                            class="btn btn-app bg-indigo">
                             <i class="fas fa-edit"></i> Edit
                         </a>
+                        </div>
+                        
                     </div>
                 </div>
 
@@ -33,7 +40,11 @@
 
 <h4>Events</h4>
 <div class="row">
-    {{ count($event) < 1 ? "No data to be displayed." : '' }}
+    @if(count($event) < 1)
+        <div class="ml-3 mt-1">
+            <h5>No data to be displayed.</h5>
+        </div>
+    @endif
     @foreach($event as $event)
         @if($event->status!=='pending')
 
@@ -42,15 +53,18 @@
                     <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                         style="height:200px;object-fit: cover">
-                    <div class="card-body">
+                    <div class="card-body text-align-center">
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text"
                             style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
                             {{ $event->description }}</p>
-                        <a href="{{ route("advertiser.editevent", $event->id_event) }}"
-                            class="btn btn-app bg-warning">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
+                        <div class="w-100">
+                            <a href="{{ route("advertiser.editevent", $event->id_event) }}"
+                                class="btn btn-app bg-warning" type='button'>
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                        </div>
+
                     </div>
                 </div>
 
