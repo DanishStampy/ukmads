@@ -46,13 +46,19 @@
                         @if(Auth::user()->role == 'admin')
 
                             <li class="nav-item">
-                                <a href=" {{ route("admin.pendingads") }} " class="nav-link">
+                                <a href=" {{ route("admin.dashboard") }} " class="nav-link {{ (request()->routeIs('admin.dashboard') ? 'active' : '') }}">
+                                    <i class="fas fa-house-user mr-2 "></i>
+                                    <p class="">Dashboard</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href=" {{ route("admin.pendingads") }} " class="nav-link {{ (request()->routeIs('admin.pendingads') ? 'active' : '') }}">
                                     <i class="fas fa-tasks mr-2 "></i>
                                     <p class="">Pending</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href=" {{ route("admin.history") }} " class="nav-link">
+                                <a href=" {{ route("admin.history") }} " class="nav-link {{ (request()->routeIs('admin.history') ? 'active' : '') }}">
                                     <i class="fas fa-history mr-2 "></i>
                                     <p class="">History</p>
                                 </a>
@@ -155,13 +161,13 @@
 
                     @else
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('advertisement.ads') }}" class="nav-link">
                                 <i class="fas fa-bullhorn mr-2 "></i>
                                 <p class="">Advertisements</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('event.events') }}" class="nav-link">
                                 <i class="fas fa-calendar-week mr-2 "></i>
                                 <p class="">Events</p>
                             </a>

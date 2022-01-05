@@ -13,6 +13,9 @@
 	{{-- Font Awesome 5 --}}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
+	 {{-- Icon --}}
+	 <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
+
 </head>
 <body class="my-register-page">
 	<section class="h-100">

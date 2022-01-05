@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     {{-- Icon --}}
+     <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
     
 </head>
 <body>
