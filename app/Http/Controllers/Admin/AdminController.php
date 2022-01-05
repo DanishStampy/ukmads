@@ -23,8 +23,8 @@ class AdminController extends Controller
     }
 
     public function history(){
-        $advertisements = Advertisement::where('status', 'verified')->where('status', 'rejected')->paginate(4, ['*'], 'advertisements');
-        $events = Event::where('status', 'verified')->where('status', 'rejected')->paginate(4, ['*'], 'events');
+        $advertisements = Advertisement::where('status', 'verified')->orWhere('status', 'rejected')->paginate(4, ['*'], 'advertisements');
+        $events = Event::where('status', 'verified')->orWhere('status', 'rejected')->paginate(4, ['*'], 'events');
         return view('dashboards.admin.history', compact('advertisements', 'events'));
     }
 
