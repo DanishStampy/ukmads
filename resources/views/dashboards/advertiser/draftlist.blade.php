@@ -29,7 +29,6 @@
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </div>
-
                         </div>
 
                     </div>
@@ -70,7 +69,6 @@
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </div>
-
                         </div>
 
                     </div>
