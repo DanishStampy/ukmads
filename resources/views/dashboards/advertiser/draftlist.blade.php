@@ -32,6 +32,7 @@
                         </div>
 
                     </div>
+                </div>
             @endif
         @endforeach
     </div>
@@ -72,6 +73,7 @@
                         </div>
 
                     </div>
+                </div>
             @endif
         @endforeach
     </div>

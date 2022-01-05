@@ -11,7 +11,7 @@
             <h5>No data to be displayed.</h5>
         @endif
         @foreach($advertisements as $advertisement)
-            @if($advertisement->status=='verified' or $advertisement->status=='rejected')
+            {{-- @if($advertisement->status=='verified' or $advertisement->status=='rejected') --}}
 
             <div class="col-6 col-md-3">
                 <div class="card">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-        @endif
+        {{-- @endif --}}
         @endforeach
     </div>
     {{-- Pagination --}}
@@ -134,7 +134,7 @@
             <h5>No data to be displayed.</h5>
         @endif
         @foreach($events as $event)
-            @if($event->status=='verified' or $event->status=='rejected')
+            {{-- @if($event->status=='verified' or $event->status=='rejected') --}}
             <div class="col-6 col-md-3">
 
                 <div class="card">
@@ -163,9 +163,7 @@
 
                 </div>
             </div>
-               @endif
-
-        
+               {{-- @endif --}}
         @endforeach
     </div>
     {{-- Pagination --}}
