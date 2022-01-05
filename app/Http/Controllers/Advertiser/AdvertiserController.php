@@ -280,11 +280,9 @@ class AdvertiserController extends Controller
     public function draftPreview()
     {
         $user_id = $this->getEmail();
-        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->get();
-        // ->paginate(4, ['*'], 'advertisements');
-        $event = Event::where('status', 'draft')->where('creator_email', $user_id)->get();
-        // ->paginate(4, ['*'], 'events');
+        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->paginate(4, ['*'], 'advertisements');
+        $events = Event::where('status', 'draft')->where('creator_email', $user_id)->paginate(4, ['*'], 'events');
 
-        return view('dashboards.advertiser.draftlist', compact('ads', 'event'));
+        return view('dashboards.advertiser.draftlist', compact('ads', 'events'));
     }
 }
