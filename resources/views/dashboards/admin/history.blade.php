@@ -134,7 +134,6 @@
             <h5>No data to be displayed.</h5>
         @endif
         @foreach($events as $event)
-            @if($event->status=='verified' or $event->status=='rejected')
             <div class="col-6 col-md-3">
 
                 <div class="card">
@@ -163,9 +162,6 @@
 
                 </div>
             </div>
-               @endif
-
-        
         @endforeach
     </div>
     {{-- Pagination --}}
