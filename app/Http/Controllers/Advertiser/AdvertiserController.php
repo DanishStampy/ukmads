@@ -281,7 +281,9 @@ class AdvertiserController extends Controller
     {
         $user_id = $this->getEmail();
         $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->get();
-        $event = Event::where('status', 'draft')->get();
+        // ->paginate(4, ['*'], 'advertisements');
+        $event = Event::where('status', 'draft')->where('creator_email', $user_id)->get();
+        // ->paginate(4, ['*'], 'events');
 
         return view('dashboards.advertiser.draftlist', compact('ads', 'event'));
     }

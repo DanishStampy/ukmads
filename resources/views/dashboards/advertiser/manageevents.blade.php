@@ -71,7 +71,8 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="description-block">
-                                    <a  data-toggle="modal" data-target="#Delete" data-event="{{ base64_encode($event->toJson()) }}"
+                                    <a data-toggle="modal" data-target="#Delete"
+                                        data-event="{{ base64_encode($event->toJson()) }}"
                                         class="btn btn-app bg-danger">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
@@ -93,7 +94,8 @@
 
                             <div class="col-sm-6">
                                 <div class="description-block">
-                                    <a  data-toggle="modal" data-target="#Delete" data-event="{{ base64_encode($event->toJson()) }}"
+                                    <a data-toggle="modal" data-target="#Delete"
+                                        data-event="{{ base64_encode($event->toJson()) }}"
                                         class="btn btn-app bg-danger">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
@@ -107,63 +109,69 @@
             <br>
         </div>
     @endforeach
-        <div class="col-md-12">
-            {{ $events->links() }}
 
+    {{-- DELETE confirmation modal --}}
+    @if(count(array($events)) > 0)
+        <div class="modal fade" id="Delete" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="DeleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h5 class="modal-title" id="DeleteModalLabel">Delete Event Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
+                        <form method="POST" class="form-horizontal"
+                            action="{{ route("advertiser.deleteEvent") }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="" name="id_event" id="eventHid">
+                            <button type="submit" id="btnDelete" value="delete" name="type"
+                                class="btn btn-danger">Yes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     @endif
-    
-        <div class="col-md-4">
-            <div class="card card-widget widget-user">
-                <div class="widget-user-header text-white"
-                    style="height:300px; background: url('/img/addnew.jpg') center center;">
+    {{-- END of DELETE confirmation modal --}}
+</div>
 
-                </div>
+{{-- Pagination --}}
+<div class="d-flex justify-content-center">
+    {{ $events->links() }}
+</div>
+{{-- Create New Event --}}
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card card-widget widget-user">
+            <div class="widget-user-header text-white"
+                style="height:300px; background: url('/img/addnew.jpg') center center;">
 
-                <div class="card-footer" style="padding-top: 20px">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="description-block">
-                                <a class="btn btn-app bg-info"
-                                    href="{{ route("advertiser.createevents") }}">
-                                    <i class="fas fa-feather"></i> Create New
-                                </a>
-                            </div>
+            </div>
+
+            <div class="card-footer" style="padding-top: 20px">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="description-block">
+                            <a class="btn btn-app bg-info"
+                                href="{{ route("advertiser.createevents") }}">
+                                <i class="fas fa-feather"></i> Create New
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    {{-- DELETE confirmation modal --}}
-    @if(count(array($event)) > 0)
-    <div class="modal fade" id="Delete" data-backdrop="static" data-keyboard="false" tabindex="-1"
-        aria-labelledby="DeleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title" id="DeleteModalLabel">Delete Event Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
-                    <form method="POST" class="form-horizontal" action="{{ route("advertiser.deleteEvent")}}" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" value="" name="id_event" id="eventHid">
-                        <button type="submit" id="btnDelete" value="delete" name="type" class="btn btn-danger">Yes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-    @endif
-    {{-- END of DELETE confirmation modal --}}
 </div>
+
 @endsection
 
 @push('scripts')

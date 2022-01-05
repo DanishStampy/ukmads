@@ -30,14 +30,17 @@
                         </div>
                         
                     </div>
+
                 </div>
-
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    </div>
+    {{-- Pagination --}}
+    {{-- <div class="d-flex justify-content-end">
+        {{ $ads->links() }}
+</div> --}}
 </div>
-<br>
-
+<hr>
 <h4>Events</h4>
 <div class="row">
     @if(count($event) < 1)
@@ -66,11 +69,14 @@
                         </div>
 
                     </div>
+
                 </div>
-
-            </div>
-        @endif
-    @endforeach
+            @endif
+        @endforeach
+    </div>
+    {{-- Pagination --}}
+    {{-- <div class="d-flex justify-content-end">
+        {{ $event->links() }}
+</div> --}}
 </div>
-
 @endsection
