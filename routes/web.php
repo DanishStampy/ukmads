@@ -33,6 +33,7 @@ Route::group(['as' => 'event.'], function(){
     Route::get('/event', [EventController::class,'popularEvents'])->name('events');
     Route::get('/eventdetails/{id_event}', [EventController::class,'eventDetails'])->name('eventdetails');
     Route::get('/allevents',  [EventController::class,'allEvents'])->name('allevents');
+    Route::post('/joinlist',  [EventController::class,'joinEvents'])->name('joinlist');
 });
 
 Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');

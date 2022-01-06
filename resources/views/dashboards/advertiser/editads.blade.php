@@ -8,6 +8,29 @@
             <h1 class="content_header">Update {{ $ads->id_ads }}</h1>
         </div>
     </div>
+    @if($ads->status == 'rejected' or $ads->reason != null)
+
+    <div class="accordion mx-3 " id="accordionReasons">
+        <div class="card">
+        <div class="card-header bg-teal p-3" id="reason">
+          <h2 class="mb-0">
+            <button class="btn bg-teal text-left" type="button" data-toggle="collapse" data-target="#adsReason" aria-expanded="false" aria-controls="adsReason">
+              Reject's reason
+            </button>
+          </h2>
+        </div>
+    
+        <div id="adsReason" class="collapse show" aria-labelledby="reason" data-parent="#accordionReasons">
+          <div class="card-body  p-3">
+            {{$ads->reason}}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    @endif
+    <br>
     <div class="container">
         <form action="{{ route('advertiser.updateAds', $ads->id_ads) }}" method="POST"
             class="form-horizontal" enctype="multipart/form-data">
@@ -97,16 +120,15 @@
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
 
-                                    @if($ads->status == 'pending' || $ads->status == 'verified')
-                                        <button class="btn btn-success text-right border rounded"
-                                        type="submit" name="action" value="update">Update</button>
-
-                                    @elseif($ads->status == 'draft')
+                                    @if($ads->status == 'draft')
                                         <button class="btn btn-success text-right border rounded"
                                             type="submit" name="action" value="save">Save As Draft</button>
                                         <button class="btn btn-success text-right border rounded"
                                             type="submit" name="action" value="submit">Verify</button>
 
+                                    @else
+                                        <button class="btn btn-success text-right border rounded"
+                                        type="submit" name="action" value="update">Update</button>
                                     @endif
                                 </div>
                             </div>

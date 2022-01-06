@@ -18,4 +18,5 @@ jobs:
             cd /var/www/ukmads
             git pull
             composer install
+            php artisan optimize
             echo 'dah siappp'
