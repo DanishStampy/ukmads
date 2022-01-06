@@ -14,7 +14,7 @@ class AdvertisementController extends Controller
     public function popularAds()
     {
         $newestAds = Advertisement::where('status', 'verified')->latest()->take(4)->get();
-        $popularAds = Advertisement::where('status', 'verified')->orderBy('reads', 'asc')->limit(3)->get();
+        $popularAds = Advertisement::where('status', 'verified')->orderBy('reads', 'desc')->limit(3)->get();
         return view('popularads',compact('popularAds', 'newestAds'));
     }
     public function adsDetails($id_ads)

@@ -8,6 +8,34 @@
             <h1 class="content_header">Update {{ $event->id_event }}</h1>
         </div>
     </div>
+    @if($event->status == 'rejected' or $event->reason != null)
+
+    <div class="accordion mx-3 " id="accordionReasons">
+        <div class="card">
+        <div class="card-header bg-teal p-3" id="reason">
+          <h2 class="mb-0">
+            <button class="btn bg-teal text-left" type="button" data-toggle="collapse" data-target="#eventReason" aria-expanded="false" aria-controls="eventReason">
+              Reject's reason
+            </button>
+          </h2>
+        </div>
+    
+        <div id="eventReason" class="collapse show" aria-labelledby="reason" data-parent="#accordionReasons">
+          <div class="card-body  p-3">
+            @if($event->reason == null)
+                There's no reason. Maybe there is some mistake, please update again so we can verify.
+            @else
+            {{$event->reason}}
+            @endif
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    @endif
+    <br>
+
     <div class="container">
         <form action="{{ route('advertiser.updateEvent', $event->id_event) }}" method="POST"
             class="form-horizontal" enctype="multipart/form-data">
@@ -102,30 +130,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form_group">
-                                        <input id="join" type="text" class="form_input" name="join" placeholder=" "
-                                            value="{{ $event->join }}" disabled>
-                                        <label for="join" class="form_label">Join</label>
-                                        <span class="text-danger">@error('join'){{ $message }}@enderror</span>
-                                    </div>
-                                </div>
-                            </div>
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    
-                                    @if($event->status == 'pending' || $event->status == 'verified')
-                                        <button class="btn btn-success text-right border rounded"
-                                        type="submit" name="action" value="update">Update</button>
 
-                                    @elseif($event->status == 'draft')
+                                    @if($event->status == 'draft')
                                         <button class="btn btn-success text-right border rounded"
                                             type="submit" name="action" value="save">Save As Draft</button>
                                         <button class="btn btn-success text-right border rounded"
                                             type="submit" name="action" value="submit">Verify</button>
-
+                                    @else
+                                        <button class="btn btn-success text-right border rounded"
+                                            type="submit" name="action" value="update">Update</button>
                                     @endif
                                 </div>
                             </div>
