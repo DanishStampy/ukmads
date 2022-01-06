@@ -11,7 +11,7 @@ class EventController extends Controller
     public function popularEvents()
     {
         $newestEvent = Event::where('status', 'verified')->latest()->take(4)->get();
-        $popularEvent = Event::where('status', 'verified')->orderBy('join', 'asc')->limit(3)->get();
+        $popularEvent = Event::where('status', 'verified')->orderBy('join', 'desc')->limit(3)->get();
         
         return view('popularevent',compact('popularEvent', 'newestEvent'));
         
