@@ -70,8 +70,22 @@
 
                 @if($event->status == 'rejected')
                     <div class="card-footer" style="padding-top: 20px">
-                        <h4>&nbsp;</h4>
+                        <div class="row ">
+                            <a type="button" data-toggle="modal" data-target="#detailevent"
+                                    data-event="{{ base64_encode($event->toJson()) }}" class="mx-5 btn btn-block bg-olive">
+                                <i class="fas fa-info"></i> Details
+                            </a>
+                        </div>
                         <div class="row">
+                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a href="{{ route("advertiser.editevent", $event->id_event) }}"
+                                        class="btn btn-app bg-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
+                            </div>
+
                             <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
@@ -81,19 +95,14 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12 col-xs-12">
-                                <div class="description-block">
-                                    <a data-toggle="modal" data-target="#detailevent"
-                                        data-event="{{ base64_encode($event->toJson()) }}" class="btn btn-app bg-olive">
-                                        <i class="fas fa-info"></i> Details
-                                    </a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 @else
                     <div class="card-footer" style="padding-top: 20px">
-                        <h4 class="text-center">&nbsp;Join : {{ $event->join }}</h4>
+                        <div class="row justify-content-center mb-2">
+                            <h4 class="text-center">Join : {{ $event->join }}</h4>
+                        </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
@@ -126,7 +135,7 @@
     <div class="modal fade .col-12 .col-md-8" id="detailevent" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
+            <div class="modal-content" >
                 <div class="row justify-content-around align-self-center">
                     <div class="card" style="margin-top: 30px">
                         <img class="img-fluid" id="eventPic"
@@ -240,6 +249,7 @@
 @endif
 {{-- END of DELETE confirmation modal --}}
 
+<br>
 {{-- Pagination --}}
 <div class="d-flex justify-content-center">
     {{ $events->links() }}
@@ -316,7 +326,10 @@
                 $("#eventOrganizer").val(data.organizer);
                 $("#eventContact").val(data.contact);
                 $("#eventDesc").val(data.description);
-                $("#eventReason").val(data.reason);
+                
+                if(data.reason != null){
+                    $("#eventReason").val(data.reason);
+                }
 
             })
         });

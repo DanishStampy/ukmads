@@ -62,65 +62,70 @@
                         @endif
 
                     </div>
-
-                    <img class="card-img-top" src="{{ asset("img/".$ad->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:300px;object-fit: cover">
-
-                    @if($ad->status == 'rejected')
-                        <div class="card-footer" style="padding-top: 20px">
-                            <h4>&nbsp;</h4>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-xs-12 border-right">
-                                    <div class="description-block">
-                                        <a data-toggle="modal" data-target="#Delete"
-                                            data-ads="{{ base64_encode($ad->toJson()) }}"
-                                            class="btn btn-app bg-danger">
-                                            <i class="fas fa-trash-alt"></i> Delete
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 col-xs-12">
-                                    <div class="description-block">
-                                        <a data-toggle="modal" data-target="#detailads"
-                                            data-ads="{{ base64_encode($ad->toJson()) }}"
-                                            class="btn btn-app bg-olive">
-                                            <i class="fas fa-info"></i> Details
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-
-                        <div class="card-footer" style="padding-top: 20px">
-                            <h4 class="text-center">&nbsp;Viewers : {{ $ad->reads }}</h4>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-12 col-xs-12 border-right">
-                                    <div class="description-block">
-                                        <a href="{{ route("advertiser.editads", $ad->id_ads) }}"
-                                            class="btn btn-app bg-warning">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-12 col-xs-12">
-                                    <div class="description-block">
-                                        <a data-toggle="modal" data-target="#Delete"
-                                            data-ads="{{ base64_encode($ad->toJson()) }}"
-                                            class="btn btn-app bg-danger">
-                                            <i class="fas fa-trash-alt"></i> Delete
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </div>
+
+                <img class="card-img-top" src="{{ asset("img/".$ad->picture) }}"
+                    onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                    style="height:300px;object-fit: cover">
+
+                @if($ad->status == 'rejected')
+                    <div class="card-footer" style="padding-top: 20px">
+                        <div class="row ">
+                            <a type="button" data-toggle="modal" data-target="#detailads"
+                                    data-ads="{{ base64_encode($ad->toJson()) }}" class="mx-5 btn btn-block bg-olive">
+                                <i class="fas fa-info"></i> Details
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a href="{{ route("advertiser.editads", $ad->id_ads) }}"
+                                        class="btn btn-app bg-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a data-toggle="modal" data-target="#Delete"
+                                        data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+
+                    <div class="card-footer" style="padding-top: 20px">
+                        <div class="row justify-content-center mb-2">
+                            <h4 class="text-center">Viewers : {{ $ad->reads }}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a href="{{ route("advertiser.editads", $ad->id_ads) }}"
+                                        class="btn btn-app bg-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-xs-12">
+                                <div class="description-block">
+                                    <a data-toggle="modal" data-target="#Delete"
+                                        data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
         @endforeach
     @endif
-
+    
     {{-- Detail confirmation modal --}}
     <div class="modal fade .col-12 .col-md-8" id="detailads" tabindex="-1" role="dialog"
         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
@@ -235,6 +240,7 @@
 @endif
 {{-- END of DELETE confirmation modal --}}
 
+<br>
 {{-- Pagination --}}
 <div class="d-flex justify-content-center">
     {{ $ads->links() }}

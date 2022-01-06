@@ -25,7 +25,7 @@
                                 {{ $item->description }}</p>
                             <div class="row justify-content-center">
                                 <a href="{{ route("advertiser.editads", $item->id_ads) }}"
-                                    class="btn btn-app bg-indigo">
+                                    class="btn btn-app bg-warning w-100 mr-2">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </div>
@@ -38,7 +38,7 @@
     </div>
     {{-- Pagination --}}
     <div class="d-flex justify-content-end">
-        {{ $ads->links() }}
+        {{ $ads->appends(['events' => $events->currentPage()])->links() }}
     </div>
 </div>
 <hr>
@@ -64,9 +64,9 @@
                             <p class="card-text"
                                 style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
                                 {{ $event->description }}</p>
-                            <div class="w-100">
+                            <div class="row justify-content-center">
                                 <a href="{{ route("advertiser.editevent", $event->id_event) }}"
-                                    class="btn btn-app bg-warning" type='button'>
+                                    class="btn btn-app bg-warning w-100 mr-2" type='button'>
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </div>
@@ -79,7 +79,7 @@
     </div>
     {{-- Pagination --}}
     <div class="d-flex justify-content-end">
-        {{ $events->links() }}
+        {{ $events->appends(['ads' => $ads->currentPage()])->links() }}
     </div>
 </div>
 @endsection
