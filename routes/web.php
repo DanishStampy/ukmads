@@ -23,12 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
+// Testing view
+Route::get('/testview', fn()=> view('testview'))->name('testview');
+
+
+// Ads view
 Route::group(['as' => 'advertisement.'], function(){
     Route::get('/ads', [AdvertisementController::class,'popularAds'])->name('ads');
     Route::get('/adsdetails/{id_ads}', [AdvertisementController::class,'adsDetails'])->name('adsdetails');
     Route::get('/allads', [AdvertisementController::class,'allAds'])->name('allads');
 });
 
+// Event view
 Route::group(['as' => 'event.'], function(){
     Route::get('/event', [EventController::class,'popularEvents'])->name('events');
     Route::get('/eventdetails/{id_event}', [EventController::class,'eventDetails'])->name('eventdetails');

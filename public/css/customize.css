@@ -6,6 +6,7 @@
   color: #fff;
 }
 
+/* Logo loading page animation */
 .loaderpage{
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -20,7 +21,6 @@
   z-index: 9999;
 }
 
-/* Logo loading page animation */
 .shake-bottom {
 	animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite alternate-reverse both;
 }

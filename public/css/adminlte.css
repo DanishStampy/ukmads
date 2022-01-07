@@ -15336,8 +15336,9 @@ body.text-sm .control-sidebar {
 }
 
 .navbar-indigo {
-  background-color: #6610f2;
+  background-color: #290576;
   color: #fff;
+  height: 80px;
 }
 .navbar-indigo.navbar-light .form-control-navbar::-moz-placeholder {
   color: rgba(52, 58, 64, 0.8);
@@ -38366,8 +38367,27 @@ blockquote.quote-gray-dark h6 {
   color: #fff;
 }
 
+.bg-reverse-fuchsia {
+  background-color: #fff !important;
+}
+.bg-reverse-fuchsia,
+.bg-reverse-fuchsia > a {
+  color: #7189ff !important;
+}
+.bg-reverse-fuchsia.btn:hover,
+.bg-reverse-fuchsia.btn:hover > a {
+  border-color: #fff;
+  color: #7189ff;
+  background-color: #fff;
+}
+.bg-reverse-fuchsia.btn:not(:disabled):not(.disabled):active, .bg-reverse-fuchsia.btn:not(:disabled):not(.disabled).active, .bg-reverse-fuchsia.btn:active, .bg-reverse-fuchsia.btn.active {
+  background-color: #fff !important;
+  border-color: #7189ff;
+  color: #fff;
+}
+
 .bg-fuchsia {
-  background-color: #f012be !important;
+  background-color: #7189ff !important;
 }
 .bg-fuchsia,
 .bg-fuchsia > a {
