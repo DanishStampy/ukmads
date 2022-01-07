@@ -9,6 +9,19 @@
         </div>
     </div>
 </div>
+
+@if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show my-3">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+        @foreach ($errors->all() as $err)
+            <li class="">{{$err}}</li>
+        @endforeach
+    </div>
+@endif
+
 <div class="container">
     <form action="{{ route('advertiser.uploadAds') }}" method="POST" class="form-horizontal"
         enctype="multipart/form-data">
@@ -39,10 +52,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form_group">
-                                    <input id="name" type="text" class="form_input" name="name" placeholder=" "
+                                    <input id="name" type="text" class="form_input is-invalid" name="name" placeholder=" "
                                         autofocus value="">
                                     <label for="name" class="form_label">Name</label>
-                                    <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -50,7 +62,6 @@
                                     <input id="product" type="text" class="form_input" name="product" placeholder=" "
                                         value="">
                                     <label for="product" class="form_label">Product Type</label>
-                                    <span class="text-danger">@error('product'){{ $message }}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -58,7 +69,6 @@
                                     <input id="price" type="number" min="0.00" step="0.01" class="form_input"
                                         name="price" placeholder=" " value="">
                                     <label for="price" class="form_label">Price</label>
-                                    <span class="text-danger">@error('price'){{ $message }}@enderror</span>
                                 </div>
                             </div>
 
@@ -67,15 +77,13 @@
                                     <input id="seller" type="text" class="form_input" name="seller" placeholder=" "
                                         value="">
                                     <label for="seller" class="form_label">Seller Name</label>
-                                    <span class="text-danger">@error('seller'){{ $message }}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form_group">
                                     <input id="contact" type="text" class="form_input" name="contact"
-                                        placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})" value="">
+                                        placeholder=" " value="">
                                     <label for="contact" class="form_label">Contact Number</label>
-                                    <span class="text-danger">@error('contact'){{ $message }}@enderror</span>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -83,7 +91,6 @@
                                     <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
                                         value="">
                                     <label for="desc" class="form_label">Description</label>
-                                    <span class="text-danger">@error('desc'){{ $message }}@enderror</span>
                                 </div>
                             </div>
                         </div>

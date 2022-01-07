@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Advertiser;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\Event;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -55,6 +56,15 @@ class AdvertiserController extends Controller
 
             $ads->picture = $imgname;
         }
+
+        $request->validate([
+            'name' => 'required',
+            'product' => 'required',
+            'price' => 'required|max:999',
+            'seller' => 'required',
+            'contact' => ['required', new PhoneNumber],
+            'desc' => 'required'
+        ]);
 
         $ads->creator_email = Auth::user()->email;
         $ads->name = $request->name;
@@ -155,6 +165,15 @@ class AdvertiserController extends Controller
 
             $ads->picture = $imgname;
         }
+
+        $request->validate([
+            'name' => 'required',
+            'product' => 'required',
+            'price' => 'required|max:999',
+            'seller' => 'required',
+            'contact' => ['required', new PhoneNumber],
+            'desc' => 'required'
+        ]);
 
         $ads->creator_email = Auth::user()->email;
         $ads->name = $request->name;

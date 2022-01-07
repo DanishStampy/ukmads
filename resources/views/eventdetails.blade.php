@@ -19,6 +19,18 @@
     </button>
 </div>
 @endif
+
+@if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show my-3">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+        @foreach ($errors->all() as $err)
+            <li class="">{{$err}}</li>
+        @endforeach
+    </div>
+@endif
 <!-- Default box -->
 <div class="card card-solid">
     <div class="card-body">
@@ -43,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Time:</label>
-                                <input type="" class="form-control" id="exampleInputPassword1" value="{{$details->time}}" disabled>
+                                <input type="" class="form-control" id="exampleInputPassword1" value="{{date('g:i a', strtotime($details->time))}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Organizer:</label>
@@ -55,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Date:</label>
-                                <input type="" class="form-control" id="exampleInputPassword1" value="{{$details->date}}" disabled>
+                                <input type="" class="form-control" id="exampleInputPassword1" value="{{date("d-m-Y", strtotime($details->date))}}" disabled>
                             </div>
 
                         </div>

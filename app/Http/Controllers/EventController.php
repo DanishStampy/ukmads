@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\JoinMail;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,11 +19,13 @@ class EventController extends Controller
 
         return view('popularevent', compact('popularEvent', 'newestEvent'));
     }
+    
     public function eventDetails($id_event)
     {
         $details = Event::find($id_event);
         return view('eventdetails', compact('details'));
     }
+
     public function allEvents()
     {
         $event = Event::where('status', 'verified')->paginate(8);
@@ -32,6 +35,12 @@ class EventController extends Controller
     public function joinEvents(Request $request)
     {
         $list = new JoinList();
+
+        $request->validate([
+            'guest_email' => 'required',
+            'guest_name' => 'required',
+            'guest_contact' => ['required', new PhoneNumber],
+        ]);
 
         $id = $request->id_event;
         $email = $request->guest_email;
@@ -51,6 +60,7 @@ class EventController extends Controller
 
         if(JoinList::where('guest_email', '=', $email)->where('id_event', '=', $id)->exists()){
             return redirect()->back()->with('failed_submit', 'The email already submitted. Please enter another email.');
+            
         }else{
             Mail::to($email)->send(new JoinMail($details));
 
