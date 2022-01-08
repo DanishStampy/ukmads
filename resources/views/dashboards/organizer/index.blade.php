@@ -9,15 +9,15 @@
     <div class="col-lg-12 col-12">
         <div class="small-box bg-secondary">
             <div class="inner">
-                <p>Total created ads:</p>
+                <p>Total created events:</p>
                 <h3>
-                    {{ $ads->count() }}
+                    {{ $event->count() }}
                 </h3>
             </div>
             <div class="icon">
-                <i class="fas fa-bullhorn"></i>
+              <i class="fas fa-calendar-week"></i>
             </div>
-            <a href="{{ route('advertiser.manageads') }}" class="small-box-footer">
+            <a href="{{ route('organizer.manageads') }}" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
@@ -29,7 +29,7 @@
             <div class="info-box-content">
                 <span class="info-box-text">Total Draft</span>
                 <span class="info-box-number">
-                    {{ $ads->where('status','draft')->count() }}
+                    {{ $event->where('status','draft')->count() }}
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -43,7 +43,7 @@
             <div class="info-box-content">
                 <span class="info-box-text">Total Verified</span>
                 <span class="info-box-number">
-                    {{ $ads->where('status','verified')->count() }}
+                    {{ $event->where('status','verified')->count() }}
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -57,7 +57,7 @@
             <div class="info-box-content">
                 <span class="info-box-text">Total Pending</span>
                 <span class="info-box-number">
-                    {{ $ads->where('status','pending')->count() }}
+                    {{ $event->where('status','pending')->count() }}
                 </span>
             </div>
             <!-- /.info-box-content -->
@@ -71,7 +71,7 @@
             <div class="info-box-content">
                 <span class="info-box-text">Total Rejected</span>
                 <span class="info-box-number">
-                    {{ $ads->where('status','rejected')->count() }}
+                    {{ $event->where('status','rejected')->count() }}
                 </span>
             </div>
             <!-- /.info-box-content -->

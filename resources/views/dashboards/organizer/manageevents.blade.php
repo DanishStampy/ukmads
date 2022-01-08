@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
-                                    <a href="{{ route("advertiser.editevent", $event->id_event) }}"
+                                    <a href="{{ route("organizer.editevent", $event->id_event) }}"
                                         class="btn btn-app bg-warning">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
@@ -106,7 +106,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
-                                    <a href="{{ route("advertiser.editevent", $event->id_event) }}"
+                                    <a href="{{ route("organizer.editevent", $event->id_event) }}"
                                         class="btn btn-app bg-warning">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
@@ -236,7 +236,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
                     <form method="POST" class="form-horizontal"
-                        action="{{ route("advertiser.deleteEvent") }}" enctype="multipart/form-data">
+                        action="{{ route("organizer.deleteEvent") }}" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" value="" name="id_event" id="eventHid">
                         <button type="submit" id="btnDelete" value="delete" name="type"
@@ -268,7 +268,7 @@
                     <div class="col-sm-12">
                         <div class="description-block">
                             <a class="btn btn-app bg-info"
-                                href="{{ route("advertiser.createevents") }}">
+                                href="{{ route("organizer.createevents") }}">
                                 <i class="fas fa-feather"></i> Create New
                             </a>
                         </div>
