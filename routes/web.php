@@ -27,7 +27,9 @@ Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
 // Search
-Route::get('/search',[SearchController::class,'search'])->name('web.search');
+//Route::get('/search',[SearchController::class,'search'])->name('web.search');
+
+Route::get('/searchads', [SearchController::class, 'searchads'])->name('web.searchads');
 
 // Testing view
 Route::get('/testview', fn()=> view('testview'))->name('testview');
@@ -112,6 +114,8 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
     Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
 
     Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
+
+    
 
     //Draft
     Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');

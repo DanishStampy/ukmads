@@ -40,7 +40,7 @@
                 <i class="fas fa-search"></i>
             </a>
             <div class="navbar-search-block">
-                <form class="form" method="GET" action="{{ route('web.search')}}">
+                <form class="form" method="GET" action="{{ route('web.searchads')}}">
                     <div class="input-group input-group-sm">
                         <input class="form-control form-control-navbar" type="search" name="search" placeholder="Search"
                             aria-label="Search">

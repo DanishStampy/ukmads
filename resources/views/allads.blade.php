@@ -1,5 +1,4 @@
 @extends('layouts.viewer')
-@extends('layouts.header')
 
 @section('title','All Advertisement')
 

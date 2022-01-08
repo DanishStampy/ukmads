@@ -17,7 +17,7 @@
             <div class="icon">
               <i class="fas fa-calendar-week"></i>
             </div>
-            <a href="{{ route('organizer.manageads') }}" class="small-box-footer">
+            <a href="{{ route('organizer.manageevents') }}" class="small-box-footer">
                 More info <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>

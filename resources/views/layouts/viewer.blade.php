@@ -36,7 +36,7 @@
     {{-- Icon --}}
     <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
 </head>
-
+@extends('layouts.header')
 <body class="layout-top-nav layout-navbar-fixed" style="height: auto;">
     <div class="wrapper">
 

@@ -39,9 +39,7 @@
                             style="width: 450px; height: 450px;">
                     </div>
                     <div class="card-header">
-                        <br>
                         <h5 class="d-lg-flex justify-content-lg-center">Upload Picture</h5>
-                        <br>
                     </div>
                 </div>
             </div>
@@ -65,7 +63,7 @@
                                         value=""> --}}
                                         <select id="product" name="product" class="form_input">
                                             <option value="Product">Product</option>
-                                            <option value="Food">Food</option>
+                                            <option value="Food">Food & Beverages</option>
                                             <option value="Rental">Rental</option>
                                         </select>
                                     <label for="product" class="form_label">Product Type</label>
@@ -97,7 +95,7 @@
                                 <div class="form">
                                     {{-- <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
                                         value=""> --}}
-                                    <textarea name="desc" class="form_input" id="desc" rows="5" cols="10"></textarea>
+                                    <textarea name="desc" class="form_input" id="desc" style="min-height: 100px"></textarea>
                                     <label for="desc" class="form_label">Description</label>
                                 </div>
                             </div>

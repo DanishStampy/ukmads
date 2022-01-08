@@ -130,7 +130,7 @@
                                     <div class="form">
                                         {{-- <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
                                             value="{{ $ads->description }}"> --}}
-                                        <textarea name="desc" class="form_input" id="desc" rows="5" cols="10">{{$ads->description}}</textarea>
+                                        <textarea name="desc" class="form_input" id="desc" style="min-height: 100px">{{$ads->description}}</textarea>
                                         <label for="desc" class="form_label">Description</label>
                                         
                                     </div>

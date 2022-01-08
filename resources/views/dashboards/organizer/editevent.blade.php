@@ -125,7 +125,7 @@
                                     <div class="form">
                                         {{-- <input id="descE" type="text" class="form_input" name="descE" placeholder=" "
                                             value="{{ $event->description }}"> --}}
-                                        <textarea name="descE" class="form_input" id="descE" rows="5" cols="10">{{ $event->description }}</textarea>
+                                        <textarea name="descE" class="form_input" id="descE" style="min-height: 100px">{{ $event->description }}</textarea>
                                         <label for="descE" class="form_label">Description</label>
                                         <span class="text-danger">@error('descE'){{ $message }}@enderror</span>
                                     </div>
