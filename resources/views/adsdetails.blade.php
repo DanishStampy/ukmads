@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.viewer')
 
 @section('title','Advertisement Details')
 
@@ -43,12 +43,12 @@
                                 <label for="exampleInputPassword1">Description:</label>
                                 <input type="text" class="form-control" id="exampleInputPassword1" value="{{$details->description}}" disabled>
                             </div>
-
                         </div>
                         <!-- /.card-body -->
-
-
                     </form>
+                </div>
+                <div class="d-inline float-right mt-3" style="color: #bfbfbf">
+                    <i class="fas fa-eye"></i> {{$details->reads}}
                 </div>
             </div>
         </div>

@@ -30,6 +30,8 @@ class RedirectIfAuthenticated
                 return redirect()->route('admin.pendingads');
             }else if(Auth::guard($guard)->check() && Auth::user()->role == "advertiser"){
                 return redirect()->route('advertiser.dashboard');
+            }else if(Auth::guard($guard)->check() && Auth::user()->role == "organizer"){
+                return redirect()->route('organizer.dashboard');
             }else if(Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }

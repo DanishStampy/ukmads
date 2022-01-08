@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.viewer')
 
 @section('title','About UKMads')
 @section('content')
@@ -38,8 +38,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <h2 class="lead mt-2"><b>Nurfakhrullah</b></h2>
-                                <p class="text-muted text-sm"><b>About: </b> Hentai Expert / Documenter / Trap Leader
-                                </p>
+                                <p class="text-muted text-sm"><b>About: </b> I love meat. </p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
                                         Address: Matrikulasi Johor</li>
@@ -55,8 +54,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="https://www.instagram.com/nurfa_krul/" target="_blank" class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                            <a href="https://github.com/NurfaNuva" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60196965841" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/nurfa_krul/" target="_blank" class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -71,7 +78,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <h2 class="lead mt-2"><b>Putera Niq Aziz</b></h2>
-                                <p class="text-muted text-sm"><b>About: </b> UI/UX Designer / Valorant Pro Player </p>
+                                <p class="text-muted text-sm"><b>About: </b> Valorant SEA last hope </p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
                                         Address: Kuala Lumpur</li>
@@ -87,8 +94,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="https://www.instagram.com/niqaziz_/" target="_blank" class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                            <a href="https://github.com/niqaziz17" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60142684528" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/niqaziz_/" target="_blank" class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -103,8 +118,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <h2 class="lead mt-2"><b>Muhammad Syazili</b></h2>
-                                <p class="text-muted text-sm"><b>About: </b> Cat Lover / Battlefield 2042 Part-timer
-                                </p>
+                                <p class="text-muted text-sm"><b>About: </b> Battlefield 2042 Part-timer </p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
                                         Address: Melaka</li>
@@ -120,9 +134,17 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
+                            <a href="https://github.com/syazilijuhari" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60136660566" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
                             <a href="https://www.instagram.com/syazilijuhari/" target="_blank"
-                                class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                                class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -137,7 +159,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <h2 class="lead mt-2"><b>Muhammad Danish</b></h2>
-                                <p class="text-muted text-sm"><b>About: </b> Weeb / Hentai Expert / Candice's BF </p>
+                                <p class="text-muted text-sm"><b>About: </b> Manga reader </p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
                                         Address: Ipoh, Perak</li>
@@ -153,8 +175,16 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
-                            <a href="https://www.instagram.com/danish_nish/" target="_blank" class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                            <a href="https://github.com/ViceNish" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+601118501474" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/danish_nish/" target="_blank" class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>
@@ -169,7 +199,7 @@
                         <div class="row">
                             <div class="col-7">
                                 <h2 class="lead mt-2"><b>Danish Irfan Shah</b></h2>
-                                <p class="text-muted text-sm"><b>About: </b> Bread Lover / Your GF's Lover </p>
+                                <p class="text-muted text-sm"><b>About: </b> Love to eat. Not you. </p>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                     <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
                                         Address: Banting, Selangor</li>
@@ -185,9 +215,17 @@
                     </div>
                     <div class="card-footer">
                         <div class="text-right">
+                            <a href="https://github.com/DanishStampy" target="_blank" class="btn btn-sm bg-dark">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            
+                            <a href="https://api.WhatsApp.com/send?phone=+60123631097" target="_blank" class="btn btn-sm bg-teal">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+
                             <a href="https://www.instagram.com/danishstampy/" target="_blank"
-                                class="btn btn-sm bg-teal">
-                                <i class="fab fa-instagram"></i> View Profile
+                                class="btn btn-sm bg-cyan">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </div>
                     </div>

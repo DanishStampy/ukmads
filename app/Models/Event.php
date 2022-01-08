@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 
 class Event extends Model
 {
@@ -31,13 +32,21 @@ class Event extends Model
 
         static::creating(function ($events) {
             if (!$events->id_event) {
-                $latest = Event::latest('id_event')->first();
-                $count = 1;
+                while (true) {
+                    try {
+                        $latest = Event::latest('id_event')->first();
+                        $uid=0;
 
-                if ($latest!=null&&$latest->exists()) {
-                    $count = substr($latest->id_event, 2)+1;
+                        if ($latest != null && $latest->exists()) {
+                            $uid = random_int(1000, 9999);
+                        }
+
+                        $events->id_event = 'EV' . $uid;
+                        break;
+                    } catch (QueryException $exception) {
+                        continue;
+                    }
                 }
-                $events->id_event = 'EV' . $count;
                 // $user->save();
             }
         });

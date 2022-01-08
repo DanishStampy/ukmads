@@ -1,10 +1,36 @@
-@extends('layouts.master')
+@extends('layouts.viewer')
 
 @section('title','Event Details')
 
 @section('content')
 
+@if(Session::has('success_submit'))
+<div class="alert alert-success alert-dismissible fade show my-3">
+    {{ Session::get('success_submit') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@elseif(Session::has('failed_submit'))
+<div class="alert alert-danger alert-dismissible fade show my-3">
+    {{ Session::get('failed_submit') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 
+@if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show my-3">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+        @foreach ($errors->all() as $err)
+            <li class="">{{$err}}</li>
+        @endforeach
+    </div>
+@endif
 <!-- Default box -->
 <div class="card card-solid">
     <div class="card-body">
@@ -29,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Time:</label>
-                                <input type="" class="form-control" id="exampleInputPassword1" value="{{$details->time}}" disabled>
+                                <input type="" class="form-control" id="exampleInputPassword1" value="{{date('g:i a', strtotime($details->time))}}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Organizer:</label>
@@ -41,7 +67,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Date:</label>
-                                <input type="" class="form-control" id="exampleInputPassword1" value="{{$details->date}}" disabled>
+                                <input type="" class="form-control" id="exampleInputPassword1" value="{{date("d-m-Y", strtotime($details->date))}}" disabled>
                             </div>
 
                         </div>
@@ -54,19 +80,21 @@
                 <div class="card card-primary">
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form>
+                    <form method="POST" action="{{ route('event.joinlist')}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="card-body">
+                            <input type="hidden" name="id_event" value="{{$details->id_event}}" />
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email:</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" >
+                                <label for="email">Email:</label>
+                                <input type="email" name="guest_email" class="form-control" id="email" >
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Name:</label>
-                                <input type="" class="form-control" id="exampleInputPassword1" >
+                                <label for="name">Name:</label>
+                                <input type="text" name="guest_name" class="form-control" id="name" >
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Contact Number: </label>
-                                <input type="" class="form-control" id="exampleInputPassword1" >
+                                <label for="contact">Contact Number: </label>
+                                <input type="text" name="guest_contact" class="form-control" id="contact" >
                             </div>
 
                         </div>

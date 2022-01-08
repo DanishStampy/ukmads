@@ -13,6 +13,9 @@
 	{{-- Font Awesome 5 --}}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
+	 {{-- Icon --}}
+	 <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
+
 </head>
 <body class="my-register-page">
 	<section class="h-100">
@@ -61,6 +64,9 @@
 								</div>
 								<div class="my-3 text-center">
 									Already have an account? <a class="link" href="{{route('login')}}">Login</a>
+								</div>
+								<div class="my-3 text-center">
+									Are you representative of an organization? <a class="link" href="{{route('org.form')}}">Sign up here</a>
 								</div>
 							</form>
 						</div>
