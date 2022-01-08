@@ -85,8 +85,14 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
-                                        <input id="product" type="text" class="form_input" name="product"
-                                            placeholder=" " value="{{ $ads->type }}">
+                                        {{-- <input id="product" type="text" class="form_input" name="product"
+                                            placeholder=" " value="{{ $ads->type }}"> --}}
+                                            <select id="product" name="product" class="form_input" value="{{ $ads->type }}">
+                                                {{-- <option value="{{ $ads->type }}" >{{ $ads->type }}</option> --}}
+                                                <option value="Product" <?php if($ads->type=="Product") echo "selected" ?>>Product</option>
+                                                <option value="Food" <?php if($ads->type=="Food") echo "selected" ?>>Food</option>
+                                                <option value="Rental" <?php if($ads->type=="Rental") echo "selected" ?>>Rental</option>
+                                            </select>
                                         <label for="product" class="form_label">Product Type</label>
                                         
                                     </div>
@@ -121,9 +127,10 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form_group">
-                                        <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
-                                            value="{{ $ads->description }}">
+                                    <div class="form">
+                                        {{-- <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
+                                            value="{{ $ads->description }}"> --}}
+                                        <textarea name="desc" class="form_input" id="desc" rows="5" cols="10">{{$ads->description}}</textarea>
                                         <label for="desc" class="form_label">Description</label>
                                         
                                     </div>

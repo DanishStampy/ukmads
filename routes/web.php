@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Organizer\OrganizerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
+
+// Search
+Route::get('/search',[SearchController::class,'search'])->name('web.search');
 
 // Testing view
 Route::get('/testview', fn()=> view('testview'))->name('testview');
