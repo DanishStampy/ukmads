@@ -1,16 +1,44 @@
 @extends('layouts.master')
-@section('title','My Contents')
+@section('title','Edit Event')
 @section('content')
 
 <div class="container-fluid">
     <div class="row">
         <div class="col mt-3">
-            <h1 class="content_header">Create Events</h1>
+            <h1 class="content_header">Update {{ $event->id_event }}</h1>
         </div>
     </div>
+    @if($event->status == 'rejected' or $event->reason != null)
+
+    <div class="accordion mx-3 " id="accordionReasons">
+        <div class="card">
+        <div class="card-header bg-teal p-3" id="reason">
+          <h2 class="mb-0">
+            <button class="btn bg-teal text-left" type="button" data-toggle="collapse" data-target="#eventReason" aria-expanded="false" aria-controls="eventReason">
+              Reject's reason
+            </button>
+          </h2>
+        </div>
+    
+        <div id="eventReason" class="collapse show" aria-labelledby="reason" data-parent="#accordionReasons">
+          <div class="card-body  p-3">
+            @if($event->reason == null)
+                There's no reason. Maybe there is some mistake, please update again so we can verify.
+            @else
+            {{$event->reason}}
+            @endif
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    @endif
+    <br>
+
     <div class="container">
-        <form action="{{ route('advertiser.uploadEvents') }}" method="POST" class="form-horizontal"
-            enctype="multipart/form-data">
+        <form action="{{ route('organizer.updateEvent', $event->id_event) }}" method="POST"
+            class="form-horizontal" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -21,7 +49,7 @@
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
-                                src="{{ asset('img/noimage.jpg') }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                                src="/img/{{ $event->picture }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" name="imageSave"
                                 style="width: 450px; height: 450px;">
                         </div>
                         <div class="card-header">
@@ -39,7 +67,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="name" type="text" class="form_input" name="name" placeholder=" "
-                                            autofocus value="">
+                                            autofocus value="{{ $event->name }}">
                                         <label for="name" class="form_label">Name</label>
                                         <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                     </div>
@@ -49,7 +77,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="location" type="text" class="form_input" name="location"
-                                            placeholder=" " value="">
+                                            placeholder=" " value="{{ $event->location }}">
                                         <label for="location" class="form_label">Location</label>
                                         <span class="text-danger">@error('location'){{ $message }}@enderror</span>
                                     </div>
@@ -59,7 +87,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="time" type="time" class="form_input" name="time" placeholder=" "
-                                            value="">
+                                            value="{{ $event->time }}">
                                         <label for="time" class="form_label">Time</label>
                                         <span class="text-danger">@error('time'){{ $message }}@enderror</span>
                                     </div>
@@ -67,7 +95,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="date" type="date" class="form_input" name="date" placeholder=" "
-                                            value="">
+                                            value="{{ $event->date }}">
                                         <label for="date" class="form_label">Date</label>
                                         <span class="text-danger">@error('date'){{ $message }}@enderror</span>
                                     </div>
@@ -77,7 +105,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="org" type="text" class="form_input" name="org" placeholder=" "
-                                            value="">
+                                            value="{{ $event->organizer }}">
                                         <label for="org" class="form_label">Organizer</label>
                                         <span class="text-danger">@error('org'){{ $message }}@enderror</span>
                                     </div>
@@ -86,7 +114,7 @@
                                     <div class="form_group">
                                         <input id="contactE" type="text" class="form_input" name="contactE"
                                             placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
-                                            value="">
+                                            value="{{ $event->contact }}">
                                         <label for="contactE" class="form_label">Contact Number</label>
                                         <span class="text-danger">@error('contactE'){{ $message }}@enderror</span>
                                     </div>
@@ -96,7 +124,7 @@
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="descE" type="text" class="form_input" name="descE" placeholder=" "
-                                            avalue="">
+                                            value="{{ $event->description }}">
                                         <label for="descE" class="form_label">Description</label>
                                         <span class="text-danger">@error('descE'){{ $message }}@enderror</span>
                                     </div>
@@ -105,10 +133,16 @@
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    <button name="action" value="save" class="btn btn-primary text-right border rounded" type="submit"
-                                        style="margin-right: 10px;">Save As Draft</button>
-                                    <button name="action" value="verify" class="btn btn-success text-right border rounded"
-                                        type="submit">Verify</button>
+
+                                    @if($event->status == 'draft')
+                                        <button class="btn btn-success text-right border rounded"
+                                            type="submit" name="action" value="save">Save As Draft</button>
+                                        <button class="btn btn-success text-right border rounded"
+                                            type="submit" name="action" value="submit">Verify</button>
+                                    @else
+                                        <button class="btn btn-success text-right border rounded"
+                                            type="submit" name="action" value="update">Update</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>

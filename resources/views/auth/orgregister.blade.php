@@ -28,8 +28,8 @@
 					<div class="mt-4 px-2 cardx">
 						<div class="card-body">
 							<h2 class="card-title">Create a new account</h2>
-							<h6 class="card-subtitle mb-4 mt-2 text-muted">Use your google email to create new account</h6>
-							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('register') }}">
+							<h6 class="card-subtitle mb-4 mt-2 text-muted">Use your google email to create new organization account</h6>
+							<form method="POST" class="my-login-validation" autocomplete="off" action="{{ route('org.post') }}">
                 @csrf
 								<div class="form_group">
 									<input id="name" type="text" class="form_input" name="name" placeholder=" "  autofocus value="{{ old('name') }}">
@@ -38,9 +38,21 @@
 								</div>
 
 								<div class="form_group">
-									<input id="email" type="email" class="form_input" name="email"  placeholder=" " value="{{ old('email') }}">
+									<input id="email" type="email" class="form_input" name="email"  placeholder=" " value="">
 									<label for="email" class="form_label">E-Mail Address</label>
 									<span class="text-danger">@error('email'){{ $message }}@enderror</span>
+								</div>
+
+                <div class="form_group">
+									<input id="address" type="text" class="form_input" name="address"  placeholder=" " value="">
+									<label for="address" class="form_label">Address</label>
+									<span class="text-danger">@error('address'){{ $message }}@enderror</span>
+								</div>
+
+                <div class="form_group">
+									<input id="contact" type="text" class="form_input" name="contact"  placeholder=" " value="">
+									<label for="contact" class="form_label">Contact No.</label>
+									<span class="text-danger">@error('contact'){{ $message }}@enderror</span>
 								</div>
                       
 
@@ -64,9 +76,6 @@
 								</div>
 								<div class="my-3 text-center">
 									Already have an account? <a class="link" href="{{route('login')}}">Login</a>
-								</div>
-								<div class="my-3 text-center">
-									Are you representative of an organization? <a class="link" href="{{route('org.form')}}">Sign up here</a>
 								</div>
 							</form>
 						</div>

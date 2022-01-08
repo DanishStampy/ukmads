@@ -35,6 +35,8 @@ class LoginController extends Controller
             return route('admin.dashboard');
         }else if(Auth::user()->role == 'advertiser'){
             return route('advertiser.dashboard');
+        }else if(Auth::user()->role == 'organizer'){
+            return route('organizer.dashboard');
         }
     }
 

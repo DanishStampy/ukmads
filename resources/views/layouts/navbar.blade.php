@@ -1,6 +1,6 @@
 <nav class="main-header navbar navbar-expand-md navbar-dark navbar-indigo">
     <div class="container">
-        <a href="#" class="navbar-brand">
+        <a href="{{ url('/')}}" class="navbar-brand">
             <img src="{{ asset('img/ukmads-logo-background.png') }}" alt="UKMads Logo"
                 class="brand-image img-circle" style="opacity: .8;">
             <span class="brand-text font-weight-bold">UKMads</span>
