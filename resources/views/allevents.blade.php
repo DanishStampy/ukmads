@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.viewer')
 
 @section('title','All Events')
 

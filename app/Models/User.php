@@ -57,12 +57,14 @@ class User extends Authenticatable
                 while (true) {
                     try {
                         $latest = User::where('role', $user->role)->latest('user_id')->first();
-                        $uid = 0;
+
+                        $uid = 1000;
 
                         if ($latest != null && $latest->exists()) {
-                            $uid = random_int(1000, 9999);
+                            $uid = random_int(1001, 9999);
                         }
-                        $user->user_id = ($user->role === 'advertiser' ? 'S' : 'A') . $uid;
+                        $user->user_id = ($user->role !== 'admin' ? 'S' : 'A').$uid;
+
                         break;
 
                     } catch (QueryException $exception) {
