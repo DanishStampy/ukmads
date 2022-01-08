@@ -28,4 +28,4 @@ config/database.php
 !ukmads-logo.png
 !white.jpg
 !kfc.jpg
-
+!public/img/team/*
