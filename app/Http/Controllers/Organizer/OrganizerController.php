@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class OrganizerController extends Controller
 {
@@ -67,7 +68,7 @@ class OrganizerController extends Controller
         }
 
         $events->save();
-        return redirect()->route('organizer.manageevents')->with('success_events', $msg);
+        return redirect()->route('organizer.manageevents', ['status'=>'pending'])->with('success_events', $msg);
     }
 
     // Edit event
@@ -122,7 +123,7 @@ class OrganizerController extends Controller
 
         $event->save();
 
-        return redirect()->route('organizer.manageevents')->with('success_uploaded_events', $msg);
+        return redirect()->route('organizer.manageevents', ['status'=>'pending'])->with('success_uploaded_events', $msg);
     }
 
     //Delete Event
@@ -132,17 +133,18 @@ class OrganizerController extends Controller
         $event = Event::find($id_event);
         if ($event && File::exists(public_path("img/".$event->picture))) {
             File::delete(public_path("img/".$event->picture));
-            // unlink("img/".$event->picture);
         }
         $event->delete();
 
         return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');
     }
 
-    public function manageevents()
+    public function manageevents(Request $request)
     {
         $user_id = $this->getEmail();
-        $events = Event::where('status', '!=', 'draft')->where('creator_email', $user_id)->paginate(3);
+        $status = $request->input('status');
+        $events = Event::where('status', $status)->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(3, ['*'], 'events');
+        $events->appends($request->all());
         return view('dashboards.organizer.manageevents', compact('events'));
     }
 

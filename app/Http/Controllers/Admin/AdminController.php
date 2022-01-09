@@ -17,14 +17,14 @@ class AdminController extends Controller
     }
 
     public function pendingads(){
-        $advertisements = Advertisement::where('status', 'pending')->paginate(4, ['*'], 'advertisements');
-        $events = Event::where('status', 'pending')->paginate(4, ['*'], 'events');
+        $advertisements = Advertisement::where('status', 'pending')->orderBy('created_at','desc')->paginate(4, ['*'], 'advertisements');
+        $events = Event::where('status', 'pending')->orderBy('created_at','desc')->paginate(4, ['*'], 'events');
         return view('dashboards.admin.pendingads', compact('advertisements', 'events'));
     }
 
     public function history(){
-        $advertisements = Advertisement::where('status', 'verified')->orWhere('status', 'rejected')->paginate(4, ['*'], 'advertisements');
-        $events = Event::where('status', 'verified')->orWhere('status', 'rejected')->paginate(4, ['*'], 'events');
+        $advertisements = Advertisement::where('status', 'verified')->orWhere('status', 'rejected')->orderBy('updated_at','desc')->paginate(4, ['*'], 'advertisements');
+        $events = Event::where('status', 'verified')->orWhere('status', 'rejected')->orderBy('updated_at','desc')->paginate(4, ['*'], 'events');
         return view('dashboards.admin.history', compact('advertisements', 'events'));
     }
 

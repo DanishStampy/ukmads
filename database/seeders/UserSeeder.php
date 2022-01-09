@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'name' => 'deez',
             'email' => 'deezz@gmail.com',
             'password' => Hash::make('staff123'), // password
-            'role' => 'advertiser',
+            'role' => 'organizer',
             'remember_token' => Str::random(10)
         ]);
     }
