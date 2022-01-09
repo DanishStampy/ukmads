@@ -17,6 +17,6 @@
   
 </div>
 <div class="d-flex justify-content-end">
-        {{ $event->links() }}
+        {{ $event->links('layouts.pagination-custom') }}
     </div>
 @endsection
