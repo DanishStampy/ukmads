@@ -2,8 +2,11 @@
 @section('title','Draft List')
 
 @section('content')
-<h4>Advertisement</h4>
 <div>
+    {{-- Pagination --}}
+    <div class="d-flex justify-content-end">
+        {{ $ads->links('layouts.pagination-custom') }}
+    </div>
     <div class="row">
         @if(count($ads) < 1)
             <div class="ml-3 mt-1">
@@ -18,10 +21,10 @@
                         <img class="card-img-top" src="{{ asset('img/'.$item->picture) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $item->name }}</h5>
-                            <p class="card-text"
-                                style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
+                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                                {{ $item->name }}</h5>
+                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
                                 {{ $item->description }}</p>
                             <div class="row justify-content-center">
                                 <a href="{{ route("advertiser.editads", $item->id_ads) }}"
@@ -35,10 +38,6 @@
                 </div>
             @endif
         @endforeach
-    </div>
-    {{-- Pagination --}}
-    <div class="d-flex justify-content-end">
-        {{ $ads->links() }}
     </div>
 </div>
 @endsection

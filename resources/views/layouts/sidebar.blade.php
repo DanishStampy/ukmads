@@ -81,7 +81,7 @@
                             <li
                                 class="nav-item {{ (request()->routeIs('advertiser.createads') || request()->routeIs('advertiser.editads') ? 'menu-open' : '') }}">
 
-                                <a href=" {{ route("advertiser.manageads") }} "
+                                <a href=" {{ route('advertiser.manageads', ['status'=>'pending']) }} "
                                     class="nav-link {{ (request()->routeIs('advertiser.manageads') ? 'active' : '') }}">
                                     <i class="fas fa-bullhorn mr-2 "></i>
                                     <p class="">Advertisements</p>
@@ -134,7 +134,7 @@
                             <li
                                 class="nav-item {{ (request()->routeIs('organizer.createevents') || request()->routeIs('organizer.editevent') ? 'menu-open' : '') }}">
 
-                                <a href=" {{ route("organizer.manageevents") }} "
+                                <a href=" {{ route('organizer.manageevents', ['status'=>'pending']) }} "
                                     class="nav-link {{ (request()->routeIs('organizer.manageevents') ? 'active' : '') }}">
                                     <i class="fas fa-calendar-week mr-2 "></i>
                                     <p class="">Events</p>

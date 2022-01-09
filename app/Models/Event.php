@@ -35,7 +35,7 @@ class Event extends Model
                 while (true) {
                     try {
                         $latest = Event::latest('id_event')->first();
-                        $uid=0;
+                        $uid=1000;
 
                         if ($latest != null && $latest->exists()) {
                             $uid = random_int(1000, 9999);
