@@ -59,8 +59,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form_group">
-                                    <input id="product" type="text" class="form_input" name="product" placeholder=" "
-                                        value="">
+                                    {{-- <input id="product" type="text" class="form_input" name="product" placeholder=" "
+                                        value=""> --}}
+                                        <select id="product" name="product" class="form_input">
+                                            <option value="Product">Product</option>
+                                            <option value="Food">Food & Beverages</option>
+                                            <option value="Rental">Rental</option>
+                                        </select>
                                     <label for="product" class="form_label">Product Type</label>
                                 </div>
                             </div>
@@ -87,9 +92,10 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form_group">
-                                    <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
-                                        value="">
+                                <div class="form">
+                                    {{-- <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
+                                        value=""> --}}
+                                    <textarea name="desc" class="form_input" id="desc" style="min-height: 100px"></textarea>
                                     <label for="desc" class="form_label">Description</label>
                                 </div>
                             </div>

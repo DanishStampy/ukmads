@@ -114,7 +114,7 @@
                 @else
                     <div class="card-footer" style="padding-top: 20px">
                         <div class="row justify-content-center mb-2">
-                            <h4 class="text-center">Viewers : {{ $ad->reads }}</h4>
+                            <h4 class="text-center">{{ $ad->reads }}  Views</h4>
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-md-12 col-xs-12 border-right">
