@@ -40,7 +40,6 @@
     {{-- AOS Package --}}
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
-@extends('layouts.header')
 <body class="layout-top-nav layout-navbar-fixed" style="height: auto;">
     <div class="wrapper">
 
