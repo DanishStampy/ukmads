@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@splidejs/splide": "^3.6.9",
+        "aos": "^2.3.4",
         "selenium-webdriver": "^4.1.0"
     }
 }
