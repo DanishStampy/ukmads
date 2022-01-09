@@ -252,7 +252,7 @@
 <br>
 {{-- Pagination --}}
 <div class="d-flex justify-content-center">
-    {{ $events->links() }}
+    {{ $events->links('layouts.pagination-custom') }}
 </div>
 {{-- Create New Event --}}
 <div class="row justify-content-center">

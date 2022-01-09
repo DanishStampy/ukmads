@@ -16,6 +16,6 @@
     
 </div>
 <div class="d-flex justify-content-end">
-        {{ $ads->links() }}
+        {{ $ads->links('layouts.pagination-custom') }}
     </div>
 @endsection
