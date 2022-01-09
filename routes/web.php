@@ -27,10 +27,8 @@ Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
 // Search
-//Route::get('/search',[SearchController::class,'search'])->name('web.search');
-
 Route::get('/searchads', [SearchController::class, 'searchads'])->name('web.searchads');
-
+Route::get('/searchevents', [SearchController::class, 'searchevents'])->name('web.searchevents');
 // Testing view
 Route::get('/testview', fn()=> view('testview'))->name('testview');
 
