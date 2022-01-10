@@ -18,7 +18,7 @@ class EventSeeder extends Seeder
         //
         DB::table('events')->insert([
             'id_event' => 'EV1',
-            'creator_email' => 'staff@gmail.com',
+            'creator_email' => 'deezz@gmail.com',
             'name' => 'Beach Summer Party',
             'location' => 'Port Dickson, Negeri Sembilan',
             'time' => "19:00:00",
@@ -70,7 +70,7 @@ class EventSeeder extends Seeder
 
         DB::table('events')->insert([
             'id_event' => 'EV4',
-            'creator_email' => 'staff@gmail.com',
+            'creator_email' => 'deezz@gmail.com',
             'name' => 'Open Mic Night',
             'location' => 'Dewan Dectar',
             'time' => '20:30:00',
@@ -87,7 +87,7 @@ class EventSeeder extends Seeder
 
         DB::table('events')->insert([
             'id_event' => 'EV5',
-            'creator_email' => 'staff@gmail.com',
+            'creator_email' => 'deezz@gmail.com',
             'name' => 'Running Event',
             'location' => 'Stadium Bukit Jalil, Shah Alam',
             'time' => '07:40:00',
@@ -104,7 +104,7 @@ class EventSeeder extends Seeder
 
         DB::table('events')->insert([
             'id_event' => 'EV6',
-            'creator_email' => 'staff@gmail.com',
+            'creator_email' => 'deezz@gmail.com',
             'name' => 'Music Festival - Electro Music Party',
             'location' => 'Dewan Dectar',
             'time' => Carbon::now(),
@@ -121,7 +121,7 @@ class EventSeeder extends Seeder
 
         DB::table('events')->insert([
             'id_event' => 'EV7',
-            'creator_email' => 'staff@gmail.com',
+            'creator_email' => 'deezz@gmail.com',
             'name' => 'Summer Mix',
             'location' => 'Pulau Langkawi, Kedah',
             'time' => '19:00:00',

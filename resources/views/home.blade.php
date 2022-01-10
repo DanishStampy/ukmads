@@ -94,7 +94,7 @@
         <li>Export a list of participant of your event.</li>
       </ul>
       <br>
-      <a href="{{ route('register') }}" class="btn-links">
+      <a href="{{ route('org.form') }}" class="btn-links">
         Register as Organizer
         <i class="fas fa-arrow-right"></i>
     </a>

@@ -48,7 +48,7 @@
     </div>
 </div>
 
-{{-- Advertisement Card --}}
+{{-- Event Card --}}
 <div class="row justify-content-center">
     @if( count($events) < 1)
         <div class="mt-3">
