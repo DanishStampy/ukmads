@@ -65,6 +65,8 @@
                                             <option value="Product">Product</option>
                                             <option value="Food">Food & Beverages</option>
                                             <option value="Rental">Rental</option>
+                                            <option value="Job Vacancy">Job Vacancy</option>
+
                                         </select>
                                     <label for="product" class="form_label">Product Type</label>
                                 </div>

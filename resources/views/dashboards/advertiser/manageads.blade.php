@@ -90,8 +90,16 @@
 
                 @if($ad->status == 'rejected')
                     <div class="card-footer" style="padding-top: 20px">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a href="{{ route("advertiser.editads", $ad->id_ads) }}"
+                                        class="btn btn-app bg-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a type="button" data-toggle="modal" data-target="#detailads"
                                         data-ads="{{ base64_encode($ad->toJson()) }}"
@@ -100,7 +108,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                            <div class="col-lg-4 col-md-12 col-xs-12">
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
                                         data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger">
@@ -141,7 +149,6 @@
         @endforeach
     @endif
 </div>
-
 {{-- Detail confirmation modal --}}
 <div class="modal fade .col-12 .col-md-8" id="detailads" tabindex="-1" role="dialog"
     aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
