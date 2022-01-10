@@ -88,8 +88,16 @@
 
                 @if($event->status == 'rejected')
                     <div class="card-footer" style="padding-top: 20px">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a href="{{ route("organizer.editevent", $event->id_event) }}"
+                                        class="btn btn-app bg-warning">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a type="button" data-toggle="modal" data-target="#detailevent"
                                         data-event="{{ base64_encode($event->toJson()) }}"
@@ -99,7 +107,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                            <div class="col-lg-4 col-md-12 col-xs-12">
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
                                         data-event="{{ base64_encode($event->toJson()) }}"
@@ -117,7 +125,7 @@
                             <h4 class="text-center">{{ $event->join }}  Joins</h4>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a href="{{ route("organizer.editevent", $event->id_event) }}"
                                         class="btn btn-app bg-warning">
@@ -126,7 +134,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            @if($event->join > 1)
+                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
+                                <div class="description-block">
+                                    <a href="{{ route("organizer.listevent", $event->id_event) }}"
+                                        class="btn btn-app bg-primary">
+                                        <i class="fas fa-edit"></i> List
+                                    </a>
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="col-lg-4 col-md-12 col-xs-12">
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
                                         data-event="{{ base64_encode($event->toJson()) }}"
@@ -260,29 +279,7 @@
 @endif
 
 {{-- Create New Event --}}
-{{-- <div class="row justify-content-center">
-    <div class="col-md-4">
-        <div class="card card-widget widget-user">
-            <div class="widget-user-header text-white"
-                style="height:300px; background: url('/img/addnew.jpg') center center;">
 
-            </div>
-
-            <div class="card-footer" style="padding-top: 20px">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="description-block">
-                            <a class="btn btn-app bg-info"
-                                href="{{ route("organizer.createevents") }}">
-                                <i class="fas fa-feather"></i> Create New
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection
 
 @push('scripts')

@@ -136,7 +136,7 @@
                                 <div class="col d-lg-flex justify-content-lg-end">
 
                                     @if($event->status == 'draft')
-                                        <button class="btn btn-success text-right border rounded"
+                                        <button class="btn btn-primary text-right border rounded mr-2"
                                             type="submit" name="action" value="save">Save As Draft</button>
                                         <button class="btn btn-success text-right border rounded"
                                             type="submit" name="action" value="submit">Verify</button>

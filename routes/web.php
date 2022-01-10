@@ -73,7 +73,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 });
 
 
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['PreventBackHistory','isOrgs','auth']] ,function(){
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     
     // Event
@@ -86,6 +86,10 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
     Route::post('deleteEvent', [OrganizerController::class, 'deleteEvent'])->name('deleteEvent');
 
     Route::get('manageevents', [OrganizerController::class, 'manageevents'])->name('manageevents');
+
+    // List
+    Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
+    Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
 
     //Draft
     Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
