@@ -50,7 +50,7 @@ class AdsSeeder extends Seeder
 
         DB::table('advertisements')->insert([
             'id_ads' => 'AD3',
-            'creator_email' => 'deezz@gmail.com',
+            'creator_email' => 'staff@gmail.com',
             'name' => 'Mellow Crunch',
             'type' => 'Food',
             'price' => '30',
@@ -67,7 +67,7 @@ class AdsSeeder extends Seeder
 
         DB::table('advertisements')->insert([
             'id_ads' => 'AD4',
-            'creator_email' => 'deezz@gmail.com',
+            'creator_email' => 'staff@gmail.com',
             'name' => 'Mouthgasm Crunchy - Kokiss Combo 8',
             'type' => 'Food',
             'price' => '47',
@@ -99,7 +99,7 @@ class AdsSeeder extends Seeder
 
         DB::table('advertisements')->insert([
             'id_ads' => 'AD6',
-            'creator_email' => 'deezz@gmail.com',
+            'creator_email' => 'staff@gmail.com',
             'name' => 'Rent House Area Bangi',
             'type' => 'Rental',
             'price' => '650',
@@ -131,7 +131,7 @@ class AdsSeeder extends Seeder
 
         DB::table('advertisements')->insert([
             'id_ads' => 'AD8',
-            'creator_email' => 'deezz@gmail.com',
+            'creator_email' => 'staff@gmail.com',
             'name' => "L'Oreal Paris Elvive Revive",
             'type' => 'Product',
             'price' => '67.90',
