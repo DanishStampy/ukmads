@@ -4,6 +4,20 @@ html{
   scroll-behavior: smooth;
 }
 
+.links-item{
+  color: #fff;
+}
+
+.links{
+  transition: 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.links-active,
+.links:hover{
+  border-bottom: 1px solid #fff;
+}
+
 .landing-bg{
   background: url('/img/UKMads.png');
   width: 100%;

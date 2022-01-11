@@ -54,6 +54,7 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
 });
 
+// Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('pendingads', [AdminController::class, 'pendingads'])->name('pendingads');
@@ -73,6 +74,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 });
 
 
+// Organizer
 Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     
@@ -99,7 +101,7 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
 });
 
 
-
+// Advertiser
 Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
