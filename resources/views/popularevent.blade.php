@@ -1,15 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.viewer')
 
 @section('title','Popular Events')
 
 @section('content')
 
-@if(count($popularAds) < 1)
+@if(count($popularEvent) < 1)
 <div class="ml-3 mt-1">
   <h5>No data to be displayed.</h5>
 </div>
 @else
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide bg-fuchsia p-4 rounded" data-ride="carousel">
     <div class="carousel-inner">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleControls" data-slide-to="0" class="active">
@@ -17,14 +17,25 @@
         </ol>
 
         @foreach($popularEvent as $key => $item)
-            <div
-                class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <img class="rounded mx-auto d-block " src="{{ asset('img/'.$item->picture) }}"
-                    alt="First slide"
-                    style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; height: 470px; width: 1000px; object-fit: fill;">
-                <div class="carousel-caption d-none d-md-block ">
-                    <a href=" {{ route("event.eventdetails", $item->id_event) }} "
-                        type="button" class="btn btn-info">Join Now</a>
+            <div class="carousel-item  {{ $key == 0 ? 'active' : '' }}">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <img class="rounded mx-auto d-block w-100" src="{{ asset('img/'.$item->picture) }}"
+                    alt="First slide" style="height: 756px; width: 540px;">
+                    </div>
+                    <div class="col-md-6 d-flex flex-column align-self-center text-center">
+                        <h1 class="">
+                            {{$item->name}}
+                        </h1>
+
+                        <div class="mb-5">
+                            <p class="lead">{{$item->description}}</p>
+                        </div>
+                            
+                        <a href=" {{ route("event.eventdetails", $item->id_event) }} "
+                            type="button" class="btn bg-reverse-fuchsia">Join Now</a>
+                        
+                    </div>
                 </div>
             </div>
         @endforeach
@@ -41,9 +52,9 @@
 
 <div class="row">
     <div class="col-sm-8">
-        <h4 style="font-weight: bold; margin-top: 2rem;">Newest Events</h4>
+        <h3 style="font-weight: bold; margin-top: 2rem;">Newest Events</h3>
     </div>
-    <div class="col-sm-4" style="margin-top: 2rem; text-align:right;">
+    <div class="col-sm-4 text-right" style="margin-top: 2rem;">
         <a href="{{ route('event.allevents') }}">See all</a>
     </div>
 </div>

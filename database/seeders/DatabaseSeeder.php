@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdsSeeder::class,
             EventSeeder::class,
+            OrganizerSeeder::class,
+            JoinListSeeder::class,
         ]);
     }
 }

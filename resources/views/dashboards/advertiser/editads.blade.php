@@ -8,6 +8,42 @@
             <h1 class="content_header">Update {{ $ads->id_ads }}</h1>
         </div>
     </div>
+
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show my-3">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+            @foreach ($errors->all() as $err)
+                <li class="">{{$err}}</li>
+            @endforeach
+        </div>
+    @endif
+
+    @if($ads->status == 'rejected' or $ads->reason != null)
+
+    <div class="accordion mx-3 " id="accordionReasons">
+        <div class="card">
+        <div class="card-header bg-teal p-3" id="reason">
+          <h2 class="mb-0">
+            <button class="btn bg-teal text-left" type="button" data-toggle="collapse" data-target="#adsReason" aria-expanded="false" aria-controls="adsReason">
+              Reject's reason
+            </button>
+          </h2>
+        </div>
+    
+        <div id="adsReason" class="collapse show" aria-labelledby="reason" data-parent="#accordionReasons">
+          <div class="card-body  p-3">
+            {{$ads->reason}}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    @endif
+    <br>
     <div class="container">
         <form action="{{ route('advertiser.updateAds', $ads->id_ads) }}" method="POST"
             class="form-horizontal" enctype="multipart/form-data">
@@ -42,17 +78,23 @@
                                         <input id="name" type="text" class="form_input" name="name" placeholder=" "
                                             autofocus value="{{ $ads->name }}">
                                         <label for="name" class="form_label">Name</label>
-                                        <span class="text-danger">@error('name'){{ $message }}@enderror</span>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form_group">
-                                        <input id="product" type="text" class="form_input" name="product"
-                                            placeholder=" " value="{{ $ads->type }}">
+                                        {{-- <input id="product" type="text" class="form_input" name="product"
+                                            placeholder=" " value="{{ $ads->type }}"> --}}
+                                            <select id="product" name="product" class="form_input" value="{{ $ads->type }}">
+                                                {{-- <option value="{{ $ads->type }}" >{{ $ads->type }}</option> --}}
+                                                <option value="Product" <?php if($ads->type=="Product") echo "selected" ?>>Product</option>
+                                                <option value="Food" <?php if($ads->type=="Food") echo "selected" ?>>Food</option>
+                                                <option value="Rental" <?php if($ads->type=="Rental") echo "selected" ?>>Rental</option>
+                                            </select>
                                         <label for="product" class="form_label">Product Type</label>
-                                        <span class="text-danger">@error('product'){{ $message }}@enderror</span>
+                                        
                                     </div>
                                 </div>
                                 <div class="col">
@@ -60,7 +102,7 @@
                                         <input id="price" type="number" min="0.00" step="0.01" class="form_input"
                                             name="price" placeholder=" " value="{{ $ads->price }}">
                                         <label for="price" class="form_label">Price</label>
-                                        <span class="text-danger">@error('price'){{ $message }}@enderror</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -70,26 +112,27 @@
                                         <input id="seller" type="text" class="form_input" name="seller" placeholder=" "
                                             value="{{ $ads->seller_name }}">
                                         <label for="seller" class="form_label">Seller Name</label>
-                                        <span class="text-danger">@error('seller'){{ $message }}@enderror</span>
+                                        
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form_group">
                                         <input id="contact" type="text" class="form_input" name="contact"
-                                            placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
+                                            placeholder=" "
                                             value="{{ $ads->contact }}">
                                         <label for="contact" class="form_label">Contact Number</label>
-                                        <span class="text-danger">@error('contact'){{ $message }}@enderror</span>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <div class="form_group">
-                                        <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
-                                            value="{{ $ads->description }}">
+                                    <div class="form">
+                                        {{-- <input id="desc" type="text" class="form_input" name="desc" placeholder=" "
+                                            value="{{ $ads->description }}"> --}}
+                                        <textarea name="desc" class="form_input" id="desc" style="min-height: 100px">{{$ads->description}}</textarea>
                                         <label for="desc" class="form_label">Description</label>
-                                        <span class="text-danger">@error('desc'){{ $message }}@enderror</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -97,16 +140,15 @@
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
 
-                                    @if($ads->status == 'pending' || $ads->status == 'verified')
-                                        <button class="btn btn-success text-right border rounded"
-                                        type="submit" name="action" value="update">Update</button>
-
-                                    @elseif($ads->status == 'draft')
-                                        <button class="btn btn-success text-right border rounded"
+                                    @if($ads->status == 'draft')
+                                        <button class="btn btn-primary text-right border rounded mr-2"
                                             type="submit" name="action" value="save">Save As Draft</button>
                                         <button class="btn btn-success text-right border rounded"
                                             type="submit" name="action" value="submit">Verify</button>
 
+                                    @else
+                                        <button class="btn btn-success text-right border rounded"
+                                        type="submit" name="action" value="update">Update</button>
                                     @endif
                                 </div>
                             </div>

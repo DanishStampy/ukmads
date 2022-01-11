@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Advertiser;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
-use App\Models\Event;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+
 
 class AdvertiserController extends Controller
 {
@@ -23,9 +24,8 @@ class AdvertiserController extends Controller
         $user_id = $this->getEmail();
 
         $ads = Advertisement::where('creator_email', $user_id)->get();
-        $event = Event::where('creator_email', $user_id)->get();
 
-        return view('dashboards.advertiser.index', compact('ads', 'event'));
+        return view('dashboards.advertiser.index', compact('ads'));
     }
 
     public function profile()
@@ -55,6 +55,15 @@ class AdvertiserController extends Controller
             $ads->picture = $imgname;
         }
 
+        $request->validate([
+            'name' => 'required',
+            'product' => 'required',
+            'price' => 'required|max:999',
+            'seller' => 'required',
+            'contact' => ['required', new PhoneNumber],
+            'desc' => 'required'
+        ]);
+
         $ads->creator_email = Auth::user()->email;
         $ads->name = $request->name;
         $ads->type = $request->product;
@@ -71,59 +80,12 @@ class AdvertiserController extends Controller
             case 'verify':
                 $ads->status = "pending";
                 $msg = 'Advertisement have been successfully uploaded.';
+                // ads(new Advertisement($ads = $this->create($request->all())));
                 break;
         }
 
         $ads->save();
-        return redirect()->route('advertiser.manageads')->with('success_ads', $msg);
-    }
-
-
-    // Create events
-    public function createevents()
-    {
-        return view('dashboards.advertiser.createevents');
-    }
-
-    public function uploadEvents(Request $request)
-    {
-        $events = new Event();
-
-        if ($request->hasFile('fileToUpload')) {
-            $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
-            ]);
-
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $events->picture = $imgname;
-        }
-
-        $events->creator_email = Auth::user()->email;
-        $events->name = $request->name;
-        $events->location = $request->location;
-        $events->time = $request->time;
-        $events->date = $request->date;
-        $events->organizer = $request->org;
-        $events->contact = $request->contactE;
-        $events->description = $request->descE;
-        $events->join = 0;
-        
-        switch($request->input('action')){
-            case 'save':
-                $events->status = "draft";
-                $msg = 'Event have been successfully drafted.';
-                break;
-            case 'verify':
-                $events->status = "pending";
-                $msg = 'Event have been successfully uploaded.';
-                break;
-        }
-
-        $events->save();
-        return redirect()->route('advertiser.manageevents')->with('success_events', $msg);
+        return redirect()->route('advertiser.manageads', ['status'=>'pending'])->with('success_ads', $msg);
     }
 
     // Edit ads
@@ -154,6 +116,15 @@ class AdvertiserController extends Controller
             $ads->picture = $imgname;
         }
 
+        $request->validate([
+            'name' => 'required',
+            'product' => 'required',
+            'price' => 'required|max:999',
+            'seller' => 'required',
+            'contact' => ['required', new PhoneNumber],
+            'desc' => 'required'
+        ]);
+
         $ads->creator_email = Auth::user()->email;
         $ads->name = $request->name;
         $ads->type = $request->product;
@@ -176,63 +147,9 @@ class AdvertiserController extends Controller
 
         $ads->save();
 
-        return redirect()->route('advertiser.manageads')->with('success_uploaded_ads', $msg);
+        return redirect()->route('advertiser.manageads', ['status'=>'pending'])->with('success_uploaded_ads', $msg);
     }
 
-    // Edit event
-    public function editevent($id_event)
-    {
-        $event = Event::find($id_event);
-
-        return view('dashboards.advertiser.editevent', compact('event'));
-    }
-
-    public function updateEvent(Request $request, $id_event)
-    {
-        $event = Event::find($id_event);
-
-        if ($request->hasFile('fileToUpload')) {
-            $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
-            ]);
-
-            if ($event && File::exists(public_path("img/".$event->picture))) {
-                File::delete(public_path("img/".$event->picture));
-            }
-
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $event->picture = $imgname;
-        }
-
-        $event->creator_email = Auth::user()->email;
-        $event->name = $request->name;
-        $event->location = $request->location;
-        $event->time = $request->time;
-        $event->date = $request->date;
-        $event->organizer = $request->org;
-        $event->contact = $request->contactE;
-        $event->description = $request->descE;
-        
-        switch($request->input('action')){
-            case 'save':
-                $event->status = "draft";
-                $msg = 'Event have been successfully drafted.';
-                break;
-            case 'submit':
-            case 'update':
-                $event->status = "pending";
-                $msg = 'Event have been successfully updated.';
-                break;
-        }
-
-
-        $event->save();
-
-        return redirect()->route('advertiser.manageevents')->with('success_uploaded_events', $msg);
-    }
 
     // Delete Ads
     public function deleteAds(Request $request)
@@ -247,42 +164,20 @@ class AdvertiserController extends Controller
         return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
     }
 
-    //Delete Event
-    public function deleteEvent(Request $request)
-    {
-        $id_event = $request->input('id_event');
-        $event = Event::find($id_event);
-        if ($event && File::exists(public_path("img/".$event->picture))) {
-            File::delete(public_path("img/".$event->picture));
-            // unlink("img/".$event->picture);
-        }
-        $event->delete();
-
-        return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');
-    }
-
-    // Dashboad for ads and events
-
-    public function manageads()
+    public function manageads(Request $request)
     {
         $user_id = $this->getEmail();
-        $ads = Advertisement::where('status', '!=', 'draft')->where('creator_email', $user_id)->paginate(3);
+        $status = $request->input('status');
+        $ads = Advertisement::where('status', $status)->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(3, ['*'], 'advertisements');
+        $ads->appends($request->all());
         return view('dashboards.advertiser.manageads', compact('ads'));
-    }
-
-    public function manageevents()
-    {
-        $user_id = $this->getEmail();
-        $events = Event::where('status', '!=', 'draft')->where('creator_email', $user_id)->paginate(3);
-        return view('dashboards.advertiser.manageevents', compact('events'));
     }
 
     public function draftPreview()
     {
         $user_id = $this->getEmail();
-        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->paginate(4, ['*'], 'advertisements');
-        $events = Event::where('status', 'draft')->where('creator_email', $user_id)->paginate(4, ['*'], 'events');
+        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(4, ['*'], 'advertisements');
 
-        return view('dashboards.advertiser.draftlist', compact('ads', 'events'));
+        return view('dashboards.advertiser.draftads', compact('ads'));
     }
 }

@@ -11,7 +11,7 @@ body.my-register-page {
 
 .card-wrapper{
 	width: 500px;
-	height: 600px;
+	height: auto;
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow:

@@ -4,10 +4,13 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\Advertiser\AdvertiserController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\OrgRegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Organizer\OrganizerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,16 +26,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
+// Search
+Route::get('/searchads', [SearchController::class, 'searchads'])->name('web.searchads');
+Route::get('/searchevents', [SearchController::class, 'searchevents'])->name('web.searchevents');
+// Testing view
+Route::get('/testview', fn()=> view('testview'))->name('testview');
+
+
+// Ads view
 Route::group(['as' => 'advertisement.'], function(){
     Route::get('/ads', [AdvertisementController::class,'popularAds'])->name('ads');
     Route::get('/adsdetails/{id_ads}', [AdvertisementController::class,'adsDetails'])->name('adsdetails');
     Route::get('/allads', [AdvertisementController::class,'allAds'])->name('allads');
 });
 
+// Event view
 Route::group(['as' => 'event.'], function(){
     Route::get('/event', [EventController::class,'popularEvents'])->name('events');
     Route::get('/eventdetails/{id_event}', [EventController::class,'eventDetails'])->name('eventdetails');
     Route::get('/allevents',  [EventController::class,'allEvents'])->name('allevents');
+    Route::post('/joinlist',  [EventController::class,'joinEvents'])->name('joinlist');
 });
 
 Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');
@@ -53,6 +66,40 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBa
     // Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
 
+// Customize Org Registration
+Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(){
+    Route::get('register-org', [OrgRegisterController::class, 'showRegistration'])->name('form');
+    Route::post('post-org', [OrgRegisterController::class, 'postRegistration'])->name('post');
+});
+
+
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
+    Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
+    
+    // Event
+    Route::get('createevents', [OrganizerController::class, 'createevents'])->name('createevents');
+    Route::post('uploadEvents',[OrganizerController::class, 'uploadEvents'])->name('uploadEvents');
+
+    Route::get('editevent/{id_event}', [OrganizerController::class, 'editevent'])->name('editevent');
+    Route::post('updateEvent/{id_event}',[OrganizerController::class, 'updateEvent'])->name('updateEvent');
+
+    Route::post('deleteEvent', [OrganizerController::class, 'deleteEvent'])->name('deleteEvent');
+
+    Route::get('manageevents', [OrganizerController::class, 'manageevents'])->name('manageevents');
+
+    // List
+    Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
+    Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
+
+    //Draft
+    Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
+
+    // Logout
+    Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
+});
+
+
+
 Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
@@ -68,16 +115,9 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
 
-    // Event
-    Route::get('createevents', [AdvertiserController::class, 'createevents'])->name('createevents');
-    Route::post('uploadEvents',[AdvertiserController::class, 'uploadEvents'])->name('uploadEvents');
+    Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
 
-    Route::get('editevent/{id_event}', [AdvertiserController::class, 'editevent'])->name('editevent');
-    Route::post('updateEvent/{id_event}',[AdvertiserController::class, 'updateEvent'])->name('updateEvent');
-
-    Route::post('deleteEvent', [AdvertiserController::class, 'deleteEvent'])->name('deleteEvent');
-
-    Route::get('manageevents', [AdvertiserController::class, 'manageevents'])->name('manageevents');
+    
 
     //Draft
     Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');

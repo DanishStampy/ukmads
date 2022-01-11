@@ -65,6 +65,9 @@
 								<div class="my-3 text-center">
 									Already have an account? <a class="link" href="{{route('login')}}">Login</a>
 								</div>
+								<div class="my-3 text-center">
+									Are you representative of an organization? <a class="link" href="{{route('org.form')}}">Sign up here</a>
+								</div>
 							</form>
 						</div>
 					</div>
