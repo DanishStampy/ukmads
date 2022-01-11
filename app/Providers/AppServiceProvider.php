@@ -24,17 +24,20 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    // public function boot(Charts $charts)
-    // {
-    //     $charts->register([
-    //         \App\Charts\SampleChart::class
-    //     ]);
-    // }
-
-    public function paginate()
+    public function boot(Charts $charts)
     {
-        //
         Paginator::useBootstrap();
+
+        $charts->register([
+            \App\Charts\SampleChart::class
+        ]);
+       
     }
+
+    // public function paginate()
+    // {
+    //     //
+       
+    // }
   
 }
