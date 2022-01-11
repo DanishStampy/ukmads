@@ -10,7 +10,7 @@ use Illuminate\Database\Query\Builder;
 class JoinList extends Model
 {
     use HasFactory;
-    public $incrementing = false;
+    public $incrementing = true;
 
     protected $fillable = [
         'id_event',
@@ -18,14 +18,5 @@ class JoinList extends Model
         'guest_name',
         'guest_contact',
     ];
-
-    // protected function setKeysForSaveQuery(Builder $query)
-    // {
-    //     $query
-    //         ->where('id_event', '=', $this->getAttribute('id_event'))
-    //         ->where('guest_email', '=', $this->getAttribute('guest_email'));
-
-    //     return $query;
-    // }
 
 }

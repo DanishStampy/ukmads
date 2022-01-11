@@ -63,6 +63,9 @@ class EventController extends Controller
             
         }else{
             Mail::to($email)->send(new JoinMail($details));
+            
+            $event->join++;
+            $event->save();
 
             $list->save();
             return redirect()->back()->with('success_submit', 'Successfully submitted.');

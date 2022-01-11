@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Advertiser;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
-use App\Models\Event;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,7 +85,7 @@ class AdvertiserController extends Controller
         }
 
         $ads->save();
-        return redirect()->route('advertiser.manageads')->with('success_ads', $msg);
+        return redirect()->route('advertiser.manageads', ['status'=>'pending'])->with('success_ads', $msg);
     }
 
     // Edit ads
@@ -148,7 +147,7 @@ class AdvertiserController extends Controller
 
         $ads->save();
 
-        return redirect()->route('advertiser.manageads')->with('success_uploaded_ads', $msg);
+        return redirect()->route('advertiser.manageads', ['status'=>'pending'])->with('success_uploaded_ads', $msg);
     }
 
 
@@ -165,19 +164,19 @@ class AdvertiserController extends Controller
         return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
     }
 
-    // Dashboard for ads
-
-    public function manageads()
+    public function manageads(Request $request)
     {
         $user_id = $this->getEmail();
-        $ads = Advertisement::where('status', '!=', 'draft')->where('creator_email', $user_id)->paginate(3);
+        $status = $request->input('status');
+        $ads = Advertisement::where('status', $status)->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(3, ['*'], 'advertisements');
+        $ads->appends($request->all());
         return view('dashboards.advertiser.manageads', compact('ads'));
     }
 
     public function draftPreview()
     {
         $user_id = $this->getEmail();
-        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->paginate(4, ['*'], 'advertisements');
+        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(4, ['*'], 'advertisements');
 
         return view('dashboards.advertiser.draftads', compact('ads'));
     }

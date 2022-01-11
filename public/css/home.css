@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Work+Sans&display=swap');
+
+html{
+  scroll-behavior: smooth;
+}
+
+.landing-bg{
+  background: url('/img/UKMads.png');
+  width: 100%;
+  height: calc(100vh - 80px);
+  max-height: 1080px;
+  background-position: center top;
+}
+
+p, small, blockquote, a, h1, h3, li{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+.landing-header{
+  height: calc(100vh - 80px);
+}
+
+.landing-header > p,
+.landing-header > small,
+.landing-header > blockquote,
+.landing-btn > a,
+.landing-btn > i{
+  color: #fff;
+}
+
+.landing-header > p{
+  font-size: 120px;
+  font-weight: 700;
+}
+
+.landing-header > small{
+  font-size: 32px;
+}
+
+.landing-header > blockquote{
+  font-style: italic;
+  background-color: transparent;
+}
+
+button.landing-btn {
+  height: 50px;
+  border-radius: 12px;
+  background-color: #290576;
+  border: solid #fff 1px;
+  padding: 10px;
+}
+
+button.landing-btn:hover{
+  background-color: #31068f;
+}
+
+.landing-offer{
+  background-color: #fff;
+  margin-bottom: 80px;
+  padding-top: 80px;
+}
+
+.landing-offer h1{
+  font-size: 64px;
+  color: #31068f;
+  text-transform: uppercase;
+}
+
+.landing-offer i.symbol{
+  font-size: 88px;
+  color: #31068f;
+  font-style: 700;
+  margin-bottom: 32px;
+}
+
+.landing-offer p{
+  font-size: 20px;
+}
+
+.btn-links{
+  border: 1px solid #31068f;
+  border-radius: 12px;
+  padding: 12px;
+  color: #31068f;
+  transition: 0.3s;
+  margin-top: 24px;
+}
+
+.btn-links:hover{
+  border: 1px solid #31068f;
+  background-color: #31068f;
+  color: #fff;
+}
+
+.landing-advertiser{
+  background-color: #F3ECFF;
+  padding: 80px 0;
+  width: 100%;
+}
+
+.advertiser-content{
+  padding-left: 54px;
+}
+
+.advertiser-content > h3{
+  font-weight: 700;
+  font-size: 70px;
+  margin-bottom: 48px;
+}
+
+.advertiser-content > p{
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.advertiser-content > ul > li{
+  font-size: 18px;
+}
+
+.advertiser-content > ul {
+  margin-bottom: 30px;
+}
+
+.landing-organizer{
+  background-color: #290576;
+  padding: 80px 0;
+  width: 100%;
+  color: #fff;
+}
+
+.organizer-content{
+  padding-left: 54px;
+}
+
+.organizer-content > h3{
+  font-weight: 700;
+  font-size: 70px;
+  margin-bottom: 48px;
+}
+
+.organizer-content > p{
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.organizer-content > ul > li{
+  font-size: 18px;
+}
+
+.organizer-content > ul {
+  margin-bottom: 30px;
+}
+
+.organizer-content > a.btn-links{
+  border: 1px solid #fff;
+  border-radius: 12px;
+  padding: 12px;
+  color: #fff;
+  transition: 0.3s;
+  margin-top: 24px;
+}
+
+.organizer-content > a.btn-links:hover{
+  border: 1px solid #290576;
+  background-color: #fff;
+  color: #290576;
+}

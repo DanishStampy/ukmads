@@ -14,3 +14,16 @@ yarn-error.log
 /.idea
 /.vscode
 config/database.php
+*.jpg
+*.png
+*.jpeg
+*.jfif
+!addnew.jpg
+!AvatarGuest.png
+!AvatarMaker.png
+!logo.jpg
+!noimage.jpg
+!ukmads-logo-background.png
+!ukmads-logo.png
+!white.jpg
+!public/img/team/*

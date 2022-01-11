@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-12 col-12">
-        <div class="small-box bg-secondary">
+        <div class="small-box bg-indigo">
             <div class="inner">
                 <p>Total created events:</p>
                 <h3>

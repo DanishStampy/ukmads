@@ -2,49 +2,53 @@
 
 @section('title','History')
 @section('content')
-<br>
-<h4>Advertisement</h4>
-
 <div>
+    <div class="row">
+        <div class="col">
+            <h3>Advertisement</h3>
+        </div>
+        {{-- Pagination --}}
+        <div class="col d-flex justify-content-end">
+            {{ $advertisements->appends(['events' => $events->currentPage()])->links('layouts.pagination-custom') }}
+        </div>
+    </div>
     <div class="row" style="margin: 20px 0px 50px">
-        @if (count($advertisements) < 1)
+        @if(count($advertisements) < 1)
             <h5>No data to be displayed.</h5>
-        @endif
-        @foreach($advertisements as $advertisement)
-            {{-- @if($advertisement->status=='verified' or $advertisement->status=='rejected') --}}
+        @else
+            @foreach($advertisements as $advertisement)
+                {{-- @if($advertisement->status=='verified' or $advertisement->status=='rejected') --}}
 
-            <div class="col-6 col-md-3">
-                <div class="card">
-                    <div class="ribbon-wrapper ribbon-lg">
-                        @if($advertisement->status=='verified')
-                            <div class="ribbon bg-success">
-                                Verified
-                            </div>
-                        @else
-                            <div class="ribbon bg-danger">
-                                Rejected
-                            </div>
-                        @endif
-                    </div>
-                    <img class="card-img-top" src="{{ asset('img/'.$advertisement->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:200px;object-fit: cover">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $advertisement->name }}</h5>
-                        <p class="card-text"
-                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{ $advertisement->description }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
-                            data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
+                <div class="col-6 col-md-3">
+                    <div class="card">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            @if($advertisement->status=='verified')
+                                <div class="ribbon bg-success">
+                                    Verified
+                                </div>
+                            @else
+                                <div class="ribbon bg-danger">
+                                    Rejected
+                                </div>
+                            @endif
+                        </div>
+                        <img class="card-img-top"
+                            src="{{ asset('img/'.$advertisement->picture) }}"
+                            onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                            style="height:200px;object-fit: cover">
+                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
+                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                                {{ $advertisement->name }}</h5>
+                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                                {{ $advertisement->description }}</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
+                                data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {{-- @endif --}}
-        @endforeach
-    </div>
-    {{-- Pagination --}}
-    <div class="d-flex justify-content-end">
-        {{ $advertisements->appends(['events' => $events->currentPage()])->links() }}
+                {{-- @endif --}}
+            @endforeach
+        @endif
     </div>
 </div>
 
@@ -55,7 +59,9 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
-                    <img class="img-fluid" id="adsPic" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="margin: 10px;height:300px;width:300px;object-fit: fill">
+                    <img class="img-fluid" id="adsPic"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="margin: 10px;height:300px;width:400px;object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -106,7 +112,8 @@
                                     <div class="row">
                                         <div class="form-group col-sm-12">
                                             <label>Description</label>
-                                            <textarea type="text" class="form-control" id="adsDesc" style="resize: none" disabled></textarea>
+                                            <textarea type="text" class="form-control" id="adsDesc" style="resize: none"
+                                                disabled></textarea>
                                         </div>
                                     </div>
                                     <div class="row" id="reasonAds">
@@ -125,50 +132,56 @@
         </div>
     </div>
 </div>
+
 <hr>
-<h4>Event</h4>
-
 <div>
-    <div class="row" style="margin: 20px 0px 50px">
-        @if (count($events) < 1)
-            <h5>No data to be displayed.</h5>
-        @endif
-        @foreach($events as $event)
-            {{-- @if($event->status=='verified' or $event->status=='rejected') --}}
-            <div class="col-6 col-md-3">
-
-                <div class="card">
-                    <div class="ribbon-wrapper ribbon-lg">
-                        @if($event->status=='verified')
-                            <div class="ribbon bg-success">
-                                Verified
-                            </div>
-                        @else
-                            <div class="ribbon bg-danger">
-                                Rejected
-                            </div>
-                        @endif
-                    </div>
-                    <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
-                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="height:200px;object-fit: cover">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text"
-                            style="height:30px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-                            {{ $event->description }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventHistory"
-                            data-event="{{ base64_encode($event->toJson()) }}">View Detail</button>
-                    </div>
-
-                </div>
-            </div>
-               {{-- @endif --}}
-        @endforeach
+    <div class="row">
+        <div class="col">
+            <h3>Event</h3>
+        </div>
+        {{-- Pagination --}}
+        <div class="col d-flex justify-content-end">
+            {{ $events->appends(['advertisements' => $advertisements->currentPage()])->links('layouts.pagination-custom') }}
+        </div>
     </div>
-    {{-- Pagination --}}
-    <div class="d-flex justify-content-end">
-        {{ $events->appends(['advertisements' => $advertisements->currentPage()])->links() }}
+    <div class="row" style="margin: 20px 0px 0px">
+        @if(count($events) < 1)
+            <h5>No data to be displayed.</h5>
+        @else
+            @foreach($events as $event)
+                {{-- @if($event->status=='verified' or $event->status=='rejected') --}}
+                <div class="col-6 col-md-3">
+
+                    <div class="card">
+                        <div class="ribbon-wrapper ribbon-lg">
+                            @if($event->status=='verified')
+                                <div class="ribbon bg-success">
+                                    Verified
+                                </div>
+                            @else
+                                <div class="ribbon bg-danger">
+                                    Rejected
+                                </div>
+                            @endif
+                        </div>
+                        <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                            onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                            style="height:200px;object-fit: cover">
+                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
+                            <h5 class="card-title" style="text-overflow: inherit;overflow: inherit">{{ $event->name }}
+                            </h5>
+                            <p class="card-text" style="height:30px;text-overflow: inherit;overflow: inherit">
+                                {{ $event->description }}</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#eventHistory" data-event="{{ base64_encode($event->toJson()) }}">View
+                                Detail</button>
+                        </div>
+
+                    </div>
+                </div>
+                {{-- @endif --}}
+            @endforeach
+        @endif
     </div>
 </div>
 
@@ -180,7 +193,9 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
-                    <img class="img-fluid" id="eventPic" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" style="margin: 10px;height:300px;width:300px;object-fit: fill">
+                    <img class="img-fluid" id="eventPic"
+                        onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
+                        style="margin: 10px;height:300px;width:400px;object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -237,7 +252,8 @@
                                     <div class="row">
                                         <div class="form-group col-sm-12">
                                             <label>Description</label>
-                                            <textarea type="text" class="form-control" id="eventDesc" style="resize: none" disabled></textarea>
+                                            <textarea type="text" class="form-control" id="eventDesc"
+                                                style="resize: none" disabled></textarea>
                                         </div>
                                     </div>
                                     <div class="row" id="reasonEvent">
@@ -331,4 +347,3 @@
 
     </script>
 @endpush
-

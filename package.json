@@ -24,7 +24,9 @@
     },
     "dependencies": {
         "@splidejs/splide": "^3.6.9",
-        "chart.js": "^3.7.0",
+
+        "aos": "^2.3.4",
+
         "selenium-webdriver": "^4.1.0"
     }
 }
