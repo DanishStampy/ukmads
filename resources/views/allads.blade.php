@@ -4,17 +4,17 @@
 
 @section('content')
 <div class="row mb-5 d-flex justify-content-end ">
-    <form class="form-group " method="GET" action="{{ route('web.searchadsV')}}">
-    <div class="input-group ">
-        
-            <div class="form-outline">
-                <input type="search" name="searchadsV" id="searchadsV" class="form-control" placeholder="search" required/>
-            </div>
-        <button type="" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
-        
-    </div>
+  <form class="form-group " method="GET" action="{{ route('web.searchadsV')}}">
+  <div class="input-group ">
+      
+          <div class="form-outline">
+              <input type="search" name="searchadsV" id="searchadsV" class="form-control" placeholder="search" required/>
+          </div>
+      <button type="" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+      </button>
+      
+  </div>
 </form>
 </div>
 
