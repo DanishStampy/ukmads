@@ -6,6 +6,7 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -48,6 +49,16 @@ class OrganizerController extends Controller
 
             $events->picture = $imgname;
         }
+
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            'org' => 'required',
+            'contactE' => ['required', new PhoneNumber],
+            'descE' => 'required'
+        ]);
 
         $events->creator_email = Auth::user()->email;
         $events->name = $request->name;
