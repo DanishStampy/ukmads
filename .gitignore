@@ -17,15 +17,13 @@ config/database.php
 *.jpg
 *.png
 *.jpeg
+*.jfif
 !addnew.jpg
 !AvatarGuest.png
 !AvatarMaker.png
-!berrycombo.png
 !logo.jpg
-!musicfest.jpg
 !noimage.jpg
 !ukmads-logo-background.png
 !ukmads-logo.png
 !white.jpg
-!kfc.jpg
 !public/img/team/*

@@ -14,6 +14,7 @@ class CreateJoinListsTable extends Migration
     public function up()
     {
         Schema::create('join_lists', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('id_event');
             $table->foreign('id_event')->references('id_event')->on('events'); //key 1
             $table->string('guest_email', 255); //key 2

@@ -57,6 +57,7 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
     Auth::routes();
 });
 
+// Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('pendingads', [AdminController::class, 'pendingads'])->name('pendingads');
@@ -76,7 +77,8 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 });
 
 
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['PreventBackHistory','isOrgs','auth']] ,function(){
+// Organizer
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     
     // Event
@@ -90,6 +92,10 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
 
     Route::get('manageevents', [OrganizerController::class, 'manageevents'])->name('manageevents');
 
+    // List
+    Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
+    Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
+
     //Draft
     Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
 
@@ -98,7 +104,7 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
 });
 
 
-
+// Advertiser
 Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');

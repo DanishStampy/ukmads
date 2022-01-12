@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use ConsoleTVs\Charts\Registrar as Charts;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,9 +24,20 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Charts $charts)
     {
-        //
         Paginator::useBootstrap();
+
+        $charts->register([
+            \App\Charts\SampleChart::class
+        ]);
+       
     }
+
+    // public function paginate()
+    // {
+    //     //
+       
+    // }
+  
 }
