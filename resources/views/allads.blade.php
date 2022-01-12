@@ -21,7 +21,7 @@
                   <span class="card__status">{{$item->type}}</span>
                 </div>
               </div>
-              <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+              <p class="card__description">{{$item->description}}</p>
             </div>
           </a>      
     </div>
