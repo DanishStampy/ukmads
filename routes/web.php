@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\OrgRegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Organizer\OrganizerController;
+use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
@@ -119,7 +120,8 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
 
-    
+    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
 
     //Draft
     Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');
