@@ -1,6 +1,6 @@
 <nav class="main-header navbar navbar-expand-md navbar-dark navbar-indigo">
     <div class="container">
-        <a href="{{ url('/')}}" class="navbar-brand">
+        <a href="{{ url('/') }}" class="navbar-brand">
             <img src="{{ asset('img/ukmads-logo-background.png') }}" alt="UKMads Logo"
                 class="brand-image img-circle" style="opacity: .8;">
             <span class="brand-text font-weight-bold">UKMads</span>
@@ -15,29 +15,51 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 {{-- <li class="nav-item">
-                    <a href="{{ url('/')}}" class="nav-link ">Home</a>
+                    <a href="{{ url('/') }}" class="nav-link ">Home</a>
                 </li> --}}
-                <li class="nav-item">
-                    <a href="{{ route('advertisement.ads')}}" class="nav-link">Advertisement</a>
+                <li class="nav-item links {{ (request()->routeIs('advertisement.ads') ? 'active-links' : '') }}">
+                    <a href="{{ route('advertisement.ads') }}" class="nav-link links-item">Advertisement</a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{ route('event.events')}}" class="nav-link">Events</a>
+                <li class="nav-item links {{ (request()->routeIs('event.events') ? 'active-links' : '') }}">
+                    <a href="{{ route('event.events') }}" class="nav-link links-item">Events</a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{ route('aboutus')}}" class="nav-link">About Us</a>
+                <li class="nav-item links {{ (request()->routeIs('aboutus') ? 'active-links' : '') }}">
+                    <a href="{{ route('aboutus') }}" class="nav-link links-item">About Us</a>
                 </li>
             </ul>
 
 
             <!-- Right navbar links -->
-            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                <li class="nav-item">
-                    <a href="{{ route('login')}}" class="nav-link">Login</a>
-                </li>
-                <li class="ml-2 nav-item">
-                    <a href="{{ route('register')}}" class="nav-link">Register</a>
-                </li>
-            </ul>
+            @auth
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item">
+
+                        @if(Auth::user()->role == 'advertiser')
+                            <a href="{{ route('advertiser.dashboard') }}"
+                                class="nav-link">Dashboard</a>
+
+                        @elseif(Auth::user()->role == 'organizer')
+                            <a href="{{ route('organizer.dashboard') }}"
+                                class="nav-link">Dashboard</a>
+
+                        @elseif(Auth::user()->role == 'admin')
+                            <a href="{{ route('admin.dashboard') }}" class="nav-link">Dashboard</a>
+                        @endif
+
+                    </li>
+                </ul>
+
+
+            @else
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+                    <li class="nav-item">
+                        <a href="{{ route('login') }}" class="nav-link links-item">Login</a>
+                    </li>
+                    <li class="ml-2 nav-item">
+                        <a href="{{ route('register') }}" class="nav-link links-item">Register</a>
+                    </li>
+                </ul>
+            @endauth
         </div>
     </div>
 </nav>
