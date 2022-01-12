@@ -10,24 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    // function search(Request $request){
 
-    //     if(isset($_GET['search'])){
-    //        // $user_id = $this->getEmail();
-    //         $search_text=$_GET['search'];
-    //         $ads=Advertisement::where('name','LIKE','&'.$search_text.'&')->paginate(5);
-    //         return view('dashboards.advertiser.searchads', compact('ads'));
-    //         //return view('search',[$ads]);
-    //     }else{
-    //         return view('search');
-    //     }
-        
-    // }
     public function getEmail()
     {
         return Auth::user()->email;
     }
 
+    // advertiser
     public function searchads(Request $request)
     {
         if(isset($_GET['searchads'])){
@@ -43,6 +32,7 @@ class SearchController extends Controller
         
     }
 
+    // organizer
     public function searchevents(Request $request)
     {
         if(isset($_GET['searchevents'])){
@@ -54,6 +44,38 @@ class SearchController extends Controller
              return view('dashboards.organizer.searchevents', compact('events'));
          }else{
             return view('dashboards.organizer.searchevents');
+         }
+        
+    }
+
+    // viewer ads
+    public function searchadsV(Request $request)
+    {
+        if(isset($_GET['searchadsV'])){
+            //$user_id = $this->getEmail();
+            // $search_text=$_GET['search'];
+             $search_text=$request->input('searchadsV');
+             $ads = Advertisement::where('name','LIKE','%'.$search_text.'%')->orWhere('type','LIKE','%'.$search_text.'%')->paginate(4);
+             $ads->appends($request->all());
+             return view('searchadsV', compact('ads'));
+         }else{
+            return view('searchadsV');
+         }
+        
+    }
+
+    // viewer events
+    public function searcheventsV(Request $request)
+    {
+        if(isset($_GET['searcheventsV'])){
+            //$user_id = $this->getEmail();
+            // $search_text=$_GET['search'];
+             $search_text=$request->input('searcheventsV');
+             $events = Event::where('name','LIKE','%'.$search_text.'%')->orWhere('location','LIKE','%'.$search_text.'%')->orWhere('organizer','LIKE','%'.$search_text.'%')->paginate(6);
+             $events->appends($request->all());
+             return view('searcheventsV', compact('events'));
+         }else{
+            return view('searcheventsV');
          }
         
     }
