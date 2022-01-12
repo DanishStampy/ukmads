@@ -101,7 +101,6 @@
         </div>
     </div>
 </div> --}}
-
 {{-- end modal details --}}
 @endsection
 

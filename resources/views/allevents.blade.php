@@ -3,6 +3,20 @@
 @section('title','All Events')
 
 @section('content')
+<div class="row mb-5 d-flex justify-content-end ">
+    <form class="form-group " method="GET" action="{{ route('web.searcheventsV')}}">
+    <div class="input-group ">
+        
+            <div class="form-outline">
+                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control" placeholder="search" required/>
+            </div>
+        <button type="" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+        
+    </div>
+</form>
+</div>
 
 <div class="row justify-content-center" >
 @foreach($event as $key => $item)
