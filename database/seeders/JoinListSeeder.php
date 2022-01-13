@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class JoinListSeeder extends Seeder
                 'guest_email' => $faker->freeEmail(),
                 'guest_name' => $faker->name(),
                 'guest_contact' => '60'.$faker->randomNumber(9),
+                'created_at' => Carbon::now()->subHours($faker->numberBetween(1,128))
             ]);
 
             DB::table('join_lists')->insert([
@@ -29,6 +31,7 @@ class JoinListSeeder extends Seeder
                 'guest_email' => $faker->freeEmail(),
                 'guest_name' => $faker->name(),
                 'guest_contact' => '60'.$faker->randomNumber(9),
+                'created_at' => Carbon::now()->subHours($faker->numberBetween(1,128))
             ]);
 
         }
