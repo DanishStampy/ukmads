@@ -14,6 +14,10 @@
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleControls" data-slide-to="0" class="active">
                 </li>
+                <li data-target="#carouselExampleControls" data-slide-to="1">
+                </li>
+                <li data-target="#carouselExampleControls" data-slide-to="2">
+                </li>
             </ol>
 
             @foreach($popularAds as $key => $item)
@@ -21,6 +25,7 @@
                     class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
+                            
                             <img class="rounded mx-auto d-block w-100"
                                 src="{{ asset('img/'.$item->picture) }}" alt="First slide"
                                 style="height: 756px; width: 540px;">
