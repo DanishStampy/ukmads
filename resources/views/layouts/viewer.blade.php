@@ -40,7 +40,7 @@
     {{-- AOS Package --}}
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
-<body class="layout-top-nav layout-navbar-fixed" style="height: auto;">
+<body class="layout-top-nav" style="height: auto;">
     <div class="wrapper">
 
         @include('layouts.navbar')
@@ -48,13 +48,13 @@
         <!-- Content Wrapper. Contains page content -->
         @if(Request::path() != '/')
 
-        <div class="content-wrapper" style="margin-top: 80px">
+        <div class="content-wrapper" style="margin-top: 60px">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 my-4" style="font-size: 50px">
+                            <h1 class="m-0 my-4 title-page" style="font-size: 50px" >
                                 @yield('title')
                                 <small>@yield('subtitle')</small>
                             </h1>
@@ -76,12 +76,12 @@
 
         @else
 
-        <div style="margin-top: 80px">
+        <div >
             @yield('content')
         </div>
         @endif
 
-        @include('layouts.footer')
+        @include('layouts.footer-view')
 
     </div>
 
@@ -94,9 +94,6 @@
     {{-- AOS JS Package --}}
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // import AOS from 'aos';
-        // import 'aos/dist/aos.css';
-        // window.AOS = require('AOS');
         AOS.init({
             disable: 'mobile',
             duration: 600,

@@ -11,7 +11,7 @@
 </div>
 
 @if($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show my-3">
+    <div class="alert alert-danger alert-dismissible fade show m-3">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -107,7 +107,7 @@
                             <div class="col d-lg-flex justify-content-lg-end">
                                 <button name="action" value="save" class="btn btn-primary text-right border rounded"
                                     type="submit" style="margin-right: 10px;">Save As Draft</button>
-                                <button name="action" value="verify" class="btn btn-success text-right border rounded"
+                                <button name="action" value="verify" id="verify-ads" class="btn btn-success text-right border rounded"
                                     type="submit">Verify</button>
                             </div>
                         </div>

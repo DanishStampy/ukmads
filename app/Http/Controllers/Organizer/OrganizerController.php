@@ -132,6 +132,16 @@ class OrganizerController extends Controller
             $event->picture = $imgname;
         }
 
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            'org' => 'required',
+            'contactE' => ['required', new PhoneNumber],
+            'descE' => 'required'
+        ]);
+
         $event->creator_email = Auth::user()->email;
         $event->name = $request->name;
         $event->location = $request->location;

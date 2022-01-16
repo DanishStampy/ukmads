@@ -80,8 +80,8 @@
      <!-- Data visualisation -->
      <div class="col-lg-12">
         <div class="card">
-            <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
+            <div class="card-header border-0 bg-olive">
+                <div class="d-flex justify-content-between align-content-item">
                     <h3 class="card-title">Weekly Event Report</h3>
                    
                 </div>

@@ -56,14 +56,14 @@
 
 <div class="row">
     <div class="col-sm-8">
-        <h3 style="font-weight: bold; margin-top: 2rem;">Newest Events</h3>
+        <h3 class="h3-title">Newest Events</h3>
     </div>
     <div class="col-sm-4 text-right" style="margin-top: 2rem;">
-        <a href="{{ route('event.allevents') }}">See all</a>
+        <a href="{{ route('event.allevents') }}" class="see-all">See all</a>
     </div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center pb-5">
   @foreach ($newestEvent as $item)
       <div class="col-md-3">
         <div class="card" style="width: 14rem;">
