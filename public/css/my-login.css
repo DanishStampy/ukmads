@@ -11,7 +11,7 @@ body.my-login-page {
 
 .card-wrapper{
 	width: 500px;
-	height: 500px;
+	height: auto;
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow:
@@ -38,11 +38,14 @@ body.my-login-page {
 	font-size: 14px;
 }
 
-.btn-block{
+.btn-block,
+.btn-block:hover{
 	color: #fff;
 	background-color: #5B56B0;
 	height: 45px;
+	border-color: #5B56B0;
 }
+
 
 .link{
 	color: #5B56B0;

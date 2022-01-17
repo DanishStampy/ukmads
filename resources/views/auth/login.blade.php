@@ -54,6 +54,11 @@
                                     {{ Session::get('success') }}
                                 </div>
                             @endif
+                            @if( Session::get('success_reset'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success_reset') }}
+                                </div>
+                            @endif
                             @if( Session::get('error'))
                                 <div class="alert alert-danger">
                                     {{ Session::get('error') }}
