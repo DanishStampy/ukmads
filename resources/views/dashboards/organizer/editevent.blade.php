@@ -35,7 +35,17 @@
     
     @endif
     <br>
-
+    @if($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show m-3">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+            @foreach ($errors->all() as $err)
+                <li class="">{{$err}}</li>
+            @endforeach
+        </div>
+    @endif
     <div class="container">
         <form action="{{ route('organizer.updateEvent', $event->id_event) }}" method="POST"
             class="form-horizontal" enctype="multipart/form-data">
@@ -69,7 +79,6 @@
                                         <input id="name" type="text" class="form_input" name="name" placeholder=" "
                                             autofocus value="{{ $event->name }}">
                                         <label for="name" class="form_label">Name</label>
-                                        <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +88,6 @@
                                         <input id="location" type="text" class="form_input" name="location"
                                             placeholder=" " value="{{ $event->location }}">
                                         <label for="location" class="form_label">Location</label>
-                                        <span class="text-danger">@error('location'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +97,6 @@
                                         <input id="time" type="time" class="form_input" name="time" placeholder=" "
                                             value="{{ $event->time }}">
                                         <label for="time" class="form_label">Time</label>
-                                        <span class="text-danger">@error('time'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -97,7 +104,6 @@
                                         <input id="date" type="date" class="form_input" name="date" placeholder=" "
                                             value="{{ $event->date }}">
                                         <label for="date" class="form_label">Date</label>
-                                        <span class="text-danger">@error('date'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +113,6 @@
                                         <input id="org" type="text" class="form_input" name="org" placeholder=" "
                                             value="{{ $event->organizer }}">
                                         <label for="org" class="form_label">Organizer</label>
-                                        <span class="text-danger">@error('org'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -116,7 +121,6 @@
                                             placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
                                             value="{{ $event->contact }}">
                                         <label for="contactE" class="form_label">Contact Number</label>
-                                        <span class="text-danger">@error('contactE'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +131,6 @@
                                             value="{{ $event->description }}"> --}}
                                         <textarea name="descE" class="form_input" id="descE" style="min-height: 100px">{{ $event->description }}</textarea>
                                         <label for="descE" class="form_label">Description</label>
-                                        <span class="text-danger">@error('descE'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +145,7 @@
                                             type="submit" name="action" value="submit">Verify</button>
                                     @else
                                         <button class="btn btn-success text-right border rounded"
-                                            type="submit" name="action" value="update">Update</button>
+                                            type="submit" id="update-event" name="action" value="update">Update</button>
                                     @endif
                                 </div>
                             </div>

@@ -20,7 +20,7 @@
                     </li>
                     <li class="list-group-item">
                         <b>Posted</b> <a
-                            class="float-right">{{ $ads->where('status', 'verified')->count() }}</a>
+                            class="float-right">{{ $event->where('status', 'verified')->count() }}</a>
                     </li>
                     <li class="list-group-item">
                         <b>Subscription status</b> <a class="float-right">None</a>
@@ -36,7 +36,7 @@
             <div class="card-body">
                 <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                        <b>Total advertisement quota</b> <a class="float-right">10</a>
+                        <b>Total events quota</b> <a class="float-right">10</a>
                     </li>
                     <li class="list-group-item">
                         <b>Quota remaining</b> <a class="float-right">3</a>

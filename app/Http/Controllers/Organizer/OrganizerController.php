@@ -6,10 +6,14 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
 
 class OrganizerController extends Controller
 {
@@ -18,13 +22,36 @@ class OrganizerController extends Controller
         return Auth::user()->email;
     }
 
+    public function profile()
+    {
+        $user_id = $this->getEmail();
+        $event = Event::where('creator_email', $user_id);
+
+        return view('dashboards.organizer.profile', compact('event'));
+    }
+
     public function index()
     {
         $user_id = $this->getEmail();
 
         $event = Event::where('creator_email', $user_id)->get();
+        $totalJoin = DB::table('join_lists')->count('id');
 
-        return view('dashboards.organizer.index', compact('event'));
+        $joinDateDB = DB::table('join_lists')->selectRaw('COUNT(id) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
+            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
+
+            ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
+            ->groupBy('fdate')->get()
+            ->mapWithKeys(function ($item) {
+
+                return [$item->fdate => $item->cnt];
+            });
+
+        $joinDate = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
+            return [$date->format('d/m/Y') => 0];
+        })->merge($joinDateDB)->sortKeys();
+
+        return view('dashboards.organizer.index', compact('event', 'joinDate', 'totalJoin'));
     }
 
     // Create events
@@ -48,6 +75,16 @@ class OrganizerController extends Controller
 
             $events->picture = $imgname;
         }
+
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            'org' => 'required',
+            'contactE' => ['required', new PhoneNumber],
+            'descE' => 'required'
+        ]);
 
         $events->creator_email = Auth::user()->email;
         $events->name = $request->name;
@@ -101,6 +138,16 @@ class OrganizerController extends Controller
 
             $event->picture = $imgname;
         }
+
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            'org' => 'required',
+            'contactE' => ['required', new PhoneNumber],
+            'descE' => 'required'
+        ]);
 
         $event->creator_email = Auth::user()->email;
         $event->name = $request->name;

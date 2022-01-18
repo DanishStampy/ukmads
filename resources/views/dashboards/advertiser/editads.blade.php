@@ -10,7 +10,7 @@
     </div>
 
     @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show my-3">
+        <div class="alert alert-danger alert-dismissible fade show m-3">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -148,7 +148,7 @@
 
                                     @else
                                         <button class="btn btn-success text-right border rounded"
-                                        type="submit" name="action" value="update">Update</button>
+                                        type="submit" id="update-ads" name="action" value="update">Update</button>
                                     @endif
                                 </div>
                             </div>

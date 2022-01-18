@@ -28,9 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        $charts->register([
-            \App\Charts\SampleChart::class
-        ]);
        
     }
 

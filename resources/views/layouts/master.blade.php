@@ -87,9 +87,7 @@
         @include('layouts.footer')
 
     </div>
-
     
-
     <!-- Chartjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
@@ -107,6 +105,7 @@
         });
 
     </script>
+    
     @stack('scripts')
 
 </body>
