@@ -32,15 +32,16 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 
     {{-- Icon --}}
     <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
 
      <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">\
- </script>
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">\
+    </script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" style="height: auto;">

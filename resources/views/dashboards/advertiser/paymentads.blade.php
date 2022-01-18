@@ -3,65 +3,68 @@
 @section('title', 'Payment')
 @section('content')
 <div class="container">
-    <h1>Stripe Payment Page - HackTheStuff</h1>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-default credit-card-box">
-                <div class="panel-heading display-table">
-                    <div class="row display-tr">
-                        <h3 class="panel-title display-td">Payment Details</h3>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    @if(Session::has('success'))
-                        <div class="alert alert-success text-center">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
-                            <p>{{ Session::get('success') }}</p>
-                        </div>
-                    @endif
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-primary card-outline text-center">
+                <h2 class="my-3">Payment Details</h2>
+                <div class="card-body">
                     <form role="form" action="{{ route('advertiser.payment') }}" method="post"
                         class="require-validation" data-cc-on-file="false"
                         data-stripe-publishable-key="{{ env('STRIPE_PUBLISHABLE_KEY') }}"
                         id="payment-form">
                         @csrf
-                        <div class='form-row row'>
-                            <div class='col-xs-12 form-group required'>
-                                <label class='control-label card-name'>Name on Card</label> <input class='form-control' size='4'
-                                    type='text'>
+
+                        @if(Session::has('success'))
+                        <div class="alert alert-success text-center">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                            <p>{{ Session::get('success') }}</p>
+                        </div>
+                        @endif
+
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="form_group">
+                                    <input id="name" type="text" class="form_input is-invalid control-label card-name" name="name" placeholder=" "
+                                        autofocus value="" required>
+                                    <label for="name" class="form_label">Cardholder Name</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form_group">
+                                    <input id="card_number" type="text" class="form_input is-invalid control-label  card-number" name="card_number" placeholder=" "
+                                        autofocus value="" required>
+                                    <label for="card_number" class="form_label">Card Number</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form_group">
+                                    <input id="exp_month" type="text" class="form_input is-invalid control-label card-expiry-month" name="exp_month" placeholder=" "
+                                        autofocus value="" required>
+                                    <label for="exp_month" class="form_label">Expiration Month</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form_group">
+                                    <input id="exp_year" type="text" class="form_input is-invalid control-label card-expiry-year" name="exp_year" placeholder=" "
+                                        autofocus value="" required>
+                                    <label for="exp_year" class="form_label">Expiration Year</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form_group">
+                                    <input id="cvc" type="text" class="form_input is-invalid control-label card-cvc" name="cvc" placeholder=" "
+                                        autofocus value="" required>
+                                    <label for="cvc" class="form_label">CVC</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <button class="btn bg-indigo " type="submit">
+                                    Submit Payment
+                                </button>
                             </div>
                         </div>
-                        <div class='form-row row'>
-                            <div class='col-xs-12 form-group card required'>
-                                <label class='control-label'>Card Number</label> <input autocomplete='off'
-                                    class='form-control card-number' size='20' type='text'>
-                            </div>
-                        </div>
-                        <div class='form-row row'>
-                            <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                <label class='control-label'>CVC</label> <input autocomplete='off'
-                                    class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
-                            </div>
-                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Expiration Month</label> <input
-                                    class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
-                            </div>
-                            <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                <label class='control-label'>Expiration Year</label> <input
-                                    class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
-                            </div>
-                        </div>
-                        <div class='form-row row'>
-                            <div class='col-md-12 error form-group hide'>
-                               <div class='alert-danger alert'>Please correct the errors and try
-                                  again.
-                               </div>
-                            </div>
-                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now ($100)</button>
-                            </div>
-                        </div>
+
                     </form>
                 </div>
             </div>
@@ -99,6 +102,7 @@
                 e.preventDefault();
                 Stripe.setPublishableKey($form.data('stripe-publishable-key'));
                 Stripe.createToken({
+                    name: $('.card-name').val(),
                     number: $('.card-number').val(),
                     cvc: $('.card-cvc').val(),
                     exp_month: $('.card-expiry-month').val(),
