@@ -41,7 +41,7 @@
                     <li class="list-group-item">
                         <b>Quota remaining</b> <a class="float-right">3</a>
                     </li>
-                    <a href="#" class="btn btn-primary btn-block"><b>Add quota</b></a>
+                    <a href="{{route('organizer.checkout')}}" class="btn btn-primary btn-block"><b>Add quota</b></a>
                 </ul>
             </div>
         </div>

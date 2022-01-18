@@ -32,7 +32,6 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/customize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/my-login.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
 
     {{-- Icon --}}
     <link rel="icon" href="{{ asset('img/ukmads-logo-background.png')}}" type="image/x-icon">
@@ -87,7 +86,7 @@
         @include('layouts.footer')
 
     </div>
-    
+
     <!-- Chartjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 

@@ -98,6 +98,10 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
     Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
     Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
 
+    // Payment
+    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
+
     //Draft
     Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
 
@@ -124,10 +128,11 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
 
+    // Payment
     Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
     Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
 
-    //Draft
+    // Draft
     Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');
 
     // Logout
