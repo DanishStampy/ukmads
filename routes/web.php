@@ -80,6 +80,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 // Organizer
 Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
+    Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
     
     // Event
     Route::get('createevents', [OrganizerController::class, 'createevents'])->name('createevents');

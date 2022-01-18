@@ -18,7 +18,17 @@
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="{{ route('advertiser.profile')}}" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
+                        @if ( Auth::user()->role == 'advertiser')
+                            <a href="{{ route('advertiser.profile')}}" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
+                        
+                        @elseif ( Auth::user()->role == 'organizer')
+                            <a href="{{ route('organizer.profile')}}" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
+                        
+                        @else
+                            <a href="#" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
+                            
+                        @endif
+                        
                     </div>
                 @else
                     <div class="image">
