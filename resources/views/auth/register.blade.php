@@ -20,6 +20,20 @@
 <body class="my-register-page">
 	<section class="h-100">
 		<div class="container h-100">
+			@if($errors->any())
+                <div class="row justify-content-center align-items-center fixed-top">
+                    <div class="col-8 alert alert-danger alert-dismissible fade show my-3">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                        @foreach($errors->all() as $err)
+                            <li class="">{{ $err }}</li>
+                        @endforeach
+                    </div>
+                </div>
+
+            @endif
 			<div class="row justify-content-md-center align-items-md-center h-100">
 				<div class="card-wrapper">
 					
@@ -34,39 +48,39 @@
 								<div class="form_group">
 									<input id="name" type="text" class="form_input" name="name" placeholder=" "  autofocus value="{{ old('name') }}">
 									<label for="name" class="form_label">Name</label>
-									<span class="text-danger">@error('name'){{ $message }}@enderror</span>
+									
 								</div>
 
 								<div class="form_group">
 									<input id="email" type="email" class="form_input" name="email"  placeholder=" " value="{{ old('email') }}">
 									<label for="email" class="form_label">E-Mail Address</label>
-									<span class="text-danger">@error('email'){{ $message }}@enderror</span>
+									
 								</div>
                       
 
 								<div class="form_group">
-									<input id="password" type="password" class="form_input" name="password"  data-eye placeholder=" ">
+									<input id="password" type="password" class="form_input" name="password"  placeholder=" ">
 									<label for="password" class="form_label">Password</label>
-									<span class="text-danger">@error('password'){{ $message }}@enderror</span>
+									
 								</div>
                 
 								<div class="form_group">
-									<input id="password-confirm" type="password" class="form_input" name="password_confirmation" required data-eye placeholder=" ">
+									<input id="password-confirm" type="password" class="form_input" name="password_confirmation" required placeholder=" ">
 									<label for="password-confirm" class="form_label">Confirm Password</label>
-									<span class="text-danger">@error('password_confirmation'){{ $message }}@enderror</span>
+									
                                     
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" class="btn btn-block">
+									<button type="submit" id="user-register" class="btn btn-block">
 										Sign Up
 									</button>
 								</div>
 								<div class="my-3 text-center">
-									Already have an account? <a class="link" href="{{route('login')}}">Login</a>
+									Already have an account? <a class="link" id="org-login-form" href="{{route('login')}}">Login</a>
 								</div>
 								<div class="my-3 text-center">
-									Are you representative of an organization? <a class="link" href="{{route('org.form')}}">Sign up here</a>
+									Are you representative of an organization? <a class="link" id="org-register-form" href="{{route('org.form')}}">Sign up here</a>
 								</div>
 							</form>
 						</div>
@@ -76,7 +90,10 @@
 			</div>
 		</div>
 	</section>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
 <script src="jquery-3.4.1.min.js"></script>
 	<script src="bootstrap/js/popper.js"></script>
 	<script src="bootstrap/js/bootstrap.js"></script>

@@ -30,7 +30,9 @@ class AdvertiserController extends Controller
 
     public function profile()
     {
-        return view('dashboards.advertiser.profile');
+        $user_id = $this->getEmail();
+        $ads = Advertisement::where('creator_email', $user_id)->get();
+        return view('dashboards.advertiser.profile', compact('ads'));
     }
 
     // Create ads

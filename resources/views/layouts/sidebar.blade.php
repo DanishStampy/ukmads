@@ -18,7 +18,7 @@
                             class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
+                        <a href="{{ route('advertiser.profile')}}" class="d-block"> {{ ucfirst(Auth::user()->name) }} </a>
                     </div>
                 @else
                     <div class="image">
@@ -208,7 +208,7 @@
                     @auth
 
                         <li class="nav-item">
-                            <a data-toggle="modal" data-target="#Logout" class="nav-link"
+                            <a data-toggle="modal" id="logout-button" data-target="#Logout" class="nav-link"
                                 style="color: #fff; cursor: pointer;">
                                 <i class="fas fa-sign-out-alt mr-2 "></i>
                                 <p class="">Logout</p>
@@ -264,7 +264,7 @@
                 @if(Route::has('login'))
                     @auth
                         @if(Auth::user()->role == "advertiser")
-                            <a type="button" href="{{ route("advertiser.logout") }}"
+                            <a type="button" id="advertiser-logout" href="{{ route("advertiser.logout") }}"
                                 class="btn btn-danger">Yes</a>
 
                         @elseif(Auth::user()->role == "admin")

@@ -5,14 +5,15 @@
 @section('content')
 <div class="row mb-5 d-flex justify-content-end ">
   <form class="form-group " method="GET" action="{{ route('web.searchadsV')}}">
-  <div class="input-group ">
-      
-          <div class="form-outline">
-              <input type="search" name="searchadsV" id="searchadsV" class="form-control" placeholder="search" required/>
-          </div>
+    @csrf
+  <div class="input-group">
+    <input type="search" name="searchadsV" id="searchadsV" class="form-control" placeholder="search" required/>
+    <div class="input-group-append">
       <button type="" class="btn btn-primary">
-        <i class="fas fa-search"></i>
-      </button>
+      <i class="fas fa-search"></i>
+    </button>
+    </div>
+    
       
   </div>
 </form>
@@ -22,7 +23,7 @@
 @foreach($ads as $key => $item)
     <div class="col-md-3 mb-5">
         <a href="{{ route("advertisement.adsdetails", $item->id_ads) }}" class="cards">
-            <img src="{{  asset('img/'.$item->picture) }}" class="card__image" alt="" />
+            <img src="{{  asset('img/'.$item->picture) }}" class="card__image img-fluid" alt="" />
             <div class="card__overlay">
               <div class="card__header">
                 <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>

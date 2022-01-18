@@ -21926,7 +21926,7 @@ body.text-sm .input-group-text {
   color: #1f2d3d;
 }
 .card-primary.card-outline {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #5B56B0;
 }
 .card-primary.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
@@ -28955,7 +28955,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 }
 
 .profile-user-img {
-  border: 3px solid #adb5bd;
+  border: 3px solid #5B56B0;
   margin: 0 auto;
   padding: 3px;
   width: 100px;
