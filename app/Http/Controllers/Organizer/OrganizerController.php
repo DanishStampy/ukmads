@@ -6,6 +6,7 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Models\Subscription;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,29 +23,37 @@ class OrganizerController extends Controller
         return Auth::user()->email;
     }
 
+    public function profile()
+    {
+        $user_id = $this->getEmail();
+        $event = Event::where('creator_email', $user_id)->get();
+        $subs = Subscription::where('user_id', Auth::user()->user_id)->limit(1)->get();
+
+        return view('dashboards.organizer.profile', compact('event', 'subs'));
+    }
+
     public function index()
     {
         $user_id = $this->getEmail();
 
         $event = Event::where('creator_email', $user_id)->get();
-        $totalJoin = DB::table('join_lists')->count('id');    
+        $totalJoin = DB::table('join_lists')->count('id');
 
         $joinDateDB = DB::table('join_lists')->selectRaw('COUNT(id) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
-        ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
-    
-        ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
-        ->groupBy('fdate')->get()
-        ->mapWithKeys(function ($item) {
-           
-            return [$item->fdate => $item->cnt];
-        });
+            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
 
-    $joinDate = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
-        return [$date->format('d/m/Y') => 0];
-    })->merge($joinDateDB)->sortKeys();
-   
-        return view('dashboards.organizer.index', compact('event','joinDate', 'totalJoin'));
+            ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
+            ->groupBy('fdate')->get()
+            ->mapWithKeys(function ($item) {
 
+                return [$item->fdate => $item->cnt];
+            });
+
+        $joinDate = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
+            return [$date->format('d/m/Y') => 0];
+        })->merge($joinDateDB)->sortKeys();
+
+        return view('dashboards.organizer.index', compact('event', 'joinDate', 'totalJoin'));
     }
 
     // Create events

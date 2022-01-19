@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertiser;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Subscription;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,6 @@ class AdvertiserController extends Controller
     public function index()
     {
         $user_id = $this->getEmail();
-
         $ads = Advertisement::where('creator_email', $user_id)->get();
 
         return view('dashboards.advertiser.index', compact('ads'));
@@ -32,7 +32,9 @@ class AdvertiserController extends Controller
     {
         $user_id = $this->getEmail();
         $ads = Advertisement::where('creator_email', $user_id)->get();
-        return view('dashboards.advertiser.profile', compact('ads'));
+        $subs = Subscription::where('user_id', Auth::user()->user_id)->limit(1)->get();
+
+        return view('dashboards.advertiser.profile', compact('ads', 'subs'));
     }
 
     // Create ads

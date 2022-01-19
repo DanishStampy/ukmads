@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\OrgRegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Organizer\OrganizerController;
+use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
@@ -80,6 +81,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 // Organizer
 Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
+    Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
     
     // Event
     Route::get('createevents', [OrganizerController::class, 'createevents'])->name('createevents');
@@ -95,6 +97,10 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
     // List
     Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
     Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
+
+    // Payment
+    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
 
     //Draft
     Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
@@ -122,9 +128,11 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
 
-    
+    // Payment
+    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
 
-    //Draft
+    // Draft
     Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');
 
     // Logout

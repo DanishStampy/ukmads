@@ -141,7 +141,7 @@ html{
   background-position: center top;
 }
 
-p, small, blockquote, a, h1, h3, li{
+p, small, blockquote, a, h1, h2, h3, li{
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -323,6 +323,102 @@ button.landing-btn:hover{
 .contact .fa,
 .site-footer .fa {
   color: #fff;
+}
+
+/* General */
+
+.round{
+  border-radius: 12px;
+}
+
+.card-newest{
+  box-shadow:
+    0px 1.7px 2.3px -17px rgba(0, 0, 0, 0.034),
+    0px 4px 5.5px -17px rgba(0, 0, 0, 0.048),
+    0px 7.5px 10.4px -17px rgba(0, 0, 0, 0.06),
+    0px 13.4px 18.5px -17px rgba(0, 0, 0, 0.072),
+    0px 25.1px 34.7px -17px rgba(0, 0, 0, 0.086),
+    0px 60px 83px -17px rgba(0, 0, 0, 0.12)
+  ;
+}
+
+.img-newest{
+  height: 310px;
+  object-fit: fill; 
+  transition: all 0.3s;
+}
+
+.img-newest:hover{
+  transform: translate(-1%, -1%);
+}
+
+.card-detail-img{
+  background-color: #7189ff;
+  box-shadow:
+    0px 4.3px 11.3px rgba(0, 0, 0, 0.038),
+    0px 11.8px 31.2px rgba(0, 0, 0, 0.055),
+    0px 28.3px 75.1px rgba(0, 0, 0, 0.072),
+    0px 94px 249px rgba(0, 0, 0, 0.11)
+  ;
+  
+}
+
+.product-image{
+  object-fit: fill;
+  height: 570px;
+}
+
+.detail-title{
+  font-weight: 700;
+}
+
+.card-detail{
+  box-shadow:
+    11.3px 0px 11.3px rgba(0, 0, 0, 0.038),
+    31.2px 0px 31.2px rgba(0, 0, 0, 0.055),
+    75.1px 0px 75.1px rgba(0, 0, 0, 0.072),
+    249px 0px 249px rgba(0, 0, 0, 0.11)
+  ;
+
+}
+
+h2.detail-desc{
+  margin-top: 22px;
+  color: #7189ff;
+}
+
+p.detail-desc{
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.detail-item,
+.detail-item-content{
+  font-size: 20px;
+}
+
+h2.detail-item{
+  color: #7189ff;
+}
+
+.round.card-detail{
+  border-radius: 0 12px 12px 0;
+}
+
+
+.btn-links.btn-detail{
+  border: 1px solid #7189ff;
+  border-radius: 12px;
+  padding: 12px;
+  color: #fff;
+  transition: 0.3s;
+  background-color: #7189ff;
+}
+
+.btn-links.btn-detail:hover{
+  border: 1px solid #7189ff;
+  background-color: #fff;
+  color: #7189ff;
 }
 
 @media screen and (max-width: 576px) {

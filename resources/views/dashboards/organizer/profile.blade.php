@@ -20,7 +20,7 @@
                     </li>
                     <li class="list-group-item">
                         <b>Posted</b> <a
-                            class="float-right" id="posted">{{ $ads->where('status', 'verified')->count() }}</a>
+                            class="float-right" id="posted">{{ $event->where('status', 'verified')->count() }}</a>
                     </li>
                     <li class="list-group-item">
                         <b>Subscription status</b> <a class="float-right">
@@ -40,7 +40,7 @@
             <div class="card-body">
                 <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                        <b>Total advertisement quota</b> <a class="float-right" id="quota-total">
+                        <b>Total event quota</b> <a class="float-right" id="quota-total">
                             @foreach ($subs as $item)
                                 {{$item->quota}}
                             @endforeach  
@@ -51,7 +51,7 @@
                             
                         </a>
                     </li>
-                    <a href="{{route('advertiser.checkout')}}" class="btn btn-primary btn-block"><b>Add quota</b></a>
+                    <a href="{{route('organizer.checkout')}}" class="btn btn-primary btn-block"><b>Add quota</b></a>
                 </ul>
             </div>
         </div>
