@@ -17,7 +17,7 @@ class Payment extends Model
         'user_id',
         'payer_email',
         'amount',
-        'currency',
+        'quota_count',
         'payment_status',
     
     ];

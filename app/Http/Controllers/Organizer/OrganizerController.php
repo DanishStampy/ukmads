@@ -6,6 +6,7 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Models\Subscription;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +26,10 @@ class OrganizerController extends Controller
     public function profile()
     {
         $user_id = $this->getEmail();
-        $event = Event::where('creator_email', $user_id);
+        $event = Event::where('creator_email', $user_id)->get();
+        $subs = Subscription::where('user_id', Auth::user()->user_id)->limit(1)->get();
 
-        return view('dashboards.organizer.profile', compact('event'));
+        return view('dashboards.organizer.profile', compact('event', 'subs'));
     }
 
     public function index()

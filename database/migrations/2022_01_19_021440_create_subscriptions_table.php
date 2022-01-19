@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsTable extends Migration
+class CreateSubscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->string('payment_id');
+        Schema::create('subscriptions', function (Blueprint $table) {
+            $table->id();
             $table->string('user_id');
-            $table->string('payer_email');
-            $table->float('amount', 10, 2);
-            $table->string('quota_count');
-            $table->string('payment_status');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->bigInteger('quota')->nullable();
+            $table->string('subs_status')->nullable()->default('NO');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('subscriptions');
     }
 }

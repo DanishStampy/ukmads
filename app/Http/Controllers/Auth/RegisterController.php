@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subscription;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -91,8 +92,12 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->role = 'advertiser'; 
         $user->password = Hash::make($request->password);
+        $user->save();
 
-        if( $user->save() ){
+        $subs = new Subscription();
+        $subs->user_id = $user->user_id;
+
+        if( $subs->save() ){
             return redirect('login')->with('success','You are now successfully registered');
         }else{
             return redirect('login')->with('error','Failed to register');
