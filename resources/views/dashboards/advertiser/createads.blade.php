@@ -103,10 +103,19 @@
                         <br>
                         <div class="row">
                             <div class="col d-lg-flex justify-content-lg-end">
-                                <button name="action" value="save" class="btn btn-primary text-right border rounded"
+
+                                @if ($subs->subs_status == 'NO')
+                                    <a href="{{ route('advertiser.profile')}}" name="action" value="save" class="btn btn-primary text-right border rounded"
+                                    type="button" style="margin-right: 10px;">Ads Quota</a>
+
+                                @else
+                                    <button name="action" value="save" class="btn btn-primary text-right border rounded"
                                     type="submit" style="margin-right: 10px;">Save As Draft</button>
-                                <button name="action" value="verify" id="verify-ads" class="btn btn-success text-right border rounded"
+                                    <button name="action" value="verify" id="verify-ads" class="btn btn-success text-right border rounded"
                                     type="submit">Verify</button>
+
+                                @endif
+                                
                             </div>
                         </div>
                     </div>

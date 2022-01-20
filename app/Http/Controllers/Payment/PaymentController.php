@@ -28,7 +28,7 @@ class PaymentController extends Controller
         $uid = Auth::user()->user_id;
         $quotaQuantity = $request->quota;
         
-        $subscriptionID = Subscription::where('user_id', $uid)->first()->value('id');
+        $subscriptionID = Subscription::where('user_id', $uid)->value('id');
         $subscription = Subscription::find($subscriptionID);
         $subscription->quota =  $subscription->quota + $quotaQuantity;
         $subscription->subs_status = 'YES';

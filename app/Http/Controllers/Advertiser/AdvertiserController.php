@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertiser;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Payment;
 use App\Models\Subscription;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
@@ -32,15 +33,22 @@ class AdvertiserController extends Controller
     {
         $user_id = $this->getEmail();
         $ads = Advertisement::where('creator_email', $user_id)->get();
-        $subs = Subscription::where('user_id', Auth::user()->user_id)->limit(1)->get();
 
-        return view('dashboards.advertiser.profile', compact('ads', 'subs'));
+        $subsID = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($subsID);
+
+        $paymentHistory = Payment::where('user_id', Auth::user()->user_id)->get();
+
+        return view('dashboards.advertiser.profile', compact('ads', 'subs', 'paymentHistory'));
     }
 
     // Create ads
     public function createads()
     {
-        return view('dashboards.advertiser.createads');
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        return view('dashboards.advertiser.createads', compact('subs'));
     }
 
     public function uploadAds(Request $request)

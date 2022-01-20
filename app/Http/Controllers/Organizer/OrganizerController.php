@@ -6,6 +6,7 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Models\Payment;
 use App\Models\Subscription;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
@@ -27,9 +28,13 @@ class OrganizerController extends Controller
     {
         $user_id = $this->getEmail();
         $event = Event::where('creator_email', $user_id)->get();
-        $subs = Subscription::where('user_id', Auth::user()->user_id)->limit(1)->get();
 
-        return view('dashboards.organizer.profile', compact('event', 'subs'));
+        $subsID = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($subsID);
+
+        $paymentHistory = Payment::where('user_id', Auth::user()->user_id)->get();
+
+        return view('dashboards.organizer.profile', compact('event', 'subs', 'paymentHistory'));
     }
 
     public function index()
@@ -59,7 +64,10 @@ class OrganizerController extends Controller
     // Create events
     public function createevents()
     {
-        return view('dashboards.organizer.createevents');
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        return view('dashboards.organizer.createevents', compact('subs'));
     }
 
     public function uploadEvents(Request $request)
