@@ -79,7 +79,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 
 
 // Organizer
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['PreventBackHistory','isOrgs','auth','secure']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
     
@@ -111,7 +111,7 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
 
 
 // Advertiser
-Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
+Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth','secure']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
 
