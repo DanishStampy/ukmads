@@ -54,7 +54,7 @@ Route::group(['as' => 'event.'], function(){
 
 Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');
 
-Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
+Route::middleware(['middleware'=>'PreventBackHistory', 'secure'])->group(function(){
     Auth::routes();
 });
 
