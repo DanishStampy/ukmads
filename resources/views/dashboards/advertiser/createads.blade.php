@@ -104,7 +104,7 @@
                         <div class="row">
                             <div class="col d-lg-flex justify-content-lg-end">
 
-                                @if ($subs->subs_status == 'NO')
+                                @if ($subs->subs_status == 'NO' || $adsPosted == $subs->quota)
                                     <a href="{{ route('advertiser.profile')}}" name="action" value="save" class="btn btn-primary text-right border rounded"
                                     type="button" style="margin-right: 10px;">Ads Quota</a>
 

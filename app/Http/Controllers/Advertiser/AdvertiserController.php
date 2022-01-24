@@ -26,7 +26,10 @@ class AdvertiserController extends Controller
         $user_id = $this->getEmail();
         $ads = Advertisement::where('creator_email', $user_id)->get();
 
-        return view('dashboards.advertiser.index', compact('ads'));
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        return view('dashboards.advertiser.index', compact('ads', 'adsPosted'));
     }
 
     public function profile()
@@ -48,7 +51,9 @@ class AdvertiserController extends Controller
         $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
         $subs = Subscription::find($uid);
 
-        return view('dashboards.advertiser.createads', compact('subs'));
+        $adsPosted = Advertisement::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+
+        return view('dashboards.advertiser.createads', compact('subs', 'adsPosted'));
     }
 
     public function uploadAds(Request $request)
@@ -92,7 +97,6 @@ class AdvertiserController extends Controller
             case 'verify':
                 $ads->status = "pending";
                 $msg = 'Advertisement have been successfully uploaded.';
-                // ads(new Advertisement($ads = $this->create($request->all())));
                 break;
         }
 

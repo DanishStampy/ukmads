@@ -116,7 +116,7 @@
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
 
-                                @if ($subs->subs_status == 'NO')
+                                @if ($subs->subs_status == 'NO' || $eventPosted == $subs->quota)
                                     <a href="{{ route('organizer.profile')}}" name="action" value="save" class="btn btn-primary text-right border rounded"
                                     type="button" style="margin-right: 10px;">Event Quota</a>
 

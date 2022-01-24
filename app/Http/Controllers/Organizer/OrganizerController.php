@@ -58,7 +58,10 @@ class OrganizerController extends Controller
             return [$date->format('d/m/Y') => 0];
         })->merge($joinDateDB)->sortKeys();
 
-        return view('dashboards.organizer.index', compact('event', 'joinDate', 'totalJoin'));
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        return view('dashboards.organizer.index', compact('event', 'subs', 'joinDate', 'totalJoin'));
     }
 
     // Create events
@@ -67,7 +70,9 @@ class OrganizerController extends Controller
         $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
         $subs = Subscription::find($uid);
 
-        return view('dashboards.organizer.createevents', compact('subs'));
+        $eventPosted = Event::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+
+        return view('dashboards.organizer.createevents', compact('subs', 'eventPosted'));
     }
 
     public function uploadEvents(Request $request)
