@@ -96,7 +96,7 @@ class AdvertiserController extends Controller
                 break;
             case 'verify':
                 $ads->status = "pending";
-                $msg = 'Advertisement have been successfully uploaded.';
+                $msg = 'Advertisement have been sent to be verified.';
                 break;
         }
 
@@ -157,7 +157,7 @@ class AdvertiserController extends Controller
             case 'submit':
             case 'update':
                 $ads->status = "pending";
-                $msg = 'Advertisement have been successfully updated.';
+                $msg = 'Advertisement have been successfully updated. It will re-verify the advertisement.';
                 break;
         }
 
@@ -177,7 +177,7 @@ class AdvertiserController extends Controller
         }
         $ads->delete();
 
-        return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
+        return redirect()->back()->with('delete_ads', 'Advertisement has been deleted.');
     }
 
     public function manageads(Request $request)

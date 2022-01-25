@@ -81,6 +81,7 @@ class EventController extends Controller
 
         if (JoinList::where('guest_email', '=', $email)->where('id_event', '=', $id)->exists()) {
             return redirect()->back()->with('failed_submit', 'The email already submitted. Please enter another email.');
+
         } else {
             Mail::to($email)->send(new JoinMail($details));
 
@@ -88,7 +89,7 @@ class EventController extends Controller
             $event->save();
 
             $list->save();
-            return redirect()->back()->with('success_submit', 'Successfully submitted.');
+            return redirect()->back()->with('success_submit', 'Your email has been registered. Please take a look at email for reminder.');
         }
     }
 }

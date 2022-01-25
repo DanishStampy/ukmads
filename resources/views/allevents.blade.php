@@ -29,11 +29,8 @@
                 <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="popular">Popularity</button>
                 <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="date">Date</button>
             </div>
-
         </form>
-
     </div>
-
 </div>
 
 <div class="row justify-content-center">

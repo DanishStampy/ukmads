@@ -118,7 +118,7 @@ class OrganizerController extends Controller
                 break;
             case 'verify':
                 $events->status = "pending";
-                $msg = 'Event have been successfully uploaded.';
+                $msg = 'Event have been sent to be verified.';
                 break;
         }
 
@@ -181,7 +181,7 @@ class OrganizerController extends Controller
             case 'submit':
             case 'update':
                 $event->status = "pending";
-                $msg = 'Event have been successfully updated.';
+                $msg = 'Event have been successfully updated. It will re-verify the event.';
                 break;
         }
 
@@ -201,7 +201,7 @@ class OrganizerController extends Controller
         }
         $event->delete();
 
-        return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');
+        return redirect()->back()->with('delete_event', 'Event has been deleted.');
     }
 
     public function manageevents(Request $request)
