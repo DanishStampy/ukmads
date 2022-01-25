@@ -3,19 +3,34 @@
 @section('title','All Events')
 
 @section('content')
-<div class="row mb-5 d-flex justify-content-end ">
-    <form class="form-group " method="GET" action="{{ route('web.searcheventsV') }}">
-      @csrf
-        <div class="input-group ">
-            <input type="search" name="searcheventsV" id="searcheventsV" class="form-control" placeholder="search"
-                required />
-            <div class="input-group-append">
-                <button type="" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
+<div class="card row mb-5 d-flex justify-content-between round">
+
+    <div class="card-body">
+        <form class="form-group border-bottom pb-3" method="GET" action="{{ route('web.searcheventsV') }}">
+            @csrf
+            <div class="input-group ">
+                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round" placeholder="search"
+                    required />
+                <div class="input-group-append">
+                    <button type="" class="btn bg-indigo round">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+
+        <form class="form-group d-flex flex-column align-items-start justify-content-end" method="GET"
+            action="{{ route('event.allevents') }}" enctype="multipart/form-data">
+
+            <div class="d-flex flex-row align-items-center">
+                <span class="mr-3">Sort By:</span>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="all-ads">All</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="newest">Newest</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="popular">Popularity</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="date">Date</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <div class="row justify-content-center">

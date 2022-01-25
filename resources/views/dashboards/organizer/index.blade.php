@@ -6,6 +6,16 @@
 @include('layouts.loading')
 
 <div class="row">
+
+    @if ($subs->quota == $event->where('status','verified')->count())
+        <div class="col-12">
+            <div class="alert alert-warning alert-dismissible fade show">
+                <p class="text-center mb-0"><i class="fas fa-exclamation"></i> Your quota has finished. Please add more if you want to post more events. Click <a href="{{ route('organizer.profile')}}">here.</a></p>
+            </div>
+            
+        </div>
+    @endif
+
     <div class="col-lg-12 col-12">
         <div class="small-box bg-indigo">
             <div class="inner">

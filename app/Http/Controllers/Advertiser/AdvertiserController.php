@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertiser;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\Payment;
 use App\Models\Subscription;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
@@ -25,22 +26,34 @@ class AdvertiserController extends Controller
         $user_id = $this->getEmail();
         $ads = Advertisement::where('creator_email', $user_id)->get();
 
-        return view('dashboards.advertiser.index', compact('ads'));
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        return view('dashboards.advertiser.index', compact('ads', 'subs'));
     }
 
     public function profile()
     {
         $user_id = $this->getEmail();
         $ads = Advertisement::where('creator_email', $user_id)->get();
-        $subs = Subscription::where('user_id', Auth::user()->user_id)->limit(1)->get();
 
-        return view('dashboards.advertiser.profile', compact('ads', 'subs'));
+        $subsID = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($subsID);
+
+        $paymentHistory = Payment::where('user_id', Auth::user()->user_id)->get();
+
+        return view('dashboards.advertiser.profile', compact('ads', 'subs', 'paymentHistory'));
     }
 
     // Create ads
     public function createads()
     {
-        return view('dashboards.advertiser.createads');
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        $adsPosted = Advertisement::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+
+        return view('dashboards.advertiser.createads', compact('subs', 'adsPosted'));
     }
 
     public function uploadAds(Request $request)
@@ -83,8 +96,7 @@ class AdvertiserController extends Controller
                 break;
             case 'verify':
                 $ads->status = "pending";
-                $msg = 'Advertisement have been successfully uploaded.';
-                // ads(new Advertisement($ads = $this->create($request->all())));
+                $msg = 'Advertisement have been sent to be verified.';
                 break;
         }
 
@@ -145,7 +157,7 @@ class AdvertiserController extends Controller
             case 'submit':
             case 'update':
                 $ads->status = "pending";
-                $msg = 'Advertisement have been successfully updated.';
+                $msg = 'Advertisement have been successfully updated. It will re-verify the advertisement.';
                 break;
         }
 
@@ -165,7 +177,7 @@ class AdvertiserController extends Controller
         }
         $ads->delete();
 
-        return redirect()->back()->with('delete_ads', 'Advertisement has been succesfully deleted.');
+        return redirect()->back()->with('delete_ads', 'Advertisement has been deleted.');
     }
 
     public function manageads(Request $request)

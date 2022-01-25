@@ -12,6 +12,7 @@ use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use App\Http\Controllers\SearchController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
@@ -54,7 +56,7 @@ Route::group(['as' => 'event.'], function(){
 
 Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');
 
-Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
+Route::middleware(['middleware'=>'PreventBackHistory', 'secure'])->group(function(){
     Auth::routes();
 });
 
@@ -79,7 +81,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 
 
 // Organizer
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['PreventBackHistory','isOrgs','auth','secure']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
     
@@ -111,7 +113,7 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
 
 
 // Advertiser
-Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
+Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth','secure']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
 

@@ -115,10 +115,18 @@
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    <button name="action" value="save" class="btn btn-primary text-right border rounded" type="submit"
-                                        style="margin-right: 10px;">Save As Draft</button>
-                                    <button name="action" value="verify" id="verify-event" class="btn btn-success text-right border rounded"
-                                        type="submit">Verify</button>
+
+                                @if ($subs->subs_status == 'NO' || $eventPosted == $subs->quota)
+                                    <a href="{{ route('organizer.profile')}}" name="action" value="save" class="btn btn-primary text-right border rounded"
+                                    type="button" style="margin-right: 10px;">Event Quota</a>
+
+                                @else
+                                    <button name="action" value="save" class="btn btn-primary text-right border rounded"
+                                    type="submit" style="margin-right: 10px;">Save As Draft</button>
+                                    <button name="action" value="verify" id="verify-ads" class="btn btn-success text-right border rounded"
+                                    type="submit">Verify</button>
+
+                                @endif
                                 </div>
                             </div>
                         </div>

@@ -32,9 +32,9 @@
     <form method="GET" class="col-md-3 form-horizontal" action="{{ route('advertiser.manageads') }}"
         enctype="multipart/form-data">
         <div class="btn-group btn-group-toggle">
-            <button name="status" type="submit" class="btn btn-primary" value="pending">Pending</button>
-            <button name="status" type="submit" class="btn btn-success" value="verified">Verified</button>
-            <button name="status" type="submit" class="btn btn-danger" value="rejected">Rejected</button>
+            <button name="status" type="submit" class="btn btn-primary mr-1" value="pending">Pending</button>
+            <button name="status" type="submit" class="btn btn-success mr-1" value="verified">Verified</button>
+            <button name="status" type="submit" class="btn btn-danger mr-1" value="rejected">Rejected</button>
         </div>
     </form>
     <div class="col-md-3">
