@@ -31,7 +31,7 @@
     </div>
 @endif
 
-<div class="row">
+<div class="row justify-content-center align-items-center">
     <div class="col-5 round card card-detail-img" data-aos="fade-right">
         <div class="card-body">
             <img src="{{ asset('img/'.$details->picture) }}" class="round product-image"
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="col-7 d-flex flex-row align-items-center pl-0">
+    <div class="col-7 pl-0">
         <div class="card-detail card round" data-aos="fade-left">
             <div class="card-body">
                 <div class="d-flex flex-row justify-content-between align-items-start">

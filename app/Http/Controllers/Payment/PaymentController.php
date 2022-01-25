@@ -12,19 +12,19 @@ use Stripe;
 
 class PaymentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $quota = $request->quota;
+
         if(Auth::user()->role == 'advertiser')
-            return view('dashboards.advertiser.paymentads');
+            return view('dashboards.advertiser.paymentads', compact('quota'));
         else
-            return view('dashboards.organizer.paymentevent');
+            return view('dashboards.organizer.paymentevent', compact('quota'));
     }
 
     public function paymentPost(Request $request)
     {
         $amount = $request->total_price;
-
-        
         $uid = Auth::user()->user_id;
         $quotaQuantity = $request->quota;
         
@@ -51,8 +51,10 @@ class PaymentController extends Controller
 
         ]);
 
-        Session::flash('success', 'Payment successful!');
-
-        return back();
+        if(Auth::user()->role == 'advertiser')
+            return redirect()->route('advertiser.profile',)->with('success_payment', 'Payment successfully received.');
+        else
+            return redirect()->route('organizer.profile',)->with('success_payment', 'Payment successfully received.');
+        
     }
 }

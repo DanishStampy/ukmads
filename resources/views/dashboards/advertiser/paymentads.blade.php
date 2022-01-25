@@ -9,32 +9,23 @@
         @csrf
         <div class="row justify-content-center">
 
-            @if(Session::has('success'))
-                <div class="col-md-12">
-                    <div class="alert alert-success text-center">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
-                        <p>{{ Session::get('success') }}</p>
-                    </div>
-                </div>
-            @endif
-
             <div class="col-md-6">
                 <div class="card card-primary card-outline text-center">
-                    <h2 class="my-3">Select quota</h2>
+                    <h2 class="my-3">Invoice</h2>
                     <div class="card-body">
                         <div class="row justify-content-center">
                             <div class="col-12">
-                                <div class="form_group">
-                                    <input id="quota" type="number"
-                                        class="form_input is-invalid control-label quota-input" name="quota"
-                                        placeholder=" " autofocus value="" required min="5">
-                                    <label for="quota" class="form_label">Advertisement Quota</label>
-                                </div>
 
-                                <div class="my-4 border-top border-bottom">
+                                <div class="mb-4 border-top border-bottom">
                                     <div class="row justify-content-center align-items-center mt-2">
                                         <h6 class="col-7">
-                                            Total quota
+                                            Number of quota
+                                        </h6>
+                                        <p class="col-5 mb-3" id="num-quota">
+                                            {{$quota}}
+                                        </p>
+                                        <h6 class="col-7">
+                                            Total quota price
                                         </h6>
                                         <p class="col-5 mb-3" id="quota-price">
                                             RM0
@@ -52,6 +43,8 @@
                                     <h5>Total Price</h5>
                                     <p id="total-price">RM0</p>
                                 </div>
+
+                                <input type="hidden" value="{{$quota}}" name="quota" id="quota">
 
                                 <input type="hidden" value="" name="total_price" id="hidden-price">
 
@@ -123,6 +116,24 @@
 
 <script type="text/javascript">
     $(function () {
+
+        // Invoice handler
+        var $numQuota = $("#num-quota").text();
+
+        var $quotaPrice = $numQuota / 2;
+        $("#quota-price").text("RM" + $quotaPrice.toFixed(2));
+
+        var $taxPrice = $quotaPrice * 0.06;
+        $("#tax-price").text("RM" + $taxPrice.toFixed(2));
+
+        var $totalPrice = ($taxPrice + $quotaPrice).toFixed(2);
+        $("#total-price").text("RM" + $totalPrice);
+
+        $("#hidden-price").val($totalPrice);
+        console.log($("#hidden-price").val())
+
+
+        // Payment handler
         var $form = $(".require-validation");
 
         $('form.require-validation').bind('submit', function (e) {
@@ -178,6 +189,3 @@
 </script>
 @endsection
 
-@push('scripts')
-    <script type="text/javascript" src="{{ asset('/js/payment.js') }}"></script>
-@endpush

@@ -6,20 +6,7 @@
 <div class="card row mb-5 d-flex justify-content-between ">
 
     <div class="card-body">
-        <form class="form-group d-flex flex-column align-items-start justify-content-end" method="GET"
-            action="{{ route('event.allevents') }}" enctype="multipart/form-data">
-
-            <div class="d-flex flex-row align-items-center mb-2">
-                <span class="mr-3">Sort By:</span>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="all-ads">All</button>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="newest">Newest</button>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="popular">Popularity</button>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="date">Date</button>
-            </div>
-
-        </form>
-
-        <form class="form-group " method="GET" action="{{ route('web.searcheventsV') }}">
+        <form class="form-group border-bottom pb-3" method="GET" action="{{ route('web.searcheventsV') }}">
             @csrf
             <div class="input-group ">
                 <input type="search" name="searcheventsV" id="searcheventsV" class="form-control" placeholder="search"
@@ -31,6 +18,20 @@
                 </div>
             </div>
         </form>
+
+        <form class="form-group d-flex flex-column align-items-start justify-content-end" method="GET"
+            action="{{ route('event.allevents') }}" enctype="multipart/form-data">
+
+            <div class="d-flex flex-row align-items-center">
+                <span class="mr-3">Sort By:</span>
+                <button class="btn btn-primary mr-1" name="sort" type="submit" value="all-ads">All</button>
+                <button class="btn btn-primary mr-1" name="sort" type="submit" value="newest">Newest</button>
+                <button class="btn btn-primary mr-1" name="sort" type="submit" value="popular">Popularity</button>
+                <button class="btn btn-primary mr-1" name="sort" type="submit" value="date">Date</button>
+            </div>
+
+        </form>
+
     </div>
 
 </div>

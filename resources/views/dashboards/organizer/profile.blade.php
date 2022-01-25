@@ -2,6 +2,18 @@
 @section('title', 'Profile')
 @section('content')
 <div class="row">
+
+    @if(Session::has('success_payment'))
+        <div class="col-12">
+            <div class="alert alert-success alert-dismissible fade show my-3">
+                {{ Session::get('success_payment') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
+
     <div class="col-4">
         <div class="card card-primary card-outline">
             <div class="card-body box-profile">
@@ -53,7 +65,8 @@
                             </a>
                         </li>
                     @endif
-                    <a href="{{route('organizer.checkout')}}" class="btn btn-primary btn-block"><b>Add quota</b></a>
+                    <a href="" type="button" data-toggle="modal" data-target="#quotaModal"
+                        class="btn btn-primary btn-block"><b>Add quota</b></a>
                 </ul>
             </div>
         </div>
@@ -95,6 +108,37 @@
 
                 </ul>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="quotaModal" tabindex="-1" aria-labelledby="quotaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="quotaModalLabel">Select quota</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('organizer.checkout') }}" method="GET"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="form_group">
+                        <input id="quota" type="number" class="form_input is-invalid control-label quota-input"
+                            name="quota" placeholder=" " autofocus value="4" required min="4" max="400">
+                        <label for="quota" class="form_label">Event Quota</label>
+                    </div>
+                    <small>*Minimum event quota is 4. Maximum quota is 400.</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Go to checkout</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

@@ -29,7 +29,7 @@ class AdvertiserController extends Controller
         $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
         $subs = Subscription::find($uid);
 
-        return view('dashboards.advertiser.index', compact('ads', 'adsPosted'));
+        return view('dashboards.advertiser.index', compact('ads', 'subs'));
     }
 
     public function profile()
