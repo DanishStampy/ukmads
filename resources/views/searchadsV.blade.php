@@ -6,18 +6,15 @@
 <div class="card row mb-5 d-flex justify-content-between round">
 
     <div class="card-body">
-        <form class="form-group border-bottom pb-3" method="GET"
-            action="{{ route('web.searchadsV') }}">
-            @csrf
-            <div class="input-group">
-                <input type="search" name="searchadsV" id="searchadsV" class="form-control round" placeholder="search"
-                    required />
-                <div class="input-group-append">
-                    <button type="" class="btn bg-indigo round">
-                        <i class="fas fa-search"></i>
-                    </button>
+        <form class="form-group pb-3" method="GET" action="{{ route('web.searchadsV') }}">
+            <div class="input-group ">
+                <div class="form-outline">
+                    <input type="search" name="searchadsV" id="searchadsV" class="form-control" placeholder="search"
+                        required />
                 </div>
-
+                <button type="" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
 
             </div>
         </form>
@@ -58,27 +55,30 @@
             </div>
         </form>
     </div>
-</div>
 
+
+</div>
 <div class="row justify-content-center">
     @foreach($ads as $key => $item)
-        <div class="col-md-3 mb-5">
-            <a href="{{ route("advertisement.adsdetails", $item->id_ads) }}" class="cards">
-                <img src="{{ asset('img/'.$item->picture) }}" class="card__image img-fluid"
-                    alt="" />
-                <div class="card__overlay">
-                    <div class="card__header">
-                        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                            <path /></svg>
-                        <div class="card__header-text">
-                            <h3 class="card__title">{{ $item->name }}</h3>
-                            <span class="card__status">{{ $item->type }}</span>
+        @if($item->status=='verified')
+            <div class="col-md-3 mb-5">
+                <a href="{{ route("advertisement.adsdetails", $item->id_ads) }}"
+                    class="cards">
+                    <img src="{{ asset('img/'.$item->picture) }}" class="card__image" alt="" />
+                    <div class="card__overlay">
+                        <div class="card__header">
+                            <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                                <path /></svg>
+                            <div class="card__header-text">
+                                <h3 class="card__title">{{ $item->name }}</h3>
+                                <span class="card__status">{{ $item->type }}</span>
+                            </div>
                         </div>
+                        <p class="card__description">{{ $item->description }}</p>
                     </div>
-                    <p class="card__description">{{ $item->description }}</p>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        @endif
     @endforeach
 
 </div>

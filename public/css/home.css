@@ -4,15 +4,144 @@ html{
   scroll-behavior: smooth;
 }
 
+.see-all,
+.see-all:hover{
+  color: #7189ff;
+}
+
+.h3-title,
+.h3-title:hover{
+  color: #7189ff;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.title-page{
+  color: #7189ff;
+}
+
+
+/* Navbar styling */
+.navbar {
+  background: #290576;
+  padding: 1rem;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.navbar-brand {
+  color: #fff;
+  line-height: normal;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.nav-item .nav-link {
+  display: block;
+  color: rgb(255, 255, 255);
+  padding: 2px 6px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+}
+
+.nav-item .nav-link.active,
+.nav-item .nav-link:hover,
+.navbar-brand:hover {
+  transition: all 0.3s;
+  color: #e0ceff;
+}
+
+.navbar-toggler {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  margin: 0 10px 0 0;
+  width: 30px;
+  height: 35px;
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
+  transition: top 300ms 50ms ease, transform 300ms 350ms ease;
+  transition: top 300ms 50ms ease, transform 300ms 350ms ease, -webkit-transform 300ms 350ms ease;
+  top: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+}
+
+.navbar-toggler .navbar-toggler-icon {
+  background: #fff;
+  transition: background 10ms 300ms ease;
+  display: block;
+  width: 30px;
+  height: 2px;
+  position: relative;
+}
+
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+  transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
+  transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+  transition: top 300ms 350ms ease, transform 300ms 50ms ease, -webkit-transform 300ms 50ms ease;
+  position: absolute;
+  right: 0;
+  left: 0;
+  background: #fff;
+  width: 30px;
+  height: 2px;
+  content: '';
+}
+
+.navbar-toggler .navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler .navbar-toggler-icon::after {
+  top: 8px;
+}
+
+@media screen and (max-width: 992px) {
+
+  .nav-item .nav-link {
+    padding: 6px;
+  }
+
+  .navbar-collapse,
+  .site-footer {
+    text-align: center;
+  }
+}
+
+/* Landing page */
+
 .landing-bg{
   background: url('/img/UKMads.png');
   width: 100%;
-  height: calc(100vh - 80px);
+  height: 100vh;
   max-height: 1080px;
   background-position: center top;
 }
 
-p, small, blockquote, a, h1, h3, li{
+p, small, blockquote, a, h1, h2, h3, li{
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -21,7 +150,7 @@ a{
 }
 
 .landing-header{
-  height: calc(100vh - 80px);
+  height: 100vh;
 }
 
 .landing-header > p,
@@ -168,4 +297,133 @@ button.landing-btn:hover{
   border: 1px solid #290576;
   background-color: #fff;
   color: #290576;
+}
+
+/* Footer styling */
+.site-footer {
+  border-top: 1px solid #efebeb;
+  padding: 1rem 0;
+  background-color: #290576;
+}
+
+.site-footer a {
+  color: #fff;
+  font-weight: 400;
+}
+
+.footer-img{
+  width: 50%;
+}
+
+.site-footer p {
+  font-size: 400;
+  color: #fff;
+}
+
+.contact .fa,
+.site-footer .fa {
+  color: #fff;
+}
+
+/* General */
+
+.round{
+  border-radius: 12px;
+}
+
+.card-newest{
+  box-shadow:
+    0px 1.7px 2.3px -17px rgba(0, 0, 0, 0.034),
+    0px 4px 5.5px -17px rgba(0, 0, 0, 0.048),
+    0px 7.5px 10.4px -17px rgba(0, 0, 0, 0.06),
+    0px 13.4px 18.5px -17px rgba(0, 0, 0, 0.072),
+    0px 25.1px 34.7px -17px rgba(0, 0, 0, 0.086),
+    0px 60px 83px -17px rgba(0, 0, 0, 0.12)
+  ;
+}
+
+.img-newest{
+  height: 310px;
+  object-fit: fill; 
+  transition: all 0.3s;
+}
+
+.img-newest:hover{
+  transform: translate(-1%, -1%);
+}
+
+.card-detail-img{
+  background-color: #7189ff;
+  box-shadow:
+    0px 4.3px 11.3px rgba(0, 0, 0, 0.038),
+    0px 11.8px 31.2px rgba(0, 0, 0, 0.055),
+    0px 28.3px 75.1px rgba(0, 0, 0, 0.072),
+    0px 94px 249px rgba(0, 0, 0, 0.11)
+  ;
+  
+}
+
+.product-image{
+  object-fit: fill;
+  height: 570px;
+}
+
+.detail-title{
+  font-weight: 700;
+}
+
+.card-detail{
+  box-shadow:
+    11.3px 0px 11.3px rgba(0, 0, 0, 0.038),
+    31.2px 0px 31.2px rgba(0, 0, 0, 0.055),
+    75.1px 0px 75.1px rgba(0, 0, 0, 0.072),
+    249px 0px 249px rgba(0, 0, 0, 0.11)
+  ;
+
+}
+
+h2.detail-desc{
+  margin-top: 22px;
+  color: #7189ff;
+}
+
+p.detail-desc{
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.detail-item,
+.detail-item-content{
+  font-size: 20px;
+}
+
+h2.detail-item{
+  color: #7189ff;
+}
+
+.round.card-detail{
+  border-radius: 0 12px 12px 0;
+}
+
+
+.btn-links.btn-detail{
+  border: 1px solid #7189ff;
+  border-radius: 12px;
+  padding: 12px;
+  color: #fff;
+  transition: 0.3s;
+  background-color: #7189ff;
+}
+
+.btn-links.btn-detail:hover{
+  border: 1px solid #7189ff;
+  background-color: #fff;
+  color: #7189ff;
+}
+
+@media screen and (max-width: 576px) {
+
+  .landing-header > p{
+    font-size: 48px;
+  }
 }

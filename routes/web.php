@@ -8,9 +8,11 @@ use App\Http\Controllers\Auth\OrgRegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Organizer\OrganizerController;
+use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,16 @@ use App\Http\Controllers\SearchController;
 |
 */
 
+
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
 // Search
 Route::get('/searchads', [SearchController::class, 'searchads'])->name('web.searchads');
 Route::get('/searchevents', [SearchController::class, 'searchevents'])->name('web.searchevents');
+Route::get('/searchadsV', [SearchController::class, 'searchadsV'])->name('web.searchadsV');
+Route::get('/searcheventsV', [SearchController::class, 'searcheventsV'])->name('web.searcheventsV');
+
 // Testing view
 Route::get('/testview', fn()=> view('testview'))->name('testview');
 
@@ -50,10 +56,11 @@ Route::group(['as' => 'event.'], function(){
 
 Route::get('/aboutus', fn()=> view('aboutus'))->name('aboutus');
 
-Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
+Route::middleware(['middleware'=>'PreventBackHistory', 'secure'])->group(function(){
     Auth::routes();
 });
 
+// Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBackHistory','isAdmin','auth']], function(){
     Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('pendingads', [AdminController::class, 'pendingads'])->name('pendingads');
@@ -73,8 +80,10 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 });
 
 
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth']] ,function(){
+// Organizer
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['PreventBackHistory','isOrgs','auth','secure']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
+    Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
     
     // Event
     Route::get('createevents', [OrganizerController::class, 'createevents'])->name('createevents');
@@ -91,6 +100,10 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
     Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
     Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
 
+    // Payment
+    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
+
     //Draft
     Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
 
@@ -99,8 +112,8 @@ Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => 
 });
 
 
-
-Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth']], function(){
+// Advertiser
+Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth','secure']], function(){
     Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
     Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
 
@@ -117,9 +130,11 @@ Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => [
 
     Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
 
-    
+    // Payment
+    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
+    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
 
-    //Draft
+    // Draft
     Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');
 
     // Logout

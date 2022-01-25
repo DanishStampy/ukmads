@@ -6,10 +6,16 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Models\Payment;
+use App\Models\Subscription;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\DB;
 
 class OrganizerController extends Controller
 {
@@ -18,19 +24,55 @@ class OrganizerController extends Controller
         return Auth::user()->email;
     }
 
+    public function profile()
+    {
+        $user_id = $this->getEmail();
+        $event = Event::where('creator_email', $user_id)->get();
+
+        $subsID = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($subsID);
+
+        $paymentHistory = Payment::where('user_id', Auth::user()->user_id)->get();
+
+        return view('dashboards.organizer.profile', compact('event', 'subs', 'paymentHistory'));
+    }
+
     public function index()
     {
         $user_id = $this->getEmail();
 
         $event = Event::where('creator_email', $user_id)->get();
+        $totalJoin = DB::table('join_lists')->count('id');
 
-        return view('dashboards.organizer.index', compact('event'));
+        $joinDateDB = DB::table('join_lists')->selectRaw('COUNT(id) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
+            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
+
+            ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
+            ->groupBy('fdate')->get()
+            ->mapWithKeys(function ($item) {
+
+                return [$item->fdate => $item->cnt];
+            });
+
+        $joinDate = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
+            return [$date->format('d/m/Y') => 0];
+        })->merge($joinDateDB)->sortKeys();
+
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        return view('dashboards.organizer.index', compact('event', 'subs', 'joinDate', 'totalJoin'));
     }
 
     // Create events
     public function createevents()
     {
-        return view('dashboards.organizer.createevents');
+        $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
+        $subs = Subscription::find($uid);
+
+        $eventPosted = Event::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+
+        return view('dashboards.organizer.createevents', compact('subs', 'eventPosted'));
     }
 
     public function uploadEvents(Request $request)
@@ -49,6 +91,16 @@ class OrganizerController extends Controller
             $events->picture = $imgname;
         }
 
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            'org' => 'required',
+            'contactE' => ['required', new PhoneNumber],
+            'descE' => 'required'
+        ]);
+
         $events->creator_email = Auth::user()->email;
         $events->name = $request->name;
         $events->location = $request->location;
@@ -66,7 +118,7 @@ class OrganizerController extends Controller
                 break;
             case 'verify':
                 $events->status = "pending";
-                $msg = 'Event have been successfully uploaded.';
+                $msg = 'Event have been sent to be verified.';
                 break;
         }
 
@@ -102,6 +154,16 @@ class OrganizerController extends Controller
             $event->picture = $imgname;
         }
 
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'time' => 'required',
+            'date' => 'required',
+            'org' => 'required',
+            'contactE' => ['required', new PhoneNumber],
+            'descE' => 'required'
+        ]);
+
         $event->creator_email = Auth::user()->email;
         $event->name = $request->name;
         $event->location = $request->location;
@@ -119,7 +181,7 @@ class OrganizerController extends Controller
             case 'submit':
             case 'update':
                 $event->status = "pending";
-                $msg = 'Event have been successfully updated.';
+                $msg = 'Event have been successfully updated. It will re-verify the event.';
                 break;
         }
 
@@ -139,7 +201,7 @@ class OrganizerController extends Controller
         }
         $event->delete();
 
-        return redirect()->back()->with('delete_event', 'Event has been succesfully deleted.');
+        return redirect()->back()->with('delete_event', 'Event has been deleted.');
     }
 
     public function manageevents(Request $request)

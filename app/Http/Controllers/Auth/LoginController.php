@@ -64,7 +64,7 @@ class LoginController extends Controller
 
         $messages = [
             'login.required' => 'Email or username cannot be empty!',
-            'password.required' => 'Password cannot be empty',
+            'password.required' => 'Password cannot be empty!',
         ];
 
         $request->validate([

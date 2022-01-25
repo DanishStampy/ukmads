@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<h2 style="margin: 16px 0 24px 0; font-weight: 700;">Our Team</h2>
+<h2 style="margin: 16px 0 24px 0;" class="h3-title">Our Team</h2>
 
 <div class="card card-solid">
     <div class="card-body pb-0">

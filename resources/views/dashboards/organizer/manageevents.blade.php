@@ -32,9 +32,9 @@
     <form method="GET" class="col-md-3 form-horizontal" action="{{ route('organizer.manageevents') }}"
         enctype="multipart/form-data">
         <div class="btn-group btn-group-toggle">
-            <button name="status" type="submit" class="btn btn-primary" value="pending">Pending</button>
-            <button name="status" type="submit" class="btn btn-success" value="verified">Verified</button>
-            <button name="status" type="submit" class="btn btn-danger" value="rejected">Rejected</button>
+            <button name="status" type="submit" class="btn btn-primary mr-1" value="pending">Pending</button>
+            <button name="status" type="submit" class="btn btn-success mr-1" value="verified">Verified</button>
+            <button name="status" type="submit" class="btn btn-danger mr-1" value="rejected">Rejected</button>
         </div>
     </form>
     <div class="col-md-3">
@@ -122,7 +122,7 @@
                 @else
                     <div class="card-footer" style="padding-top: 20px">
                         <div class="row justify-content-center mb-2">
-                            <h4 class="text-center">{{ $event->join }}  Joins</h4>
+                            <h4 class="text-center">{{ $event->join }} Joins</h4>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-12 col-xs-12 border-right">
@@ -135,14 +135,16 @@
                             </div>
 
                             @if($event->join > 1)
-                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
-                                <div class="description-block">
-                                    <a href="{{ route("organizer.listevent", $event->id_event) }}"
-                                        class="btn btn-app bg-primary">
-                                        <i class="fas fa-edit"></i> List
-                                    </a>
+                                <div class="col-lg-4 col-md-12 col-xs-12 border-right">
+                                    <div class="description-block">
+                                        <a href="{{ route("organizer.listevent", $event->id_event) }}"
+                                            class="btn btn-app bg-primary">
+                                            <i class="fas fa-edit"></i> List
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="col-lg-4 col-md-12 col-xs-12 border-right"></div>
                             @endif
 
                             <div class="col-lg-4 col-md-12 col-xs-12">

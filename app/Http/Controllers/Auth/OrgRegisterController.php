@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Organizer;
+use App\Models\Subscription;
 use App\Models\User;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
@@ -39,12 +40,18 @@ class OrgRegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
+        $uid = $user->user_id;
+
         $orgs = new Organizer();
-        $orgs->user_id = $user->user_id;
+        $orgs->user_id = $uid;
         $orgs->address = $request->address;
         $orgs->contact = $request->contact;
+        $orgs->save();
 
-        if( $orgs->save() ){
+        $subs = new Subscription();
+        $subs->user_id = $uid;
+
+        if( $subs->save() ){
             return redirect('login')->with('success','You are now successfully registered');
         }else{
             return redirect('login')->with('error','Failed to register');

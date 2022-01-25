@@ -1,63 +1,68 @@
 @extends('layouts.viewer')
 
-@section('title','Advertisement Details')
-
 @section('content')
 
-
-<!-- Default box -->
-<div class="card card-solid">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-12 col-sm-6">
-                <h3 class="d-inline-block d-sm-none">{{$details->name}} Review</h3>
-                <div class="col-12">
-                    <img src="{{ asset('img/'.$details->picture) }}" class="product-image" alt="Product Image" style="height: 570px; object-fit: fill;">
-                </div>
-            </div>
-            <div class="col-12 col-sm-6">
-                <h3 class="my-3" style="text-align: center;">{{$details->name}}</h3>
-                <hr>
-                <div class="card card-primary">
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Name:</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" value="{{$details->seller_name}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Price:</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="RM{{$details->price}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Type:</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="{{$details->type}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Contact Number:</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="{{$details->contact}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Description:</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" value="{{$details->description}}" disabled>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </form>
-                </div>
-                <div class="d-inline float-right mt-3" style="color: #bfbfbf">
-                    <i class="fas fa-eye"></i> {{$details->reads}}
-                </div>
-            </div>
+<div class="row justify-content-center align-items-center">
+    <div class="col-5 round card card-detail-img" data-aos="fade-right">
+        <div class="card-body" >
+            <img src="{{ asset('img/'.$details->picture) }}" class="round product-image"
+                alt="Product Image">
         </div>
     </div>
 
+    <div class="col-7 pl-0">
+        <div class="card-detail card round" data-aos="fade-left">
+            <div class="card-body">
+                <div class="d-flex flex-row justify-content-between align-items-start">
+                    <h1 class="detail-title text-left">{{ $details->name }}</h1>
+                    <p class="text-right font-weight-light ml-auto" style="color: #929292"><i class="fas fa-eye"></i>
+                        {{ $details->reads }}</p>
+                </div>
+                <div class="border-bottom d-flex flex-row justify-content-between align-items-end mt-3"
+                    style="color: #929292">
+                    <p class="text-left font-weight-normal">By {{ $details->seller_name }}</p>
+                    <p class="text-right font-italic font-weight-light">{{ $details->type }}</p>
+                </div>
+
+                <div class="">
+                    <h2 class="detail-desc">
+                        Description
+                    </h2>
+                    <p class="detail-desc">
+                        {{ $details->description }}
+                    </p>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center mt-5">
+                    <h2 class="detail-item">
+                        Price
+                    </h2>
+                    <p class="detail-item-content">
+                        RM {{ $details->price }}
+                    </p>
+                </div>
+
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <h2 class="detail-item">
+                        Contact number
+                    </h2>
+                    <p class="detail-item-content">
+                        {{ $details->contact }}
+                    </p>
+                </div>
+
+                <div class="text-center my-4">
+                    <a href="https://api.WhatsApp.com/send?phone=+6{{ $details->contact }}" target="_blank" class="btn-links btn-detail ">
+                        Contact me
+                        <i class="ml-1 fab fa-whatsapp"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /.card-body -->
-</div>
-<!-- /.card -->
+
 
 
 @endsection

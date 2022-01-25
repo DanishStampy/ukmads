@@ -31,12 +31,12 @@
                         <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Posted</b> <a class="float-right"
-                            id="posted">{{ $ads->where('status', 'verified')->count() }}</a>
+                        <b>Posted</b> <a
+                            class="float-right" id="posted">{{ $event->where('status', 'verified')->count() }}</a>
                     </li>
                     <li class="list-group-item">
                         <b>Subscription status</b> <a class="float-right">
-                            {{ $subs->subs_status }}
+                            {{$subs->subs_status}}  
                         </a>
                     </li>
                 </ul>
@@ -49,14 +49,14 @@
         <div class="card card-primary card-outline mb-4">
             <div class="card-body">
                 <ul class="list-group list-group-unbordered mb-3">
-                    @if($subs->quota == '')
+                    @if ($subs->quota == '')
                         <li class="list-group-item text-center mb-2">
                             <b>No quota</b>
                         </li>
                     @else
                         <li class="list-group-item">
-                            <b>Total advertisement quota</b> <a class="float-right" id="quota-total">
-                                {{ $subs->quota }}
+                            <b>Total event quota</b> <a class="float-right" id="quota-total">
+                                {{$subs->quota}}
                             </a>
                         </li>
                         <li class="list-group-item mb-2">
@@ -76,34 +76,34 @@
                 <p><b>Payment history</b></p>
                 <ul class="list-group list-group-unbordered mb-3">
 
-                    @foreach($paymentHistory as $data)
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <p>{{ $data->created_at }}</p>
+                    @foreach ($paymentHistory as $data)
+                    <li class="list-group-item border-bottom">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>{{$data->created_at}}</p>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <b>Payment ID:</b>
+                                    <b>{{$data->payment_id}}</b>
                                 </div>
-                                <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="d-flex flex-column">
                                     <div class="d-flex flex-row justify-content-between">
-                                        <b>Payment ID:</b>
-                                        <b>{{ $data->payment_id }}</b>
+                                        <p>Quota purchased:</p>
+                                        <p>{{$data->quota_count}}</p>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="d-flex flex-column">
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p>Quota purchased:</p>
-                                            <p>{{ $data->quota_count }}</p>
-                                        </div>
-                                        <div class="d-flex flex-row justify-content-between">
-                                            <p>Amount:</p>
-                                            <p>RM{{ $data->amount }}</p>
-                                        </div>
+                                    <div class="d-flex flex-row justify-content-between">
+                                        <p>Amount:</p>
+                                        <p>RM{{$data->amount}}</p>
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </div>
+                    </li>
                     @endforeach
 
                 </ul>
@@ -122,16 +122,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('advertiser.checkout') }}" method="GET"
+            <form action="{{ route('organizer.checkout') }}" method="GET"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form_group">
                         <input id="quota" type="number" class="form_input is-invalid control-label quota-input"
                             name="quota" placeholder=" " autofocus value="4" required min="4" max="400">
-                        <label for="quota" class="form_label">Advertisement Quota</label>
+                        <label for="quota" class="form_label">Event Quota</label>
                     </div>
-                    <small>*Minimum advertisement quota is 4. Maximum quota is 400.</small>
+                    <small>*Minimum event quota is 4. Maximum quota is 400.</small>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -144,13 +144,12 @@
 </div>
 
 <script type="text/javascript">
-    $(function () {
-
+    $(function (){
+        
         var $remainingQuota = parseInt($("#quota-total").text()) - parseInt($("#posted").text());
 
         $("#remainder").text($remainingQuota);
     })
-
 </script>
 
 @endsection
