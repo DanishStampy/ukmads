@@ -3,16 +3,16 @@
 @section('title','All Events')
 
 @section('content')
-<div class="card row mb-5 d-flex justify-content-between ">
+<div class="card row mb-5 d-flex justify-content-between round">
 
     <div class="card-body">
         <form class="form-group border-bottom pb-3" method="GET" action="{{ route('web.searcheventsV') }}">
             @csrf
             <div class="input-group ">
-                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control" placeholder="search"
+                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round" placeholder="search"
                     required />
                 <div class="input-group-append">
-                    <button type="" class="btn btn-primary">
+                    <button type="" class="btn bg-indigo round">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -24,10 +24,10 @@
 
             <div class="d-flex flex-row align-items-center">
                 <span class="mr-3">Sort By:</span>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="all-ads">All</button>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="newest">Newest</button>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="popular">Popularity</button>
-                <button class="btn btn-primary mr-1" name="sort" type="submit" value="date">Date</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="all-ads">All</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="newest">Newest</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="popular">Popularity</button>
+                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="date">Date</button>
             </div>
 
         </form>

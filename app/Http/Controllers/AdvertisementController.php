@@ -25,46 +25,83 @@ class AdvertisementController extends Controller
         $details->save();
         return view('adsdetails', compact('details'));
     }
+
     public function allAds(Request $request)
     {
 
         $sort = $request->input('sort');
+        $price = $request->input('price');
 
-        switch ($sort) {
-            case 'newest':
-                $ads = Advertisement::where('status', 'verified')->orderBy('updated_at', 'DESC')->paginate(8);
-                break;
+        if (!empty($price)) {
 
-            case 'popular':
-                $ads = Advertisement::where('status', 'verified')->orderBy('reads', 'DESC')->paginate(8);
-                break;
+            switch ($price) {
+                case 'price_desc':
+                    $ads = $this->getAdsStatus()->orderBy('price', 'DESC');
+                    break;
+                case 'price_asc':
+                    $ads = $this->getAdsStatus()->orderBy('price', 'ASC');
+                    break;
+            }
 
-            case 'price_asc':
-                $ads = Advertisement::where('status', 'verified')->orderBy('price', 'ASC')->paginate(8);
-                break;
+            switch ($sort) {
+                case 'newest':
+                    $ads = $ads->orderBy('updated_at', 'DESC')->paginate(8);
+                    break;
 
-            case 'price_desc':
-                $ads = Advertisement::where('status', 'verified')->orderBy('price', 'DESC')->paginate(8);
-                break;
+                case 'popular':
+                    $ads = $ads->orderBy('reads', 'DESC')->paginate(8);
+                    break;
 
-            case 'Food':
-                $ads = Advertisement::where('status', 'verified')->where('type', $sort)->paginate(8);
-                break;
+                case 'Food':
+                    $ads = $ads->where('type', $sort)->paginate(8);
+                    break;
 
-            case 'Rental':
-                $ads = Advertisement::where('status', 'verified')->where('type', $sort)->paginate(8);
-                break;
+                case 'Rental':
+                    $ads = $ads->where('type', $sort)->paginate(8);
+                    break;
 
-            case 'Product':
-                $ads = Advertisement::where('status', 'verified')->where('type', $sort)->paginate(8);
-                break;
+                case 'Product':
+                    $ads = $ads->where('type', $sort)->paginate(8);
+                    break;
 
-            default:
-                $ads = Advertisement::where('status', 'verified')->paginate(8);
-                break;
+                default:
+                    $ads = $ads->paginate(8);
+                    break;
+            }
+        }else{
+            switch ($sort) {
+                case 'newest':
+                    $ads = $this->getAdsStatus()->orderBy('updated_at', 'DESC')->paginate(8);
+                    break;
+
+                case 'popular':
+                    $ads = $this->getAdsStatus()->orderBy('reads', 'DESC')->paginate(8);
+                    break;
+
+                case 'Food':
+                    $ads = $this->getAdsStatus()->where('type', $sort)->paginate(8);
+                    break;
+
+                case 'Rental':
+                    $ads = $this->getAdsStatus()->where('type', $sort)->paginate(8);
+                    break;
+
+                case 'Product':
+                    $ads = $this->getAdsStatus()->where('type', $sort)->paginate(8);
+                    break;
+
+                default:
+                    $ads = $this->getAdsStatus()->paginate(8);
+                    break;
+            }
         }
         
         $ads->appends($request->all());
+        
         return view('allads', compact('ads'));
+    }
+
+    public function getAdsStatus(){
+        return Advertisement::where('status', 'verified');
     }
 }
