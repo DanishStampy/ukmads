@@ -42,10 +42,17 @@ class OrganizerController extends Controller
         $user_id = $this->getEmail();
 
         $event = Event::where('creator_email', $user_id)->get();
-        $totalJoin = DB::table('join_lists')->count('id');
+        // $totalJoin = DB::table('join_lists')->count('id');
 
-        $joinDateDB = DB::table('join_lists')->selectRaw('COUNT(id) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
-            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
+        $totalJoin = DB::table('events')
+            ->join('join_lists', 'events.id_event', '=', 'join_lists.id_event')
+            ->where('events.creator_email', $user_id)->count();
+
+        $joinDateDB = DB::table('events')
+            ->join('join_lists', 'events.id_event', '=', 'join_lists.id_event')
+            ->where('events.creator_email', $user_id)
+            ->selectRaw('COUNT(join_lists.id) as cnt, DATE_FORMAT(join_lists.created_at, "%d/%m/%Y") fdate')
+            ->whereDate('join_lists.created_at', '>=', Carbon::now()->subDays(6))
 
             ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
             ->groupBy('fdate')->get()
