@@ -51,9 +51,9 @@ class AdvertiserController extends Controller
         $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
         $subs = Subscription::find($uid);
 
-        $adsPosted = Advertisement::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+        $adsCreated = Advertisement::where('creator_email', $this->getEmail())->count();
 
-        return view('dashboards.advertiser.createads', compact('subs', 'adsPosted'));
+        return view('dashboards.advertiser.createads', compact('subs', 'adsCreated'));
     }
 
     public function uploadAds(Request $request)

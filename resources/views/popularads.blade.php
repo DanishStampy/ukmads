@@ -25,18 +25,18 @@
                     class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            
+
                             <img class="round mx-auto d-block w-100"
                                 src="{{ asset('img/'.$item->picture) }}" alt="First slide"
                                 style="height: 756px; width: 540px;">
                         </div>
                         <div class="col-md-6 d-flex flex-column align-self-center text-center">
                             <h1 class="">
-                                {{$item->name}}
+                                {{ $item->name }}
                             </h1>
-    
+
                             <div class="mb-5">
-                                <p class="lead">{{$item->description}}</p>
+                                <p class="lead">{{ $item->description }}</p>
                             </div>
 
                             <a href=" {{ route("advertisement.adsdetails", $item->id_ads) }} "
@@ -57,29 +57,35 @@
         </a>
     </div>
 
-    <div class="row mb-3">
-        <div class="col-sm-8">
-            <h3 class="h3-title">Newest Advertisement</h3>
-        </div>
-        <div class="col-sm-4 text-right" style="margin-top: 2rem;">
-            <a href="{{ route('advertisement.allads') }}" class="see-all">See all</a>
-        </div>
-    </div>
-
-    <div class="row justify-content-center pb-5">
-        @foreach($newestAds as $item)
-            <div class="col-md-3 d-flex flex-row justify-content-center">
-                <div class="round card card-newest" style="width: 14rem;">
-                    <a href=" {{ route("advertisement.adsdetails", $item->id_ads) }} ">
-                        <img class="round card-img-top img-newest" src="{{ asset('img/'.$item->picture) }}"
-                            alt="Card image cap">
-                    </a>
+    <div class="card mt-5 round">
+        <div class="card-body p-4">
+            <div class="row mb-3">
+                <div class="col-sm-8">
+                    <h3 class="mt-0 h3-title">Newest Advertisement</h3>
+                </div>
+                <div class="col-sm-4 text-right">
+                    <a href="{{ route('advertisement.allads') }}" class="see-all">See all</a>
                 </div>
             </div>
-        @endforeach
 
+            <div class="row justify-content-center">
+                @foreach($newestAds as $item)
+                    <div class="col-md-3 d-flex flex-row justify-content-center">
+                        <div class="round card card-newest" style="width: 14rem;">
+                            <a
+                                href=" {{ route("advertisement.adsdetails", $item->id_ads) }} ">
+                                <img class="round card-img-top img-newest"
+                                    src="{{ asset('img/'.$item->picture) }}"
+                                    alt="Card image cap">
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
     </div>
+    <br>
+
 @endif
-
-
 @endsection

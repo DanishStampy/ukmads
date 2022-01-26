@@ -12,7 +12,7 @@
                 <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round" placeholder="search"
                     required />
                 <div class="input-group-append">
-                    <button type="" class="btn bg-indigo round">
+                    <button type="" class="btn bg-fuchsia round shadow-none">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -24,10 +24,10 @@
 
             <div class="d-flex flex-row align-items-center">
                 <span class="mr-3">Sort By:</span>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="all-ads">All</button>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="newest">Newest</button>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="popular">Popularity</button>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="date">Date</button>
+                <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit" value="all-ads">All</button>
+                <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit" value="newest">Newest</button>
+                <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit" value="popular">Popularity</button>
+                <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit" value="date">Date</button>
             </div>
         </form>
     </div>

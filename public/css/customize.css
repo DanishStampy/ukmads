@@ -241,3 +241,16 @@ a:link {
     height: auto;
   }
 }
+
+.btn-create{
+	color: #fff;
+	background-color: #5B56B0;
+	border-color: #5B56B0;
+}
+
+.btn-create:focus,
+.btn-create:hover{
+	background-color: #403aaa;
+	color: #fff;
+}
+
