@@ -111,7 +111,6 @@ a:link {
     height: 30px;
     width: 30px;
     text-align: center;
-    margin-bottom: 40px;
     border: 1px solid #290576;
     transition: 0.3s;
 }
@@ -226,6 +225,9 @@ a:link {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 25px;
+  max-height: 80px;
 }
 
 @media screen and (max-width: 768px){
@@ -252,5 +254,23 @@ a:link {
 .btn-create:hover{
 	background-color: #403aaa;
 	color: #fff;
+}
+
+.card-body.wrap-parent{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-title.wrap-child-title{
+  height: 25px;
+  text-overflow: inherit;
+  overflow: inherit;
+}
+
+.card-text.wrap-child-text{
+  height: 30px;
+  text-overflow: inherit;
+  overflow: inherit;
 }
 

@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="ribbon-wrapper ribbon-lg">
                             @if($advertisement->status=='verified')
-                                <div class="ribbon bg-success">
+                                <div class="ribbon bg-teal">
                                     Verified
                                 </div>
                             @else
@@ -36,12 +36,12 @@
                             src="{{ asset('img/'.$advertisement->picture) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">
                                 {{ $advertisement->name }}</h5>
-                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text">
                                 {{ $advertisement->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal" data-target="#adsHistory"
                                 data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                     <div class="card">
                         <div class="ribbon-wrapper ribbon-lg">
                             @if($event->status=='verified')
-                                <div class="ribbon bg-success">
+                                <div class="ribbon bg-teal">
                                     Verified
                                 </div>
                             @else
@@ -167,12 +167,12 @@
                         <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="text-overflow: inherit;overflow: inherit">{{ $event->name }}
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">{{ $event->name }}
                             </h5>
-                            <p class="card-text" style="height:30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text">
                                 {{ $event->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal"
                                 data-target="#eventHistory" data-event="{{ base64_encode($event->toJson()) }}">View
                                 Detail</button>
                         </div>
