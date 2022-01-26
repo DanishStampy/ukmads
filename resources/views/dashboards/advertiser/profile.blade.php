@@ -61,7 +61,7 @@
                         </li>
                         <li class="list-group-item mb-2">
                             <b>Quota remaining</b> <a class="float-right" id="remainder">
-                                0
+                                {{ $subs->quota - $ads->count() }}
                             </a>
                         </li>
                     @endif
@@ -146,9 +146,9 @@
 <script type="text/javascript">
     $(function () {
 
-        var $remainingQuota = parseInt($("#quota-total").text()) - parseInt($("#posted").text());
+        // var $remainingQuota = parseInt($("#quota-total").text()) - parseInt($("#posted").text());
 
-        $("#remainder").text($remainingQuota);
+        // $("#remainder").text($remainingQuota);
     })
 
 </script>

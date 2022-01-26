@@ -70,9 +70,9 @@ class OrganizerController extends Controller
         $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
         $subs = Subscription::find($uid);
 
-        $eventPosted = Event::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+        $eventCreated = Event::where('creator_email', $this->getEmail())->count();
 
-        return view('dashboards.organizer.createevents', compact('subs', 'eventPosted'));
+        return view('dashboards.organizer.createevents', compact('subs', 'eventCreated'));
     }
 
     public function uploadEvents(Request $request)
