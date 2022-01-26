@@ -40,7 +40,7 @@
                         </a>
                     </li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-block"><b>Reset password</b></a>
+                <a href="#" class="btn btn-block shadow-none"><b>Reset password</b></a>
             </div>
             <!-- /.card-body -->
         </div>
@@ -66,7 +66,7 @@
                         </li>
                     @endif
                     <a href="" type="button" data-toggle="modal" data-target="#quotaModal"
-                        class="btn btn-primary btn-block"><b>Add quota</b></a>
+                        class="btn btn-block shadow-none"><b>Add quota</b></a>
                 </ul>
             </div>
         </div>
@@ -134,8 +134,8 @@
                     <small>*Minimum advertisement quota is 4. Maximum quota is 400.</small>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Go to checkout</button>
+                    <button type="button" class="btn btn-danger shadow-none" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary shadow-none">Go to checkout</button>
                 </div>
             </form>
 

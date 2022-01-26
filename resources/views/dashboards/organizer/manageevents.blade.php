@@ -32,13 +32,13 @@
     <form method="GET" class="col-md-3 form-horizontal" action="{{ route('organizer.manageevents') }}"
         enctype="multipart/form-data">
         <div class="btn-group btn-group-toggle">
-            <button name="status" type="submit" class="btn btn-primary mr-1" value="pending">Pending</button>
-            <button name="status" type="submit" class="btn btn-success mr-1" value="verified">Verified</button>
-            <button name="status" type="submit" class="btn btn-danger mr-1" value="rejected">Rejected</button>
+            <button name="status" type="submit" class="btn bg-info mr-1 shadow-none" value="pending">Pending</button>
+            <button name="status" type="submit" class="btn bg-teal mr-1 shadow-none" value="verified">Verified</button>
+            <button name="status" type="submit" class="btn bg-danger mr-1 shadow-none" value="rejected">Rejected</button>
         </div>
     </form>
     <div class="col-md-3">
-        <a class="btn bg-info" href="{{ route("organizer.createevents") }}">
+        <a class="btn btn-create shadow-none" href="{{ route("organizer.createevents") }}">
             <i class="fas fa-feather"></i> Create New
         </a>
     </div>
@@ -52,7 +52,7 @@
 <div class="row justify-content-center">
     @if( count($events) < 1)
         <div class="mt-3">
-            <h5>No data to be displayed.</h5>
+            <h5>No event to be displayed yet. Click <a href="{{ route('organizer.createevents')}}">here</a> to create event.</h5>
         </div>
     @else
         @foreach($events as $event)
@@ -68,7 +68,7 @@
                             </div>
                         @elseif($event->status == 'verified')
                             <div class="ribbon-wrapper ribbon-xl">
-                                <div class="ribbon bg-success">
+                                <div class="ribbon bg-teal">
                                     Verified
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                             <div class="col-lg-4 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a href="{{ route("organizer.editevent", $event->id_event) }}"
-                                        class="btn btn-app bg-warning">
+                                        class="btn btn-app bg-warning shadow-none">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                 </div>
@@ -101,7 +101,7 @@
                                 <div class="description-block">
                                     <a type="button" data-toggle="modal" data-target="#detailevent"
                                         data-event="{{ base64_encode($event->toJson()) }}"
-                                        class="btn btn-app bg-olive">
+                                        class="btn btn-app bg-olive shadow-none">
                                         <i class="fas fa-info"></i> Details
                                     </a>
                                 </div>
@@ -111,7 +111,7 @@
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
                                         data-event="{{ base64_encode($event->toJson()) }}"
-                                        class="btn btn-app bg-danger">
+                                        class="btn btn-app bg-danger shadow-none">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
                                 </div>
@@ -125,37 +125,52 @@
                             <h4 class="text-center">{{ $event->join }} Joins</h4>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-12 col-xs-12 border-right">
-                                <div class="description-block">
-                                    <a href="{{ route("organizer.editevent", $event->id_event) }}"
-                                        class="btn btn-app bg-warning">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                </div>
-                            </div>
 
-                            @if($event->join > 1)
+                            @if ($event->join > 1)
+                                <div class="col-lg-4 col-md-12 col-xs-12 border-right">
+                                    <div class="description-block">
+                                        <a href="{{ route("organizer.editevent", $event->id_event) }}"
+                                            class="btn btn-app bg-warning shadow-none">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="col-lg-4 col-md-12 col-xs-12 border-right">
                                     <div class="description-block">
                                         <a href="{{ route("organizer.listevent", $event->id_event) }}"
-                                            class="btn btn-app bg-primary">
-                                            <i class="fas fa-edit"></i> List
+                                            class="btn btn-app bg-fuchsia shadow-none">
+                                            <i class="fas fa-list"></i> List
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-xs-12">
+                                    <div class="description-block">
+                                        <a data-toggle="modal" data-target="#Delete"
+                                            data-event="{{ base64_encode($event->toJson()) }}"
+                                            class="btn btn-app bg-danger shadow-none">
+                                            <i class="fas fa-trash-alt"></i> Delete
                                         </a>
                                     </div>
                                 </div>
                             @else
-                                <div class="col-lg-4 col-md-12 col-xs-12 border-right"></div>
-                            @endif
-
-                            <div class="col-lg-4 col-md-12 col-xs-12">
-                                <div class="description-block">
-                                    <a data-toggle="modal" data-target="#Delete"
-                                        data-event="{{ base64_encode($event->toJson()) }}"
-                                        class="btn btn-app bg-danger">
-                                        <i class="fas fa-trash-alt"></i> Delete
-                                    </a>
+                                <div class="col-lg-6 col-md-12 col-xs-12 border-right">
+                                    <div class="description-block">
+                                        <a href="{{ route("organizer.editevent", $event->id_event) }}"
+                                            class="btn btn-app bg-warning shadow-none">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-lg-6 col-md-12 col-xs-12">
+                                    <div class="description-block">
+                                        <a data-toggle="modal" data-target="#Delete"
+                                            data-event="{{ base64_encode($event->toJson()) }}"
+                                            class="btn btn-app bg-danger shadow-none">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @endif

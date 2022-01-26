@@ -38,12 +38,17 @@ body.my-login-page {
 	font-size: 14px;
 }
 
-.btn-block,
-.btn-block:hover{
+.btn-block{
 	color: #fff;
 	background-color: #5B56B0;
 	height: 45px;
 	border-color: #5B56B0;
+}
+
+.btn-block:focus,
+.btn-block:hover{
+	background-color: #403aaa;
+	color: #fff;
 }
 
 
