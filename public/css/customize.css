@@ -79,16 +79,16 @@
 }
 
 .pagination_rounded ul li a:hover {
-    background: #290576;
+    background: #5B56B0;
     color: #fff;
-    border: 1px solid #290576
+    border: 1px solid #5B56B0;
 }
 
 .pagination_rounded ul li.active a,
 .pagination_rounded ul li.active a:hover {
-    background: #290576;
+    background: #5B56B0;
     color: #fff;
-    border: 1px solid #290576;
+    border: 1px solid #5B56B0;
 }
 
 a:link {
@@ -105,13 +105,13 @@ a:link {
 
 .pagination_rounded ul li a {
     float: left;
-    color: #290576;
+    color: #5B56B0;
     border-radius: 50%;
     line-height: 30px;
     height: 30px;
     width: 30px;
     text-align: center;
-    border: 1px solid #290576;
+    border: 1px solid #5B56B0;
     transition: 0.3s;
 }
 
