@@ -59,20 +59,23 @@ class AdvertiserController extends Controller
     public function uploadAds(Request $request)
     {
         $ads = new Advertisement();
+        $files = [];
 
         if ($request->hasFile('fileToUpload')) {
+
             $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
+                'fileToUpload.*' => 'image'
             ]);
 
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $ads->picture = $imgname;
+            foreach ($request->file('fileToUpload') as $file) {
+                $imgname = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+                $file->move('img', $imgname);
+                $files[] = $imgname;
+            }
         }
 
         $request->validate([
+            'fileToUpload' => 'required',
             'name' => 'required',
             'product' => 'required',
             'price' => 'required|max:999',
@@ -87,9 +90,10 @@ class AdvertiserController extends Controller
         $ads->price = $request->price;
         $ads->seller_name = $request->seller;
         $ads->contact = $request->contact;
+        $ads->picture = $files;
         $ads->description = $request->desc;
 
-        switch($request->input('action')){
+        switch ($request->input('action')) {
             case 'save':
                 $ads->status = "draft";
                 $msg = 'Advertisement have been successfully drafted.';
@@ -101,7 +105,7 @@ class AdvertiserController extends Controller
         }
 
         $ads->save();
-        return redirect()->route('advertiser.manageads', ['status'=>'pending'])->with('success_ads', $msg);
+        return redirect()->route('advertiser.manageads', ['status' => 'pending'])->with('success_ads', $msg);
     }
 
     // Edit ads
@@ -115,24 +119,28 @@ class AdvertiserController extends Controller
     public function updateAds(Request $request, $id_ads)
     {
         $ads = Advertisement::find($id_ads);
+        $files = [];
 
         if ($request->hasFile('fileToUpload')) {
             $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
+                'fileToUpload.*' => 'image'
             ]);
 
-            if ($ads && File::exists(public_path("img/".$ads->picture))) {
-                File::delete(public_path("img/".$ads->picture));
+            foreach ($ads['picture'] as $pic) {
+                if ($ads && File::exists(public_path("img/" . $pic))) {
+                    File::delete(public_path("img/" . $pic));
+                }
             }
 
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $ads->picture = $imgname;
+            foreach ($request->file('fileToUpload') as $file) {
+                $imgname = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+                $file->move('img', $imgname);
+                $files[] = $imgname;
+            }
         }
 
         $request->validate([
+            'fileToUpload' => 'required',
             'name' => 'required',
             'product' => 'required',
             'price' => 'required|max:999',
@@ -146,10 +154,11 @@ class AdvertiserController extends Controller
         $ads->type = $request->product;
         $ads->price = $request->price;
         $ads->seller_name = $request->seller;
+        $ads->picture = $files;
         $ads->contact = $request->contact;
         $ads->description = $request->desc;
 
-        switch($request->input('action')){
+        switch ($request->input('action')) {
             case 'save':
                 $ads->status = "draft";
                 $msg = 'Advertisement have been successfully drafted.';
@@ -163,7 +172,7 @@ class AdvertiserController extends Controller
 
         $ads->save();
 
-        return redirect()->route('advertiser.manageads', ['status'=>'pending'])->with('success_uploaded_ads', $msg);
+        return redirect()->route('advertiser.manageads', ['status' => 'pending'])->with('success_uploaded_ads', $msg);
     }
 
 
@@ -172,8 +181,11 @@ class AdvertiserController extends Controller
     {
         $id_ads = $request->input('id_ads');
         $ads = Advertisement::find($id_ads);
-        if ($ads && File::exists(public_path("img/".$ads->picture))) {
-            File::delete(public_path("img/".$ads->picture));
+
+        foreach ($ads['picture'] as $pic) {
+            if ($ads && File::exists(public_path("img/" . $pic))) {
+                File::delete(public_path("img/" . $pic));
+            }
         }
         $ads->delete();
 
@@ -184,7 +196,7 @@ class AdvertiserController extends Controller
     {
         $user_id = $this->getEmail();
         $status = $request->input('status');
-        $ads = Advertisement::where('status', $status)->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(3, ['*'], 'advertisements');
+        $ads = Advertisement::where('status', $status)->where('creator_email', $user_id)->orderBy('created_at', 'desc')->paginate(3, ['*'], 'advertisements');
         $ads->appends($request->all());
         return view('dashboards.advertiser.manageads', compact('ads'));
     }
@@ -192,7 +204,7 @@ class AdvertiserController extends Controller
     public function draftPreview()
     {
         $user_id = $this->getEmail();
-        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->orderBy('created_at','desc')->paginate(4, ['*'], 'advertisements');
+        $ads = Advertisement::where('status', 'draft')->where('creator_email', $user_id)->orderBy('created_at', 'desc')->paginate(4, ['*'], 'advertisements');
 
         return view('dashboards.advertiser.draftads', compact('ads'));
     }

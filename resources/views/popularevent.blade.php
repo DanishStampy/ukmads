@@ -26,7 +26,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <img class="round mx-auto d-block w-100"
-                                src="{{ asset('img/'.$item->picture) }}" alt="First slide"
+                                src="{{ asset('img/'.$item['picture'][0]) }}" alt="First slide"
                                 style="height: 756px; width: 540px;">
                         </div>
                         <div class="col-md-6 d-flex flex-column align-self-center text-center">
@@ -73,7 +73,7 @@
                         <div class="round card card-newest" style="width: 14rem;">
                             <a href="{{ route("event.eventdetails", $item->id_event) }}">
                                 <img class="round card-img-top img-newest"
-                                    src="{{ asset('img/'. $item->picture) }}"
+                                    src="{{ asset('img/'. $item['picture'][0]) }}"
                                     alt="Card image cap">
                             </a>
                         </div>

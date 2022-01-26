@@ -4,9 +4,35 @@
 
 <div class="row justify-content-center align-items-center">
     <div class="col-5 round card card-detail-img" data-aos="fade-right">
-        <div class="card-body" >
-            <img src="{{ asset('img/'.$details->picture) }}" class="round product-image"
-                alt="Product Image">
+        <div class="card-body">
+
+            @if( count($details['picture']) > 1)
+
+                <div id="adsCarousel" class="carousel slide round product-image" data-ride="carousel">
+                    <div class="carousel-inner">
+
+                        @foreach($details['picture'] as $key => $item)
+                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                <img src="/img/{{$item}}" class="round product-image" alt="Picture">
+                            </div>
+                        @endforeach
+
+                    </div>
+                    <a class="carousel-control-prev" href="#adsCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#adsCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            @else
+                <img src="{{ asset('img/'.$details['picture'][0]) }}"
+                    class="round product-image" alt="Product Image">
+            @endif
+
         </div>
     </div>
 
@@ -52,7 +78,8 @@
                 </div>
 
                 <div class="text-center my-4">
-                    <a href="https://api.WhatsApp.com/send?phone=+6{{ $details->contact }}" target="_blank" class="btn-links btn-detail ">
+                    <a href="https://api.WhatsApp.com/send?phone=+6{{ $details->contact }}" target="_blank"
+                        class="btn-links btn-detail ">
                         Contact me
                         <i class="ml-1 fab fa-whatsapp"></i>
                     </a>

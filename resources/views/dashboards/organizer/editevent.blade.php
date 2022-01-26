@@ -55,11 +55,12 @@
                     <div class="card">
                         <div class="card-body">
                             <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
-                                type="button"><input type="file" accept="images/*" name="fileToUpload"
+                                type="button">
+                                <input type="file" accept="images/*" name="fileToUpload[]" multiple
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
-                                src="/img/{{ $event->picture }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" name="imageSave"
+                                src="/img/{{ $event['picture'][0] }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" name="imageSave"
                                 style="width: 450px; height: 450px;">
                         </div>
                         <div class="card-header bg-purple">

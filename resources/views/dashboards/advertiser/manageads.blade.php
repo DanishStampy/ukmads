@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <img class="card-img-top" src="{{ asset("img/".$ad->picture) }}"
+                <img class="card-img-top" src="{{ asset("img/".$ad['picture'][0]) }}"
                     onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                     style="height:300px;object-fit: cover">
 

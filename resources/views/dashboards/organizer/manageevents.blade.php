@@ -82,7 +82,7 @@
 
                     </div>
                 </div>
-                <img class="card-img-top" src="{{ asset("img/".$event->picture) }}"
+                <img class="card-img-top" src="{{ asset("img/".$event['picture'][0]) }}"
                     onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                     style="height:300px;object-fit: cover">
 

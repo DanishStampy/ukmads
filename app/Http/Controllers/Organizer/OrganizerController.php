@@ -85,20 +85,23 @@ class OrganizerController extends Controller
     public function uploadEvents(Request $request)
     {
         $events = new Event();
+        $files = [];
 
         if ($request->hasFile('fileToUpload')) {
+
             $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
+                'fileToUpload.*' => 'image'
             ]);
 
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $events->picture = $imgname;
+            foreach ($request->file('fileToUpload') as $file) {
+                $imgname = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+                $file->move('img', $imgname);
+                $files[] = $imgname;
+            }
         }
 
         $request->validate([
+            'fileToUpload' => 'required',
             'name' => 'required',
             'location' => 'required',
             'time' => 'required',
@@ -114,6 +117,7 @@ class OrganizerController extends Controller
         $events->time = $request->time;
         $events->date = $request->date;
         $events->organizer = $request->org;
+        $events->picture = $files;
         $events->contact = $request->contactE;
         $events->description = $request->descE;
         $events->join = 0;
@@ -144,24 +148,28 @@ class OrganizerController extends Controller
     public function updateEvent(Request $request, $id_event)
     {
         $event = Event::find($id_event);
+        $files = [];
 
         if ($request->hasFile('fileToUpload')) {
             $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
+                'fileToUpload.*' => 'image'
             ]);
 
-            if ($event && File::exists(public_path("img/" . $event->picture))) {
-                File::delete(public_path("img/" . $event->picture));
+            foreach ($event['picture'] as $pic) {
+                if ($event && File::exists(public_path("img/" . $pic))) {
+                    File::delete(public_path("img/" . $pic));
+                }
             }
 
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $event->picture = $imgname;
+            foreach ($request->file('fileToUpload') as $file) {
+                $imgname = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+                $file->move('img', $imgname);
+                $files[] = $imgname;
+            }
         }
 
         $request->validate([
+            'fileToUpload' => 'required',
             'name' => 'required',
             'location' => 'required',
             'time' => 'required',
@@ -177,6 +185,7 @@ class OrganizerController extends Controller
         $event->time = $request->time;
         $event->date = $request->date;
         $event->organizer = $request->org;
+        $event->picture = $files;
         $event->contact = $request->contactE;
         $event->description = $request->descE;
 
@@ -203,8 +212,11 @@ class OrganizerController extends Controller
     {
         $id_event = $request->input('id_event');
         $event = Event::find($id_event);
-        if ($event && File::exists(public_path("img/" . $event->picture))) {
-            File::delete(public_path("img/" . $event->picture));
+
+        foreach ($event['picture'] as $pic) {
+            if ($event && File::exists(public_path("img/" . $pic))) {
+                File::delete(public_path("img/" . $pic));
+            }
         }
         $event->delete();
 

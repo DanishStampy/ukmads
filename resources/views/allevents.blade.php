@@ -9,7 +9,7 @@
         <form class="form-group border-bottom pb-3" method="GET" action="{{ route('web.searcheventsV') }}">
             @csrf
             <div class="input-group ">
-                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round" placeholder="search"
+                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round shadow-none" placeholder="Search"
                     required />
                 <div class="input-group-append">
                     <button type="" class="btn bg-fuchsia round shadow-none">
@@ -37,7 +37,7 @@
     @foreach($event as $key => $item)
         <div class="col-md-3 mb-5">
             <a href="{{ route("event.eventdetails", $item->id_event) }} " class="cards">
-                <img src="{{ asset('img/'.$item->picture) }}" class="card__image" alt="" />
+                <img src="{{ asset('img/'.$item['picture'][0]) }}" class="card__image" alt="" />
                 <div class="card__overlay">
                     <div class="card__header">
                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">

@@ -81,7 +81,7 @@ Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(
 
 
 // Organizer
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['PreventBackHistory','isOrgs','auth','secure']] ,function(){
+Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth','secure']] ,function(){
     Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
     Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
     

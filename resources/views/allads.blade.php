@@ -10,7 +10,7 @@
             action="{{ route('web.searchadsV') }}">
             @csrf
             <div class="input-group">
-                <input type="search" name="searchadsV" id="searchadsV" class="form-control round" placeholder="search"
+                <input type="search" name="searchadsV" id="searchadsV" class="form-control round shadow-none" placeholder="Search"
                     required />
                 <div class="input-group-append">
                     <button type="" class="btn bg-fuchsia shadow-none round">
@@ -64,7 +64,7 @@
     @foreach($ads as $key => $item)
         <div class="col-md-3 mb-5">
             <a href="{{ route("advertisement.adsdetails", $item->id_ads) }}" class="cards">
-                <img src="{{ asset('img/'.$item->picture) }}" class="card__image img-fluid"
+                <img src="{{ asset('img/'.$item['picture'][0]) }}" class="card__image img-fluid"
                     alt="" />
                 <div class="card__overlay">
                     <div class="card__header">

@@ -33,7 +33,7 @@
                             @endif
                         </div>
                         <img class="card-img-top"
-                            src="{{ asset('img/'.$advertisement->picture) }}"
+                            src="{{ asset('img/'.$advertisement['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
                         <div class="card-body wrap-parent">
@@ -164,7 +164,7 @@
                                 </div>
                             @endif
                         </div>
-                        <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                        <img class="card-img-top" src="{{ asset('img/'.$event['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
                         <div class="card-body wrap-parent">
@@ -195,7 +195,7 @@
                 <div class="card" style="margin-top: 30px">
                     <img class="img-fluid" id="eventPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:400px;object-fit: fill">
+                        style="margin: 10px; height:400px; width:400px; object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -288,7 +288,7 @@
                 var data = $.parseJSON(data);
 
                 $("#adsPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
                 $("#adsId").val(data.id_ads);
                 $("#adsName").val(data.name);
                 $("#adsEmail").val(data.creator_email);
@@ -320,7 +320,7 @@
                 var data = $.parseJSON(data);
 
                 $("#eventPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
                 $("#eventId").val(data.id_event);
                 $("#eventName").val(data.name);
                 $("#eventEmail").val(data.creator_email);
