@@ -29,12 +29,12 @@
                             src="{{ asset('img/'.$advertisement->picture) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">
                                 {{ $advertisement->name }}</h5>
-                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text" >
                                 {{ $advertisement->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal" data-target="#adsPending"
                                 data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
                             </button>
                         </div>
@@ -112,12 +112,12 @@
                                             <input type="hidden" value="" name="id_ads" id="adsHid">
                                             <div class="col-sm-6">
                                                 <button name="type" value="approved" type="submit"
-                                                    class="btn btn-success" style="width: 100%" id="btnAdsApproved">
+                                                    class="btn bg-teal shadow-none" style="width: 100%" id="btnAdsApproved">
                                                     Approve
                                                 </button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button type="button" class="btn btn-danger" style="width: 100%"
+                                                <button type="button" class="btn btn-danger shadow-none" style="width: 100%"
                                                     onclick="showReasonAds()">
                                                     Reject
                                                 </button>
@@ -131,7 +131,7 @@
                                                         placeholder="Give valid reason to reject"></textarea>
                                                 </div>
                                                 <button name="type" value="rejected" type="submit"
-                                                    class="btn btn-primary" style="margin: 10px; width: 30%"
+                                                    class="btn btn-primary shadow-none" style="margin: 10px; width: 30%"
                                                     id="btnAdsRejected">
                                                     Confirm
                                                 </button>
@@ -175,12 +175,12 @@
                         <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">
                                 {{ $event->name }}</h5>
-                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text" >
                                 {{ $event->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal"
                                 data-target="#eventPending" data-event="{{ base64_encode($event->toJson()) }}">View
                                 Detail
                             </button>
@@ -265,12 +265,12 @@
                                             <input type="hidden" value="" name="id_event" id="eventHid">
                                             <div class="col-sm-6">
                                                 <button name="type" value="approved" type="submit"
-                                                    class="btn btn-success" style="width: 100%" id="btnEventApproved">
+                                                    class="btn bg-teal shadow-none" style="width: 100%" id="btnEventApproved">
                                                     Approve
                                                 </button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button type="button" class="btn btn-danger" style="width: 100%"
+                                                <button type="button" class="btn btn-danger shadow-none" style="width: 100%"
                                                     onclick="showReasonEvent()">
                                                     Reject
                                                 </button>
@@ -284,7 +284,7 @@
                                                         placeholder="Give valid reason to reject"></textarea>
                                                 </div>
                                                 <button name="type" value="rejected" type="submit"
-                                                    class="btn btn-primary" style="margin: 10px; width: 30%"
+                                                    class="btn btn-primary shadow-none" style="margin: 10px; width: 30%"
                                                     id="btnEventRejected">
                                                     Confirm
                                                 </button>

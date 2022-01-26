@@ -54,7 +54,8 @@
     @endforeach
 
 </div>
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-end pb-3">
     {{ $event->links('layouts.pagination-custom') }}
 </div>
+<br>
 @endsection

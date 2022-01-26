@@ -90,9 +90,9 @@
      <!-- Data visualisation -->
      <div class="col-lg-12">
         <div class="card">
-            <div class="card-header border-0 bg-olive">
-                <div class="d-flex justify-content-between align-content-item">
-                    <h3 class="card-title">Weekly Event Report</h3>
+            <div class="card-header border-0 bg-indigo">
+                <div class="d-flex justify-content-start align-items-center">
+                    <h3 class="card-title mb-0">Weekly Event Report</h3>
                    
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     datasets: [
                         {
                             label: 'Total Joined',
-                            backgroundColor: 'rgb(75, 192, 192)',
+                            backgroundColor: '#5B56B0',
                             borderColor: 'rgba(210, 214, 222, 1)',
                             fill: true,
                             data: {!! json_encode($joinDate->values()) !!}
