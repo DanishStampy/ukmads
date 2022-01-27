@@ -40,7 +40,6 @@
                         </a>
                     </li>
                 </ul>
-                <a href="#" class="btn btn-block shadow-none"><b>Reset password</b></a>
             </div>
             <!-- /.card-body -->
         </div>
@@ -74,7 +73,11 @@
         <div class="card card-primary card-outline">
             <div class="card-body">
                 <p><b>Payment history</b></p>
-                <ul class="list-group list-group-unbordered mb-3">
+
+                @if ( count($paymentHistory) < 1)
+                    <p>No payment has been made yet.</p>
+                @else
+                    <ul class="list-group list-group-unbordered mb-3">
 
                     @foreach($paymentHistory as $data)
                         <li class="list-group-item">
@@ -107,6 +110,8 @@
                     @endforeach
 
                 </ul>
+                @endif
+                
             </div>
         </div>
     </div>

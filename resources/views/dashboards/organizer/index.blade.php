@@ -10,7 +10,7 @@
     @if ($subs->quota == $event->count())
         <div class="col-12">
             <div class="alert alert-warning alert-dismissible fade show">
-                <p class="text-center mb-0"><i class="fas fa-exclamation"></i> Your quota has finished. Please add more if you want to post more events. Click <a href="{{ route('organizer.profile')}}">here.</a></p>
+                <p class="text-center mb-0"><i class="fas fa-exclamation"></i> Quota is empty. Please add more if you want to post more events. Click <a href="{{ route('organizer.profile')}}" style="color: #007bff;">here.</a></p>
             </div>
             
         </div>

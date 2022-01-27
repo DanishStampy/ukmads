@@ -52,7 +52,15 @@
 <div class="row justify-content-center">
     @if(count($ads) < 1)
     <div class="mt-3">
-        <h5>No advertisement to be displayed yet. Click <a href="{{ route('advertiser.createads')}}">here</a> to create advertisement.</h5>
+        @if( Request::get('status') == 'pending')
+            <h5>No advertisement to be displayed yet. Click <a href="{{ route('advertiser.createads')}}">here</a> to create advertisement.</h5>
+
+        @elseif (Request::get('status') == 'rejected')
+            <h5>No rejected advertisement to be displayed.</h5>
+
+        @else
+            <h5>No verified advertisement to be displayed. Click <a href="{{ route('advertiser.createads')}}">here</a> to create advertisement.</h5>
+        @endif
     </div>
     @else
         @foreach($ads as $ad)

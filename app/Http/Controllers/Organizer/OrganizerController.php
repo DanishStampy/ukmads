@@ -6,6 +6,7 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Models\Organizer;
 use App\Models\Payment;
 use App\Models\Subscription;
 use App\Rules\PhoneNumber;
@@ -34,7 +35,9 @@ class OrganizerController extends Controller
 
         $paymentHistory = Payment::where('user_id', Auth::user()->user_id)->get();
 
-        return view('dashboards.organizer.profile', compact('event', 'subs', 'paymentHistory'));
+        $orgs = Organizer::where('user_id', Auth::user()->user_id)->get();
+
+        return view('dashboards.organizer.profile', compact('event', 'subs', 'paymentHistory', 'orgs'));
     }
 
     public function index()

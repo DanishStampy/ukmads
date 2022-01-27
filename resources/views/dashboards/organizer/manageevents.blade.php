@@ -51,9 +51,19 @@
 {{-- Event Card --}}
 <div class="row justify-content-center">
     @if( count($events) < 1)
-        <div class="mt-3">
+    <div class="mt-3">
+
+        @if( Request::get('status') == 'pending')
             <h5>No event to be displayed yet. Click <a href="{{ route('organizer.createevents')}}">here</a> to create event.</h5>
-        </div>
+
+        @elseif (Request::get('status') == 'rejected')
+            <h5>No rejected event to be displayed.</h5>
+
+        @else
+            <h5>No verified event to be displayed. Click <a href="{{ route('organizer.createevents')}}">here</a> to create event.</h5>
+
+        @endif
+    </div>
     @else
         @foreach($events as $event)
             <div class="col-md-4 mt-3">
