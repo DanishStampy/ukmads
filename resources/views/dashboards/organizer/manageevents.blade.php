@@ -339,7 +339,7 @@
 
 
                 $("#eventPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
                 $("#eventId").val(data.id_event);
                 $("#eventHid").val(data.id_event);
                 $("#eventName").val(data.name);

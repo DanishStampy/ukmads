@@ -299,7 +299,7 @@
                 var data = $.parseJSON(data);
 
                 $("#adsPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
                 $("#adsId").val(data.id_ads);
                 $("#adsHid").val(data.id_ads);
                 $("#adsName").val(data.name);
