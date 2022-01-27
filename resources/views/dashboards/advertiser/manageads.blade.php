@@ -164,6 +164,23 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
+
+                    <div id="adsCarouselControl" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="adsCarousel">
+                            {{-- <div class="carousel-item active">
+                            <img src="..." class="d-block w-100" alt="...">
+                          </div> --}}
+                        </div>
+                        <a class="carousel-control-prev" href="#adsCarouselControl" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#adsCarouselControl" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    
                     <img class="img-fluid" id="adsPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                         style="margin: 10px;height:300px;width:300px;object-fit: cover">
@@ -298,8 +315,35 @@
                 var data = atob(ads);
                 var data = $.parseJSON(data);
 
+                if (data.picture.length > 1) {
+
+                $('#adsPic').hide();
+                $('#adsCarouselControl').show();
+
+                if ($('#adsCarousel').children().length > 0) {
+                    $('#adsCarousel').empty();
+                }
+
+                $(data.picture).each(function (index, value) {
+
+                    if (index == 0)
+                        $('#adsCarousel').append(
+                            `<div class='carousel-item active'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                            )
+                    else
+                        $('#adsCarousel').append(
+                            `<div class='carousel-item'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                            )
+                })
+                } else {
+
+                $('#adsCarouselControl').hide();
+                $('#adsPic').show();
+
                 $("#adsPic").attr('src',
                     `{{ asset('img/${data.picture[0]}') }}`);
+                }
+
                 $("#adsId").val(data.id_ads);
                 $("#adsHid").val(data.id_ads);
                 $("#adsName").val(data.name);

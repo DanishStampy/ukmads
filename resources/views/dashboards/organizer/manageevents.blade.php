@@ -196,6 +196,23 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
+
+                    <div id="eventCarouselControl" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="eventCarousel">
+                            {{-- <div class="carousel-item active">
+                            <img src="..." class="d-block w-100" alt="...">
+                          </div> --}}
+                        </div>
+                        <a class="carousel-control-prev" href="#eventCarouselControl" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#eventCarouselControl" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
                     <img class="img-fluid" id="eventPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                         style="margin: 10px;height:300px;width:300px;object-fit: cover">
@@ -338,8 +355,35 @@
                 var data = $.parseJSON(data);
 
 
-                $("#eventPic").attr('src',
-                    `{{ asset('img/${data.picture[0]}') }}`);
+                if (data.picture.length > 1) {
+
+                    $('#eventPic').hide();
+                    $('#eventCarouselControl').show();
+
+                    if ($('#eventCarousel').children().length > 0) {
+                        $('#eventCarousel').empty();
+                    }
+
+                    $(data.picture).each(function (index, value) {
+
+                        if (index == 0)
+                            $('#eventCarousel').append(
+                                `<div class='carousel-item active'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                                )
+                        else
+                            $('#eventCarousel').append(
+                                `<div class='carousel-item'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                                )
+                    })
+                } else {
+
+                    $('#eventCarouselControl').hide();
+                    $('#eventPic').show();
+
+                    $("#eventPic").attr('src',
+                        `{{ asset('img/${data.picture[0]}') }}`);
+                }
+                
                 $("#eventId").val(data.id_event);
                 $("#eventHid").val(data.id_event);
                 $("#eventName").val(data.name);
