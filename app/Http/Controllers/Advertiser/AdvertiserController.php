@@ -64,7 +64,7 @@ class AdvertiserController extends Controller
         if ($request->hasFile('fileToUpload')) {
 
             $request->validate([
-                'fileToUpload.*' => 'image'
+                'fileToUpload.*' => 'image|max:1024'
             ]);
 
             foreach ($request->file('fileToUpload') as $file) {
@@ -75,7 +75,7 @@ class AdvertiserController extends Controller
         }
 
         $request->validate([
-            'fileToUpload' => 'required',
+            'fileToUpload' => 'required|max:5',
             'name' => 'required',
             'product' => 'required',
             'price' => 'required|max:999',
