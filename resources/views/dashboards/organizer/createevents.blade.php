@@ -8,6 +8,22 @@
             <h1 class="content_header">Create Events</h1>
         </div>
     </div>
+
+    @if($errors->any())
+    <div class="row">
+        <div class="alert alert-danger alert-dismissible fade show m-3">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+        @foreach ($errors->all() as $err)
+            <li class="">{{$err}}</li>
+        @endforeach
+    </div>
+    </div>
+    
+@endif
+
     <div class="container">
         <form action="{{ route('organizer.uploadEvents') }}" method="POST" class="form-horizontal"
             enctype="multipart/form-data">
@@ -17,21 +33,22 @@
                     <div class="card">
                         <div class="card-body">
                             <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
-                                type="button"><input type="file" accept="images/*" name="fileToUpload"
+                                type="button">
+                                <input type="file" accept="images/*" name="fileToUpload[]" multiple
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
                                 src="{{ asset('img/noimage.jpg') }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                                 style="width: 450px; height: 450px;">
                         </div>
-                        <div class="card-header">
+                        <div class="card-header bg-purple">
                             <h5 class="d-lg-flex justify-content-lg-center">Upload Picture</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-purple">
                             <h5 class="mb-0">Content Details</h5>
                         </div>
                         <div class="card-body">
@@ -41,7 +58,6 @@
                                         <input id="name" type="text" class="form_input" name="name" placeholder=" "
                                             autofocus value="">
                                         <label for="name" class="form_label">Name</label>
-                                        <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +67,6 @@
                                         <input id="location" type="text" class="form_input" name="location"
                                             placeholder=" " value="">
                                         <label for="location" class="form_label">Location</label>
-                                        <span class="text-danger">@error('location'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +76,6 @@
                                         <input id="time" type="time" class="form_input" name="time" placeholder=" "
                                             value="">
                                         <label for="time" class="form_label">Time</label>
-                                        <span class="text-danger">@error('time'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -69,7 +83,6 @@
                                         <input id="date" type="date" class="form_input" name="date" placeholder=" "
                                             value="">
                                         <label for="date" class="form_label">Date</label>
-                                        <span class="text-danger">@error('date'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +92,6 @@
                                         <input id="org" type="text" class="form_input" name="org" placeholder=" "
                                             value="">
                                         <label for="org" class="form_label">Organizer</label>
-                                        <span class="text-danger">@error('org'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -88,7 +100,6 @@
                                             placeholder="#01234567890" pattern="^01[0-9]{1}([0-9]{8}|[0-9]{7})"
                                             value="">
                                         <label for="contactE" class="form_label">Contact Number</label>
-                                        <span class="text-danger">@error('contactE'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
@@ -99,17 +110,24 @@
                                             avalue=""> --}}
                                         <textarea name="descE" class="form_input" id="descE" style="min-height: 100px"></textarea>
                                         <label for="descE" class="form_label">Description</label>
-                                        <span class="text-danger">@error('descE'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
-                                    <button name="action" value="save" class="btn btn-primary text-right border rounded" type="submit"
-                                        style="margin-right: 10px;">Save As Draft</button>
-                                    <button name="action" value="verify" class="btn btn-success text-right border rounded"
-                                        type="submit">Verify</button>
+
+                                @if ($subs->subs_status == 'NO' || $eventCreated == $subs->quota)
+                                    <a href="{{ route('organizer.profile')}}" name="action" value="save" class="btn btn-create text-right border rounded shadow-none"
+                                    type="button" style="margin-right: 10px;">Event Quota</a>
+
+                                @else
+                                    <button name="action" value="save" class="btn btn-warning text-right border shadow-none rounded"
+                                    type="submit" style="margin-right: 10px;">Save As Draft</button>
+                                    <button name="action" value="verify" id="verify-ads" class="btn btn-create text-right border rounded shadow-none"
+                                    type="submit">Verify</button>
+
+                                @endif
                                 </div>
                             </div>
                         </div>

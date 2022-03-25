@@ -14,7 +14,7 @@
                 <div class="col-md-3 mb-5">
                     <div class="card" style="width: 14rem;">
                         <a href="{{ route("organizer.editevent", $item->id_event) }}"> 
-                            <img class="card-img-top" src="{{  asset('img/'.$item->picture) }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
+                            <img class="card-img-top" src="{{  asset('img/'.$item['picture'][0]) }}" alt="Card image cap" style="height: 310px;object-fit: fill;">
                             {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchAds"
                             data-ads="{{ base64_encode($item->toJson()) }}">View Detail</button> --}}
                         </a>

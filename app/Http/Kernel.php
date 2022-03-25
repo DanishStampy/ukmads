@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\HttpsMiddleware::class,
     ];
 
     /**
@@ -54,6 +55,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'secure' => \App\Http\Middleware\HttpsMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'isOrgs' => \App\Http\Middleware\isOrganizationMiddleware::class,
         'isAdmin' => \App\Http\Middleware\isAdminMiddleware::class,

@@ -51,4 +51,12 @@ class Event extends Model
             }
         });
     }
+
+    public function setPictureAttribute($value){
+        $this->attributes['picture'] = json_encode($value);
+    }
+
+    public function getPictureAttribute($value){
+        return json_decode($value);
+    }
 }

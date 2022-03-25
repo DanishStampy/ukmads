@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="ribbon-wrapper ribbon-lg">
                             @if($advertisement->status=='verified')
-                                <div class="ribbon bg-success">
+                                <div class="ribbon bg-teal">
                                     Verified
                                 </div>
                             @else
@@ -33,15 +33,15 @@
                             @endif
                         </div>
                         <img class="card-img-top"
-                            src="{{ asset('img/'.$advertisement->picture) }}"
+                            src="{{ asset('img/'.$advertisement['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">
                                 {{ $advertisement->name }}</h5>
-                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text">
                                 {{ $advertisement->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsHistory"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal" data-target="#adsHistory"
                                 data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail</button>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                     <div class="card">
                         <div class="ribbon-wrapper ribbon-lg">
                             @if($event->status=='verified')
-                                <div class="ribbon bg-success">
+                                <div class="ribbon bg-teal">
                                     Verified
                                 </div>
                             @else
@@ -164,15 +164,15 @@
                                 </div>
                             @endif
                         </div>
-                        <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                        <img class="card-img-top" src="{{ asset('img/'.$event['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="text-overflow: inherit;overflow: inherit">{{ $event->name }}
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">{{ $event->name }}
                             </h5>
-                            <p class="card-text" style="height:30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text">
                                 {{ $event->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal"
                                 data-target="#eventHistory" data-event="{{ base64_encode($event->toJson()) }}">View
                                 Detail</button>
                         </div>
@@ -195,7 +195,7 @@
                 <div class="card" style="margin-top: 30px">
                     <img class="img-fluid" id="eventPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:400px;object-fit: fill">
+                        style="margin: 10px; height:400px; width:400px; object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -288,7 +288,7 @@
                 var data = $.parseJSON(data);
 
                 $("#adsPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
                 $("#adsId").val(data.id_ads);
                 $("#adsName").val(data.name);
                 $("#adsEmail").val(data.creator_email);
@@ -320,7 +320,7 @@
                 var data = $.parseJSON(data);
 
                 $("#eventPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
                 $("#eventId").val(data.id_event);
                 $("#eventName").val(data.name);
                 $("#eventEmail").val(data.creator_email);
