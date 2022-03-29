@@ -10,10 +10,10 @@
             action="{{ route('web.searcheventsV') }}">
             @csrf
             <div class="input-group ">
-                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round"
-                    placeholder="search" required />
+                <input type="search" name="searcheventsV" id="searcheventsV" class="form-control round shadow-none"
+                    placeholder="Search" required />
                 <div class="input-group-append">
-                    <button type="" class="btn bg-indigo round">
+                    <button type="" class="btn bg-fuchsia round shadow-none">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -25,10 +25,10 @@
 
             <div class="d-flex flex-row align-items-center">
                 <span class="mr-3">Sort By:</span>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="all-ads">All</button>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="newest">Newest</button>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="popular">Popularity</button>
-                <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="date">Date</button>
+                <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit" value="all-ads">All</button>
+                <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit" value="newest">Newest</button>
+                <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit" value="popular">Popularity</button>
+                <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit" value="date">Date</button>
             </div>
         </form>
     </div>
@@ -38,7 +38,7 @@
         @if($item->status=='verified')
             <div class="col-md-3 mb-5">
                 <a href="{{ route("event.eventdetails", $item->id_event) }} " class="cards">
-                    <img src="{{ asset('img/'.$item->picture) }}" class="card__image" alt="" />
+                    <img src="{{ asset('img/'.$item['picture'][0]) }}" class="card__image" alt="" />
                     <div class="card__overlay">
                         <div class="card__header">
                             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">

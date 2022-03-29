@@ -7,10 +7,10 @@
 
 <div class="row">
 
-    @if ($subs->quota == $event->where('status','verified')->count())
+    @if ($subs->quota == $event->count())
         <div class="col-12">
             <div class="alert alert-warning alert-dismissible fade show">
-                <p class="text-center mb-0"><i class="fas fa-exclamation"></i> Your quota has finished. Please add more if you want to post more events. Click <a href="{{ route('organizer.profile')}}">here.</a></p>
+                <p class="text-center mb-0"><i class="fas fa-exclamation"></i> Quota is empty. Please add more if you want to post more events. Click <a href="{{ route('organizer.profile')}}" style="color: #007bff;">here.</a></p>
             </div>
             
         </div>
@@ -90,9 +90,9 @@
      <!-- Data visualisation -->
      <div class="col-lg-12">
         <div class="card">
-            <div class="card-header border-0 bg-olive">
-                <div class="d-flex justify-content-between align-content-item">
-                    <h3 class="card-title">Weekly Event Report</h3>
+            <div class="card-header border-0 bg-indigo">
+                <div class="d-flex justify-content-start align-items-center">
+                    <h3 class="card-title mb-0">Weekly Event Report</h3>
                    
                 </div>
             </div>
@@ -177,7 +177,7 @@
                     datasets: [
                         {
                             label: 'Total Joined',
-                            backgroundColor: 'rgb(75, 192, 192)',
+                            backgroundColor: '#5B56B0',
                             borderColor: 'rgba(210, 214, 222, 1)',
                             fill: true,
                             data: {!! json_encode($joinDate->values()) !!}

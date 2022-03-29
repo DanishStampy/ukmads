@@ -55,21 +55,22 @@
                     <div class="card">
                         <div class="card-body">
                             <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
-                                type="button"><input type="file" accept="images/*" name="fileToUpload"
+                                type="button">
+                                <input type="file" accept="images/*" name="fileToUpload[]" multiple
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
-                                src="/img/{{ $event->picture }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" name="imageSave"
+                                src="/img/{{ $event['picture'][0] }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';" name="imageSave"
                                 style="width: 450px; height: 450px;">
                         </div>
-                        <div class="card-header">
+                        <div class="card-header bg-purple">
                             <h5 class="d-lg-flex justify-content-lg-center">Upload Picture</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-purple">
                             <h5 class="mb-0">Content Details</h5>
                         </div>
                         <div class="card-body">
@@ -139,12 +140,12 @@
                                 <div class="col d-lg-flex justify-content-lg-end">
 
                                     @if($event->status == 'draft')
-                                        <button class="btn btn-primary text-right border rounded mr-2"
+                                        <button class="btn btn-warning text-right border rounded mr-2 shadow-none"
                                             type="submit" name="action" value="save">Save As Draft</button>
-                                        <button class="btn btn-success text-right border rounded"
+                                        <button class="btn btn-create text-right border rounded shadow-none"
                                             type="submit" name="action" value="submit">Verify</button>
                                     @else
-                                        <button class="btn btn-success text-right border rounded"
+                                        <button class="btn btn-create text-right border rounded shadow-none"
                                             type="submit" id="update-event" name="action" value="update">Update</button>
                                     @endif
                                 </div>

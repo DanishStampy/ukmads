@@ -14,15 +14,15 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">{{ $event->name }}'s participant</h3>
+            <div class="card-header bg-purple">
+                <h3 class="card-title mb-0">{{ $event->name }}'s participant</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Contact No.</th>

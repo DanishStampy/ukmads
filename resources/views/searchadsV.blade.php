@@ -7,14 +7,16 @@
 
     <div class="card-body">
         <form class="form-group pb-3" method="GET" action="{{ route('web.searchadsV') }}">
+            @csrf
             <div class="input-group ">
-                <div class="form-outline">
-                    <input type="search" name="searchadsV" id="searchadsV" class="form-control" placeholder="search"
-                        required />
+                <input type="search" name="searchadsV" id="searchadsV" class="form-control round shadow-none"
+                    placeholder="Search" required />
+
+                <div class="input-group-append">
+                    <button type="" class="btn bg-fuchsia round shadow-none">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-                <button type="" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </button>
 
             </div>
         </form>
@@ -26,9 +28,10 @@
                 <div class="col-6 d-flex flex-row justify-content-center">
                     <div class="align-items-center">
                         <span class="mr-3">Sort By:</span>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="all-ads">All</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="newest">Newest</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit"
+                        <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit" value="all-ads">All</button>
+                        <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit"
+                            value="newest">Newest</button>
+                        <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit"
                             value="popular">Popularity</button>
                     </div>
 
@@ -47,9 +50,11 @@
                 <div class="col-6 d-flex flex-row justify-content-center">
                     <div class="d-flex flex-row align-items-center justify-content-end mb-2">
                         <span class="mr-3">Ads Type:</span>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="Food">Food</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="Rental">Rental</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="Product">Product</button>
+                        <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit" value="Food">Food</button>
+                        <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit"
+                            value="Rental">Rental</button>
+                        <button class="btn bg-fuchsia mr-1 round" name="sort" type="submit"
+                            value="Product">Product</button>
                     </div>
                 </div>
             </div>
@@ -64,7 +69,8 @@
             <div class="col-md-3 mb-5">
                 <a href="{{ route("advertisement.adsdetails", $item->id_ads) }}"
                     class="cards">
-                    <img src="{{ asset('img/'.$item->picture) }}" class="card__image" alt="" />
+                    <img src="{{ asset('img/'.$item['picture'][0]) }}"
+                        class="card__image" alt="" />
                     <div class="card__overlay">
                         <div class="card__header">
                             <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">

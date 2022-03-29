@@ -10,10 +10,10 @@
             action="{{ route('web.searchadsV') }}">
             @csrf
             <div class="input-group">
-                <input type="search" name="searchadsV" id="searchadsV" class="form-control round" placeholder="search"
+                <input type="search" name="searchadsV" id="searchadsV" class="form-control round shadow-none" placeholder="Search"
                     required />
                 <div class="input-group-append">
-                    <button type="" class="btn bg-indigo round">
+                    <button type="" class="btn bg-fuchsia shadow-none round">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -29,14 +29,14 @@
                 <div class="col-6 d-flex flex-row justify-content-center">
                     <div class="align-items-center">
                         <span class="mr-3">Sort By:</span>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="all-ads">All</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="newest">Newest</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit"
+                        <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit" value="all-ads">All</button>
+                        <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit" value="newest">Newest</button>
+                        <button class="btn bg-fuchsia mr-1 shadow-none round" name="sort" type="submit"
                             value="popular">Popularity</button>
                     </div>
 
                     <div class="align-items-center ml-1">
-                        <select name="price" id="price" class="form-control round">
+                        <select name="price" id="price" class="form-control round shadow-none">
                             <option value="" selected>Price</option>
                             <option @if (Request::get('price')=='price_asc' ) selected @endif value="price_asc">Low to
                                 High</option>
@@ -50,9 +50,9 @@
                 <div class="col-6 d-flex flex-row justify-content-center">
                     <div class="d-flex flex-row align-items-center justify-content-end mb-2">
                         <span class="mr-3">Ads Type:</span>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="Food">Food</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="Rental">Rental</button>
-                        <button class="btn bg-indigo mr-1 round" name="sort" type="submit" value="Product">Product</button>
+                        <button class="btn bg-fuchsia shadow-none mr-1 round" name="sort" type="submit" value="Food">Food</button>
+                        <button class="btn bg-fuchsia shadow-none mr-1 round" name="sort" type="submit" value="Rental">Rental</button>
+                        <button class="btn bg-fuchsia shadow-none mr-1 round" name="sort" type="submit" value="Product">Product</button>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
     @foreach($ads as $key => $item)
         <div class="col-md-3 mb-5">
             <a href="{{ route("advertisement.adsdetails", $item->id_ads) }}" class="cards">
-                <img src="{{ asset('img/'.$item->picture) }}" class="card__image img-fluid"
+                <img src="{{ asset('img/'.$item['picture'][0]) }}" class="card__image img-fluid"
                     alt="" />
                 <div class="card__overlay">
                     <div class="card__header">
@@ -82,7 +82,8 @@
     @endforeach
 
 </div>
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-end pb-3">
     {{ $ads->links('layouts.pagination-custom') }}
 </div>
+<br>
 @endsection

@@ -6,6 +6,7 @@ use App\Exports\ListExport;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\JoinList;
+use App\Models\Organizer;
 use App\Models\Payment;
 use App\Models\Subscription;
 use App\Rules\PhoneNumber;
@@ -34,7 +35,9 @@ class OrganizerController extends Controller
 
         $paymentHistory = Payment::where('user_id', Auth::user()->user_id)->get();
 
-        return view('dashboards.organizer.profile', compact('event', 'subs', 'paymentHistory'));
+        $orgs = Organizer::where('user_id', Auth::user()->user_id)->get();
+
+        return view('dashboards.organizer.profile', compact('event', 'subs', 'paymentHistory', 'orgs'));
     }
 
     public function index()
@@ -42,10 +45,17 @@ class OrganizerController extends Controller
         $user_id = $this->getEmail();
 
         $event = Event::where('creator_email', $user_id)->get();
-        $totalJoin = DB::table('join_lists')->count('id');
+        // $totalJoin = DB::table('join_lists')->count('id');
 
-        $joinDateDB = DB::table('join_lists')->selectRaw('COUNT(id) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
-            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
+        $totalJoin = DB::table('events')
+            ->join('join_lists', 'events.id_event', '=', 'join_lists.id_event')
+            ->where('events.creator_email', $user_id)->count();
+
+        $joinDateDB = DB::table('events')
+            ->join('join_lists', 'events.id_event', '=', 'join_lists.id_event')
+            ->where('events.creator_email', $user_id)
+            ->selectRaw('COUNT(join_lists.id) as cnt, DATE_FORMAT(join_lists.created_at, "%d/%m/%Y") fdate')
+            ->whereDate('join_lists.created_at', '>=', Carbon::now()->subDays(6))
 
             ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
             ->groupBy('fdate')->get()
@@ -70,28 +80,31 @@ class OrganizerController extends Controller
         $uid = Subscription::where('user_id', Auth::user()->user_id)->value('id');
         $subs = Subscription::find($uid);
 
-        $eventPosted = Event::where('creator_email', $this->getEmail())->where('status', 'verified')->count();
+        $eventCreated = Event::where('creator_email', $this->getEmail())->count();
 
-        return view('dashboards.organizer.createevents', compact('subs', 'eventPosted'));
+        return view('dashboards.organizer.createevents', compact('subs', 'eventCreated'));
     }
 
     public function uploadEvents(Request $request)
     {
         $events = new Event();
+        $files = [];
 
         if ($request->hasFile('fileToUpload')) {
+
             $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
+                'fileToUpload.*' => 'image'
             ]);
 
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $events->picture = $imgname;
+            foreach ($request->file('fileToUpload') as $file) {
+                $imgname = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+                $file->move('img', $imgname);
+                $files[] = $imgname;
+            }
         }
 
         $request->validate([
+            'fileToUpload' => 'required',
             'name' => 'required',
             'location' => 'required',
             'time' => 'required',
@@ -107,6 +120,7 @@ class OrganizerController extends Controller
         $events->time = $request->time;
         $events->date = $request->date;
         $events->organizer = $request->org;
+        $events->picture = $files;
         $events->contact = $request->contactE;
         $events->description = $request->descE;
         $events->join = 0;
@@ -137,24 +151,28 @@ class OrganizerController extends Controller
     public function updateEvent(Request $request, $id_event)
     {
         $event = Event::find($id_event);
+        $files = [];
 
         if ($request->hasFile('fileToUpload')) {
             $request->validate([
-                'fileToUpload' => 'mimes:jpeg,jpg,png'
+                'fileToUpload.*' => 'image'
             ]);
 
-            if ($event && File::exists(public_path("img/" . $event->picture))) {
-                File::delete(public_path("img/" . $event->picture));
+            foreach ($event['picture'] as $pic) {
+                if ($event && File::exists(public_path("img/" . $pic))) {
+                    File::delete(public_path("img/" . $pic));
+                }
             }
 
-            $image = $request['fileToUpload'];
-            $imgname = time() . '.' . $image->getClientOriginalExtension();
-            $request->fileToUpload->move('img', $imgname);
-
-            $event->picture = $imgname;
+            foreach ($request->file('fileToUpload') as $file) {
+                $imgname = time() . rand(1, 100) . '.' . $file->getClientOriginalExtension();
+                $file->move('img', $imgname);
+                $files[] = $imgname;
+            }
         }
 
         $request->validate([
+            'fileToUpload' => 'required',
             'name' => 'required',
             'location' => 'required',
             'time' => 'required',
@@ -170,6 +188,7 @@ class OrganizerController extends Controller
         $event->time = $request->time;
         $event->date = $request->date;
         $event->organizer = $request->org;
+        $event->picture = $files;
         $event->contact = $request->contactE;
         $event->description = $request->descE;
 
@@ -196,8 +215,11 @@ class OrganizerController extends Controller
     {
         $id_event = $request->input('id_event');
         $event = Event::find($id_event);
-        if ($event && File::exists(public_path("img/" . $event->picture))) {
-            File::delete(public_path("img/" . $event->picture));
+
+        foreach ($event['picture'] as $pic) {
+            if ($event && File::exists(public_path("img/" . $pic))) {
+                File::delete(public_path("img/" . $pic));
+            }
         }
         $event->delete();
 

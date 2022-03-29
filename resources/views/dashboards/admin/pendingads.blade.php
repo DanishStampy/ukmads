@@ -26,15 +26,16 @@
                             </div>
                         </div>
                         <img class="card-img-top"
-                            src="{{ asset('img/'.$advertisement->picture) }}"
+                            src="{{ asset('img/'.$advertisement['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">
                                 {{ $advertisement->name }}</h5>
-                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text">
                                 {{ $advertisement->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adsPending"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal"
+                                data-target="#adsPending"
                                 data-ads="{{ base64_encode($advertisement->toJson()) }}">View Detail
                             </button>
                         </div>
@@ -51,9 +52,26 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
+
+                    <div id="adsCarouselControl" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="adsCarousel">
+                            {{-- <div class="carousel-item active">
+                            <img src="..." class="d-block w-100" alt="...">
+                          </div> --}}
+                        </div>
+                        <a class="carousel-control-prev" href="#adsCarouselControl" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#adsCarouselControl" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
                     <img class="img-fluid" id="adsPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:400px;object-fit: fill">
+                        style="margin: 10px; height:400px; width:400px; object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -112,13 +130,14 @@
                                             <input type="hidden" value="" name="id_ads" id="adsHid">
                                             <div class="col-sm-6">
                                                 <button name="type" value="approved" type="submit"
-                                                    class="btn btn-success" style="width: 100%" id="btnAdsApproved">
+                                                    class="btn bg-teal shadow-none" style="width: 100%"
+                                                    id="btnAdsApproved">
                                                     Approve
                                                 </button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button type="button" class="btn btn-danger" style="width: 100%"
-                                                    onclick="showReasonAds()">
+                                                <button type="button" class="btn btn-danger shadow-none"
+                                                    style="width: 100%" onclick="showReasonAds()">
                                                     Reject
                                                 </button>
                                             </div>
@@ -131,7 +150,7 @@
                                                         placeholder="Give valid reason to reject"></textarea>
                                                 </div>
                                                 <button name="type" value="rejected" type="submit"
-                                                    class="btn btn-primary" style="margin: 10px; width: 30%"
+                                                    class="btn btn-primary shadow-none" style="margin: 10px; width: 30%"
                                                     id="btnAdsRejected">
                                                     Confirm
                                                 </button>
@@ -172,15 +191,16 @@
                                 Pending
                             </div>
                         </div>
-                        <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                        <img class="card-img-top"
+                            src="{{ asset('img/'.$event['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
-                        <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">
-                            <h5 class="card-title" style="width: 230px;text-overflow: inherit;overflow: inherit">
+                        <div class="card-body wrap-parent">
+                            <h5 class="card-title wrap-child-title">
                                 {{ $event->name }}</h5>
-                            <p class="card-text" style="height: 30px;text-overflow: inherit;overflow: inherit">
+                            <p class="card-text wrap-child-text">
                                 {{ $event->description }}</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                            <button type="button" class="btn btn-block shadow-none" data-toggle="modal"
                                 data-target="#eventPending" data-event="{{ base64_encode($event->toJson()) }}">View
                                 Detail
                             </button>
@@ -198,9 +218,26 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
+
+                    <div id="eventCarouselControl" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="eventCarousel">
+                            {{-- <div class="carousel-item active">
+                            <img src="..." class="d-block w-100" alt="...">
+                          </div> --}}
+                        </div>
+                        <a class="carousel-control-prev" href="#eventCarouselControl" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#eventCarouselControl" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
                     <img class="img-fluid" id="eventPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
-                        style="margin: 10px;height:300px;width:400px;object-fit: fill">
+                        style="margin: 10px; height:400px; width:400px; object-fit: fill">
                 </div>
                 <div class="col-md-12 col-xs-6">
                     <h3 class="modal-title text-center">Details</h3>
@@ -265,13 +302,14 @@
                                             <input type="hidden" value="" name="id_event" id="eventHid">
                                             <div class="col-sm-6">
                                                 <button name="type" value="approved" type="submit"
-                                                    class="btn btn-success" style="width: 100%" id="btnEventApproved">
+                                                    class="btn bg-teal shadow-none" style="width: 100%"
+                                                    id="btnEventApproved">
                                                     Approve
                                                 </button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button type="button" class="btn btn-danger" style="width: 100%"
-                                                    onclick="showReasonEvent()">
+                                                <button type="button" class="btn btn-danger shadow-none"
+                                                    style="width: 100%" onclick="showReasonEvent()">
                                                     Reject
                                                 </button>
                                             </div>
@@ -284,7 +322,7 @@
                                                         placeholder="Give valid reason to reject"></textarea>
                                                 </div>
                                                 <button name="type" value="rejected" type="submit"
-                                                    class="btn btn-primary" style="margin: 10px; width: 30%"
+                                                    class="btn btn-primary shadow-none" style="margin: 10px; width: 30%"
                                                     id="btnEventRejected">
                                                     Confirm
                                                 </button>
@@ -314,8 +352,35 @@
                 var data = atob(ads);
                 var data = $.parseJSON(data);
 
-                $("#adsPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                if (data.picture.length > 1) {
+
+                    $('#adsPic').hide();
+                    $('#adsCarouselControl').show();
+
+                    if ($('#adsCarousel').children().length > 0) {
+                        $('#adsCarousel').empty();
+                    }
+
+                    $(data.picture).each(function (index, value) {
+
+                        if (index == 0)
+                            $('#adsCarousel').append(
+                                `<div class='carousel-item active'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                                )
+                        else
+                            $('#adsCarousel').append(
+                                `<div class='carousel-item'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                                )
+                    })
+                } else {
+
+                    $('#adsCarouselControl').hide();
+                    $('#adsPic').show();
+
+                    $("#adsPic").attr('src',
+                        `{{ asset('img/${data.picture[0]}') }}`);
+                }
+
                 $("#adsId").val(data.id_ads);
                 $("#adsHid").val(data.id_ads);
                 $("#adsName").val(data.name);
@@ -336,9 +401,35 @@
                 var data = atob(event);
                 var data = $.parseJSON(data);
 
+                if (data.picture.length > 1) {
 
-                $("#eventPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    $('#eventPic').hide();
+                    $('#eventCarouselControl').show();
+
+                    if ($('#eventCarousel').children().length > 0) {
+                        $('#eventCarousel').empty();
+                    }
+
+                    $(data.picture).each(function (index, value) {
+
+                        if (index == 0)
+                            $('#eventCarousel').append(
+                                `<div class='carousel-item active'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                                )
+                        else
+                            $('#eventCarousel').append(
+                                `<div class='carousel-item'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                                )
+                    })
+                } else {
+
+                    $('#eventCarouselControl').hide();
+                    $('#eventPic').show();
+
+                    $("#eventPic").attr('src',
+                        `{{ asset('img/${data.picture[0]}') }}`);
+                }
+
                 $("#eventId").val(data.id_event);
                 $("#eventHid").val(data.id_event);
                 $("#eventName").val(data.name);

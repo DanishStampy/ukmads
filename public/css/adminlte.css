@@ -11453,9 +11453,10 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .main-footer {
   background-color: #F3ECFF;
   border-top: 1px solid #F3ECFF;
-  color: #869099;
+  color: #290576;
   padding: 1rem;
 }
+
 .text-sm .main-footer, .main-footer.text-sm {
   padding: 0.812rem;
 }
@@ -23742,7 +23743,6 @@ html.maximized-card {
 }
 
 .card-title {
-  float: left;
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
@@ -26378,8 +26378,7 @@ html.maximized-card {
   color: #6c757d;
   font-size: 12px;
   height: 60px;
-  margin: 0 0 10px 10px;
-  min-width: 80px;
+  min-width: 100px;
   padding: 15px 5px;
   position: relative;
   text-align: center;
@@ -38394,12 +38393,12 @@ blockquote.quote-gray-dark h6 {
   color: #fff !important;
 }
 .bg-fuchsia.btn:hover {
-  border-color: #c30c9a;
+  border-color: #fff;
   color: #ececec;
 }
 .bg-fuchsia.btn:not(:disabled):not(.disabled):active, .bg-fuchsia.btn:not(:disabled):not(.disabled).active, .bg-fuchsia.btn:active, .bg-fuchsia.btn.active {
-  background-color: #c30c9a !important;
-  border-color: #b70c90;
+  background-color: #5a6dcc !important;
+  border-color: #7189ff;
   color: #fff;
 }
 
@@ -38438,7 +38437,7 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-indigo {
-  background-color: #6610f2 !important;
+  background-color: #290576 !important;
 }
 .bg-indigo,
 .bg-indigo > a {
@@ -38455,18 +38454,18 @@ blockquote.quote-gray-dark h6 {
 }
 
 .bg-purple {
-  background-color: #6f42c1 !important;
+  background-color: #5B56B0 !important;
 }
 .bg-purple,
 .bg-purple > a {
   color: #fff !important;
 }
 .bg-purple.btn:hover {
-  border-color: #59339d;
+  border-color: #403aaa;
   color: #ececec;
 }
 .bg-purple.btn:not(:disabled):not(.disabled):active, .bg-purple.btn:not(:disabled):not(.disabled).active, .bg-purple.btn:active, .bg-purple.btn.active {
-  background-color: #59339d !important;
+  background-color: #403aaa !important;
   border-color: #533093;
   color: #fff;
 }
@@ -38564,12 +38563,12 @@ blockquote.quote-gray-dark h6 {
   color: #fff !important;
 }
 .bg-teal.btn:hover {
-  border-color: #fff;
   color: #ececec;
+  background-color: #13785a !important;
 }
 .bg-teal.btn:not(:disabled):not(.disabled):active, .bg-teal.btn:not(:disabled):not(.disabled).active, .bg-teal.btn:active, .bg-teal.btn.active {
-  border-color: #fff;
   color: #fff;
+  background-color: #13785a !important;
 }
 
 .bg-cyan {

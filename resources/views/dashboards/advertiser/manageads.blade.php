@@ -32,13 +32,13 @@
     <form method="GET" class="col-md-3 form-horizontal" action="{{ route('advertiser.manageads') }}"
         enctype="multipart/form-data">
         <div class="btn-group btn-group-toggle">
-            <button name="status" type="submit" class="btn btn-primary mr-1" value="pending">Pending</button>
-            <button name="status" type="submit" class="btn btn-success mr-1" value="verified">Verified</button>
-            <button name="status" type="submit" class="btn btn-danger mr-1" value="rejected">Rejected</button>
+            <button name="status" type="submit" class="btn bg-info mr-1 shadow-none" value="pending">Pending</button>
+            <button name="status" type="submit" class="btn bg-teal mr-1 shadow-none" value="verified">Verified</button>
+            <button name="status" type="submit" class="btn bg-danger mr-1 shadow-none" value="rejected">Rejected</button>
         </div>
     </form>
     <div class="col-md-3">
-        <a class="btn bg-info" href="{{ route("advertiser.createads") }}">
+        <a class="btn btn-create shadow-none" href="{{ route("advertiser.createads") }}">
             <i class="fas fa-feather"></i> Create New
         </a>
     </div>
@@ -51,9 +51,17 @@
 {{-- Advertisement Card --}}
 <div class="row justify-content-center">
     @if(count($ads) < 1)
-        <div class="mt-3">
-            <h5>No data to be displayed.</h5>
-        </div>
+    <div class="mt-3">
+        @if( Request::get('status') == 'pending')
+            <h5>No advertisement to be displayed yet. Click <a href="{{ route('advertiser.createads')}}">here</a> to create advertisement.</h5>
+
+        @elseif (Request::get('status') == 'rejected')
+            <h5>No rejected advertisement to be displayed.</h5>
+
+        @else
+            <h5>No verified advertisement to be displayed. Click <a href="{{ route('advertiser.createads')}}">here</a> to create advertisement.</h5>
+        @endif
+    </div>
     @else
         @foreach($ads as $ad)
             <div class="col-md-4 mt-3">
@@ -69,7 +77,7 @@
                             </div>
                         @elseif($ad->status == 'verified')
                             <div class="ribbon-wrapper ribbon-xl">
-                                <div class="ribbon bg-success">
+                                <div class="ribbon bg-teal">
                                     Verified
                                 </div>
                             </div>
@@ -84,7 +92,7 @@
                     </div>
                 </div>
 
-                <img class="card-img-top" src="{{ asset("img/".$ad->picture) }}"
+                <img class="card-img-top" src="{{ asset("img/".$ad['picture'][0]) }}"
                     onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                     style="height:300px;object-fit: cover">
 
@@ -94,7 +102,7 @@
                             <div class="col-lg-4 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a href="{{ route("advertiser.editads", $ad->id_ads) }}"
-                                        class="btn btn-app bg-warning">
+                                        class="btn btn-app bg-warning shadow-none">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                 </div>
@@ -103,7 +111,7 @@
                                 <div class="description-block">
                                     <a type="button" data-toggle="modal" data-target="#detailads"
                                         data-ads="{{ base64_encode($ad->toJson()) }}"
-                                        class="btn btn-app bg-olive">
+                                        class="btn btn-app bg-olive shadow-none">
                                         <i class="fas fa-info"></i> Details
                                     </a>
                                 </div>
@@ -111,7 +119,7 @@
                             <div class="col-lg-4 col-md-12 col-xs-12">
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
-                                        data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger">
+                                        data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger shadow-none">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
                                 </div>
@@ -128,7 +136,7 @@
                             <div class="col-lg-6 col-md-12 col-xs-12 border-right">
                                 <div class="description-block">
                                     <a href="{{ route("advertiser.editads", $ad->id_ads) }}"
-                                        class="btn btn-app bg-warning">
+                                        class="btn btn-app bg-warning shadow-none">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                 </div>
@@ -137,7 +145,7 @@
                             <div class="col-lg-6 col-md-12 col-xs-12">
                                 <div class="description-block">
                                     <a data-toggle="modal" data-target="#Delete"
-                                        data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger">
+                                        data-ads="{{ base64_encode($ad->toJson()) }}" class="btn btn-app bg-danger shadow-none">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </a>
                                 </div>
@@ -156,6 +164,23 @@
         <div class="modal-content">
             <div class="row justify-content-around align-self-center">
                 <div class="card" style="margin-top: 30px">
+
+                    <div id="adsCarouselControl" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" id="adsCarousel">
+                            {{-- <div class="carousel-item active">
+                            <img src="..." class="d-block w-100" alt="...">
+                          </div> --}}
+                        </div>
+                        <a class="carousel-control-prev" href="#adsCarouselControl" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#adsCarouselControl" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    
                     <img class="img-fluid" id="adsPic"
                         onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                         style="margin: 10px;height:300px;width:300px;object-fit: cover">
@@ -251,7 +276,7 @@
                         @csrf
                         <input type="hidden" value="" name="id_ads" id="adsHid">
                         <button type="submit" id="btnDelete" value="delete" name="type"
-                            class="btn btn-danger">Yes</button>
+                            class="btn btn-danger shadow-none">Yes</button>
                     </form>
                 </div>
             </div>
@@ -290,8 +315,35 @@
                 var data = atob(ads);
                 var data = $.parseJSON(data);
 
+                if (data.picture.length > 1) {
+
+                $('#adsPic').hide();
+                $('#adsCarouselControl').show();
+
+                if ($('#adsCarousel').children().length > 0) {
+                    $('#adsCarousel').empty();
+                }
+
+                $(data.picture).each(function (index, value) {
+
+                    if (index == 0)
+                        $('#adsCarousel').append(
+                            `<div class='carousel-item active'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                            )
+                    else
+                        $('#adsCarousel').append(
+                            `<div class='carousel-item'><img src='/img/${value}' style='margin: 10px; height:400px; width:400px; object-fit: fill'></div>`
+                            )
+                })
+                } else {
+
+                $('#adsCarouselControl').hide();
+                $('#adsPic').show();
+
                 $("#adsPic").attr('src',
-                    `{{ asset('img/${data.picture}') }}`);
+                    `{{ asset('img/${data.picture[0]}') }}`);
+                }
+
                 $("#adsId").val(data.id_ads);
                 $("#adsHid").val(data.id_ads);
                 $("#adsName").val(data.name);

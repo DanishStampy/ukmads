@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             // OrganizerSeeder::class,
             // JoinListSeeder::class,
 
-            // SubSeeder::class,
+            SubSeeder::class,
 
         ]);
     }

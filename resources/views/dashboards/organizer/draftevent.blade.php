@@ -18,7 +18,7 @@
 
                 <div class="col-6 col-md-3">
                     <div class="card">
-                        <img class="card-img-top" src="{{ asset('img/'.$event->picture) }}"
+                        <img class="card-img-top" src="{{ asset('img/'.$event['picture'][0]) }}"
                             onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                             style="height:200px;object-fit: cover">
                         <div class="card-body" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap">

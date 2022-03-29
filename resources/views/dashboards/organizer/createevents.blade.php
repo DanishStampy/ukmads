@@ -33,21 +33,22 @@
                     <div class="card">
                         <div class="card-body">
                             <button class="btn btn-secondary d-lg-flex align-items-lg-center vertical-center"
-                                type="button"><input type="file" accept="images/*" name="fileToUpload"
+                                type="button">
+                                <input type="file" accept="images/*" name="fileToUpload[]" multiple
                                     id="inputImage" />
                             </button>
                             <img id="imgPreview" class="img-fluid img-thumbnail rounded mx-auto d-block mt-1"
                                 src="{{ asset('img/noimage.jpg') }}" onError="this.onerror=null;this.src='{{ asset("img/noimage.jpg") }}';"
                                 style="width: 450px; height: 450px;">
                         </div>
-                        <div class="card-header">
+                        <div class="card-header bg-purple">
                             <h5 class="d-lg-flex justify-content-lg-center">Upload Picture</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-purple">
                             <h5 class="mb-0">Content Details</h5>
                         </div>
                         <div class="card-body">
@@ -116,14 +117,14 @@
                             <div class="row">
                                 <div class="col d-lg-flex justify-content-lg-end">
 
-                                @if ($subs->subs_status == 'NO' || $eventPosted == $subs->quota)
-                                    <a href="{{ route('organizer.profile')}}" name="action" value="save" class="btn btn-primary text-right border rounded"
+                                @if ($subs->subs_status == 'NO' || $eventCreated == $subs->quota)
+                                    <a href="{{ route('organizer.profile')}}" name="action" value="save" class="btn btn-create text-right border rounded shadow-none"
                                     type="button" style="margin-right: 10px;">Event Quota</a>
 
                                 @else
-                                    <button name="action" value="save" class="btn btn-primary text-right border rounded"
+                                    <button name="action" value="save" class="btn btn-warning text-right border shadow-none rounded"
                                     type="submit" style="margin-right: 10px;">Save As Draft</button>
-                                    <button name="action" value="verify" id="verify-ads" class="btn btn-success text-right border rounded"
+                                    <button name="action" value="verify" id="verify-ads" class="btn btn-create text-right border rounded shadow-none"
                                     type="submit">Verify</button>
 
                                 @endif

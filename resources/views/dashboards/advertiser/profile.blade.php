@@ -40,7 +40,6 @@
                         </a>
                     </li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-block"><b>Reset password</b></a>
             </div>
             <!-- /.card-body -->
         </div>
@@ -61,12 +60,12 @@
                         </li>
                         <li class="list-group-item mb-2">
                             <b>Quota remaining</b> <a class="float-right" id="remainder">
-                                0
+                                {{ $subs->quota - $ads->count() }}
                             </a>
                         </li>
                     @endif
                     <a href="" type="button" data-toggle="modal" data-target="#quotaModal"
-                        class="btn btn-primary btn-block"><b>Add quota</b></a>
+                        class="btn btn-block shadow-none"><b>Add quota</b></a>
                 </ul>
             </div>
         </div>
@@ -74,7 +73,11 @@
         <div class="card card-primary card-outline">
             <div class="card-body">
                 <p><b>Payment history</b></p>
-                <ul class="list-group list-group-unbordered mb-3">
+
+                @if ( count($paymentHistory) < 1)
+                    <p>No payment has been made yet.</p>
+                @else
+                    <ul class="list-group list-group-unbordered mb-3">
 
                     @foreach($paymentHistory as $data)
                         <li class="list-group-item">
@@ -107,6 +110,8 @@
                     @endforeach
 
                 </ul>
+                @endif
+                
             </div>
         </div>
     </div>
@@ -134,8 +139,8 @@
                     <small>*Minimum advertisement quota is 4. Maximum quota is 400.</small>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Go to checkout</button>
+                    <button type="button" class="btn btn-danger shadow-none" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary shadow-none">Go to checkout</button>
                 </div>
             </form>
 
@@ -146,9 +151,9 @@
 <script type="text/javascript">
     $(function () {
 
-        var $remainingQuota = parseInt($("#quota-total").text()) - parseInt($("#posted").text());
+        // var $remainingQuota = parseInt($("#quota-total").text()) - parseInt($("#posted").text());
 
-        $("#remainder").text($remainingQuota);
+        // $("#remainder").text($remainingQuota);
     })
 
 </script>
