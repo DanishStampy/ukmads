@@ -26,9 +26,12 @@ class RedirectIfAuthenticated
             //     return redirect(RouteServiceProvider::HOME);
             // }
 
-            if(Auth::guard($guard)->check() && Auth::user()->role == "user"){
-                return redirect()->route('admin.index');
-            
+            if(Auth::guard($guard)->check() && Auth::user()->role == "admin"){
+                return redirect()->route('admin.pendingads');
+            }else if(Auth::guard($guard)->check() && Auth::user()->role == "advertiser"){
+                return redirect()->route('advertiser.dashboard');
+            }else if(Auth::guard($guard)->check() && Auth::user()->role == "organizer"){
+                return redirect()->route('organizer.dashboard');
             }else if(Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }

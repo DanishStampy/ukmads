@@ -56,14 +56,7 @@
 									<label for="email" class="form_label">E-Mail Address</label>
 									
 								</div>
-
-								<div class="form_group">
-									<input id="age" type="number" class="form_input" name="age" required placeholder=" " min='0'>
-									<label for="age" class="form_label">Age</label>
-									
-                                    
-								</div>
-
+                      
 
 								<div class="form_group">
 									<input id="password" type="password" class="form_input" name="password"  placeholder=" ">
@@ -78,8 +71,6 @@
                                     
 								</div>
 
-								
-
 								<div class="form-group m-0">
 									<button type="submit" id="user-register" class="btn btn-block">
 										Sign Up
@@ -89,7 +80,7 @@
 									Already have an account? <a class="link" id="org-login-form" href="{{route('login')}}">Login</a>
 								</div>
 								<div class="my-3 text-center">
-									Are you representative of an organization? <a class="link" id="org-register-form" href="">Sign up here</a>
+									Are you representative of an organization? <a class="link" id="org-register-form" href="{{route('org.form')}}">Sign up here</a>
 								</div>
 							</form>
 						</div>

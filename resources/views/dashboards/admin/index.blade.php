@@ -11,7 +11,7 @@
                 <div class="inner">
                     <p>Total pending advertisement:</p>
                     <h3>
-                       
+                        {{ $advertisements->count() }}
                     </h3>
                 </div>
                 <div class="icon">
@@ -28,7 +28,7 @@
                 <div class="inner">
                     <p>Total pending event:</p>
                     <h3>
-                      
+                        {{ $events->count() }}
                     </h3>
                 </div>
                 <div class="icon">
@@ -66,3 +66,81 @@
 
 @endsection
 
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"
+            integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" defer>
+</script>
+
+<script type="text/javascript">
+     $(document).ready(function () {
+        /*
+            ===========
+            LINE CHART
+            ===========
+            */
+            const applicationChartCanvas = $('#ads').get(0).getContext('2d')
+            var areaChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                elements: {
+                    line: {
+                        tension: 0.4
+                    }
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: "Date"
+                        },
+                        grid: {
+                            display: false,
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: "Total Joined"
+                        },
+                        grid: {
+                            display: false,
+                        }
+                    }
+                }
+            }
+            new Chart(applicationChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($joinDateAds->keys()) !!},
+                    datasets: [
+                        {
+                            label: 'Ads Received',
+                            backgroundColor: '#ff6384',
+                            borderColor: 'rgba(210, 214, 222, 1)',
+                            fill: true,
+                            data: {!! json_encode($joinDateAds->values()) !!}
+                        },
+                        {
+                            label: 'Event Received',
+                            backgroundColor: '#4bc0c0',
+                            borderColor: 'rgba(210, 214, 222, 1)',
+                            fill: true,
+                            data: {!! json_encode($joinDateEvent->values()) !!}
+                        },
+                      
+                    ]
+                },
+                options: areaChartOptions
+            });
+            
+        
+
+    });
+</script>
+
+
+
+@endpush

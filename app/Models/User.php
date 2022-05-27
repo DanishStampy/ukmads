@@ -12,6 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $primaryKey = 'user_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -19,9 +22,10 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'user_id',
         'name',
         'email',
-        'age',
+        'role',
         'password',
     ];
 
@@ -44,5 +48,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            if (!$user->user_id) {
+                while (true) {
+                    try {
+                        $latest = User::where('role', $user->role)->latest('user_id')->first();
+
+                        $uid = 1000;
+
+                        if ($latest != null && $latest->exists()) {
+                            $uid = random_int(1001, 9999);
+                        }
+                        $user->user_id = ($user->role !== 'admin' ? 'S' : 'A').$uid;
+
+                        break;
+
+                    } catch (QueryException $exception) {
+                        continue;
+                    }
+                }
+            }
+        });
+    }
 }
