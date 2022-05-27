@@ -15,43 +15,11 @@ class AdminController extends Controller
 
     public function index()
     {
-        $advertisements = Advertisement::where('status', 'pending')->get();
-        $events = Event::where('status', 'pending')->get();
-
-        $totalAds = DB::table('advertisements')->count('id_ads');
-        $totalEvent = DB::table('events')->count('id_event');
-
-        $joinDateDBAds = DB::table('advertisements')->selectRaw('COUNT(id_ads) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
-            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
-
-            ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
-            ->groupBy('fdate')->get()
-            ->mapWithKeys(function ($item) {
-
-                return [$item->fdate => $item->cnt];
-            });
-
-        $joinDateAds = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
-            return [$date->format('d/m/Y') => 0];
-        })->merge($joinDateDBAds)->sortKeys();
-
-        $joinDateDBEvent = DB::table('events')->selectRaw('COUNT(id_event) as cnt, DATE_FORMAT(created_at, "%d/%m/%Y") fdate')
-            ->whereDate('created_at', '>=', Carbon::now()->subDays(6))
-
-            ->orderByRaw('STR_TO_DATE(fdate, "%d/%m/%Y")', 'ASC')
-            ->groupBy('fdate')->get()
-            ->mapWithKeys(function ($item) {
-
-                return [$item->fdate => $item->cnt];
-            });
-
-        $joinDateEvent = collect(CarbonPeriod::create(now()->subDays(6), now()))->mapWithKeys(function ($date) {
-            return [$date->format('d/m/Y') => 0];
-        })->merge($joinDateDBEvent)->sortKeys();
+        
 
 
 
-        return view('dashboards.admin.index', compact('advertisements', 'joinDateAds', 'totalAds', 'events', 'joinDateEvent','totalEvent'));
+        return view('dashboards.admin.index');
     }
 
     public function pendingads()

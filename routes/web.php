@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\URL;
 |
 */
 
-
+Route::middleware(['middleware' => 'PreventBackHistory'])->group(function () {
+    Auth::routes();
+});
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
@@ -73,72 +75,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['PreventBa
     // Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
 
-// Customize Org Registration
-Route::group(['as' => 'org.', 'middleware' => ['PreventBackHistory']], function(){
-    Route::get('register-org', [OrgRegisterController::class, 'showRegistration'])->name('form');
-    Route::post('post-org', [OrgRegisterController::class, 'postRegistration'])->name('post');
-});
 
 
-// Organizer
-Route::group(['prefix' => 'organization', 'as' => 'organizer.', 'middleware' => ['isOrgs','auth','secure']] ,function(){
-    Route::get('dashboard', [OrganizerController::class, 'index'])->name('dashboard');
-    Route::get('profile', [OrganizerController::class, 'profile'])->name('profile');
-    
-    // Event
-    Route::get('createevents', [OrganizerController::class, 'createevents'])->name('createevents');
-    Route::post('uploadEvents',[OrganizerController::class, 'uploadEvents'])->name('uploadEvents');
-
-    Route::get('editevent/{id_event}', [OrganizerController::class, 'editevent'])->name('editevent');
-    Route::post('updateEvent/{id_event}',[OrganizerController::class, 'updateEvent'])->name('updateEvent');
-
-    Route::post('deleteEvent', [OrganizerController::class, 'deleteEvent'])->name('deleteEvent');
-
-    Route::get('manageevents', [OrganizerController::class, 'manageevents'])->name('manageevents');
-
-    // List
-    Route::get('joinList/{id_event}', [OrganizerController::class, 'joinListPreview'])->name('listevent');
-    Route::get('exportList', [OrganizerController::class, 'exportJoinList'])->name('listexport');
-
-    // Payment
-    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
-    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
-
-    //Draft
-    Route::get('draftlist', [OrganizerController::class, 'draftPreview'])->name('draftlist');
-
-    // Logout
-    Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
-});
-
-
-// Advertiser
-Route::group(['prefix' => 'advertiser', 'as' => 'advertiser.', 'middleware' => ['PreventBackHistory','isAdvertiser','auth','secure']], function(){
-    Route::get('dashboard', [AdvertiserController::class, 'index'])->name('dashboard');
-    Route::get('profile', [AdvertiserController::class, 'profile'])->name('profile');
-
-    // Advertisement
-    Route::get('createads', [AdvertiserController::class, 'createads'])->name('createads');
-    Route::post('uploadAds',[AdvertiserController::class, 'uploadAds'])->name('uploadAds');
-
-    Route::get('editads/{id_ads}', [AdvertiserController::class, 'editads'])->name('editads');
-    Route::post('updateAds/{id_ads}',[AdvertiserController::class, 'updateAds'])->name('updateAds');
-
-    Route::post('deleteAds', [AdvertiserController::class, 'deleteAds'])->name('deleteAds');
-
-    Route::get('manageads', [AdvertiserController::class, 'manageads'])->name('manageads');
-
-    Route::get('showadspend', [AdvertiserController::class, 'showadspend'])->name('showadspend');
-
-    // Payment
-    Route::get('checkout', [PaymentController::class, 'index'])->name('checkout');
-    Route::post('payment', [PaymentController::class, 'paymentPost'])->name('payment');
-
-    // Draft
-    Route::get('draftlist', [AdvertiserController::class, 'draftPreview'])->name('draftlist');
-
-    // Logout
-    Route::get('logout', [LogoutController::class, 'perform'])->name('logout');
-});
 
 

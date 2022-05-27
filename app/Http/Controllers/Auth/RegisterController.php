@@ -57,6 +57,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'age'=> ['required','integer'],
         ]);
     }
 
@@ -85,19 +86,18 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'age' => ['required', 'integer'],
         ]);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role = 'advertiser'; 
+        $user->age = $request->age; 
         $user->password = Hash::make($request->password);
-        $user->save();
+        $user->role="user";
 
-        $subs = new Subscription();
-        $subs->user_id = $user->user_id;
 
-        if( $subs->save() ){
+        if( $user->save() ){
             return redirect('login')->with('success','You are now successfully registered');
         }else{
             return redirect('login')->with('error','Failed to register');
