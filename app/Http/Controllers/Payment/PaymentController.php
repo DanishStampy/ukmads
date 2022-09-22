@@ -47,7 +47,7 @@ class PaymentController extends Controller
             "amount" => $amount * 100,
             "currency" => 'myr',
             'source' => $request->stripeToken,
-            'description' => 'Deez nuts',
+            'description' => 'Testing',
 
         ]);
 
